@@ -1,5 +1,7 @@
 ---
 import Main from '../layouts/main.astro';
+import Aside from '../components/aside.astro';
+import ProfileCard from '../components/profile-card.astro';
 import { getCollection } from 'astro:content';
 import CollectionsList from '../components/collections-list.astro';
 
@@ -15,4 +17,7 @@ const streams = await getCollection('streams');
     I have a face for Radio.
   </p>
   <CollectionsList collections={streams} base='/streams' />
+  <Aside>
+    <ProfileCard />
+  </Aside>
 </Main>

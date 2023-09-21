@@ -2,6 +2,9 @@
 layout: '../layouts/main.astro'
 ---
 
+import Aside from '../components/aside.astro';
+import ProfileCard from '../components/profile-card.astro';
+
 <strong class='text-xs text-brand-primary'>About</strong>
 
 # More About Me
@@ -106,3 +109,7 @@ but...
 <span className='text-brand-secondary'>order</span>
 <span> = </span>
 <span className='text-brand-tertiary'> fun</span>
+
+<Aside>
+  <ProfileCard />
+</Aside>

@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 
 import Main from '../../layouts/main.astro';
+import Aside from '../../components/aside.astro';
+import FeaturedImageCard from '../../components/featured-image-card.astro';
+import TableOfContents from '../../components/table-of-contents.astro';
 import { formatDate } from '../../utils/format-date';
 
 export const prerender = true;
@@ -23,16 +26,25 @@ export async function getStaticPaths() {
 
 const {
   open,
+  slug,
   open: {
-    data: { title, date },
+    data: { title, date, featuredImage },
   },
 } = Astro.props;
 
-const { Content } = await open.render();
+const { Content, headings } = await open.render();
 ---
 
 <Main>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <Content />
+  <Aside>
+    <FeaturedImageCard
+      alt={title}
+      thumbnail={featuredImage}
+      shareText={`${title}\n paulie.dev/posts/${slug}`}
+    />
+    <TableOfContents headings={headings} />
+  </Aside>
 </Main>

@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    // These are for the TOC
+    'pl-4',
+    'pl-5',
+    'pl-6',
+    'pl-7',
+    'pl-8',
+  ],
   theme: {
     extend: {
       colors: {
@@ -42,6 +50,10 @@ module.exports = {
             },
             a: {
               color: theme('colors.brand.secondary'),
+              cursor: 'pointer',
+              '&:hover': {
+                color: theme('colors.brand.text'),
+              },
               p: {
                 margin: 0,
                 color: 'inherit',

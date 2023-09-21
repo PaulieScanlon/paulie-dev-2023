@@ -1,8 +1,7 @@
 ---
 import Main from '../layouts/main.astro';
-import { getCollection } from 'astro:content';
-
-const streams = await getCollection('streams');
+import Aside from '../components/aside.astro';
+import ProfileCard from '../components/profile-card.astro';
 ---
 
 <Main>
@@ -13,4 +12,7 @@ const streams = await getCollection('streams');
     is sourced from a number of API's as well as locally sourced MDX files from
     around my site.
   </p>
+  <Aside>
+    <ProfileCard />
+  </Aside>
 </Main>

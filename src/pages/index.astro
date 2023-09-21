@@ -1,5 +1,7 @@
 ---
 import Main from '../layouts/main.astro';
+import Aside from '../components/aside.astro';
+import ProfileCard from '../components/profile-card.astro';
 import { getCollection } from 'astro:content';
 
 const demos = await getCollection('demos');
@@ -46,4 +48,7 @@ import CollectionsList from '../components/collections-list.astro';
   <h2 class='mb-0 text-brand-salmon'>Latest Posts</h2>
   <p>Here's the latest posts I've written and published here on my site.</p>
   <CollectionsList collections={posts} base='/posts' slice={3} />
+  <Aside>
+    <ProfileCard />
+  </Aside>
 </Main>
