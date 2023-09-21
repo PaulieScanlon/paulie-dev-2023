@@ -21,6 +21,8 @@ export default defineConfig({
         },
       ],
     }),
-    mdx(),
+    mdx({
+      syntaxHighlight: 'prism',
+    }),
   ],
 });
