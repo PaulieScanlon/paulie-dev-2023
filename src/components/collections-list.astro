@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate } from '../utils/format-date';
+const { collections, base, slice } = Astro.props;
+---
+
+<ul class='list-none my-8 p-0 flex flex-col gap-8'>
+  {
+    collections
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+      .slice(0, slice || collections.length)
+      .map((collection) => {
+        const {
+          slug,
+          data: { featuredImage, logo, publication, title, date },
+        } = collection;
+
+        return (
+          <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-2 ease-in-out duration-500'>
+            <a
+              href={`${base}/${slug}`}
+              class='flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-3 no-underline'
+            >
+              {featuredImage ? (
+                <Image
+                  width={224}
+                  height={126}
+                  alt={title}
+                  src={featuredImage}
+                  class='m-0'
+                />
+              ) : null}
+              <div class='flex flex-col gap-1'>
+                <span class='flex gap-2 items-center'>
+                  {publication ? (
+                    <>
+                      <div class='flex items-center gap-2'>
+                        <Image
+                          width={24}
+                          height={24}
+                          alt={publication}
+                          src={logo}
+                          class='m-0'
+                        />
+                        <small class='text-xs text-brand-secondary'>
+                          {publication}
+                        </small>
+                      </div>
+                      <span>&bull;</span>
+                    </>
+                  ) : null}
+
+                  <time class='text-xs font-bold text-brand-primary'>
+                    {formatDate(date)}
+                  </time>
+                </span>
+                <strong class='block text-brand-text text-xl'>{title}</strong>
+              </div>
+            </a>
+          </li>
+        );
+      })
+  }
+</ul>

@@ -1,0 +1,29 @@
+---
+import Main from './src/layouts/main.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+---
+
+<Main>
+  <h1>Blog posts</h1>
+  <p>...</p>
+  <!-- <p>{JSON.stringify(allPosts, null, 2)}</p> -->
+  <ul>
+    {
+      allPosts
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .map((post) => {
+          const {
+            slug,
+            data: { title },
+          } = post;
+          return (
+            <li>
+              <a href={slug}>{title}</a>
+            </li>
+          );
+        })
+    }
+  </ul>
+</Main>

@@ -1,0 +1,14 @@
+---
+import Main from '../layouts/main.astro';
+import { getCollection } from 'astro:content';
+import CollectionsList from '../components/collections-list.astro';
+
+const opensource = await getCollection('opensource');
+---
+
+<Main>
+  <strong class='text-xs text-brand-primary'>Open-source</strong>
+  <h1 class='mb-0'>Open-source projects</h1>
+  <p>I'm currently only maintaining the following projects.</p>
+  <CollectionsList collections={opensource} base='/opensource' />
+</Main>

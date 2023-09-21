@@ -1,0 +1,17 @@
+---
+import Main from '../layouts/main.astro';
+import { getCollection } from 'astro:content';
+import CollectionsList from '../components/collections-list.astro';
+
+const posts = await getCollection('posts');
+---
+
+<Main>
+  <strong class='text-xs text-brand-primary'>Posts</strong>
+  <h1 class='mb-0'>Blog Posts</h1>
+  <p>
+    You'll find a mixed bag of content here. I'm mainly focussed on "How to"
+    guides but everyone now and then I'll throw in a curve ball.
+  </p>
+  <CollectionsList collections={posts} base='/posts' />
+</Main>

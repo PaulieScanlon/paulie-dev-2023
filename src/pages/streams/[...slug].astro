@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+
+import Main from '../../layouts/main.astro';
+import { formatDate } from '../../utils/format-date';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const streams = await getCollection('streams');
+
+  return streams.map((stream) => {
+    return {
+      params: {
+        slug: stream.slug,
+      },
+      props: {
+        stream,
+      },
+    };
+  });
+}
+
+const {
+  stream,
+  stream: {
+    data: { title, date },
+  },
+} = Astro.props;
+
+const { Content } = await stream.render();
+---
+
+<Main>
+  <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+  <h1>{title}</h1>
+  <Content />
+</Main>

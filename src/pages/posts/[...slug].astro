@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+
+import Main from '../../layouts/main.astro';
+import { formatDate } from '../../utils/format-date';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  return posts.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    };
+  });
+}
+
+const {
+  post,
+  post: {
+    data: { title, date },
+  },
+} = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<Main>
+  <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+  <h1>{title}</h1>
+  <Content />
+</Main>

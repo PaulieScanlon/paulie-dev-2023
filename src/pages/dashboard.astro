@@ -1,0 +1,16 @@
+---
+import Main from '../layouts/main.astro';
+import { getCollection } from 'astro:content';
+
+const streams = await getCollection('streams');
+---
+
+<Main>
+  <strong class='text-xs text-brand-primary'>Dashboard</strong>
+  <h1 class='mb-0'>Built-in Analytics</h1>
+  <p>
+    This is a Server-side rendered data visualization and analytics page. Data
+    is sourced from a number of API's as well as locally sourced MDX files from
+    around my site.
+  </p>
+</Main>

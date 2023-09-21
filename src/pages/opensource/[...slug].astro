@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+
+import Main from '../../layouts/main.astro';
+import { formatDate } from '../../utils/format-date';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const opensource = await getCollection('opensource');
+
+  return opensource.map((open) => {
+    return {
+      params: {
+        slug: open.slug,
+      },
+      props: {
+        open,
+      },
+    };
+  });
+}
+
+const {
+  open,
+  open: {
+    data: { title, date },
+  },
+} = Astro.props;
+
+const { Content } = await open.render();
+---
+
+<Main>
+  <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+  <h1>{title}</h1>
+  <Content />
+</Main>

@@ -1,0 +1,18 @@
+---
+import Main from '../layouts/main.astro';
+import { getCollection } from 'astro:content';
+import CollectionsList from '../components/collections-list.astro';
+
+const streams = await getCollection('streams');
+---
+
+<Main>
+  <strong class='text-xs text-brand-primary'>Streams</strong>
+  <h1 class='mb-0'>Streams and Webinars</h1>
+  <p>
+    For the most part I prefer to build something, and then write about it. I
+    have, will, and do dabble with Streams and Webinars. As they say in showbiz,
+    I have a face for Radio.
+  </p>
+  <CollectionsList collections={streams} base='/streams' />
+</Main>
