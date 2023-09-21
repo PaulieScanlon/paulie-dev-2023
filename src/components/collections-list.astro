@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
+import AstroImage from '../components/astro-image.astro';
 import { formatDate } from '../utils/format-date';
+
 const { collections, base, slice } = Astro.props;
 ---
 
@@ -22,12 +24,12 @@ const { collections, base, slice } = Astro.props;
               class='flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-3 no-underline'
             >
               {featuredImage ? (
-                <Image
+                <AstroImage
                   width={224}
                   height={126}
                   alt={title}
-                  src={featuredImage}
-                  class='m-0'
+                  url={featuredImage}
+                  className='w-auto'
                 />
               ) : null}
               <div class='flex flex-col gap-1'>

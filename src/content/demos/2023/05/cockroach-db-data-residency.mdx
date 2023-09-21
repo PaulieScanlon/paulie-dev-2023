@@ -26,11 +26,11 @@ which was deployed using AWS. And finally, I wrote about the project for the Coc
 I didn't do this alone though, [Rob Reid](https://twitter.com/robreid_io) helped with the CockroachDB config and with
 fleshing out the idea to check it was technically possible. Thanks Rob, it was great working with you!
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='Scamps'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684958038/paulie.dev/2023/05/silo-scamps_40_cr1lyw.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684958038/paulie.dev/2023/05/silo-scamps_40_cr1lyw.jpg'
 />
 
 ### Problem
@@ -45,11 +45,11 @@ database.
 The distance the data travels contributes to the time it takes for the transfer to complete. The greater the distance,
 the longer the end user will likely see a "loading" state. But wait, there's more...
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='Single region diagram'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684956922/paulie.dev/2023/05/silo-diagram-1_40_icpp1k.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684956922/paulie.dev/2023/05/silo-diagram-1_40_icpp1k.jpg'
 />
 
 When end users request or posts data, they're not directly interacting with the database (because it's not secure),
@@ -62,11 +62,11 @@ application that feels snappy, get this wrong and you've got end users that aren
 The solution to this problem is to shorten the distance between end user, server and database. Or to put it another way.
 Multi-region application architecture.
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='Multi-region diagram'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684957090/paulie.dev/2023/05/silo-diagram-3_40_o1e8tp.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684957090/paulie.dev/2023/05/silo-diagram-3_40_o1e8tp.jpg'
 />
 
 In this launch CockroachDB
@@ -92,11 +92,11 @@ application where users could interact and create something. The hope being they
 chose Art. Using the [Silo](https://www.cockroachlabs.com/demos/demo-data-residency/) application users can create and
 save their own unique artwork to share... but there's a catch, i'll explain that in a moment.
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='Multi-region diagram'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684957247/paulie.dev/2023/05/silo-us-app_40_v0nhc2.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1684957247/paulie.dev/2023/05/silo-us-app_40_v0nhc2.jpg'
 />
 
 The second requirement was to explain the importance of correctly pairing the server and database architecture and

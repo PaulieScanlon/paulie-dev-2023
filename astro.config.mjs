@@ -22,6 +22,9 @@ export default defineConfig({
           './src/components/code-sandbox.astro': [['default', 'CodeSandbox']],
         },
         {
+          './src/components/astro-image.astro': [['default', 'AstroImage']],
+        },
+        {
           'astro-embed': ['Tweet', 'Vimeo', 'YouTube'],
         },
         {

@@ -18,11 +18,11 @@ like it's better suited as a title frame for a Netflix documentary about serial 
 
 What do you think?
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='Slice Hero Image'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666004644/paulie.dev/2022/10/sharp-image-manipulation-embedded-1_gadirz.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666004644/paulie.dev/2022/10/sharp-image-manipulation-embedded-1_gadirz.jpg'
 />
 
 It is however quite an interesting use of [Sharp](https://sharp.pixelplumbing.com/), and rather than waste my efforts I
@@ -58,22 +58,22 @@ then slowly downloaded and resized each of the images so the eyes and mouths wer
 within my .psd (PhotoShop document). I added some guides (opaque red ovals) to help with the alignment. I should have
 known at this point the result was gonna be wild!
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='Photoshop screenshot with guides'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666007495/paulie.dev/2022/10/sharp-image-manipulation-embedded-2_fabb8r.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666007495/paulie.dev/2022/10/sharp-image-manipulation-embedded-2_fabb8r.jpg'
 />
 
 I then used PhotoShop's "Export > Layers to Files" which as you might imagine, exports each layer to a file. The output
 can be seen in the repository here:
 [sharp-image-manipulation/images/](https://github.com/PaulieScanlon/sharp-image-manipulation/tree/main/images)
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='Photoshop export layers to files'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666007495/paulie.dev/2022/10/sharp-image-manipulation-embedded-3_opnems.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666007495/paulie.dev/2022/10/sharp-image-manipulation-embedded-3_opnems.jpg'
 />
 
 With all the source images exported I could now read the directory, slice each image, and output the slice into a new
@@ -218,21 +218,21 @@ You can see the `src` for the `run` function in the repository here:
 
 The result of the `run` function should be x60 images named `0 - 59.jpg`.
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='VS Code slices'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666010508/paulie.dev/2022/10/sharp-image-manipulation-embedded-4_kaeyn3.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666010508/paulie.dev/2022/10/sharp-image-manipulation-embedded-4_kaeyn3.jpg'
 />
 
 These are then displayed in the HTML page in individual `<img />` elements. Some additional styling has been added to
 "stack" the images one on top of the other.
 
-<Image
+<AstroImage
   width='768'
   height='480'
   alt='HTML img elements'
-  src='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666010700/paulie.dev/2022/10/sharp-image-manipulation-embedded-5_j1hobl.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1666010700/paulie.dev/2022/10/sharp-image-manipulation-embedded-5_j1hobl.jpg'
 />
 
 There's probably some extra stuff I could do to merge all of the slices back together and create a single image, but
