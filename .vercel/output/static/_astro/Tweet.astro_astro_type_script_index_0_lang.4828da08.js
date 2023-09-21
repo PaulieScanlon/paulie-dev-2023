@@ -1,1 +1,0 @@
-const r=(e,s)=>{const o=new IntersectionObserver(t=>{for(const{isIntersecting:n}of t)if(n){o.disconnect(),s();break}});for(const t of e)o.observe(t)},c=document.querySelectorAll("astro-embed-tweet");r(c,()=>{const e=document.createElement("script");e.setAttribute("defer",""),e.setAttribute("src","https://platform.twitter.com/widgets.js")});
