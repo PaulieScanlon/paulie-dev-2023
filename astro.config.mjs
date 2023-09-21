@@ -9,7 +9,7 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   output: 'server',
   image: {
-    domains: ['cloudinary.com'],
+    domains: ['res.cloudinary.com'],
   },
   integrations: [
     tailwind(),
