@@ -32,6 +32,7 @@ export const collections = {
       title: z.string(),
       tags: z.array(z.string()).optional(),
       date: z.date(),
+      url: z.string(),
       show: z.string(),
       role: z.string(),
       logo: z.string(),

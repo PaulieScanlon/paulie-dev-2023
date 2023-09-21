@@ -35,7 +35,12 @@ const {
 const { Content, headings } = await post.render();
 ---
 
-<Main title={title} description='' slug={`/posts/${slug}/`}>
+<Main
+  title={title}
+  description=''
+  slug={`/posts/${slug}/`}
+  image={featuredImage}
+>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <Content />
