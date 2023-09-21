@@ -68,7 +68,12 @@ module.exports = {
                 content: '"" !important',
               },
             },
-
+            blockquote: {
+              background: theme('colors.brand.surface'),
+              padding: '1.2em',
+              borderLeftColor: theme('colors.brand.yellow'),
+              borderRadius: '.2em',
+            },
             '.twitter-tweet': {
               borderColor: '#232140!important',
               padding: '32px!important',
