@@ -31,7 +31,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            'p, small': {
+            '*:not(h1, h2, h3, h4, h5, h6, a, code)': {
               color: theme('colors.brand.text'),
             },
             h1: {
@@ -45,6 +45,15 @@ module.exports = {
               p: {
                 margin: 0,
                 color: 'inherit',
+              },
+            },
+            code: {
+              color: theme('colors.brand.tertiary'),
+              '&::before': {
+                content: '"" !important',
+              },
+              '&::after': {
+                content: '"" !important',
               },
             },
 
