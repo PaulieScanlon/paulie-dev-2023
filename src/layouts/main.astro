@@ -78,21 +78,23 @@ const socialLinks = [
 
 <script>
   var isNavOpen = false;
+  const menu = document.querySelector('#menu');
   const lightbox = document.querySelector('#lightbox');
+  const sidebar = document.querySelector('#sidebar');
+
   const lightboxOpen = 'fixed';
   const lightboxOpenLg = 'lg:hidden';
   const lightboxClosed = 'hidden';
-  const menu = document.querySelector('#menu');
-  const sidebar = document.querySelector('#sidebar');
-  const sidebarClosed = 'left-[-240px]';
-  const sidebarCloseLg = 'lg:left-[max(0px,calc(50%-45rem))]';
-  const sidebarOpen = 'left-[max(0px,calc(50%-45rem))]';
+
+  const sidebarResponsiveClosed = '-left-[240px]';
+  const sidebarResponsiveOpen = 'left-[max(0px,calc(50%-45rem))]';
+
   const menuIcon = 'M4 6h16M4 12h16m-7 6h7';
   const closeIcon = 'M6 18L18 6M6 6l12 12';
   const path = document.querySelector('#path');
 
   path.setAttribute('d', menuIcon);
-  sidebar.classList.add(sidebarClosed, sidebarCloseLg);
+  sidebar.classList.add(sidebarResponsiveClosed);
   lightbox.classList.add(lightboxClosed);
 
   const handleNav = () => {
@@ -100,38 +102,28 @@ const socialLinks = [
       path.setAttribute('d', menuIcon);
       lightbox.classList.remove(lightboxOpen, lightboxOpenLg);
       lightbox.classList.add(lightboxClosed);
-      sidebar.classList.remove(sidebarOpen);
-      sidebar.classList.add(sidebarClosed, sidebarCloseLg);
+      sidebar.classList.add(sidebarResponsiveClosed);
+
       isNavOpen = false;
     } else {
       path.setAttribute('d', closeIcon);
       lightbox.classList.remove(lightboxClosed);
       lightbox.classList.add(lightboxOpen, lightboxOpenLg);
-      sidebar.classList.remove(sidebarClosed, sidebarCloseLg);
-      sidebar.classList.add(sidebarOpen);
+      sidebar.classList.remove(sidebarResponsiveClosed);
+      sidebar.classList.add(sidebarResponsiveOpen);
+
       isNavOpen = true;
     }
   };
 
   menu.addEventListener('click', handleNav);
+  lightbox.addEventListener('click', handleNav);
 </script>
 
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <!-- <style>
-      .twitter-tweet {
-        background: floralwhite;
-        font-family: sans-serif;
-        border: 0;
-      }
-
-      .twitter-tweet a {
-        color: purple;
-        font-weight: bold;
-      }
-    </style> -->
   </head>
   <body class='prose max-w-none bg-brand-background'>
     <header
@@ -184,7 +176,7 @@ const socialLinks = [
       <div class='max-w-8xl mx-auto px-4 sm:px-6 md:px-8'>
         <div
           id='sidebar'
-          class='lg:block fixed z-30 inset-0 top-[3.8125rem] transition-all duration-300 right-auto w-[14.5rem] pb-10 px-6 overflow-y-auto border-r border-r-brand-outline bg-brand-background left-3'
+          class='lg:block fixed z-30 inset-0 top-[3.8125rem] transition-all duration-300 right-auto w-[14.5rem] pb-10 px-6 overflow-y-auto border-r border-r-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))]'
         >
           <div class='pt-10 pb-4'></div>
           <div class='relative'>
