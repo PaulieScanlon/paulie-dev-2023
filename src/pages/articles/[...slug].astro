@@ -26,6 +26,7 @@ export async function getStaticPaths() {
 const {
   article,
   article: {
+    slug,
     data: { title, date },
   },
 } = Astro.props;
@@ -33,7 +34,7 @@ const {
 const { Content } = await article.render();
 ---
 
-<Main>
+<Main title={title} description='' slug={`/articles/${slug}/`}>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <Content />

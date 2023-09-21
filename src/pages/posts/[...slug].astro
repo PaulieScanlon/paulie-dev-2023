@@ -26,8 +26,8 @@ export async function getStaticPaths() {
 
 const {
   post,
-  slug,
   post: {
+    slug,
     data: { title, date, featuredImage },
   },
 } = Astro.props;
@@ -35,7 +35,7 @@ const {
 const { Content, headings } = await post.render();
 ---
 
-<Main>
+<Main title={title} description='' slug={`/posts/${slug}/`}>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <Content />
@@ -43,7 +43,7 @@ const { Content, headings } = await post.render();
     <FeaturedImageCard
       alt={title}
       thumbnail={featuredImage}
-      shareText={`${title}\n paulie.dev/posts/${slug}`}
+      text={`${title}\n https://paulie.dev/posts/${slug}/`}
     />
     <TableOfContents headings={headings} />
   </Aside>

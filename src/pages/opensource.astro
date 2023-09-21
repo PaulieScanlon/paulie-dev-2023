@@ -8,7 +8,11 @@ import CollectionsList from '../components/collections-list.astro';
 const opensource = await getCollection('opensource');
 ---
 
-<Main>
+<Main
+  title='Open-source'
+  description='Open-source projects currently maintained'
+  slug='/opensource/'
+>
   <strong class='text-xs text-brand-primary'>Open-source</strong>
   <h1 class='mb-0'>Open-source projects</h1>
   <p>I'm currently only maintaining the following projects.</p>

@@ -25,6 +25,7 @@ export async function getStaticPaths() {
 const {
   stream,
   stream: {
+    slug,
     data: { title, date },
   },
 } = Astro.props;
@@ -32,7 +33,7 @@ const {
 const { Content } = await stream.render();
 ---
 
-<Main>
+<Main title={title} description='' slug={`/streams/${slug}/`}>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <Content />

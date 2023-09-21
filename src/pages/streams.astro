@@ -8,7 +8,11 @@ import CollectionsList from '../components/collections-list.astro';
 const streams = await getCollection('streams');
 ---
 
-<Main>
+<Main
+  title='Streams'
+  description="I don't like being on camera, but I'll do it if I have to"
+  slug='/streams/'
+>
   <strong class='text-xs text-brand-primary'>Streams</strong>
   <h1 class='mb-0'>Streams and Webinars</h1>
   <p>
