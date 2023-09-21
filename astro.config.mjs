@@ -16,9 +16,9 @@ export default defineConfig({
         {
           'astro-embed': ['Tweet', 'Vimeo', 'YouTube'],
         },
-        // {
-        //   'astro:assets': ['Image'],
-        // },
+        {
+          'astro:assets': ['Image'],
+        },
       ],
     }),
     mdx(),
