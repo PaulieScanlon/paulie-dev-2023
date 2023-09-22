@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 
 import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
+import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 
 export const prerender = true;
@@ -37,5 +38,7 @@ const { Content } = await stream.render();
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <Content />
-  <Aside />
+  <Aside>
+    <ProfileCard />
+  </Aside>
 </Main>
