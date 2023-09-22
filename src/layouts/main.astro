@@ -106,52 +106,23 @@ const seoKeywords = tags ? tags : keywords;
 const isProduction = import.meta.env.PROD;
 ---
 
-<script>
-  var isNavOpen = false;
-  const menu = document.querySelector('#menu');
-  const lightbox = document.querySelector('#lightbox');
-  const sidebar = document.querySelector('#sidebar');
-
-  const lightboxOpen = 'fixed';
-  const lightboxOpenLg = 'lg:hidden';
-  const lightboxClosed = 'hidden';
-
-  const sidebarResponsiveClosed = '-left-[240px]';
-  const sidebarResponsiveOpen = 'left-[max(0px,calc(50%-45rem))]';
-
-  const menuIcon = 'M4 6h16M4 12h16m-7 6h7';
-  const closeIcon = 'M6 18L18 6M6 6l12 12';
-  const path = document.querySelector('#path');
-
-  path.setAttribute('d', menuIcon);
-  sidebar.classList.add(sidebarResponsiveClosed);
-  lightbox.classList.add(lightboxClosed);
-
-  const handleNav = () => {
-    if (isNavOpen) {
-      path.setAttribute('d', menuIcon);
-      lightbox.classList.remove(lightboxOpen, lightboxOpenLg);
-      lightbox.classList.add(lightboxClosed);
-      sidebar.classList.add(sidebarResponsiveClosed);
-
-      isNavOpen = false;
-    } else {
-      path.setAttribute('d', closeIcon);
-      lightbox.classList.remove(lightboxClosed);
-      lightbox.classList.add(lightboxOpen, lightboxOpenLg);
-      sidebar.classList.remove(sidebarResponsiveClosed);
-      sidebar.classList.add(sidebarResponsiveOpen);
-
-      isNavOpen = true;
-    }
-  };
-
-  menu.addEventListener('click', handleNav);
-  lightbox.addEventListener('click', handleNav);
-</script>
-
 <html lang='en'>
   <head>
+    <!-- Google tag (gtag.js) -->
+    {
+      isProduction ? (
+      <script async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FMCW05VHZ2');
+      </script>
+      ) : null
+    }
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href='/prism-dracula.css' rel='stylesheet' />
@@ -180,66 +151,60 @@ const isProduction = import.meta.env.PROD;
 
     <!-- Favicons -->
     <link rel='icon' type='image/x-icon' href='/favicon.ico' />
-    <link
-      rel='icon'
-      type='image/png'
-      sizes='16x16'
-      href='/favicon-16x16.png'
-      data-react-helmet='true'
-    />
-    <link
-      rel='icon'
-      type='image/png'
-      sizes='32x32'
-      href='/favicon-32x32.png'
-      data-react-helmet='true'
-    />
+    <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' data-react-helmet='true' />
+    <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' data-react-helmet='true' />
 
     <!-- Web mention -->
     <link rel='webmention' href='https://webmention.io/paulie.dev/webmention' />
     <link rel='pingback' href='https://webmention.io/paulie.dev/xmlrpc' />
-    {
-      isProduction ? (
-        <script is:inline>
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-        </script>
-      ) : null
-    }
-    {
-      isProduction ? (
-        <script is:inline>
-          (function (w, d, s, l, i) {
-            console.log('GTM');
-            w[l] = w[l] || [];
-            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            var f = d.getElementsByTagName(s)[0],
-              j = d.createElement(s),
-              dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', 'G-K1DEFTPEC4');
-        </script>
-      ) : null  
-    }
+
+    <!-- Navigation -->
+    <script>
+      var isNavOpen = false;
+      const menu = document.querySelector('#menu');
+      const lightbox = document.querySelector('#lightbox');
+      const sidebar = document.querySelector('#sidebar');
+
+      const lightboxOpen = 'fixed';
+      const lightboxOpenLg = 'lg:hidden';
+      const lightboxClosed = 'hidden';
+
+      const sidebarResponsiveClosed = '-left-[240px]';
+      const sidebarResponsiveOpen = 'left-[max(0px,calc(50%-45rem))]';
+
+      const menuIcon = 'M4 6h16M4 12h16m-7 6h7';
+      const closeIcon = 'M6 18L18 6M6 6l12 12';
+      const path = document.querySelector('#path');
+
+      path.setAttribute('d', menuIcon);
+      sidebar.classList.add(sidebarResponsiveClosed);
+      lightbox.classList.add(lightboxClosed);
+
+      const handleNav = () => {
+        if (isNavOpen) {
+          path.setAttribute('d', menuIcon);
+          lightbox.classList.remove(lightboxOpen, lightboxOpenLg);
+          lightbox.classList.add(lightboxClosed);
+          sidebar.classList.add(sidebarResponsiveClosed);
+
+          isNavOpen = false;
+        } else {
+          path.setAttribute('d', closeIcon);
+          lightbox.classList.remove(lightboxClosed);
+          lightbox.classList.add(lightboxOpen, lightboxOpenLg);
+          sidebar.classList.remove(sidebarResponsiveClosed);
+          sidebar.classList.add(sidebarResponsiveOpen);
+
+          isNavOpen = true;
+        }
+      };
+
+      menu.addEventListener('click', handleNav);
+      lightbox.addEventListener('click', handleNav);
+    </script>
   </head>
+
   <body class='prose max-w-none bg-brand-background'>
-    {
-      isProduction ? (
-        <noscript>
-          <iframe
-            src='https://www.googletagmanager.com/ns.html?id=G-K1DEFTPEC4'
-            height='0'
-            width='0'
-            style='display:none;visibility:hidden'
-          >
-          </iframe>
-        </noscript>
-      ) : null
-    }
     <header
       class='sticky top-0 z-40 w-full backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent'
     >
@@ -251,10 +216,7 @@ const isProduction = import.meta.env.PROD;
               <Logo />
             </a>
             <div class='relative flex lg:hidden items-center ml-auto'>
-              <button
-                id='menu'
-                class='not-prose ml-auto flex items-center justify-center text-brand-text'
-              >
+              <button id='menu' class='not-prose ml-auto flex items-center justify-center text-brand-text'>
                 <span class='sr-only'>Navigation</span>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -263,13 +225,7 @@ const isProduction = import.meta.env.PROD;
                   viewBox='0 0 24 24'
                   stroke='currentColor'
                 >
-                  <path
-                    id='path'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                    stroke-width='2'
-                  >
-                  </path>
+                  <path id='path' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'> </path>
                 </svg>
               </button>
             </div>
@@ -308,12 +264,7 @@ const isProduction = import.meta.env.PROD;
 
                   return (
                     <li class='m-0 p-0 list-none'>
-                      <NavLink
-                        title={title}
-                        icon={icon}
-                        slug={slug}
-                        isActive={isActive}
-                      />
+                      <NavLink title={title} icon={icon} slug={slug} isActive={isActive} />
                     </li>
                   );
                 })
@@ -332,17 +283,8 @@ const isProduction = import.meta.env.PROD;
                         rel={`noreferrer ${rel}`}
                         class='not-prose inline-flex items-center gap-3 rounded-full px-3 py-2 border-transparent hover:bg-brand-surface border hover:border-brand-outline transition-colors duration-300 text-slate-400 hover:text-brand-text'
                       >
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          class='h-4 w-4'
-                          fill='currentColor'
-                          viewBox='0 0 24 24'
-                        >
-                          <path
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            d={icon}
-                          />
+                        <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' fill='currentColor' viewBox='0 0 24 24'>
+                          <path stroke-linecap='round' stroke-linejoin='round' d={icon} />
                         </svg>
                         {title}
                       </a>
@@ -354,9 +296,7 @@ const isProduction = import.meta.env.PROD;
           </div>
         </div>
         <main class='lg:pl-[14.5rem] pb-16'>
-          <section
-            class='mx-auto pt-6 max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16'
-          >
+          <section class='mx-auto pt-6 max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16'>
             <article class='max-w-none min-h-[calc(100vh-19rem)]'>
               <slot />
             </article>
