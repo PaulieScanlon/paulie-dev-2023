@@ -263,6 +263,13 @@ const seoKeywords = tags ? tags : keywords;
                 siteLinks.map((item) => {
                   const { title, icon, slug } = item;
                   const isActive = `/${currentPath}` === slug;
+
+                  // const isActive =
+                  //   currentPath.length > 0
+                  //     ? currentPath.startsWith(slug.substring(1))
+                  //     : false;
+                  // console.log({ currentPath, slug, isActive });
+
                   return (
                     <li class='m-0 p-0 list-none'>
                       <NavLink
