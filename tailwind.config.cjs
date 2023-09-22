@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   safelist: [
@@ -33,6 +35,9 @@ module.exports = {
           guide: '#2d2a58',
         },
       },
+      fontFamily: {
+        sans: ['Inconsolata', ...defaultTheme.fontFamily.sans],
+      },
       maxWidth: {
         '8xl': '90rem',
       },
@@ -47,6 +52,9 @@ module.exports = {
             },
             'h2, h3, h4, h5, h6': {
               color: theme('colors.brand.salmon'),
+            },
+            p: {
+              fontFamily: 'system-ui',
             },
             a: {
               color: theme('colors.brand.secondary'),

@@ -2,6 +2,10 @@
 import Logo from '../components/logo.astro';
 import NavLink from '../components/nav-link.astro';
 
+import '@fontsource/inconsolata/400.css';
+import '@fontsource/inconsolata/500.css';
+import '@fontsource/inconsolata/700.css';
+
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
 

@@ -573,6 +573,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.2.tgz#1205014625790c7ff0e471644a878a65d1e34ab0"
   integrity sha512-tcuhV7ncXBqbt/Ybf0IyrMcwVOAPDckMK9rXNHtF17UTK18OKLpg08glminN06pt2WCoALhXdLfSPbVvK/6fxw==
 
+"@fontsource/inconsolata@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/inconsolata/-/inconsolata-5.0.8.tgz#eb0d4cb5ca191f09d2825ff5d4c4c82b05fe5d0e"
+  integrity sha512-KpBU6q1yCovfycaFprVEauh8U5RsWty3konFfUukyRRxZBK4Sf73XmGQc8iJ4CPrOP4dplGfdX2kjbRgdymajA==
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"
