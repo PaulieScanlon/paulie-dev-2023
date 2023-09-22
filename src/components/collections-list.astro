@@ -24,13 +24,15 @@ const { collections, base, slice } = Astro.props;
               class='flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-3 no-underline'
             >
               {featuredImage ? (
-                <AstroImage
-                  width={224}
-                  height={126}
-                  alt={title}
-                  url={featuredImage}
-                  className='w-auto'
-                />
+                <div class='w-[224px] h-[126px]'>
+                  <AstroImage
+                    width={224}
+                    height={126}
+                    alt={title}
+                    url={featuredImage}
+                    className='w-auto'
+                  />
+                </div>
               ) : null}
               <div class='flex flex-col gap-1'>
                 <span class='flex gap-2 items-center'>
