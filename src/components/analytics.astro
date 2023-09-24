@@ -1,15 +1,19 @@
 ---
-import { geolocation } from '@vercel/edge';
-
-const date = new Date();
-const { flag, country, city, latitude, longitude } = geolocation(Astro.request);
 const { slug } = Astro.props;
 ---
 
-<meta name={`date:${date}`} />
-<meta name={`slug:${slug}`} />
-<meta name={`flag:${flag}`} />
-<meta name={`country:${country}`} />
-<meta name={`city:${city}`} />
-<meta name={`latitude:${latitude}`} />
-<meta name={`longitude:${longitude}`} />
+<astro-analytics data-slug={slug}></astro-analytics>
+<script async>
+class AstroAnalytics extends HTMLElement {
+  constructor() {
+    super();
+    (async () => {
+      await fetch('/api/page-view', {
+        method: 'POST',
+        body: JSON.stringify({ date: new Date(), slug: this.dataset.slug }),
+      });
+    })();
+  }
+}
+customElements.define('astro-analytics', AstroAnalytics);
+</script>

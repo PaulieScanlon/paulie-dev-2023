@@ -2,12 +2,14 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import AutoImport from 'astro-auto-import';
-
 import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
   image: {
     domains: ['res.cloudinary.com'],
   },
@@ -36,7 +38,4 @@ export default defineConfig({
       syntaxHighlight: 'prism',
     }),
   ],
-  adapter: vercel({
-    edgeMiddleware: true,
-  }),
 });

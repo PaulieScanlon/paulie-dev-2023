@@ -110,7 +110,13 @@ const isProduction = import.meta.env.PROD;
 
 <html lang='en'>
   <head>
-    <Analytics slug={slug}/>
+    <meta charset='utf-8' />
+     <!-- Edge Analytics -->
+     {
+      isProduction ? (
+      <Analytics slug={slug} />
+      ) : null
+     }
     <!-- Google tag (gtag.js) -->
     {
       isProduction ? (
@@ -126,7 +132,6 @@ const isProduction = import.meta.env.PROD;
       </script>
       ) : null
     }
-    <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href='/prism-dracula.css' rel='stylesheet' />
 
