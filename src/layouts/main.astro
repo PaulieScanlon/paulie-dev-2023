@@ -109,6 +109,7 @@ const ogImage = image ? image : defaultImage;
 const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
+const date = new Date();
 const { city } = geolocation(Astro.request);
 ---
 
@@ -129,8 +130,7 @@ const { city } = geolocation(Astro.request);
       </script>
       ) : null
     }
-    <meta charset='utf-8'/>
-    <meta meta-name={`city:${city}`}/>
+    <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href='/prism-dracula.css' rel='stylesheet' />
 
@@ -220,6 +220,7 @@ const { city } = geolocation(Astro.request);
             <a class='flex items-center' href='/' aria-current='page'>
               <span class='sr-only'>Paul Scanlon's Site</span>
               <Logo />
+              <pre class="hidden text-xs">{JSON.stringify({city}, null, 2)}</pre>
             </a>
             <div class='relative flex lg:hidden items-center ml-auto'>
               <button id='menu' class='not-prose ml-auto flex items-center justify-center text-brand-text'>
