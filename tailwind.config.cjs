@@ -10,6 +10,24 @@ module.exports = {
     'pl-6',
     'pl-7',
     'pl-8',
+    // These are for the charts
+    'stroke-brand-teal',
+    'stroke-brand-mauve',
+    'stroke-brand-salmon',
+    'stroke-brand-yellow',
+    'stroke-brand-bogey',
+    'stroke-brand-blood',
+    'stroke-brand-starfleet',
+    'stroke-brand-electric',
+
+    'text-brand-teal',
+    'text-brand-mauve',
+    'text-brand-salmon',
+    'text-brand-yellow',
+    'text-brand-bogey',
+    'text-brand-blood',
+    'text-brand-starfleet',
+    'text-brand-electric',
   ],
   theme: {
     extend: {
@@ -21,7 +39,7 @@ module.exports = {
           tertiary: '#58e6d9',
           muted: '#605c9d',
           salmon: '#ff6090',
-          mouve: '#3f51b5',
+          mauve: '#3f51b5',
           teal: '#00bcd4',
           bogey: '#8bc34a',
           yellow: '#ffc107',
