@@ -5,6 +5,6 @@ CREATE TABLE analytics (
   flag          VARCHAR,
   country       VARCHAR,
   city          VARCHAR,
-  lat           DECIMAL,
-  lng           DECIMAL
+  latitude      DECIMAL,
+  longitude     DECIMAL
 );

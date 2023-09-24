@@ -35,21 +35,12 @@ const {
 const { Content, headings } = await demo.render();
 ---
 
-<Main
-  title={title}
-  description=''
-  slug={`/demos/${slug}/`}
-  image={featuredImage}
->
+<Main title={title} description='' slug={`/demos/${slug}/`} image={featuredImage}>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <Content />
   <Aside>
-    <FeaturedImageCard
-      alt={title}
-      thumbnail={featuredImage}
-      text={`${title}\n https://paulie.dev/demos/${slug}`}
-    />
+    <FeaturedImageCard alt={title} thumbnail={featuredImage} text={`${title}\n https://paulie.dev/demos/${slug}`} />
     <TableOfContents headings={headings} />
   </Aside>
 </Main>
