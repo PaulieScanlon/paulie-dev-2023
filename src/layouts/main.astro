@@ -1,6 +1,5 @@
 ---
-import { geolocation } from '@vercel/edge';
-
+import Analytics from '../components/analytics.astro';
 import Logo from '../components/logo.astro';
 import NavLink from '../components/nav-link.astro';
 
@@ -100,8 +99,6 @@ const keywords = [
   'Serverless Functions',
 ];
 
-const date = new Date();
-const { flag, country, city, latitude, longitude } = geolocation(Astro.request);
 const { type, title, description, slug, image, tags } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
@@ -113,6 +110,7 @@ const isProduction = import.meta.env.PROD;
 
 <html lang='en'>
   <head>
+    <Analytics slug={slug}/>
     <!-- Google tag (gtag.js) -->
     {
       isProduction ? (
@@ -129,13 +127,6 @@ const isProduction = import.meta.env.PROD;
       ) : null
     }
     <meta charset='utf-8' />
-    <meta name={`date:${date}`} />
-    <meta name={`slug:${slug}`} />
-    <meta name={`flag:${flag}`} />
-    <meta name={`country:${country}`} />
-    <meta name={`city:${city}`} />
-    <meta name={`latitude:${latitude}`} />
-    <meta name={`longitude:${longitude}`} />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href='/prism-dracula.css' rel='stylesheet' />
 
