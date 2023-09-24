@@ -1,10 +1,10 @@
 ---
-const { data } = Astro.props;
+const { collections } = Astro.props;
 
 const abbreviatedMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const colors = ['teal', 'mauve', 'salmon', 'yellow', 'bogey', 'blood', 'electric', 'starfleet'];
 
-const sourceData = data.map((entry) => {
+const sourceData = collections.map((entry) => {
   const {
     data: { date },
   } = entry;

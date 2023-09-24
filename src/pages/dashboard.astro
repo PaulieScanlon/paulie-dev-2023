@@ -1,9 +1,11 @@
 ---
+import { sql } from '../neon';
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import LineChartYears from '../components/line-chart-years.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
+import GlobeAllCities from '../components/globe-all-cities';
 
 import { getCollection } from 'astro:content';
 
@@ -13,7 +15,14 @@ const opensource = await getCollection('opensource');
 const posts = await getCollection('posts');
 const streams = await getCollection('streams');
 
-const data = [...articles, ...demos, ...opensource, ...posts, ...streams];
+const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
+
+const response = await sql`
+  SELECT latitude, longitude, COUNT(city) AS total
+  FROM analytics
+  GROUP BY latitude, longitude
+  ORDER BY total DESC;
+`;
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
@@ -24,16 +33,39 @@ const data = [...articles, ...demos, ...opensource, ...posts, ...streams];
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Year and Month</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>Total published content.</p>
-      <LineChartYears data={data} />
+      <LineChartYears collections={collections} />
     </section>
-    <section class='grid gap-8 lg:grid-cols-2'>
-      <div>
-        <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
-        <p class='mt-0 mb-4 text-slate-300 text-base'>Top Ten city visits.</p>
-        <ListTopTenCities />
-      </div>
-      <div></div>
-    </section>
+
+    <div class='grid gap-8 lg:grid-cols-2'>
+      <section>
+        <div class='flex flex-col'>
+          <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
+          <p class='mt-0 mb-4 text-slate-300 text-base'>Top Ten city visits.</p>
+          <ListTopTenCities />
+        </div>
+        <div class='mt-2 leading-tight'>
+          <div class='leading-tight'>
+            <small class='text-slate-500 text-xs'>Powered by{' '}</small>
+            <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
+          </div>
+        </div>
+      </section>
+      <section class='flex flex-col'>
+        <h2 class='m-0 text-2xl uppercase text-salmon'>Geolocation</h2>
+        <p class='mt-0 mb-4 text-slate-300 text-base'>All city visits.</p>
+        <div
+          class='flex grow justify-center border rounded border-brand-outline bg-brand-surface overflow-hidden cursor-move'
+        >
+          <GlobeAllCities client:only analytics={response} />
+        </div>
+        <div class='mt-2 leading-tight'>
+          <div class='leading-tight'>
+            <small class='text-slate-500 text-xs'>Powered by{' '}</small>
+            <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
   <Aside>
     <ProfileCard />

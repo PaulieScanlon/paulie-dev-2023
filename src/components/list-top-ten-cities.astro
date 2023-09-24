@@ -1,21 +1,21 @@
 ---
-import { sql } from '../../neon';
+import { sql } from '../neon';
 
-const items = await sql`
-        SELECT flag, country, city, COUNT(city) AS total
-        FROM analytics
-        GROUP BY flag, country, city
-        ORDER BY total DESC
-        LIMIT 10;`;
+const request = await sql`
+  SELECT flag, country, city, COUNT(city) AS total
+  FROM analytics
+  GROUP BY flag, country, city
+  ORDER BY total DESC
+  LIMIT 10;`;
 ---
 
-<ul class='m-0 border rounded border-brand-outline bg-brand-surface px-6 py-0'>
+<ul class='m-0 border rounded border-brand-outline bg-brand-surface px-6 py-2'>
   {
-    items.map((item) => {
+    request.map((item) => {
       const { flag, city, total } = item;
 
       return (
-        <li class='flex border-b border-b-brand-outline'>
+        <li class='flex border-b border-b-brand-outline p-0'>
           <div class='flex grow items-center gap-2'>
             <span class='mt-1'>{flag}</span>
             <span>{city}</span>

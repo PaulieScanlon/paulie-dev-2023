@@ -1,4 +1,4 @@
-import { sql } from '../../../neon';
+import { sql } from '../../neon';
 import { geolocation } from '@vercel/edge';
 
 export async function POST({ params, request }) {

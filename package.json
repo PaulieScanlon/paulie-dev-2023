@@ -23,16 +23,22 @@
   "homepage": "https://github.com/PaulieScanlon/paulie-dev-2023#readme",
   "dependencies": {
     "@astrojs/mdx": "^1.0.3",
+    "@astrojs/react": "^3.0.2",
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^5.0.1",
     "@fontsource/inconsolata": "^5.0.8",
     "@neondatabase/serverless": "^0.6.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "@vercel/edge": "^1.1.0",
     "astro": "^3.0.12",
     "astro-auto-import": "^0.3.1",
     "astro-embed": "^0.5.1",
     "markdown-it": "^13.0.1",
     "mdx": "^0.3.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-globe.gl": "^2.24.4",
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {

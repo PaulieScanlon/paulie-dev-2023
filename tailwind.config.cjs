@@ -49,7 +49,7 @@ module.exports = {
           electric: '#6933ff',
           background: '#131127',
           outline: '#232140',
-          surface: '#18162c',
+          surface: '#16142c',
           guide: '#2d2a58',
         },
       },
