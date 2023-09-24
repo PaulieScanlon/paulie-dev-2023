@@ -36,5 +36,7 @@ export default defineConfig({
       syntaxHighlight: 'prism',
     }),
   ],
-  adapter: vercel(),
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
 });

@@ -1,4 +1,5 @@
 ---
+import { geolocation } from '@vercel/edge';
 import Logo from '../components/logo.astro';
 import NavLink from '../components/nav-link.astro';
 
@@ -108,6 +109,7 @@ const ogImage = image ? image : defaultImage;
 const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
+const { city } = geolocation(Astro.request);
 ---
 
 <html lang='en'>
@@ -127,7 +129,8 @@ const isProduction = import.meta.env.PROD;
       </script>
       ) : null
     }
-    <meta charset='utf-8' />
+    <meta charset='utf-8'/>
+    <meta meta-name={`city:${city}`}/>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href='/prism-dracula.css' rel='stylesheet' />
 
@@ -207,7 +210,6 @@ const isProduction = import.meta.env.PROD;
       lightbox.addEventListener('click', handleNav);
     </script>
   </head>
-
   <body class='prose max-w-none bg-brand-background'>
     <header
       class='sticky top-0 z-40 w-full backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent'
@@ -258,8 +260,11 @@ const isProduction = import.meta.env.PROD;
               {
                 siteLinks.map((item) => {
                   const { title, icon, slug } = item;
-                  const _slug = slug.substring(1)
-                  const isActive =  currentPath.length <1 && currentPath.startsWith(_slug) ? true : _slug.length >0 && currentPath.startsWith(_slug)
+                  const _slug = slug.substring(1);
+                  const isActive =
+                    currentPath.length < 1 && currentPath.startsWith(_slug)
+                      ? true
+                      : _slug.length > 0 && currentPath.startsWith(_slug);
                   // console.log({ currentPath, _slug, isActive });
 
                   return (
