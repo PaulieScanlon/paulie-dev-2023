@@ -109,7 +109,7 @@ const ogImage = image ? image : defaultImage;
 const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
-const { flag, country, city } = geolocation(Astro.request);
+const { flag, country, city, latitude, longitude } = geolocation(Astro.request);
 ---
 
 <html lang='en'>
@@ -133,6 +133,8 @@ const { flag, country, city } = geolocation(Astro.request);
     <meta name={`flag:${flag}`} />
     <meta name={`country:${country}`} />
     <meta name={`city:${city}`} />
+    <meta name={`latitude:${latitude}`} />
+    <meta name={`longitude:${longitude}`} />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href='/prism-dracula.css' rel='stylesheet' />
 
