@@ -3,6 +3,7 @@ import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import LineChartYears from '../components/line-chart-years.astro';
+import ListTopTenCities from '../components/list-top-ten-cities.astro';
 
 import { getCollection } from 'astro:content';
 
@@ -18,12 +19,20 @@ const data = [...articles, ...demos, ...opensource, ...posts, ...streams];
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
   <strong class='text-xs text-brand-primary'>Dashboard</strong>
   <h1 class='mb-0'>Built-in Analytics</h1>
-  <p>Data visualization created using data sourced from local MDX files.</p>
+  <p>Data visualization created using data sourced from local MDX files and a Neon database.</p>
   <div class='grid gap-24 min-w-full'>
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Year and Month</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>Total published content.</p>
       <LineChartYears data={data} />
+    </section>
+    <section class='grid gap-8 lg:grid-cols-2'>
+      <div>
+        <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
+        <p class='mt-0 mb-4 text-slate-300 text-base'>Top Ten city visits.</p>
+        <ListTopTenCities />
+      </div>
+      <div></div>
     </section>
   </div>
   <Aside>
