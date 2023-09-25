@@ -1,12 +1,16 @@
-import { useRef, memo } from 'react';
+import { useRef, memo, type FunctionComponent } from 'react';
 // https://github.com/vasturiano/react-globe.gl
 import Globe from 'react-globe.gl';
 import * as THREE from 'three';
 
 import goeJson from '../utils/ne_110m_admin_0_countries.geojson.json';
 
-const GlobeAllCities = memo(({ analytics }) => {
-  const globeEl = useRef();
+interface GlobeAllCitiesProps {
+  data: any;
+}
+
+const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) => {
+  const globeEl = useRef<any>();
 
   const globeReady = () => {
     if (globeEl.current) {
@@ -21,7 +25,7 @@ const GlobeAllCities = memo(({ analytics }) => {
     }
   };
 
-  const points = analytics.map((data) => {
+  const points = data.map((data) => {
     const { latitude, longitude, total } = data;
     return {
       lat: latitude,
@@ -65,14 +69,14 @@ const GlobeAllCities = memo(({ analytics }) => {
               })
             )
           }
-          customThreeObjectUpdate={(obj, d) => {
+          customThreeObjectUpdate={(obj, d: any) => {
             Object.assign(obj.position, globeEl.current?.getCoords(d.lat, d.lng, d.alt));
           }}
           atmosphereColor='#655ea0'
           hexPolygonsData={goeJson.features}
           hexPolygonResolution={3}
           hexPolygonMargin={0.4}
-          hexPolygonColor={(geometry) => {
+          hexPolygonColor={(geometry: any) => {
             return ['#332f5a', '#3e3871', '#3a3562', '#39365c'][geometry.properties.abbrev_len % 4];
           }}
           showGraticules={true}

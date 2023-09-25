@@ -18,7 +18,7 @@ const streams = await getCollection('streams');
 
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
 
-const response = await sql`
+const cities = await sql`
   SELECT latitude, longitude, COUNT(city) AS total
   FROM analytics
   WHERE date >= NOW() - INTERVAL '30 days'
@@ -62,7 +62,7 @@ const response = await sql`
       <section class='w-full lg:w-1/2'>
         <h2 class='m-0 text-2xl uppercase text-salmon'>Geolocation</h2>
         <p class='mt-0 mb-4 text-slate-300 text-base'>All city visits.</p>
-        <GlobeAllCities client:only analytics={response} />
+        <GlobeAllCities client:only data={cities} />
         <div class='mt-2 leading-tight'>
           <div class='leading-tight'>
             <small class='text-slate-500 text-xs'>Powered by{' '}</small>
