@@ -39,7 +39,7 @@ module.exports = {
           tertiary: '#58e6d9',
           muted: '#605c9d',
           salmon: '#ff6090',
-          mauve: '#3f51b5',
+          mauve: '#4b5ec8',
           teal: '#00bcd4',
           bogey: '#8bc34a',
           yellow: '#ffc107',
@@ -84,6 +84,9 @@ module.exports = {
                 margin: 0,
                 color: 'inherit',
               },
+            },
+            'small, time': {
+              fontWeight: 300,
             },
             code: {
               color: theme('colors.brand.tertiary'),

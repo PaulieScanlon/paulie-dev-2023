@@ -37,7 +37,7 @@ const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) =
   });
 
   return (
-    <div className='relative rounded border border-brand-outline bg-brand-surface cursor-move'>
+    <div className='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
       <div className='flex justify-center overflow-hidden'>
         <Globe
           ref={globeEl}

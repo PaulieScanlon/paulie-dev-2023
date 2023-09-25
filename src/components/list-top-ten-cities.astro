@@ -17,7 +17,7 @@ const request = await sql`
       const { flag, city, total } = item;
 
       return (
-        <li class='flex border-b border-b-brand-outline p-0'>
+        <li class='flex border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline p-0'>
           <div class='flex grow items-center gap-2'>
             <span class='mt-1'>{flag}</span>
             <span>{city}</span>
