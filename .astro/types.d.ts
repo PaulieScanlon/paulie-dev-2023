@@ -508,6 +508,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/09/how-to-use-postgres-at-the-edge.mdx": {
+	id: "2023/09/how-to-use-postgres-at-the-edge.mdx";
+  slug: "2023/09/how-to-use-postgres-at-the-edge";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
