@@ -2,6 +2,6 @@
 // https://cloudinary.com/documentation/media_optimization
 export const resizeImage = (url, width, height): string => {
   const string = url.split(/upload(?=.)/);
-  const newUrl = `${string[0]}upload/h_${height},w_${width}/q_80/f_auto${string[1]}`;
+  const newUrl = `${string[0]}upload/h_${height},w_${width}/q_90/f_auto${string[1]}`;
   return newUrl;
 };
