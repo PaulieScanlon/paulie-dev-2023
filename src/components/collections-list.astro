@@ -1,10 +1,8 @@
 ---
-import MarkdownIt from 'markdown-it';
 import { Image } from 'astro:assets';
 import AstroImage from '../components/astro-image.astro';
 import { formatDate } from '../utils/format-date';
-
-const parser = new MarkdownIt();
+import { createExcerpt } from '../utils/create-excerpt';
 
 const { collections, base, slice } = Astro.props;
 ---
@@ -20,15 +18,7 @@ const { collections, base, slice } = Astro.props;
           data: { featuredImage, logo, publication, title, date },
         } = collection;
 
-        const excerpt = parser
-          .render(collection.body)
-          .split('\n')
-          .slice(0, 4)
-          .map((str) => {
-            return str.replace(/<\/?[^>]+(>|$)/g, '').split('\n');
-          })
-          .flat()
-          .join(' ');
+        const excerpt = createExcerpt(collection.body);
 
         return (
           <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-2 ease-in-out duration-500'>
