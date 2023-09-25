@@ -1,0 +1,81 @@
+---
+type: demo
+title: How to use Postgres at the Edge
+tags: [Next.js, React, React Query, Tailwind, Neon, Edge Functions]
+date: 2023-09-19
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695679972/paulie.dev/2023/09/ping-thing-featured-image_gmnjl5.jpg
+---
+
+## Project Overview
+
+This is my first project since joining [Neon](https://neon.tech/), it's actually a little something I was playing around with while [kicking the tires](https://dictionary.cambridge.org/dictionary/english/kick-the-tires) during the interview process.
+
+<AstroImage
+  width='768'
+  height='480'
+  alt='Ping Thing'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1695680935/paulie.dev/2023/09/ping-thing-1_ew7eq5.png'
+/>
+
+### What does Ping Thing do?
+
+[Ping Thing](https://neon.tech/ping-thing) visualizes the journey your request makes from the Edge Function to the Database. It's a simple concept but it's something I know is often misunderstood.
+
+<Cta href='https://neon.tech/ping-thing'>Visit Ping Thing</Cta>
+
+### Problem
+
+I set out to show how to use [Neon's serverless driver](https://neon.tech/docs/serverless/serverless-driver) with Vercel Edge Functions. Not a big deal right? Well, it is kind of a big deal. Allow me to explain. Neon is Postgres (in the cloud) and to connect to a Postgres database you have to make a server-side request over TCP/IP. Edge Functions, which run in [V8](https://v8.dev/) Isolates don't operate over TCP/IP, they only speak HTTP. So in short, you can't (for the most part) use a Postgres database from an Edge Function.
+
+### Solution
+
+But you can use Neon's serverless driver with Edge Functions, and here's why. Neon's has separated compute and storage. The "compute" part of Postgres is now no longer a TCP/IP connection. In front of every Neon database is a Neon proxy. When you make a server-side request to a Neon database you're actually making a request to the Neon proxy, which in turn connects to the database over TCP/IP.
+
+This change in architecture means you can make HTTP requests to the proxy, but you'd never know from looking at the connection string.. look familiar? It should, it's a standard Postgres connection string,
+
+```shell
+postgres://paul:abc@firefly-123.us-east-1.aws.neon.tech/neondb
+```
+
+### Insight
+
+I've experimented a lot with regions and where to deploy serverless functions (Lambda functions) and where to deploy databases and have spoken with a number of people about the subject. For the most part, based on the conversations I've had, very few really understand it.
+
+Perhaps that's ok. Many of the new "paid services" we all know and use aim to remove the need to think about infrastructure, but I'm of the opinion that you will need to think about some of it, at some point.
+
+The TLDR here is: Edge Functions ([Lambda@Edge](https://aws.amazon.com/lambda/edge/)) run closer to the user, which is great, they also don't come with the dreaded cold start issues that you might have experienced with "ordinary" Lambda Functions. But are they the silver bullet we've been lead to believe they are. IMO meh, maybe. They are great for things that can be accomplished at the Edge, returning Hello World for instance, but as soon as you need to connect to another service, you have to ask yourself, where is that service?
+
+In the case of [Ping Thing](https://neon.tech/ping-thing) I've deployed the database to AWS `us-east-1`, which is located in North Virginia USA.
+
+I had one person ask why didn't I deploy it somewhere in Europe so it was closer to his location. To which I replied, "_I could have, but then it's further away from folks in the US_". So really then, what does it matter if the Edge Function runs closer to the user when the thing the Ege Function is connecting to is thousands of miles away?
+
+## The Idea
+
+The idea was to simply show that Neon can be used at the Edge (Ordinary Postgres can't) and the Globe is there to show you the journey you request makes.
+
+If you're on the US side of the Atlantic in North or Central America you'll likely see a shorter journey.
+
+<AstroImage
+  width='768'
+  height='480'
+  alt='Mexico - North Virginia'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1695682200/paulie.dev/2023/09/ping-thing-2_mhrtwf.png'
+/>
+
+If you're anywhere else in the world, you'll likely see a longer journey.
+
+<AstroImage
+  width='768'
+  height='480'
+  alt='Albania - North Virginia'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1695682210/paulie.dev/2023/09/ping-thing-3_qqdtho.png'
+/>
+
+That said, the response times are still super snappy. Neon have worked super hard on this part of the architecture and from the testing I've been doing, I'm happy with the latencies I've been experiencing.
+
+## Blog
+
+I've written more about this project on the Neon blog if you'd like to give that a read.
+
+- [How to use Postgres at the Edge](https://neon.tech/blog/how-to-use-postgres-at-the-edge)
