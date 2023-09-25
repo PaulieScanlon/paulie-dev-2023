@@ -37,37 +37,21 @@ const { collections, base, slice } = Astro.props;
               class='flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline'
             >
               {featuredImage ? (
-                <AstroImage
-                  width={324}
-                  height={182}
-                  alt={title}
-                  url={featuredImage}
-                  className='w-auto'
-                />
+                <AstroImage width={324} height={182} alt={title} url={featuredImage} className='w-auto' />
               ) : null}
               <div class='flex flex-col gap-2'>
                 <span class='flex gap-2 items-center'>
                   {publication ? (
                     <>
                       <div class='flex items-center gap-2'>
-                        <Image
-                          width={24}
-                          height={24}
-                          alt={publication}
-                          src={logo}
-                          class='m-0'
-                        />
-                        <small class='text-xs text-brand-secondary'>
-                          {publication}
-                        </small>
+                        <Image width={24} height={24} alt={publication} src={logo} class='m-0' />
+                        <small class='text-xs text-brand-secondary'>{publication}</small>
                       </div>
                       <span>&bull;</span>
                     </>
                   ) : null}
 
-                  <time class='text-xs font-bold text-brand-primary'>
-                    {formatDate(date)}
-                  </time>
+                  <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
                 </span>
                 <strong class='block text-brand-text text-xl'>{title}</strong>
                 <p class='font-light'>{`${excerpt.substring(0, 100)}...`}</p>

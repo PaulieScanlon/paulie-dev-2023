@@ -102,8 +102,9 @@ const keywords = [
 
 const { type, title, description, slug, image, tags } = Astro.props;
 
+
 const htmlTitle = `${name} | ${title}`;
-const ogImage = image ? image : defaultImage;
+const ogImage = image ? image : `${siteUrl}${defaultImage}`;
 const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
@@ -139,7 +140,7 @@ const isProduction = import.meta.env.PROD;
     <title>{htmlTitle}</title>
     <link rel='canonical' href={`${siteUrl}${slug}`} />
     <meta name='description' content={description} />
-    <meta name='image' content={`${siteUrl}${ogImage}`} />
+    <meta name='image' content={ogImage} />
     <meta name='image:alt' content={description} />
     <meta name='keywords' content={seoKeywords.join(', ')} />
     <!-- Facebook -->
@@ -147,7 +148,7 @@ const isProduction = import.meta.env.PROD;
     <meta property='og:title' content={htmlTitle} />
     <meta property='og:url' content={`${siteUrl}${slug}`} />
     <meta property='og:description' content={description} />
-    <meta property='og:image' content={`${siteUrl}${ogImage}`} />
+    <meta property='og:image' content={ogImage} />
     <meta property='og:image:alt' content={description} />
 
     <!-- Twitter -->
@@ -155,7 +156,7 @@ const isProduction = import.meta.env.PROD;
     <meta name='twitter:title' content={htmlTitle} />
     <meta name='twitter:url' content={`${siteUrl}${slug}`} />
     <meta name='twitter:description' content={description} />
-    <meta name='twitter:image' content={`${siteUrl}${ogImage}`} />
+    <meta name='twitter:image' content={ogImage} />
     <meta name='twitter:image:alt' content={description} />
 
     <!-- Favicons -->
