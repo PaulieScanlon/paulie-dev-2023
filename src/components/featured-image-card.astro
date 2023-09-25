@@ -1,16 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import { resizeImage } from '../services/resize-image';
+import AstroImage from '../components/astro-image.astro';
 
 const { alt, thumbnail, text } = Astro.props;
 ---
 
 <div class='grid gap-4 rounded border border-brand-outline bg-brand-surface/50 px-4 sm:px-6 py-6'>
   <div class='rounded shadow-lg overflow-hidden w-full'>
-    <Image width={396} height={222} alt={alt} src={resizeImage(thumbnail, 198, 111)} class='m-0' />
+    <AstroImage width={396} height={222} alt={alt} url={thumbnail} className='!my-0 w-full' />
   </div>
   <a
-    href={`https://twitter.com/intent/tweet?text=${text}`}
+    href={`https://twitter.com/intent/tweet?text=${text}/`}
     target='_blank'
     rel='noreferrer'
     class='not-prose flex items-center justify-center gap-4 no-underline text-brand-secondary text-sm text-center py-2 px-4 transition-all duration-300 rounded border border-brand-outline bg-brand-surface hover:text-brand-text hover:bg-brand-muted/20'
