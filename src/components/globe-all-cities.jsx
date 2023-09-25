@@ -33,52 +33,56 @@ const GlobeAllCities = memo(({ analytics }) => {
   });
 
   return (
-    <Globe
-      ref={globeEl}
-      onGlobeReady={globeReady}
-      width={380}
-      height={420}
-      rendererConfig={{ antialias: true, alpha: true }}
-      animateIn={true}
-      backgroundColor={'rgba(255, 255, 255, 0)'}
-      globeMaterial={
-        new THREE.MeshPhongMaterial({
-          color: '#1f1b45',
-          opacity: 0.7,
-          transparent: true,
-        })
-      }
-      customLayerData={[...Array(500).keys()].map(() => ({
-        lat: (Math.random() - 0.5) * 180,
-        lng: (Math.random() - 0.5) * 360,
-        alt: Math.random() * 1.4 + 0.1,
-      }))}
-      customThreeObject={() =>
-        new THREE.Mesh(
-          new THREE.SphereGeometry(0.3),
-          new THREE.MeshBasicMaterial({
-            color: '#6f69a7',
-            opacity: 0.9,
-            transparent: true,
-          })
-        )
-      }
-      customThreeObjectUpdate={(obj, d) => {
-        Object.assign(obj.position, globeEl.current?.getCoords(d.lat, d.lng, d.alt));
-      }}
-      atmosphereColor='#6760a0'
-      hexPolygonsData={goeJson.features}
-      hexPolygonResolution={3}
-      hexPolygonMargin={0.4}
-      hexPolygonColor={(geometry) => {
-        return ['#332f5a', '#3e3871', '#3a3562', '#39365c'][geometry.properties.abbrev_len % 4];
-      }}
-      showGraticules={true}
-      pointsData={points}
-      pointAltitude='altitude'
-      pointRadius='radius'
-      pointColor='color'
-    />
+    <div className='relative rounded border border-brand-outline bg-brand-surface cursor-move'>
+      <div className='flex justify-center overflow-hidden'>
+        <Globe
+          ref={globeEl}
+          onGlobeReady={globeReady}
+          width={380}
+          height={430}
+          rendererConfig={{ antialias: true, alpha: true }}
+          animateIn={true}
+          backgroundColor={'rgba(255, 255, 255, 0)'}
+          globeMaterial={
+            new THREE.MeshPhongMaterial({
+              color: '#1f1b45',
+              opacity: 0.7,
+              transparent: true,
+            })
+          }
+          customLayerData={[...Array(500).keys()].map(() => ({
+            lat: (Math.random() - 0.5) * 180,
+            lng: (Math.random() - 0.5) * 360,
+            alt: Math.random() * 1.4 + 0.1,
+          }))}
+          customThreeObject={() =>
+            new THREE.Mesh(
+              new THREE.SphereGeometry(0.3),
+              new THREE.MeshBasicMaterial({
+                color: '#6f69a7',
+                opacity: 0.9,
+                transparent: true,
+              })
+            )
+          }
+          customThreeObjectUpdate={(obj, d) => {
+            Object.assign(obj.position, globeEl.current?.getCoords(d.lat, d.lng, d.alt));
+          }}
+          atmosphereColor='#6760a0'
+          hexPolygonsData={goeJson.features}
+          hexPolygonResolution={3}
+          hexPolygonMargin={0.4}
+          hexPolygonColor={(geometry) => {
+            return ['#332f5a', '#3e3871', '#3a3562', '#39365c'][geometry.properties.abbrev_len % 4];
+          }}
+          showGraticules={true}
+          pointsData={points}
+          pointAltitude='altitude'
+          pointRadius='radius'
+          pointColor='color'
+        />
+      </div>
+    </div>
   );
 });
 
