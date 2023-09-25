@@ -16,7 +16,7 @@ const GlobeAllCities = memo(({ analytics }) => {
       globeEl.current.pointOfView({
         lat: 19.054339351561637,
         lng: -50.421161072148465,
-        altitude: 1.8,
+        altitude: 2,
       });
     }
   };
@@ -39,7 +39,7 @@ const GlobeAllCities = memo(({ analytics }) => {
           ref={globeEl}
           onGlobeReady={globeReady}
           width={380}
-          height={430}
+          height={434}
           rendererConfig={{ antialias: true, alpha: true }}
           animateIn={true}
           backgroundColor={'rgba(255, 255, 255, 0)'}
