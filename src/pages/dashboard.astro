@@ -4,6 +4,7 @@ import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import LineChartYears from '../components/line-chart-years.astro';
+import ListExternalPublishers from '../components/list-external-publishers.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities';
 
@@ -36,11 +37,17 @@ const response = await sql`
       <LineChartYears collections={collections} />
     </section>
 
+    <section>
+      <h2 class='m-0 text-2xl uppercase text-salmon'>Total by publisher</h2>
+      <p class='mt-0 mb-4 text-slate-300 text-base'>All external publishers.</p>
+      <ListExternalPublishers />
+    </section>
+
     <div class='flex flex-col lg:flex-row gap-8 overflow-hidden'>
       <section class='w-full lg:w-1/2'>
         <div class='flex flex-col'>
           <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
-          <p class='mt-0 mb-4 text-slate-300 text-base'>Top Ten city visits.</p>
+          <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten city visits.</p>
           <ListTopTenCities />
         </div>
         <div class='mt-2 leading-tight'>

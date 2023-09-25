@@ -9,7 +9,7 @@ const request = await sql`
   LIMIT 10;`;
 ---
 
-<ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:px-6 sm:py-2'>
+<ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:py-2'>
   {
     request.map((item) => {
       const { flag, city, total } = item;

@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const articles = await getCollection('articles');
+
+const array = articles.map((article) => {
+  const {
+    data: { publication, logo },
+  } = article;
+  return {
+    publication: publication,
+    logo: logo,
+  };
+});
+
+const groupedPublications = array.reduce((result, item) => {
+  const { publication, logo } = item;
+
+  if (result[publication]) {
+    result[publication].total += 1;
+  } else {
+    result[publication] = {
+      publication: publication,
+      logo: logo,
+      total: 1,
+    };
+  }
+
+  return result;
+}, {});
+
+const listData = Object.entries(groupedPublications)
+  .map(([_, data]: any) => {
+    const { publication, logo, total } = data;
+
+    return {
+      publication: publication,
+      logo: logo,
+      total: total,
+    };
+  })
+  .sort((a, b) => b.total - a.total);
+---
+
+<ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:py-2'>
+  {
+    listData.map((item) => {
+      const { publication, logo, total } = item;
+
+      return (
+        <li class='flex border-b border-b-brand-outline p-0'>
+          <div class='flex grow items-center gap-3'>
+            <Image width={18} height={18} alt={publication} src={logo} class='m-0' />
+            <span>{publication}</span>
+          </div>
+          <strong>{`x${total}`}</strong>
+        </li>
+      );
+    })
+  }
+</ul>
