@@ -7,11 +7,10 @@ const { slug } = Astro.props;
 class AstroAnalytics extends HTMLElement {
   constructor() {
     super();
-    (async () => {
-      await fetch('/api/page-view', {
-        method: 'POST',
-        body: JSON.stringify({ date: new Date(), slug: this.dataset.slug }),
-      });
+    (() => {
+      // https://x.com/wardpeet/status/1706350257020223688?s=20
+      // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon
+      navigator.sendBeacon('/api/page-view', JSON.stringify({ date: new Date(), slug: this.dataset.slug }));
     })();
   }
 }
