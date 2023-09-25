@@ -4,9 +4,11 @@ import { sql } from '../neon';
 const request = await sql`
   SELECT flag, country, city, COUNT(city) AS total
   FROM analytics
+  WHERE date >= NOW() - INTERVAL '30 days'
   GROUP BY flag, country, city
   ORDER BY total DESC
-  LIMIT 10;`;
+  LIMIT 10;
+  `;
 ---
 
 <ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:py-2'>
