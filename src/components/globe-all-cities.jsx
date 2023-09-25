@@ -45,7 +45,7 @@ const GlobeAllCities = memo(({ analytics }) => {
           backgroundColor={'rgba(255, 255, 255, 0)'}
           globeMaterial={
             new THREE.MeshPhongMaterial({
-              color: '#1f1b45',
+              color: '#120f30',
               opacity: 0.7,
               transparent: true,
             })
@@ -68,7 +68,7 @@ const GlobeAllCities = memo(({ analytics }) => {
           customThreeObjectUpdate={(obj, d) => {
             Object.assign(obj.position, globeEl.current?.getCoords(d.lat, d.lng, d.alt));
           }}
-          atmosphereColor='#6760a0'
+          atmosphereColor='#655ea0'
           hexPolygonsData={goeJson.features}
           hexPolygonResolution={3}
           hexPolygonMargin={0.4}
