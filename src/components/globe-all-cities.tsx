@@ -77,7 +77,7 @@ const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) =
           hexPolygonResolution={3}
           hexPolygonMargin={0.4}
           hexPolygonColor={(geometry: any) => {
-            return ['#332f5a', '#3e3871', '#3a3562', '#39365c'][geometry.properties.abbrev_len % 4];
+            return ['#2a2469', '#322a7a', '#3d338e', '#423b8f'][geometry.properties.abbrev_len % 4];
           }}
           showGraticules={true}
           pointsData={points}
