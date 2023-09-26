@@ -20,17 +20,18 @@ const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) =
       globeEl.current.pointOfView({
         lat: 19.054339351561637,
         lng: -50.421161072148465,
-        altitude: 2,
+        altitude: 1.8,
       });
     }
   };
 
   const points = data.map((data) => {
     const { latitude, longitude, total } = data;
+
     return {
       lat: latitude,
       lng: longitude,
-      altitude: total / 50,
+      altitude: Math.min(0.8, Math.max(0.01, total / 50)),
       radius: 0.3,
       color: '#ff6090',
     };
@@ -42,7 +43,7 @@ const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) =
         <Globe
           ref={globeEl}
           onGlobeReady={globeReady}
-          width={380}
+          width={390}
           height={434}
           rendererConfig={{ antialias: true, alpha: true }}
           animateIn={true}
