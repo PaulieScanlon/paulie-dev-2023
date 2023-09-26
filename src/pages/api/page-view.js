@@ -2,13 +2,14 @@ import { sql } from '../../neon';
 import { geolocation } from '@vercel/edge';
 
 export async function POST({ params, request }) {
-  const { date, slug } = await new Response(request.body).json();
+  const { slug } = await new Response(request.body).json();
   const { flag, country, city, latitude, longitude } = geolocation(request);
+  const date = new Date();
 
   try {
-    if (!city) {
+    if (!slug || !city) {
       return Response.json({
-        message: '!city',
+        message: 'Missing required parameters',
         status: 200,
       });
     } else {

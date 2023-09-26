@@ -1,0 +1,16 @@
+---
+const { slug } = Astro.props;
+---
+
+<edge-analytics data-slug={slug}></edge-analytics>
+<script async>
+class EdgeAnalytics extends HTMLElement {
+  constructor() {
+    super();
+    (() => {
+      navigator.sendBeacon('/api/page-view', JSON.stringify({ slug: this.dataset.slug }));
+    })();
+  }
+}
+customElements.define('edge-analytics', EdgeAnalytics);
+</script>
