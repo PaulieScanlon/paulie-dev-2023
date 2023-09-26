@@ -1,0 +1,94 @@
+---
+import { sql } from '../neon';
+const visits = await sql`
+SELECT 
+   EXTRACT(day FROM date) AS day,
+   EXTRACT(month FROM date) AS month, 
+   EXTRACT(year FROM date) AS year, 
+   COUNT(*) AS total
+FROM analytics
+WHERE date >= (CURRENT_DATE - INTERVAL '30 days')
+GROUP BY EXTRACT(day FROM date), EXTRACT(month FROM date), EXTRACT(year FROM date)
+ORDER BY year ASC, month ASC, day ASC;
+`;
+
+const chartWidth = 600;
+const chartHeight = 300;
+const offsetY = 40;
+const paddingX = 50;
+const paddingY = 50;
+const maxY = visits ? Math.max(...visits.map((item) => item.total)) : null;
+const guides = [...Array(8).keys()];
+const barWidth = 12;
+
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const properties = visits.map((property, index) => {
+  const { day, month, total } = property;
+  const x = (index / visits.length) * (chartWidth - paddingX) + paddingX / 2;
+  const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
+  return {
+    total: total,
+    date: `${months[month - 1]}•${day}`,
+    x: x,
+    y: y,
+  };
+});
+
+const points = properties
+  .map((point) => {
+    const { x, y } = point;
+    return `${x},${y}`;
+  })
+  .toString();
+---
+
+<div class='border rounded border-brand-outline bg-brand-surface p-2 pb-4'>
+  <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} role='presentation'>
+    {
+      guides.map((_, index) => {
+        const ratio = index / guides.length;
+        const y = chartHeight - paddingY - chartHeight * ratio;
+
+        return (
+          <polyline
+            class='stroke-brand-guide'
+            fill='none'
+            stroke-width={1}
+            points={`${paddingX / 2},${y} ${chartWidth - paddingX / 2},${y}`}
+          />
+        );
+      })
+    }
+    <polyline fill='none' class='stroke-brand-salmon' stroke-width={1} points={points}></polyline>
+
+    {
+      properties.map((property) => {
+        const { total, date, x, y } = property;
+        return (
+          <g>
+            <circle
+              cx={x}
+              cy={y}
+              r={4}
+              class='stroke-brand-salmon fill-brand-surface pointer-events-none'
+              stroke-width={1}
+            />
+
+            <text x={x} y={y - 8} text-anchor='middle' font-size={10} class='fill-brand-text font-semibold select-none'>
+              {`x${total}`}
+            </text>
+
+            <text
+              transform={`translate(${x} ${chartHeight - (paddingY - offsetY / 2)}) rotate(45)`}
+              font-size={10}
+              class='fill-brand-muted select-none'
+            >
+              {date}
+            </text>
+          </g>
+        );
+      })
+    }
+  </svg>
+</div>

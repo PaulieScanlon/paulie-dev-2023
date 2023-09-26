@@ -7,6 +7,7 @@ import LineChartYears from '../components/line-chart-years.astro';
 import ListExternalPublishers from '../components/list-external-publishers.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities';
+import LineChartVisits from '../components/line-chart-visits.astro';
 
 import { getCollection } from 'astro:content';
 
@@ -52,11 +53,9 @@ const cities = await sql`
           <ListTopTenCities />
         </div>
         <div class='mt-2 leading-tight'>
-          <div class='leading-tight'>
-            <small class='text-slate-400 text-xs'>Powered by{' '}</small>
-            <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
-          </div>
           <time class='block text-slate-400 text-xs'>Totals from last 30 Days</time>
+          <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
+          <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
         </div>
       </section>
       <section class='w-full lg:w-1/2'>
@@ -64,14 +63,22 @@ const cities = await sql`
         <p class='mt-0 mb-4 text-slate-300 text-base'>All city visits.</p>
         <GlobeAllCities client:only data={cities} />
         <div class='mt-2 leading-tight'>
-          <div class='leading-tight'>
-            <small class='text-slate-400 text-xs'>Powered by{' '}</small>
-            <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
-          </div>
           <time class='block text-slate-400 text-xs'>Locations from last 30 Days</time>
+          <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
+          <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
         </div>
       </section>
     </div>
+    <section>
+      <h2 class='m-0 text-2xl uppercase text-salmon'>Total visits</h2>
+      <p class='mt-0 mb-4 text-slate-300 text-base'>All page views.</p>
+      <LineChartVisits />
+      <div class='mt-2 leading-tight'>
+        <time class='block text-slate-400 text-xs'>Page views from last 30 Days</time>
+        <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
+        <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
+      </div>
+    </section>
   </div>
   <Aside>
     <ProfileCard />

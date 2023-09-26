@@ -85,7 +85,7 @@ module.exports = {
                 color: 'inherit',
               },
             },
-            'small, time': {
+            'a, small, time': {
               fontWeight: 300,
             },
             code: {
