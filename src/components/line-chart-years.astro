@@ -126,7 +126,7 @@ const ticks = abbreviatedMonths.map((abbr, index) => {
   };
 
   const btns = document.querySelectorAll('.btn');
-  btns.forEach((btn) => {
+  btns.forEach((btn: HTMLElement) => {
     btn.addEventListener('click', (event) => handleChart(event));
   });
 </script>
