@@ -1,35 +1,21 @@
 ---
-import { sql } from '../neon';
-const visits = await sql`
-SELECT 
-   EXTRACT(day FROM date) AS day,
-   EXTRACT(month FROM date) AS month, 
-   EXTRACT(year FROM date) AS year, 
-   COUNT(*) AS total
-FROM analytics
-WHERE date >= (CURRENT_DATE - INTERVAL '30 days')
-GROUP BY EXTRACT(day FROM date), EXTRACT(month FROM date), EXTRACT(year FROM date)
-ORDER BY year ASC, month ASC, day ASC;
-`;
+const { data } = Astro.props;
 
 const chartWidth = 600;
 const chartHeight = 300;
 const offsetY = 40;
 const paddingX = 50;
 const paddingY = 50;
-const maxY = visits ? Math.max(...visits.map((item) => item.total)) : null;
+const maxY = data ? Math.max(...data.map((item) => item.total)) : null;
 const guides = [...Array(8).keys()];
-const barWidth = 12;
 
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-const properties = visits.map((property, index) => {
+const properties = data.map((property, index) => {
   const { day, month, total } = property;
-  const x = (index / visits.length) * (chartWidth - paddingX) + paddingX / 2;
+  const x = (index / data.length) * (chartWidth - paddingX) + paddingX / 2;
   const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
   return {
     total: total,
-    date: `${months[month - 1]}•${day}`,
+    date: `${month}•${day}`,
     x: x,
     y: y,
   };

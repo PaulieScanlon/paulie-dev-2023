@@ -1,6 +1,8 @@
 ---
 import { sql } from '../neon';
+
 import Main from '../layouts/main.astro';
+
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import LineChartYears from '../components/line-chart-years.astro';
@@ -8,6 +10,9 @@ import ListExternalPublishers from '../components/list-external-publishers.astro
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities';
 import LineChartVisits from '../components/line-chart-visits.astro';
+
+import groupByDate from '../utils/group-by-date';
+import groupByCity from '../utils/group-by-city';
 
 import { getCollection } from 'astro:content';
 
@@ -19,12 +24,10 @@ const streams = await getCollection('streams');
 
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
 
-const cities = await sql`
-  SELECT latitude, longitude, COUNT(city) AS total
+const analytics = await sql`
+  SELECT *
   FROM analytics
   WHERE date >= NOW() - INTERVAL '30 days'
-  GROUP BY latitude, longitude
-  ORDER BY total DESC;
 `;
 ---
 
@@ -50,7 +53,11 @@ const cities = await sql`
         <div class='flex flex-col'>
           <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
           <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten city visits.</p>
-          <ListTopTenCities />
+          <ListTopTenCities
+            data={groupByCity(analytics)
+              .sort((a, b) => b.total - a.total)
+              .slice(0, 10)}
+          />
         </div>
         <div class='mt-2 leading-tight'>
           <time class='block text-slate-400 text-xs'>Totals from last 30 Days</time>
@@ -61,7 +68,11 @@ const cities = await sql`
       <section class='w-full lg:w-1/2'>
         <h2 class='m-0 text-2xl uppercase text-salmon'>Geolocation</h2>
         <p class='mt-0 mb-4 text-slate-300 text-base'>All city visits.</p>
-        <GlobeAllCities client:only data={cities} />
+        <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
+          <div class='flex justify-center overflow-hidden'>
+            <GlobeAllCities client:only data={groupByCity(analytics)} />
+          </div>
+        </div>
         <div class='mt-2 leading-tight'>
           <time class='block text-slate-400 text-xs'>Locations from last 30 Days</time>
           <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
@@ -72,7 +83,7 @@ const cities = await sql`
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Total visits</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>All page views.</p>
-      <LineChartVisits />
+      <LineChartVisits data={groupByDate(analytics)} />
       <div class='mt-2 leading-tight'>
         <time class='block text-slate-400 text-xs'>Page views from last 30 Days</time>
         <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
