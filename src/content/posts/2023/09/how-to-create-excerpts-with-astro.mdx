@@ -121,7 +121,7 @@ const posts = await getCollection('posts');
 <ul>
   {
     posts.map((post) => {
-+      const parser = new MarkdownIt();
+       const parser = new MarkdownIt();
 -      console.log(parser.render(post.body));
 
 +      const createExcerpt = (body) => {
