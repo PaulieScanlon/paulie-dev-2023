@@ -1,17 +1,7 @@
 ---
 type: post
 title: Silly Site Challenge
-tags:
-  [
-    Gatsby,
-    React,
-    TypeScript,
-    JavaScript,
-    Theme UI,
-    SVG,
-    Netlify Functions,
-    GitHub REST,
-  ]
+tags: [Gatsby, React, TypeScript, JavaScript, Theme UI, SVG, Netlify Functions, GitHub REST]
 date: 2020-11-27
 dateModified: 2020-12-21
 author: Paul Scanlon
@@ -500,11 +490,7 @@ _options_ that have `checked: true`
 
 const getCheckedProperties = (config: IMakerConfigItem[]) => {
   return config.reduce((items, item) => {
-    items.push(
-      item.options
-        .filter((option) => option.checked)
-        .map((option) => option.value)[0]
-    );
+    items.push(item.options.filter((option) => option.checked).map((option) => option.value)[0]);
     return items;
   }, []);
 };
