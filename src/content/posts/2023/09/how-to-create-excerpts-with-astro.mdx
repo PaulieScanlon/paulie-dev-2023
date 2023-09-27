@@ -4,7 +4,7 @@ title: How to Create Excerpts With Astro
 tags: [Astro, JavaScript, Markdown]
 date: 2023-09-27
 author: Paul Scanlon
-featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695781682/paulie.dev/2023/09/create-an-excerpt-with-astro_zrfgqy.jpg
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695815276/paulie.dev/2023/09/create-an-excerpt-with-astro_yulzpp.jpg
 ---
 
 In this post I'll explain how I've created an excerpt from Markdown content. I've used this approach on my site, I'm not sure if it's the best way to do it, but it works!
@@ -106,7 +106,7 @@ like it's better suited as a title frame for a Netflix documentary about serial 
 
 ## Covert HTML string
 
-To convert the HTML into something you can use you'll need map over each of the HTML elements in the array, strip out all the opening and closing HTML tags, and return the bit in the middle, the text.
+To convert the HTML into something you can use, you can map over each of the HTML elements in the array, strip out all the opening and closing HTML tags, and return the bit in the middle, aka the text.
 
 I've accomplished this with the below `createExcerpt` helper function, and some [regex](https://en.wikipedia.org/wiki/Regular_expression) written by ChatGPT 💅.
 
@@ -152,9 +152,9 @@ const posts = await getCollection('posts');
 </ul>
 ```
 
-This would output the following, et voilà! I call that an excerpt!
+This would output the following, et voilà! That's starting to look like an excerpt!
 
-_Hey there, ok, this is a failed experiment, but it's October, Halloween is on the way and my experiment into image slicing produced a pretty spooky result! Failed Experiment I was planning on using the method described in this post to create a &quot;hero image&quot; for use in a demo site about Gatsby's upcoming Slice API, but the result was too harrowing and feels like it's better suited as a title frame for a Netflix documentary about serial killers._
+_"Hey there, ok, this is a failed experiment, but it's October, Halloween is on the way and my experiment into image slicing produced a pretty spooky result! Failed Experiment I was planning on using the method described in this post to create a &quot;hero image&quot; for use in a demo site about Gatsby's upcoming Slice API, but the result was too harrowing and feels like it's better suited as a title frame for a Netflix documentary about serial killers."_
 
 ## Creating the substring
 
