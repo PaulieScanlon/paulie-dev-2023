@@ -106,7 +106,7 @@ like it's better suited as a title frame for a Netflix documentary about serial 
 
 ## Covert HTML string
 
-To convert the HTML into something you can use you'll need map over each of the HTML element in the array, strip out all the opening and closing HTML tags, and return the bit in the middle, the text.
+To convert the HTML into something you can use you'll need map over each of the HTML elements in the array, strip out all the opening and closing HTML tags, and return the bit in the middle, the text.
 
 I've accomplished this with the below `createExcerpt` helper function, and some [regex](https://en.wikipedia.org/wiki/Regular_expression) written by ChatGPT 💅.
 
@@ -158,7 +158,7 @@ _Hey there, ok, this is a failed experiment, but it's October, Halloween is on t
 
 ## Creating the substring
 
-Whilst the above string is nearly what I wanted, it's not exactly what I wanted so I added one final finishing touch.
+Whilst the above string is nearly what I wanted, it's not exactly what I wanted, so I added one final finishing touch.
 
 ```diff
 ---
@@ -203,13 +203,13 @@ const posts = await getCollection('posts');
 
 ```
 
-The above change can be configured to truncate the text at a given character count and by adding a template literal, I've added on the all important `...` to the end. The final output now looks like the below.
+The above change can be configured to truncate the text at a given character count and by using template literals, I'm able to add the all important `...` to the end. The final output now looks like the below.
 
 _"Hey there, ok, this is a failed experiment, but it's October, Halloween is on the way and my experiment into image slicing produced a pretty..."_
 
 ## Final Usage
 
-In my site I have multiple collections, so I've reused this function in a number of collections, as such, I abstracted the function into my `utils` directory. I can then import and use it wherever it's needed.
+In my site I have multiple collections, so I've reused this function in a number of places, as such, I abstracted the function into my `utils` directory. I can then import and use it wherever it's needed.
 
 Here's the final code.
 
@@ -260,10 +260,8 @@ const posts = await getCollection('posts');
 </ul>
 ```
 
-I'm pretty new to Astro. I used it a long time ago, `^0.20.7` I think and I was waiting for collection to be released because I knew I needed them. I'm quite happy working in Astro, but I don't know if a solution like this already exists.
+I'm pretty new to Astro. I used it a long time ago, `^0.20.7` I think, and have been waiting for collections because I knew I needed them. I knew I also needed excerpts, but after spending 5 mins Google-ing around and coming up with nothing, I rolled my own solution.
 
-All I know is, I wanted excerpts and after spending 5 mins Google-ing around and coming up with nothing, I rolled my own solution.
-
-If you know of a better way, lemme know: [https://twitter.com/PaulieScanlon](@PaulieScanlon).
+If you know of a better way, lemme know: [@PaulieScanlon](https://twitter.com/PaulieScanlon).
 
 TTFN.
