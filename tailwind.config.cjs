@@ -88,6 +88,9 @@ module.exports = {
             'a, small, time': {
               fontWeight: 300,
             },
+            'pre[class*="language-"]': {
+              margin: '2.5rem 0px!important',
+            },
             code: {
               color: theme('colors.brand.tertiary'),
               '&::before': {
@@ -102,6 +105,9 @@ module.exports = {
               padding: '1.2em',
               borderLeftColor: theme('colors.brand.yellow'),
               borderRadius: '.2em',
+              p: {
+                margin: 0,
+              },
             },
             '.twitter-tweet': {
               borderColor: '#232140!important',

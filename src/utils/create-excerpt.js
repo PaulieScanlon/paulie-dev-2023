@@ -1,11 +1,11 @@
 import MarkdownIt from 'markdown-it';
 const parser = new MarkdownIt();
 
-export const createExcerpt = (markdown) => {
+export const createExcerpt = (body) => {
   return parser
-    .render(markdown)
+    .render(body)
     .split('\n')
-    .slice(0, 4)
+    .slice(0, 6)
     .map((str) => {
       return str.replace(/<\/?[^>]+(>|$)/g, '').split('\n');
     })

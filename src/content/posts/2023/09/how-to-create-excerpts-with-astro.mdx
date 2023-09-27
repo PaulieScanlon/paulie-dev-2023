@@ -1,0 +1,269 @@
+---
+type: post
+title: How to Create Excerpts With Astro
+tags: [Astro, JavaScript]
+date: 2023-09-27
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695781682/paulie.dev/2023/09/create-an-excerpt-with-astro_zrfgqy.jpg
+---
+
+In this post I'll explain how I've created an excerpt from Markdown content. I've used this approach on my site, I'm not sure if it's the best way to do it, but it works!
+
+## What is an Excerpt?
+
+To quote [Wikipedia](https://en.wiktionary.org/wiki/excerpt) an excerpt is:
+
+> A clip, snippet, passage or extract from a larger work such as a news article, a film, or a literary composition.
+
+An excerpt is helpful in "preview cards" like I have on my [/posts](/posts) page. It gives the reader a little more context about the post before clicking the link. They usually look like this, where ellipses are used to denote truncated text.
+
+This could be an excerpt...
+
+## Astro Content Collections
+
+If you're using [Content Collections](https://docs.astro.build/en/guides/content-collections/), the following code snippet should look familiar.
+
+```javascript
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+---
+
+<ul>
+  {
+    posts.map((post) => {
+      console.log(post.body)
+      return (
+        <li>
+          <a href={post.slug}>
+            <strong>{post.data.title}</strong>
+            <p>Excerpt goes here...</p>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+```
+
+If you add `console.log(post.body)` and take a look at the output in your terminal, you should see something like the below. _(I've removed a lot of the output for brevity)_
+
+```shell
+Hey there, ok, this is a failed experiment, but it's October, Halloween is on the way and my experiment into image
+slicing produced a pretty spooky result!
+
+## Failed Experiment
+
+I was planning on using the method described in this post to create a "hero image" for use in a demo site about Gatsby's
+upcoming [Slice API](https://github.com/gatsbyjs/gatsby/discussions/36339), but the result was too harrowing and feels
+like it's better suited as a title frame for a Netflix documentary about serial killers.
+```
+
+This is Markdown, but it contains content that can be used to create an excerpt. So in theory, all I have to do is extract it. I found the best way to do this was to convert it to HTML.
+
+## Convert post.body to HTML using markdown-it
+
+Install [markdown-it](https://github.com/markdown-it/markdown-it), and import it wherever you're using collections. I'll keep working with the above code snippet as an example.
+
+```diff
+---
++ import MarkdownIt from 'markdown-it';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+---
+
+<ul>
+  {
+    posts.map((post) => {
++      const parser = new MarkdownIt();
+-      console.log(post.body)
++      console.log(parser.render(post.body));
+      return (
+        <li>
+          <a href={post.slug}>
+            <strong>{post.data.title}</strong>
+            <p>Excerpt goes here...</p>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+```
+
+This time, if you add `console.log(parser.render(post.body))`, you should see the same content, but converted to HTML. _(again i've removed a lot of the output for brevity)_
+
+```shell
+<p>Hey there, ok, this is a failed experiment, but it's October, Halloween is on the way and my experiment into image
+slicing produced a pretty spooky result!</p>
+<h2>Failed Experiment</h2>
+<p>I was planning on using the method described in this post to create a &quot;hero image&quot; for use in a demo site about Gatsby's
+upcoming <a href="https://github.com/gatsbyjs/gatsby/discussions/36339">Slice API</a>, but the result was too harrowing and feels
+like it's better suited as a title frame for a Netflix documentary about serial killers.</p>
+```
+
+## Covert HTML string
+
+To convert the HTML into something you can use you'll need map over each of the HTML element in the array, strip out all the opening and closing HTML tags, and return the bit in the middle, the text.
+
+I've accomplished this with the below `createExcerpt` helper function, and some [regex](https://en.wikipedia.org/wiki/Regular_expression) written by ChatGPT 💅.
+
+```diff
+---
+import MarkdownIt from 'markdown-it';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+---
+
+<ul>
+  {
+    posts.map((post) => {
++      const parser = new MarkdownIt();
+-      console.log(parser.render(post.body));
+
++      const createExcerpt = (body) => {
++        return parser
++          .render(body)
++          .split('\n')
++          .slice(0, 6)
++          .map((str) => {
++            return str.replace(/<\/?[^>]+(>|$)/g, '').split('\n');
++          })
++          .flat()
++          .join(' ');
++      };
+
++      const excerpt = createExcerpt(post.body);
++      console.log(excerpt);
+
+      return (
+        <li>
+          <a href={post.slug}>
+            <strong>{post.data.title}</strong>
+            <p>Excerpt goes here...</p>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+```
+
+This would output the following, et voilà! I call that an excerpt!
+
+_Hey there, ok, this is a failed experiment, but it's October, Halloween is on the way and my experiment into image slicing produced a pretty spooky result! Failed Experiment I was planning on using the method described in this post to create a &quot;hero image&quot; for use in a demo site about Gatsby's upcoming Slice API, but the result was too harrowing and feels like it's better suited as a title frame for a Netflix documentary about serial killers._
+
+## Creating the substring
+
+Whilst the above string is nearly what I wanted, it's not exactly what I wanted so I added one final finishing touch.
+
+```diff
+---
+import MarkdownIt from 'markdown-it';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+---
+
+<ul>
+  {
+    posts.map((post) => {
+      const parser = new MarkdownIt();
+
+      const createExcerpt = (body) => {
+        return parser
+          .render(body)
+          .split('\n')
+          .slice(0, 6)
+          .map((str) => {
+            return str.replace(/<\/?[^>]+(>|$)/g, '').split('\n');
+          })
+          .flat()
+          .join(' ');
+      };
+
+-     const excerpt = createExcerpt(post.body);
++     const excerpt = `${createExcerpt(post.body).substring(0, 140)}...`;
+      console.log(excerpt);
+
+      return (
+        <li>
+          <a href={post.slug}>
+            <strong>{post.data.title}</strong>
+            <p>Excerpt goes here...</p>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+
+```
+
+The above change can be configured to truncate the text at a given character count and by adding a template literal, I've added on the all important `...` to the end. The final output now looks like the below.
+
+_"Hey there, ok, this is a failed experiment, but it's October, Halloween is on the way and my experiment into image slicing produced a pretty..."_
+
+## Final Usage
+
+In my site I have multiple collections, so I've reused this function in a number of collections, as such, I abstracted the function into my `utils` directory. I can then import and use it wherever it's needed.
+
+Here's the final code.
+
+```javascript
+// src/utils/create-excerpt
+
+import MarkdownIt from 'markdown-it';
+const parser = new MarkdownIt();
+
+export const createExcerpt = (body) => {
+  return parser
+    .render(body)
+    .split('\n')
+    .slice(0, 6)
+    .map((str) => {
+      return str.replace(/<\/?[^>]+(>|$)/g, '').split('\n');
+    })
+    .flat()
+    .join(' ');
+};
+```
+
+And here's the final usage.
+
+```javascript
+// src/pages/posts.astro
+---
+import { createExcerpt } from '../utils/create-excerpt';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+---
+
+<ul>
+  {
+    posts.map((post) => {
+      const excerpt = `${createExcerpt(post.body).substring(0, 140)}...`;
+      return (
+        <li>
+          <a href={post.slug}>
+            <strong>{post.data.title}</strong>
+            <p>{excerpt}</p>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+```
+
+I'm pretty new to Astro. I used it a long time ago, `^0.20.7` I think and I was waiting for collection to be released because I knew I needed them. I'm quite happy working in Astro, but I don't know if a solution like this already exists.
+
+All I know is, I wanted excerpts and after spending 5 mins Google-ing around and coming up with nothing, I rolled my own solution.
+
+If you know of a better way, lemme know: [https://twitter.com/PaulieScanlon](@PaulieScanlon).
+
+TTFN.

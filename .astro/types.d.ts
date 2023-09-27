@@ -1081,6 +1081,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2023/09/how-to-create-excerpts-with-astro.mdx": {
+	id: "2023/09/how-to-create-excerpts-with-astro.mdx";
+  slug: "2023/09/how-to-create-excerpts-with-astro";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 "streams": {
 "2021/04/gatsby-deep-dives-with-queen-raae.mdx": {

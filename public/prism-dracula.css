@@ -36,7 +36,8 @@ pre[class*='language-'] {
 
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
-  background: #282a36;
+  background: #16142c;
+  border: 1px solid #232140;
 }
 
 /* Inline code */
@@ -119,4 +120,17 @@ pre[class*='language-'] {
 
 .token.entity {
   cursor: help;
+}
+
+/* Custom styles */
+
+.token.inserted-sign.inserted > .token.line {
+  color: #50fa7b;
+}
+
+.token.deleted-sign.deleted > .token.line {
+  color: #fe3745;
+}
+.token.deleted-sign.deleted > .token.prefix.deleted {
+  color: #fe3745;
 }

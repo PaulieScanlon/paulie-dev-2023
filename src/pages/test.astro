@@ -1,0 +1,23 @@
+---
+import { createExcerpt } from '../utils/create-excerpt';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+---
+
+<ul>
+  {
+    posts.map((post) => {
+      const excerpt = `${createExcerpt(post.body).substring(0, 140)}...`;
+
+      return (
+        <li>
+          <a href={post.slug}>
+            <strong>{post.data.title}</strong>
+            <p>{excerpt}</p>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
