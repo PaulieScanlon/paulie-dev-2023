@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 
 import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
+import TagsList from '../../components/tags-list.astro';
 import FeaturedImageCard from '../../components/featured-image-card.astro';
 import TableOfContents from '../../components/table-of-contents.astro';
 import { formatDate } from '../../utils/format-date';
@@ -29,7 +30,7 @@ const {
   post,
   post: {
     slug,
-    data: { title, date, featuredImage },
+    data: { title, date, tags, featuredImage },
   },
 } = Astro.props;
 
@@ -41,6 +42,7 @@ const { Content, headings } = await post.render();
 <Main title={title} description={excerpt} slug={`/posts/${slug}/`} image={featuredImage}>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
+  <TagsList tags={tags} />
   <Content />
   <Aside>
     <FeaturedImageCard alt={title} thumbnail={featuredImage} text={`${title}\n https://paulie.dev/posts/${slug}/`} />

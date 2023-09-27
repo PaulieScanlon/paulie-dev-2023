@@ -67,6 +67,7 @@ module.exports = {
             },
             h1: {
               color: theme('colors.brand.text'),
+              margin: '2rem 0',
             },
             'h2, h3, h4, h5, h6': {
               color: theme('colors.brand.salmon'),

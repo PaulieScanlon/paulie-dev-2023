@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 
 import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
+import TagsList from '../../components/tags-list.astro';
 import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
@@ -28,7 +29,7 @@ const {
   article,
   article: {
     slug,
-    data: { title, date },
+    data: { title, tags, date },
   },
 } = Astro.props;
 
@@ -40,6 +41,7 @@ const { Content } = await article.render();
 <Main title={title} description={excerpt} slug={`/articles/${slug}/`}>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
+  <TagsList tags={tags} />
   <Content />
   <Aside>
     <ProfileCard />
