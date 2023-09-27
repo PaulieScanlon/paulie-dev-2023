@@ -1,10 +1,12 @@
 ---
 const { data } = Astro.props;
+
+const listData = data.sort((a, b) => b.total - a.total).slice(0, 10);
 ---
 
 <ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:py-2'>
   {
-    data.map((item) => {
+    listData.map((item) => {
       const { flag, city, total } = item;
 
       return (

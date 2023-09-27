@@ -19,6 +19,19 @@ module.exports = {
     'stroke-brand-blood',
     'stroke-brand-starfleet',
     'stroke-brand-electric',
+    'stroke-brand-pink',
+    'stroke-brand-fuchsia',
+
+    'bg-brand-teal',
+    'bg-brand-mauve',
+    'bg-brand-salmon',
+    'bg-brand-yellow',
+    'bg-brand-lime',
+    'bg-brand-blood',
+    'bg-brand-starfleet',
+    'bg-brand-electric',
+    'bg-brand-pink',
+    'bg-brand-fuchsia',
 
     'text-brand-teal',
     'text-brand-mauve',
@@ -28,6 +41,8 @@ module.exports = {
     'text-brand-blood',
     'text-brand-starfleet',
     'text-brand-electric',
+    'text-brand-pink',
+    'text-brand-fuchsia',
   ],
   theme: {
     extend: {
@@ -39,14 +54,15 @@ module.exports = {
           tertiary: '#58e6d9',
           muted: '#605c9d',
           salmon: '#ff6090',
-          mauve: '#4b5ec8',
+          mauve: '#4871e3',
           teal: '#00bcd4',
           lime: '#8bc34a',
           yellow: '#ffc107',
           fuchsia: '#7B1FA2',
-          blood: '#ff5722',
-          starfleet: '#2990fa',
-          electric: '#6933ff',
+          blood: '#ff7901',
+          starfleet: '#0091f7',
+          electric: '#b900f7',
+          pink: '#ee3373',
           background: '#131127',
           outline: '#232140',
           surface: '#16142c',
@@ -122,5 +138,25 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    function ({ addBase, theme }) {
+      function extractColorVars(colorObj, colorGroup = '') {
+        return Object.keys(colorObj).reduce((vars, colorKey) => {
+          const value = colorObj[colorKey];
+
+          const newVars =
+            typeof value === 'string'
+              ? { [`--color${colorGroup}-${colorKey}`]: value }
+              : extractColorVars(value, `-${colorKey}`);
+
+          return { ...vars, ...newVars };
+        }, {});
+      }
+
+      addBase({
+        ':root': extractColorVars(theme('colors')),
+      });
+    },
+  ],
 };

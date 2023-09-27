@@ -13,8 +13,11 @@ import LineChartVisits from '../components/line-chart-visits.astro';
 
 import groupByDate from '../utils/group-by-date';
 import groupByCity from '../utils/group-by-city';
+import groupByPublication from '../utils/group-by-publication';
+import groupByTag from '../utils/group-by-tag';
 
 import { getCollection } from 'astro:content';
+import DonutChartTags from '../components/donut-chart-tags.astro';
 
 const articles = await getCollection('articles');
 const demos = await getCollection('demos');
@@ -42,22 +45,25 @@ const analytics = await sql`
       <LineChartYears collections={collections} />
     </section>
 
-    <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Total by publisher</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>All external publishers.</p>
-      <ListExternalPublishers />
-    </section>
+    <div class='grid gap-8 lg:grid-cols-2'>
+      <section>
+        <h2 class='m-0 text-2xl uppercase text-salmon'>Total by publisher</h2>
+        <p class='mt-0 mb-4 text-slate-300 text-base'>All external publishers.</p>
+        <ListExternalPublishers data={groupByPublication(articles)} />
+      </section>
+      <section>
+        <h2 class='m-0 text-2xl uppercase text-salmon'>Total by Tag</h2>
+        <p class='mt-0 mb-4 text-slate-300 text-base'>Top five tags.</p>
+        <DonutChartTags data={groupByTag(collections)} />
+      </section>
+    </div>
 
     <div class='flex flex-col lg:flex-row gap-8 overflow-hidden'>
       <section class='w-full lg:w-1/2'>
         <div class='flex flex-col'>
           <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
           <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten city visits.</p>
-          <ListTopTenCities
-            data={groupByCity(analytics)
-              .sort((a, b) => b.total - a.total)
-              .slice(0, 10)}
-          />
+          <ListTopTenCities data={groupByCity(analytics)} />
         </div>
         <div class='mt-2 leading-tight'>
           <time class='block text-slate-400 text-xs'>Totals from last 30 Days</time>

@@ -1,46 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
-const articles = await getCollection('articles');
+const { data } = Astro.props;
 
-const array = articles.map((article) => {
-  const {
-    data: { publication, logo },
-  } = article;
-  return {
-    publication: publication,
-    logo: logo,
-  };
-});
-
-const groupedPublications = array.reduce((result, item) => {
-  const { publication, logo } = item;
-
-  if (result[publication]) {
-    result[publication].total += 1;
-  } else {
-    result[publication] = {
-      publication: publication,
-      logo: logo,
-      total: 1,
-    };
-  }
-
-  return result;
-}, {});
-
-const listData = Object.entries(groupedPublications)
-  .map(([_, data]: any) => {
-    const { publication, logo, total } = data;
-
-    return {
-      publication: publication,
-      logo: logo,
-      total: total,
-    };
-  })
-  .sort((a, b) => b.total - a.total);
+const listData = data.sort((a, b) => b.total - a.total).slice(0, 10);
 ---
 
 <ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:py-2'>

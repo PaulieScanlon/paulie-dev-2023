@@ -1,8 +1,8 @@
 ---
 const { collections } = Astro.props;
+import colors from '../utils/colors';
 
 const abbreviatedMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const colors = ['teal', 'mauve', 'salmon', 'yellow', 'lime', 'blood', 'electric', 'starfleet'];
 
 const sourceData = collections.map((entry) => {
   const {
