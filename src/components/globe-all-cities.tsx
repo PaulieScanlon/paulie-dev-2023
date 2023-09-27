@@ -1,4 +1,4 @@
-import { useRef, memo, type FunctionComponent } from 'react';
+import { useRef, memo, type FunctionComponent, useEffect } from 'react';
 // https://github.com/vasturiano/react-globe.gl
 import Globe from 'react-globe.gl';
 import * as THREE from 'three';
@@ -17,6 +17,22 @@ interface GlobeAllCitiesProps {
 
 const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) => {
   const globeEl = useRef<any>();
+
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (globeEl.current && document.visibilityState === 'visible') {
+        globeEl.current.controls().autoRotate = true;
+      } else {
+        globeEl.current.controls().autoRotate = false;
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, []);
 
   const globeReady = () => {
     if (globeEl.current) {
