@@ -7,6 +7,7 @@ import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import LineChartYears from '../components/line-chart-years.astro';
 import ListExternalPublishers from '../components/list-external-publishers.astro';
+import ListPopularPosts from '../components/list-popular-posts.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities';
 import LineChartVisits from '../components/line-chart-visits.astro';
@@ -15,6 +16,7 @@ import groupByDate from '../utils/group-by-date';
 import groupByCity from '../utils/group-by-city';
 import groupByPublication from '../utils/group-by-publication';
 import groupByTag from '../utils/group-by-tag';
+import groupBySlug from '../utils/group-by-slug';
 
 import { getCollection } from 'astro:content';
 import DonutChartTags from '../components/donut-chart-tags.astro';
@@ -38,7 +40,7 @@ const analytics = await sql`
   <strong class='text-xs text-brand-primary'>Dashboard</strong>
   <h1 class='mb-0'>Built-in Analytics</h1>
   <p>Data visualization created using data sourced from local MDX files and a Neon database.</p>
-  <div class='grid gap-24 min-w-full'>
+  <div class='flex flex-col gap-24 min-w-full'>
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Year and Month</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>Total published content.</p>
@@ -57,6 +59,12 @@ const analytics = await sql`
         <DonutChartTags data={groupByTag(collections)} />
       </section>
     </div>
+
+    <section>
+      <h2 class='m-0 text-2xl uppercase text-salmon'>Popular Posts</h2>
+      <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten page views.</p>
+      <ListPopularPosts data={groupBySlug(analytics)} />
+    </section>
 
     <div class='flex flex-col lg:flex-row gap-8 overflow-hidden'>
       <section class='w-full lg:w-1/2'>
