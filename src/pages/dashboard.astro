@@ -6,12 +6,15 @@ import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import LineChartYears from '../components/line-chart-years.astro';
+import BarChartDays from '../components/bar-chart-days.astro';
 import ListExternalPublishers from '../components/list-external-publishers.astro';
 import ListPopularPosts from '../components/list-popular-posts.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities';
 import LineChartVisits from '../components/line-chart-visits.astro';
 
+import groupByYear from '../utils/group-by-year';
+import groupByDay from '../utils/group-by-day';
 import groupByDate from '../utils/group-by-date';
 import groupByCity from '../utils/group-by-city';
 import groupByPublication from '../utils/group-by-publication';
@@ -44,7 +47,13 @@ const analytics = await sql`
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Year and Month</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>Total published content.</p>
-      <LineChartYears collections={collections} />
+      <LineChartYears data={groupByYear(collections)} />
+    </section>
+
+    <section>
+      <h2 class='m-0 text-2xl uppercase text-salmon'>Year and Day</h2>
+      <p class='mt-0 mb-4 text-slate-300 text-base'>Total published content.</p>
+      <BarChartDays data={groupByDay(collections)} />
     </section>
 
     <div class='grid gap-8 lg:grid-cols-2'>
@@ -62,7 +71,7 @@ const analytics = await sql`
 
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Popular Posts</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten page views.</p>
+      <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten post views.</p>
       <ListPopularPosts data={groupBySlug(analytics)} />
     </section>
 
