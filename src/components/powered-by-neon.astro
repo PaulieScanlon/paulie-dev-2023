@@ -1,0 +1,9 @@
+---
+const { period = 30 } = Astro.props;
+---
+
+<div class='mt-4 leading-3'>
+  <time class='block text-brand-muted text-xs'>{`Totals from last ${period} Days`}</time>
+  <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
+  <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
+</div>

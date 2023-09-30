@@ -12,6 +12,8 @@ import ListPopularPosts from '../components/list-popular-posts.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities';
 import LineChartVisits from '../components/line-chart-visits.astro';
+import DonutChartTags from '../components/donut-chart-tags.astro';
+import PoweredByNeon from '../components/powered-by-neon.astro';
 
 import groupByYear from '../utils/group-by-year';
 import groupByDay from '../utils/group-by-day';
@@ -22,7 +24,6 @@ import groupByTag from '../utils/group-by-tag';
 import groupBySlug from '../utils/group-by-slug';
 
 import { getCollection } from 'astro:content';
-import DonutChartTags from '../components/donut-chart-tags.astro';
 
 const articles = await getCollection('articles');
 const demos = await getCollection('demos');
@@ -73,6 +74,7 @@ const analytics = await sql`
       <h2 class='m-0 text-2xl uppercase text-salmon'>Popular Posts</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten post views.</p>
       <ListPopularPosts data={groupBySlug(analytics)} />
+      <PoweredByNeon period={groupByDate(analytics).length} />
     </section>
 
     <div class='flex flex-col lg:flex-row gap-8 overflow-hidden'>
@@ -82,11 +84,7 @@ const analytics = await sql`
           <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten city visits.</p>
           <ListTopTenCities data={groupByCity(analytics)} />
         </div>
-        <div class='mt-2 leading-tight'>
-          <time class='block text-slate-400 text-xs'>Totals from last 30 Days</time>
-          <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
-          <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
-        </div>
+        <PoweredByNeon period={groupByDate(analytics).length} />
       </section>
       <section class='w-full lg:w-1/2'>
         <h2 class='m-0 text-2xl uppercase text-salmon'>Geolocation</h2>
@@ -96,22 +94,14 @@ const analytics = await sql`
             <GlobeAllCities client:only data={groupByCity(analytics)} />
           </div>
         </div>
-        <div class='mt-2 leading-tight'>
-          <time class='block text-slate-400 text-xs'>Locations from last 30 Days</time>
-          <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
-          <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
-        </div>
+        <PoweredByNeon period={groupByDate(analytics).length} />
       </section>
     </div>
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Total visits</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>All page views.</p>
       <LineChartVisits data={groupByDate(analytics)} />
-      <div class='mt-2 leading-tight'>
-        <time class='block text-slate-400 text-xs'>Page views from last 30 Days</time>
-        <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
-        <a href='https://neon.tech/' target='_blank' rel='noreferrer' class='text-xs'>Neon</a>
-      </div>
+      <PoweredByNeon period={groupByDate(analytics).length} />
     </section>
   </div>
   <Aside>
