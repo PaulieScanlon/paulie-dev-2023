@@ -33,13 +33,13 @@ const gradient = chartData
 ---
 
 <div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
-  <div class='px-8 py-4'>
+  <div class='mx-auto w-[88%] px-8 py-[2.4rem]'>
     <svg viewBox={`0 0 ${chartSize} ${chartSize}`} role='presentation' class='rounded-full'>
       <clipPath id='hole'>
         <path d='M 50 0 a 50 50 0 0 1 0 100 50 50 0 0 1 0 -100 v 18 a 2 2 0 0 0 0 64 2 2 0 0 0 0 -64'></path>
       </clipPath>
-      <text text-anchor='middle' x='50' y='52' class='text-xl fill-brand-text font-bold'>{`x${data.length}`}</text>
-      <text text-anchor='middle' x='50' y='58' class='text-[5px] fill-brand-text'>Tag types</text>
+      <!-- <text text-anchor='middle' x='50' y='51' class='text-lg fill-brand-text font-bold'>{`x${data.length}`}</text>
+      <text text-anchor='middle' x='50' y='56' class='text-[5px] fill-brand-text'>Tag types</text> -->
       <foreignObject x='0' y='0' width='100' height='100' clip-path='url(#hole)'>
         <div
           class='w-full h-full'
