@@ -48,7 +48,7 @@ const properties = Object.values(totalByYearAndMonth).map((property: any) => {
     .map((entry, index) => {
       const { total } = entry;
 
-      const x = (index / 12) * chartWidth + paddingX / 2;
+      const x = (index / months.length) * chartWidth + paddingX / 2;
       const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
 
       return {
