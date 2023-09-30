@@ -71,11 +71,10 @@ const analytics = await sql`
         <DonutChartTags data={groupByTag(collections)} />
       </section>
     </div>
-
     <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Popular Posts</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten post views.</p>
-      <ListPopularPosts data={groupBySlug(analytics)} />
+      <h2 class='m-0 text-2xl uppercase text-salmon'>Total visits</h2>
+      <p class='mt-0 mb-4 text-slate-300 text-base'>All page views.</p>
+      <LineChartVisits data={groupByDate(analytics)} />
       <PoweredByNeon period={groupByDate(analytics).length} />
     </section>
 
@@ -99,10 +98,11 @@ const analytics = await sql`
         <PoweredByNeon period={groupByDate(analytics).length} />
       </section>
     </div>
+
     <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Total visits</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>All page views.</p>
-      <LineChartVisits data={groupByDate(analytics)} />
+      <h2 class='m-0 text-2xl uppercase text-salmon'>Popular Posts</h2>
+      <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten post views.</p>
+      <ListPopularPosts data={groupBySlug(analytics)} />
       <PoweredByNeon period={groupByDate(analytics).length} />
     </section>
   </div>
