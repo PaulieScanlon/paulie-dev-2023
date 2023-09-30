@@ -22,6 +22,17 @@ module.exports = {
     'stroke-brand-pink',
     'stroke-brand-fuchsia',
 
+    'fill-brand-teal',
+    'fill-brand-mauve',
+    'fill-brand-salmon',
+    'fill-brand-yellow',
+    'fill-brand-lime',
+    'fill-brand-blood',
+    'fill-brand-starfleet',
+    'fill-brand-electric',
+    'fill-brand-pink',
+    'fill-brand-fuchsia',
+
     'bg-brand-teal',
     'bg-brand-mauve',
     'bg-brand-salmon',

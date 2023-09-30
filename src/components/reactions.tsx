@@ -1,40 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import reactions from '../utils/reactions';
 import Loading from './loading';
-
-const icons = [
-  {
-    reaction: 'neutral',
-    paths: [
-      '<path d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M20,24h-8v-2h8V24z M22,8c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S20.9,8,22,8z M10,8c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S8.9,8,10,8z"/>',
-    ],
-  },
-
-  {
-    reaction: 'happy',
-    paths: [
-      '<path d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M22,8c1.1,0,2,1.3,2,3s-0.9,3-2,3s-2-1.3-2-3S20.9,8,22,8z M10,8c1.1,0,2,1.3,2,3s-0.9,3-2,3s-2-1.3-2-3S8.9,8,10,8z M16,28c-5.2,0-9.5-4.4-10-9.9c2.9,1.7,6.4,2.7,10,2.7s7.1-1,10-2.7C25.5,23.6,21.2,28,16,28L16,28z" />',
-    ],
-  },
-  {
-    reaction: 'cool',
-    paths: [
-      '<path d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M16,26c-1.5,0-2.9-0.3-4.2-0.9l1-1.7c1,0.4,2.1,0.7,3.2,0.7c2.9,0,5.5-1.6,6.9-3.9l1.7,1C22.8,24.1,19.6,26,16,26L16,26z M26,12c0,1.1-0.9,2-2,2h-4c-1.1,0-2-0.9-2-2h-4c0,1.1-0.9,2-2,2H8c-1.1,0-2-0.9-2-2V9c0-0.6,0.4-1,1-1h6c0.6,0,1,0.4,1,1v1h4V9c0-0.6,0.5-1,1-1h6c0.5,0,1,0.4,1,1V12z"/>',
-    ],
-  },
-  {
-    reaction: 'tongue',
-    paths: [
-      '<path d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M10,8c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S8.9,8,10,8z M24,20h-2v3c0,1.7-1.3,3-3,3s-3-1.3-3-3v-3H8v-2h16V20z M22,12c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S23.1,12,22,12z"/>',
-    ],
-  },
-  {
-    reaction: 'sad',
-    paths: [
-      '<path d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M22,8c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S20.9,8,22,8z M10,8c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S8.9,8,10,8z M22,24.4c-1.2-2-3.5-3.4-6-3.4s-4.8,1.4-6,3.4l-2.6-1.5C9.2,19.9,12.4,18,16,18s6.8,1.9,8.6,4.9L22,24.4z"/>',
-    ],
-  },
-];
 
 const Reactions = ({ slug }) => {
   const [status, setStatus] = useState({
@@ -90,27 +57,27 @@ const Reactions = ({ slug }) => {
       </div>
 
       <ul className='list-none p-0 m-0 flex items-center justify-center gap-3'>
-        {icons.map((icon, index) => {
-          const { reaction, paths } = icon;
-
+        {reactions.map((reaction, index) => {
+          const { name, d } = reaction;
+          console.log(d);
           return (
             <li key={index} className='m-0 p-0 w-10 h-10'>
               <button
                 className='group rounded-full border-2 border-brand-secondary transition-all duration-300 enabled:hover:scale-125 enabled:hover:border-brand-salmon disabled:text-brand-guide disabled:border-brand-outline'
                 disabled={status.submitting || status.submitted}
-                onClick={() => handleReaction(reaction)}
+                onClick={() => handleReaction(name)}
               >
-                {status.submitting && status.reaction === reaction ? (
+                {status.submitting && status.reaction === name ? (
                   <Loading />
                 ) : (
                   <svg
-                    aria-labelledby={`reaction-${reaction}`}
+                    aria-labelledby={`reaction-${name}`}
                     xmlns='http://www.w3.org/2000/svg'
                     className='not-prose rounded-full w-full h-full transition-colors duration-300'
                     viewBox='0 0 32 32'
                     fill='currentColor'
                   >
-                    <g key={index} dangerouslySetInnerHTML={{ __html: paths.map((path) => path) }} />
+                    <path d={d} />
                   </svg>
                 )}
               </button>

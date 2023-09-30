@@ -1,9 +1,10 @@
 ---
+const { data } = Astro.props;
+
 import colors from '../utils/colors';
 
-const { data } = Astro.props;
+const chartSize = 100;
 const chartData = data.sort((a, b) => b.total - a.total).slice(0, 5);
-
 const max = chartData.reduce((a, b) => a + b.total, 0);
 
 const convertToPercent = (num) => Math.round((num / max) * 100);
@@ -31,9 +32,9 @@ const gradient = chartData
   .join();
 ---
 
-<div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4 pt-2' '>
-  <div class='w-[65%] mx-auto'>
-    <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg' class='rounded-full'>
+<div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
+  <div class='px-8 py-4'>
+    <svg viewBox={`0 0 ${chartSize} ${chartSize}`} role='presentation' class='rounded-full'>
       <clipPath id='hole'>
         <path d='M 50 0 a 50 50 0 0 1 0 100 50 50 0 0 1 0 -100 v 18 a 2 2 0 0 0 0 64 2 2 0 0 0 0 -64'></path>
       </clipPath>
@@ -50,7 +51,7 @@ const gradient = chartData
       </foreignObject>
     </svg>
   </div>
-  <ul class='m-0 p-0'>
+  <ul class='m-0 px-4'>
     {
       chartData.map((item, index) => {
         const { tag, total } = item;

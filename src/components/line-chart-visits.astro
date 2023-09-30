@@ -53,13 +53,7 @@ const points = properties
         const { total, date, x, y } = property;
         return (
           <g>
-            <circle
-              cx={x}
-              cy={y}
-              r={4}
-              class='stroke-brand-salmon fill-brand-surface pointer-events-none'
-              stroke-width={1}
-            />
+            <circle cx={x} cy={y} r={4} class='stroke-brand-salmon fill-brand-surface' stroke-width={1} />
 
             <text x={x} y={y - 8} text-anchor='middle' font-size={10} class='fill-brand-text font-semibold select-none'>
               {`x${total}`}
