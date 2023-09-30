@@ -36,9 +36,9 @@ const streams = await getCollection('streams');
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
 
 const analytics = await sql`
-  SELECT *
-  FROM analytics
-  WHERE date >= NOW() - INTERVAL '30 days'
+ SELECT *
+ FROM analytics
+ WHERE city <> 'Montreal' AND date >= NOW() - INTERVAL '30 days'
 `;
 ---
 
