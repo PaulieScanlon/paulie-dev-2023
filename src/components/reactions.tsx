@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import * as Tooltip from '@radix-ui/react-tooltip';
+
 import reactions from '../utils/reactions';
 import Loading from './loading';
 
@@ -46,7 +48,7 @@ const Reactions = ({ slug }) => {
 
         {status.submitted ? (
           <p className='m-0 text-center text-sm'>
-            Thanks!{' '}
+            Splendid, thank you!{' '}
             <span role='img' aria-label='Victory Hand emoji'>
               ✌️
             </span>
@@ -59,28 +61,42 @@ const Reactions = ({ slug }) => {
       <ul className='list-none p-0 m-0 flex items-center justify-center gap-3'>
         {reactions.map((reaction, index) => {
           const { name, d } = reaction;
-          console.log(d);
           return (
             <li key={index} className='m-0 p-0 w-10 h-10'>
-              <button
-                className='group rounded-full border-2 border-brand-secondary transition-all duration-300 enabled:hover:scale-125 enabled:hover:border-brand-salmon disabled:text-brand-guide disabled:border-brand-outline'
-                disabled={status.submitting || status.submitted}
-                onClick={() => handleReaction(name)}
-              >
-                {status.submitting && status.reaction === name ? (
-                  <Loading />
-                ) : (
-                  <svg
-                    aria-labelledby={`reaction-${name}`}
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='not-prose rounded-full w-full h-full transition-colors duration-300'
-                    viewBox='0 0 32 32'
-                    fill='currentColor'
-                  >
-                    <path d={d} />
-                  </svg>
-                )}
-              </button>
+              <Tooltip.Provider>
+                <Tooltip.Root>
+                  <Tooltip.Trigger asChild>
+                    <button
+                      className='group rounded-full border-2 border-brand-secondary transition-all duration-300 enabled:hover:scale-125 enabled:hover:border-brand-salmon disabled:text-brand-guide disabled:border-brand-outline'
+                      disabled={status.submitting || status.submitted}
+                      onClick={() => handleReaction(name)}
+                    >
+                      {status.submitting && status.reaction === name ? (
+                        <Loading />
+                      ) : (
+                        <svg
+                          aria-labelledby={`reaction-${name}`}
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='not-prose rounded-full w-full h-full transition-colors duration-300'
+                          viewBox='0 0 32 32'
+                          fill='currentColor'
+                        >
+                          <path d={d} />
+                        </svg>
+                      )}
+                    </button>
+                  </Tooltip.Trigger>
+                  <Tooltip.Portal>
+                    <Tooltip.Content
+                      className='border border-brand-guide bg-brand-surface rounded px-2 py-1 text-xs capitalize shadow-lg select-none'
+                      side='bottom'
+                      sideOffset={8}
+                    >
+                      {name}
+                    </Tooltip.Content>
+                  </Tooltip.Portal>
+                </Tooltip.Root>
+              </Tooltip.Provider>
             </li>
           );
         })}
