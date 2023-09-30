@@ -7,6 +7,7 @@ const groupByDate = (array) => {
 
     if (!acc[key]) {
       acc[key] = {
+        date: date,
         day: day,
         month: month,
         total: 0,

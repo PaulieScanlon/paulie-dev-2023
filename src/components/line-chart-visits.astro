@@ -1,6 +1,8 @@
 ---
 const { data } = Astro.props;
 
+const chartData = data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
 const chartWidth = 600;
 const chartHeight = 300;
 const offsetY = 40;
@@ -9,7 +11,7 @@ const paddingY = 50;
 const maxY = data ? Math.max(...data.map((item) => item.total)) : null;
 const guides = [...Array(8).keys()];
 
-const properties = data.map((property, index) => {
+const properties = chartData.map((property, index) => {
   const { day, month, total } = property;
   const x = (index / data.length) * (chartWidth - paddingX) + paddingX / 2;
   const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
