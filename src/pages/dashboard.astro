@@ -18,6 +18,7 @@ import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
 import PoweredByNeon from '../components/powered-by-neon.astro';
 
+import groupByTable from '../utils/group-by-table';
 import groupByYear from '../utils/group-by-year';
 import groupByDay from '../utils/group-by-day';
 import groupByDate from '../utils/group-by-date';
@@ -37,17 +38,18 @@ const streams = await getCollection('streams');
 
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
 
-const analytics = await sql`
- SELECT *
- FROM analytics
- WHERE city <> 'Montreal' AND date >= NOW() - INTERVAL '30 days'
+const response = await sql`
+SELECT * FROM 
+  (SELECT 'analytics' AS table, analytics.* 
+  FROM analytics
+  WHERE city <> 'Montreal' AND date >= NOW() - INTERVAL '30 days') analytics
+NATURAL FULL JOIN 
+  (SELECT 'reactions' AS table, reactions.*
+  FROM reactions
+  WHERE reaction <> 'wondering' AND reaction <> 'confused') reactions
 `;
 
-const reactions = await sql`
- SELECT *
- FROM reactions
- WHERE reaction <> 'wondering' AND reaction <> 'confused'
-`;
+const table = groupByTable(response);
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
@@ -71,7 +73,7 @@ const reactions = await sql`
       <section>
         <h2 class='m-0 text-2xl uppercase text-salmon'>Total by reaction</h2>
         <p class='mt-0 mb-4 text-slate-300 text-base'>All reactions.</p>
-        <RadarChartReactions data={groupByReaction(reactions)} />
+        <RadarChartReactions data={groupByReaction(table.reactions)} />
       </section>
       <section>
         <h2 class='m-0 text-2xl uppercase text-salmon'>Total by Tag</h2>
@@ -89,8 +91,8 @@ const reactions = await sql`
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Total visits</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>All page views.</p>
-      <LineChartVisits data={groupByDate(analytics)} />
-      <PoweredByNeon period={groupByDate(analytics).length} />
+      <LineChartVisits data={groupByDate(table.analytics)} />
+      <PoweredByNeon period={groupByDate(table.analytics).length} />
     </section>
 
     <div class='flex flex-col lg:flex-row gap-24 lg:gap-8 overflow-hidden'>
@@ -98,27 +100,27 @@ const reactions = await sql`
         <div class='flex flex-col'>
           <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
           <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten city visits.</p>
-          <ListTopTenCities data={groupByCity(analytics)} />
+          <ListTopTenCities data={groupByCity(table.analytics)} />
         </div>
-        <PoweredByNeon period={groupByDate(analytics).length} />
+        <PoweredByNeon period={groupByDate(table.analytics).length} />
       </section>
       <section class='w-full lg:w-1/2'>
         <h2 class='m-0 text-2xl uppercase text-salmon'>Geolocation</h2>
         <p class='mt-0 mb-4 text-slate-300 text-base'>All city visits.</p>
         <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
           <div class='flex justify-center overflow-hidden'>
-            <GlobeAllCities client:only data={groupByCity(analytics)} />
+            <GlobeAllCities client:only data={groupByCity(table.analytics)} />
           </div>
         </div>
-        <PoweredByNeon period={groupByDate(analytics).length} />
+        <PoweredByNeon period={groupByDate(table.analytics).length} />
       </section>
     </div>
 
     <section>
       <h2 class='m-0 text-2xl uppercase text-salmon'>Popular Posts</h2>
       <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten post views.</p>
-      <ListPopularPosts data={groupBySlug(analytics)} />
-      <PoweredByNeon period={groupByDate(analytics).length} />
+      <ListPopularPosts data={groupBySlug(table.analytics)} />
+      <PoweredByNeon period={groupByDate(table.analytics).length} />
     </section>
   </div>
   <Aside>

@@ -1,6 +1,6 @@
 ---
 const { data } = Astro.props;
-import reactions from '../utils/reactions';
+import emojis from '../utils/emojis';
 import colors from '../utils/colors';
 
 const chartSize = 300;
@@ -75,8 +75,8 @@ const shape =
           properties.reverse().map((property, index) => {
             const { reaction, x, y } = property;
 
-            const icon = reactions.find((icon) => {
-              return icon.name === reaction;
+            const icon = emojis.find((emoji) => {
+              return emoji.name === reaction;
             });
 
             const invertedIndex = Math.abs(index - properties.length) - 1;
@@ -97,8 +97,8 @@ const shape =
       chartData.map((item, index) => {
         const { reaction, total } = item;
 
-        const icon = reactions.find((icon) => {
-          return icon.name === reaction;
+        const icon = emojis.find((emoji) => {
+          return emoji.name === reaction;
         });
 
         return (

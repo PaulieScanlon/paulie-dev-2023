@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import * as Tooltip from '@radix-ui/react-tooltip';
 
-import reactions from '../utils/reactions';
+import emojis from '../utils/emojis';
 import Loading from './loading';
 
 const Reactions = ({ slug }) => {
@@ -59,8 +59,8 @@ const Reactions = ({ slug }) => {
       </div>
 
       <ul className='list-none p-0 m-0 flex items-center justify-center gap-3'>
-        {reactions.map((reaction, index) => {
-          const { name, d } = reaction;
+        {emojis.map((emoji, index) => {
+          const { name, d } = emoji;
           return (
             <li key={index} className='m-0 p-0 w-10 h-10'>
               <Tooltip.Provider>
