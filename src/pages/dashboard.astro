@@ -59,7 +59,7 @@ const analytics = await sql`
       <BarChartDays data={groupByDay(collections)} />
     </section>
 
-    <div class='grid gap-8 lg:grid-cols-2'>
+    <div class='grid gap-24 lg:gap-8 lg:grid-cols-2'>
       <section>
         <h2 class='m-0 text-2xl uppercase text-salmon'>Total by publisher</h2>
         <p class='mt-0 mb-4 text-slate-300 text-base'>All external publishers.</p>
@@ -78,7 +78,7 @@ const analytics = await sql`
       <PoweredByNeon period={groupByDate(analytics).length} />
     </section>
 
-    <div class='flex flex-col lg:flex-row gap-8 overflow-hidden'>
+    <div class='flex flex-col lg:flex-row gap-24 lg:gap-8 overflow-hidden'>
       <section class='w-full lg:w-1/2'>
         <div class='flex flex-col'>
           <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
