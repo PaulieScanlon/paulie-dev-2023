@@ -6,6 +6,8 @@ import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
 import FeaturedImageCard from '../../components/featured-image-card.astro';
 import TableOfContents from '../../components/table-of-contents.astro';
+import Reactions from '../../components/reactions.tsx';
+
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
@@ -44,6 +46,7 @@ const { Content, headings } = await post.render();
   <h1>{title}</h1>
   <TagsList tags={tags} />
   <Content />
+  <Reactions client:only slug={`/posts/${slug}/`} />
   <Aside>
     <FeaturedImageCard alt={title} thumbnail={featuredImage} text={`${title}\n https://paulie.dev/posts/${slug}/`} />
     <TableOfContents headings={headings} />
