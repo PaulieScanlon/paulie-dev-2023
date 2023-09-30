@@ -31,11 +31,7 @@ const gradient = chartData
   .join();
 ---
 
-<div class='relative border rounded border-brand-outline bg-brand-surface px-2 py-2'>
-  <!-- <div class='absolute flex flex-col w-full h-1/2 top-[103px] -left-[1px] z-10'>
-    <strong class='text-4xl text-center leading-6'>{`x${data.length}`}</strong>
-    <small class='text-center'>Total tags</small>
-  </div> -->
+<div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4 pt-2' '>
   <div class='w-[65%] mx-auto'>
     <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg' class='rounded-full'>
       <clipPath id='hole'>
@@ -54,12 +50,12 @@ const gradient = chartData
       </foreignObject>
     </svg>
   </div>
-  <ul class='m-0'>
+  <ul class='m-0 p-0'>
     {
       chartData.map((item, index) => {
         const { tag, total } = item;
         return (
-          <li class='m-0 flex border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline p-0 leading-10'>
+          <li class='m-0 p-0 flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline leading-[2.65rem]'>
             <div class='flex grow items-center gap-3'>
               <div class={`w-3 h-3 rounded-full bg-brand-${colors[index]}`} />
               <span>{tag}</span>

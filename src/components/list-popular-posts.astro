@@ -11,14 +11,14 @@ const listData = data
   .slice(0, 10);
 ---
 
-<ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:py-2'>
+<ul class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4 pt-2'>
   {
     listData.map((item, index) => {
       const { slug, total } = item;
       const parts = slug.split('/');
       const title = parts[parts.length - 2].split('-').join(' ');
       return (
-        <li class='flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline p-0'>
+        <li class='m-0 p-0 flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline leading-[3rem]'>
           <small class='flex shrink-0 items-center justify-center w-6 h-6 rounded-full font-bold leading-4 text-brand-salmon border-2 border-brand-salmon'>
             {index + 1}
           </small>

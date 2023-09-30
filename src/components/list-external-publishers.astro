@@ -6,13 +6,13 @@ const { data } = Astro.props;
 const listData = data.sort((a, b) => b.total - a.total).slice(0, 10);
 ---
 
-<ul class='m-0 border rounded border-brand-outline bg-brand-surface px-4 sm:py-2'>
+<ul class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4'>
   {
     listData.map((item) => {
       const { publication, logo, total } = item;
 
       return (
-        <li class='flex border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline p-0 leading-10'>
+        <li class='m-0 p-0 flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline leading-[3rem]'>
           <div class='flex grow items-center gap-3'>
             <Image width={18} height={18} alt={publication} src={logo} class='m-0' />
             <span>{publication}</span>

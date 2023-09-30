@@ -64,7 +64,7 @@ const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) =
       ref={globeEl}
       onGlobeReady={globeReady}
       width={390}
-      height={434}
+      height={458}
       rendererConfig={{ antialias: true, alpha: true }}
       animateIn={true}
       backgroundColor={'rgba(255, 255, 255, 0)'}
