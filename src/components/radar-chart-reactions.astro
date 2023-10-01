@@ -10,7 +10,7 @@ const middle = (chartSize / 2).toFixed(4);
 const centerX = (angle, distance) => Math.cos(angle - Math.PI / 2) * distance;
 const centerY = (angle, distance) => Math.sin(angle - Math.PI / 2) * distance;
 
-const guides = [...Array(6).keys()];
+const rings = [...Array(6).keys()];
 
 const axis = chartData.map((_, index) => {
   const angle = (Math.PI * 2 * index) / chartData.length;
@@ -46,7 +46,7 @@ const shape =
 ---
 
 <div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
-  <div class='px-8 py-4'>
+  <div class='p-8'>
     <svg viewBox={`0 0 ${chartSize} ${chartSize}`} role='presentation'>
       <g transform={`translate(${middle},${middle})`}>
         {
@@ -56,12 +56,12 @@ const shape =
           })
         }
         {
-          guides.map((_, index) => {
+          rings.map((_, index) => {
             return (
               <circle
                 cx={0}
                 cy={0}
-                r={((index / guides.length) * chartSize) / 2}
+                r={((index / rings.length) * chartSize) / 1.67}
                 class='stroke-brand-secondary/70'
                 fill='none'
                 stroke-width={0.5}
@@ -71,6 +71,7 @@ const shape =
         }
 
         <path d={shape} class='stroke-brand-text/50 fill-brand-text/20' stroke-width={1}></path>
+
         {
           properties.reverse().map((property, index) => {
             const { reaction, x, y } = property;
