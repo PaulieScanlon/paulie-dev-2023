@@ -3,14 +3,16 @@ const { data } = Astro.props;
 import emojis from '../utils/emojis';
 import colors from '../utils/colors';
 
-const chartSize = 300;
 const chartData = data.sort((a, b) => b.total - a.total);
-const middle = (chartSize / 2).toFixed(4);
+const max = chartData.reduce((max, current) => (current.total > max ? current.total : max), 0);
+
+const chartSize = 300;
+const pointPadding = 24;
+const chartCenter = (chartSize / 2).toFixed(4);
+const rings = [...Array(6).keys()];
 
 const centerX = (angle, distance) => Math.cos(angle - Math.PI / 2) * distance;
 const centerY = (angle, distance) => Math.sin(angle - Math.PI / 2) * distance;
-
-const rings = [...Array(6).keys()];
 
 const axis = chartData.map((_, index) => {
   const angle = (Math.PI * 2 * index) / chartData.length;
@@ -30,7 +32,7 @@ const axis = chartData.map((_, index) => {
 
 const properties = chartData.map((item, index) => {
   const { reaction, total } = item;
-  const clamp = Number((total / chartSize).toFixed(4));
+  const clamp = Number(total / (max + pointPadding));
   const angle = (Math.PI * 2 * index) / chartData.length;
   const x = centerX(angle, (clamp * chartSize) / 2);
   const y = centerY(angle, (clamp * chartSize) / 2);
@@ -48,7 +50,7 @@ const shape =
 <div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
   <div class='p-8'>
     <svg viewBox={`0 0 ${chartSize} ${chartSize}`} role='presentation'>
-      <g transform={`translate(${middle},${middle})`}>
+      <g transform={`translate(${chartCenter},${chartCenter})`}>
         {
           axis.map((guide) => {
             const { points } = guide;
