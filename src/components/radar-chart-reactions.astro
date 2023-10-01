@@ -54,7 +54,7 @@ const shape =
         {
           axis.map((guide) => {
             const { points } = guide;
-            return <polyline points={points} class='stroke-brand-secondary/70' fill='none' stroke-width={0.5} />;
+            return <polyline points={points} class='stroke-brand-radar' fill='none' stroke-width={0.5} />;
           })
         }
         {
@@ -64,16 +64,14 @@ const shape =
                 cx={0}
                 cy={0}
                 r={((index / rings.length) * chartSize) / 1.67}
-                class='stroke-brand-secondary/70'
+                class='stroke-brand-radar'
                 fill='none'
                 stroke-width={0.5}
               />
             );
           })
         }
-
         <path d={shape} class='stroke-brand-text/50 fill-brand-text/20' stroke-width={1}></path>
-
         {
           properties.reverse().map((property, index) => {
             const { reaction, x, y } = property;
