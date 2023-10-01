@@ -78,7 +78,7 @@ module.exports = {
           outline: '#232140',
           surface: '#16142c',
           guide: '#2d2a58',
-          radar: '#423f70',
+          radar: '#57538c',
         },
       },
       fontFamily: {
