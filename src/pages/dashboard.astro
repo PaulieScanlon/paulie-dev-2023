@@ -61,39 +61,39 @@ const table = groupByTable(response);
   </p>
   <div class='flex flex-col gap-24 min-w-full'>
     <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Year and Month</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>Total published content.</p>
+      <h2 class='m-0 uppercase'>Year and Month</h2>
+      <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
       <LineChartYears data={groupByYear(collections)} />
     </section>
 
     <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Year and Day</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>Total published content.</p>
+      <h2 class='m-0 uppercase'>Year and Day</h2>
+      <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
       <BarChartDays data={groupByDay(collections)} />
     </section>
 
     <div class='grid gap-24 lg:gap-8 lg:grid-cols-2'>
       <section>
-        <h2 class='m-0 text-2xl uppercase text-salmon'>Total by reaction</h2>
-        <p class='mt-0 mb-4 text-slate-300 text-base'>All reactions.</p>
+        <h2 class='m-0 uppercase'>Total by reaction</h2>
+        <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
         <RadarChartReactions data={groupByReaction(table.reactions)} />
       </section>
       <section>
-        <h2 class='m-0 text-2xl uppercase text-salmon'>Total by Tag</h2>
-        <p class='mt-0 mb-4 text-slate-300 text-base'>Top five tags.</p>
+        <h2 class='m-0 uppercase'>Total by Tag</h2>
+        <p class='mt-0 mb-4 text-slate-300'>Top five tags.</p>
         <DonutChartTags data={groupByTag(collections)} />
       </section>
     </div>
 
     <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Total by publisher</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>All external publishers.</p>
+      <h2 class='m-0 uppercase'>Total by publisher</h2>
+      <p class='mt-0 mb-4 text-slate-300'>All external publishers.</p>
       <ListExternalPublishers data={groupByPublication(articles)} />
     </section>
 
     <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Total visits</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>All page views.</p>
+      <h2 class='m-0 uppercase'>Total visits</h2>
+      <p class='mt-0 mb-4 text-slate-300'>All page views.</p>
       <LineChartVisits data={groupByDate(table.analytics)} />
       <PoweredByNeon period={groupByDate(table.analytics).length} />
     </section>
@@ -101,15 +101,15 @@ const table = groupByTable(response);
     <div class='flex flex-col lg:flex-row gap-24 lg:gap-8 overflow-hidden'>
       <section class='w-full lg:w-1/2'>
         <div class='flex flex-col'>
-          <h2 class='m-0 text-2xl uppercase text-salmon'>Total by City</h2>
-          <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten city visits.</p>
+          <h2 class='m-0 uppercase'>Total by City</h2>
+          <p class='mt-0 mb-4 text-slate-300'>Top ten city visits.</p>
           <ListTopTenCities data={groupByCity(table.analytics)} />
         </div>
         <PoweredByNeon period={groupByDate(table.analytics).length} />
       </section>
       <section class='w-full lg:w-1/2'>
-        <h2 class='m-0 text-2xl uppercase text-salmon'>Geolocation</h2>
-        <p class='mt-0 mb-4 text-slate-300 text-base'>All city visits.</p>
+        <h2 class='m-0 uppercase'>Geolocation</h2>
+        <p class='mt-0 mb-4 text-slate-300'>All city visits.</p>
         <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
           <div class='flex justify-center overflow-hidden'>
             <GlobeAllCities client:only data={groupByCity(table.analytics)} />
@@ -120,8 +120,8 @@ const table = groupByTable(response);
     </div>
 
     <section>
-      <h2 class='m-0 text-2xl uppercase text-salmon'>Popular Posts</h2>
-      <p class='mt-0 mb-4 text-slate-300 text-base'>Top ten post views.</p>
+      <h2 class='m-0 uppercase'>Popular Posts</h2>
+      <p class='mt-0 mb-4 text-slate-300'>Top ten post views.</p>
       <ListPopularPosts data={groupBySlug(table.analytics)} />
       <PoweredByNeon period={groupByDate(table.analytics).length} />
     </section>
