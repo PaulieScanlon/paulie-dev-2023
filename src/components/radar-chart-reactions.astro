@@ -63,7 +63,7 @@ const shape =
               <circle
                 cx={0}
                 cy={0}
-                r={((index / rings.length) * chartSize) / 1.67}
+                r={((index / rings.length) * chartSize) / Number((Math.PI / 2 + 0.1).toFixed(2))}
                 class='stroke-brand-radar'
                 fill='none'
                 stroke-width={0.5}
