@@ -29,6 +29,7 @@ const totalByDayAndYear = Object.keys(data).reduce((acc, day) => {
       });
     }
   });
+
   return acc;
 }, {});
 
@@ -49,14 +50,14 @@ const properties = Object.values(totalByDayAndYear).map((property: any, index: n
   const x = (index / days.length) * chartWidth + paddingX / 2;
 
   const data = property
-    .sort((a, b) => days.indexOf(a.day) - days.indexOf(b.day))
+    .sort((a, b) => years.indexOf(a.year) - years.indexOf(b.year))
     .map((entry, i) => {
       const { total } = entry;
-
       const height =
         chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY * 2;
       const y = chartHeight - offsetY;
       return {
+        year: years[i],
         total: total,
         height: total > 0 ? chartHeight - height : 1,
         x: x + (barWidth + barGap) * i,
