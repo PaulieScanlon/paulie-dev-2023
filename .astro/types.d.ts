@@ -1088,6 +1088,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2023/10/how-to-create-an-svg-radar-chart.mdx": {
+	id: "2023/10/how-to-create-an-svg-radar-chart.mdx";
+  slug: "2023/10/how-to-create-an-svg-radar-chart";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 "streams": {
 "2021/04/gatsby-deep-dives-with-queen-raae.mdx": {
