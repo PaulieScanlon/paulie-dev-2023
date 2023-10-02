@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as Tooltip from '@radix-ui/react-tooltip';
 
@@ -11,6 +11,35 @@ const Reactions = ({ slug }) => {
     submitted: false,
     reaction: '',
   });
+  const [counts, setCounts] = useState(null);
+
+  const getReactions = async () => {
+    try {
+      const response = await fetch('/api/get-reactions', {
+        method: 'POST',
+        body: JSON.stringify({ slug: slug }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Bad response');
+      }
+
+      const json = await response.json();
+
+      setCounts(
+        json.data.reduce((acc, item) => {
+          acc[item.reaction] = parseInt(item.count);
+          return acc;
+        }, {})
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getReactions();
+  }, []);
 
   const handleReaction = async (reaction: string) => {
     setStatus((prevState) => ({
@@ -30,6 +59,7 @@ const Reactions = ({ slug }) => {
       }
 
       setTimeout(() => {
+        getReactions();
         setStatus({
           submitted: true,
           submitting: false,
@@ -42,7 +72,7 @@ const Reactions = ({ slug }) => {
   };
 
   return (
-    <div className='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 pt-8 pb-4'>
+    <div className='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8'>
       <div className='flex flex-col gap-2'>
         <strong className='block text-center text-4xl text-brand-salmon'>Hey!</strong>
 
@@ -58,7 +88,7 @@ const Reactions = ({ slug }) => {
         )}
       </div>
 
-      <ul className='list-none p-0 m-0 flex items-center justify-center gap-3'>
+      <ul className='list-none p-0 m-0 flex items-center justify-center gap-3 pb-4'>
         {emojis.map((emoji, index) => {
           const { name, d } = emoji;
           return (
@@ -66,31 +96,36 @@ const Reactions = ({ slug }) => {
               <Tooltip.Provider>
                 <Tooltip.Root>
                   <Tooltip.Trigger asChild>
-                    <button
-                      className='group rounded-full border-2 border-brand-secondary transition-all duration-300 enabled:hover:scale-125 enabled:hover:border-brand-salmon disabled:text-brand-guide disabled:border-brand-outline'
-                      disabled={status.submitting || status.submitted}
-                      onClick={() => handleReaction(name)}
-                    >
-                      {status.submitting && status.reaction === name ? (
-                        <Loading />
-                      ) : (
-                        <svg
-                          aria-labelledby={`reaction-${name}`}
-                          xmlns='http://www.w3.org/2000/svg'
-                          className='not-prose rounded-full w-full h-full transition-colors duration-300'
-                          viewBox='0 0 32 32'
-                          fill='currentColor'
-                        >
-                          <path d={d} />
-                        </svg>
-                      )}
-                    </button>
+                    <div>
+                      <button
+                        className='group rounded-full border-2 border-brand-secondary transition-all duration-300 enabled:hover:scale-125 enabled:hover:border-brand-salmon disabled:text-brand-guide disabled:border-brand-outline'
+                        disabled={status.submitting || status.submitted}
+                        onClick={() => handleReaction(name)}
+                      >
+                        {status.submitting && status.reaction === name ? (
+                          <Loading />
+                        ) : (
+                          <svg
+                            aria-labelledby={`reaction-${name}`}
+                            xmlns='http://www.w3.org/2000/svg'
+                            className='not-prose rounded-full w-full h-full transition-colors duration-300'
+                            viewBox='0 0 32 32'
+                            fill='currentColor'
+                          >
+                            <path d={d} />
+                          </svg>
+                        )}
+                      </button>
+                      <small className='block font-bold text-center text-brand-muted leading-4'>
+                        {counts && counts[name] ? counts[name] : 0}
+                      </small>
+                    </div>
                   </Tooltip.Trigger>
                   <Tooltip.Portal>
                     <Tooltip.Content
-                      className='border border-brand-guide bg-brand-surface rounded px-2 py-1 text-xs capitalize shadow-lg select-none'
+                      className='border border-brand-guide bg-brand-background rounded px-2 py-1 text-xs capitalize shadow-lg select-none'
                       side='bottom'
-                      sideOffset={8}
+                      sideOffset={-12}
                     >
                       {name}
                     </Tooltip.Content>
