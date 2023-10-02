@@ -7,7 +7,7 @@ author: Paul Scanlon
 featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1696185693/paulie.dev/2023/10/create-an-svg-radar-chart_cwbkbg.jpg
 ---
 
-If you're familiar with [Astro](https://astro.build/) you'll likely know that a lot of effort has been made to ensure you ship less JavaScript to the browser. This approach to creating an SVG Radar Chart, using only; server-side JavaScript and HTML, is very much inline with the "Astro way of life".
+If you're familiar with [Astro](https://astro.build/) you'll likely know that a lot of effort has been made to ensure you ship less JavaScript to the browser. This approach to creating an SVG Radar Chart, using only server-side JavaScript and HTML, is very much inline with the "Astro way of life".
 
 If you'd like to jump ahead, here's a public gist containing all the relevant parts to make an SVG Radar Chart using Astro [Content Collections](https://docs.astro.build/en/guides/content-collections/).
 
@@ -92,7 +92,7 @@ console.log(data);
 
 ### null tags
 
-Just in case, I've used the second parameter of the `getCollection` function which gives you access to the "data" of each post to check for null values. In the function body I'm doing a quick check to ensure `tags` is an array and that it has a length greater than 0. If all is well I return the data. This might prevent errors later on when trying to group the tags.
+Just in case: I've used the second parameter of the `getCollection` function which gives you access to the "data" of each post and I'm using it to check for null values. In the function body I'm doing a quick check to ensure `tags` is an array and that it has a length greater than 0. If all is well I return the data. _This might prevent errors later on when trying to group the tags._
 
 ### groupByTag
 
@@ -218,8 +218,8 @@ const chartCenter = chartSize / 2;
 - **pointPadding**: This will be used later when positioning the points, which might get cut of if they're close to the edges of the SVG. Adding padding means they'll be _bumped in_ slightly.
 - **max**: This the maximum total from the `data` array and is pretty crucial when calculating positions.
 - **rings**: This is just an empty array which will be used later with `.map` to create the rings.
-- **getX**: This function accepts an angle and a value, both are used to return an `x` position using `Math.cos` for plotting points.
-- **getY**: This function accepts an angle and a value, both are used to return a `y` position using `Math.sin` for plotting points.
+- **getX**: This function accepts an angle and a value, both are used to return an `x` position using `Math.cos` and is used when plotting points.
+- **getY**: This function accepts an angle and a value, both are used to return a `y` position using `Math.sin` and is used when plotting points.
 
 ## Creating the Rings
 
@@ -277,7 +277,7 @@ You should now be looking at something similar to the image below.
 
 ## Creating the Axes
 
-This part looks more complicated than it is. The `axes` array will contain an array of points. The points are required to plot an SVG `<polyline />`. The SVG `<polyline />` element has a `points` attribute which is expecting a string of comma separated numbers. These numbers are the start `x`, start `y`, and end `x`, and end ` y` of a line. Calculating what these start and end coordinates are is a job for the `getX` and `getY` functions created earlier.
+This part looks more complicated than it is. The `axes` array will contain an array of points. The points are required to plot an SVG `<polyline />`. The SVG `<polyline />` element has a `points` attribute which is expecting a string of comma separated numbers. These numbers are the start `x`, start `y`, and end `x`, and end ` y` of a line. Calculating what these start and end numbers are is a job for the `getX` and `getY` functions created earlier.
 
 ```diff
 ---
@@ -440,7 +440,7 @@ You should now be looking at something similar to the image below.
 
 ## Creating the Shape
 
-The final step is to draw a shape between all the points, add a stroke and fill it with a transparent color. I've used an SVG `<path />` element. To construct a string suitable for use with the `<path />` element I iterate over each property and construct a string using the `x` and `y` coordinates.
+The final step is to draw a shape between all the points, add a stroke and fill it with a transparent color. I've used an SVG `<path />` element to draw the shape. To construct a string suitable for use with the `<path />` element I iterate over each property and construct a string using the `x` and `y` coordinates.
 
 The complete string should look something like this
 
@@ -662,7 +662,9 @@ const shape =
 
 ```
 
-And that's it! You should now be looking at the finished chart complete with a legend.
+And that's it! You should now be looking at the finished chart complete with a legend, and if you missed the link above, here's a public gist with all the completed. code.
+
+- ⚙️ [SVG Radar Chart using Astro Content Collections](https://gist.github.com/PaulieScanlon/ed75a8f574b187fdfe00548cee49a5a9)
 
 <AstroImage
   width='1536'
@@ -670,3 +672,9 @@ And that's it! You should now be looking at the finished chart complete with a l
   alt='Finished Radar Chart'
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1696185693/paulie.dev/2023/10/create-an-svg-radar-chart_cwbkbg.jpg'
 />
+
+Lemme know how you get on with this. I love Data Viz and I love hand cranking my own visualizations even more!
+
+I've got a few more Astro related blog posts coming up so give me, [@PaulieScanlon](https://twitter.com/PaulieScanlon), or [@neondatabase](https://twitter.com/neondatabase) a follow on Twitter / X.
+
+[TTFN](https://en.wikipedia.org/wiki/TTFN)
