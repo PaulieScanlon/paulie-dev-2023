@@ -14,7 +14,7 @@ const guides = [...Array(8).keys()];
 
 const properties = chartData.map((property, index) => {
   const { day, month, total } = property;
-  const x = (index / chartData.length) * chartWidth + paddingX;
+  const x = (index / chartData.length) * chartWidth + paddingX / 1.5;
   const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
   return {
     total: total,
