@@ -2,9 +2,7 @@
 import { Image } from 'astro:assets';
 ---
 
-<div
-  class='grid gap-4 rounded border border-brand-outline bg-surface/50 px-4 sm:px-6 py-6'
->
+<div class='grid gap-4 rounded border border-brand-outline bg-surface/50 px-4 sm:px-6 py-6'>
   <Image
     width={60}
     height={60}
@@ -13,16 +11,12 @@ import { Image } from 'astro:assets';
     class='block rounded-full border-2 border-brand-text h-16 w-16 m-0 mx-auto'
   />
   <div class='mb-4'>
-    <h5
-      class='mb-0 text-base text-center leading-6 font-semibold uppercase text-brand-secondary'
-    >
-      Paul Scanlon
-    </h5>
-    <p class='mb-0 text-slate-300 text-sm text-center m-0'>
-      Developer Advocate{' '}
-      <a href='https://twitter.com/neondatabase' target='_blank' rel='noopener'>
-        @neondatabase
-      </a>{' '}
+    <h5 class='mb-0 text-base text-center leading-6 font-semibold uppercase text-brand-secondary'>Paul Scanlon</h5>
+    <p class='m-0 mb-2 text-slate-300 text-sm text-center'>
+      Developer Advocate at <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener'> Neon</a>
+    </p>
+    <p class='m-0 mb-0 text-slate-300 text-xs text-center'>
+      <a href='https://twitter.com/neondatabase' target='_blank' rel='noopener'>@neondatabase</a>{' '}
       <span class='ml-1' role='img' aria-label='Elephat emoji'>🐘</span>
     </p>
   </div>
@@ -32,17 +26,13 @@ import { Image } from 'astro:assets';
     rel='noreferrer'
     class='not-prose flex items-center justify-center gap-4 no-underline text-brand-secondary text-sm text-center py-2 px-2 transition-all duration-300 rounded border border-brand-outline bg-surface hover:text-brand-text hover:bg-brand-muted/20'
   >
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      class='h-4 w-4'
-      fill='currentColor'
-      viewBox='0 0 24 24'
+    <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' fill='currentColor' viewBox='0 0 24 24'
       ><path
         stroke-linecap='round'
         stroke-linejoin='round'
         d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'
       ></path></svg
     >
-     Follow on X
+     @PaulieScanlon
   </a>
 </div>
