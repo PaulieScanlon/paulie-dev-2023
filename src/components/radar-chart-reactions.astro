@@ -3,12 +3,12 @@ const { data } = Astro.props;
 import emojis from '../utils/emojis';
 import colors from '../utils/colors';
 
+const chartSize = 300;
+const chartCenter = chartSize / 2;
+
 const chartData = data.sort((a, b) => b.total - a.total);
 const max = chartData.reduce((max, current) => (current.total > max ? current.total : max), 0);
-
-const chartSize = 300;
 const pointPadding = 24;
-const chartCenter = (chartSize / 2).toFixed(4);
 const rings = [...Array(6).keys()];
 
 const centerX = (angle, distance) => Math.cos(angle - Math.PI / 2) * distance;
@@ -42,7 +42,7 @@ const properties = chartData.map((item, index) => {
 const shape =
   properties.reduce((items, item, index) => {
     const { x, y } = item;
-    const string = `${index === 0 ? 'M' : 'L'}${x.toFixed(4)},${y.toFixed(4)}`;
+    const string = `${index === 0 ? 'M' : 'L'}${x},${y}`;
     return items + string;
   }, '') + 'z';
 ---
