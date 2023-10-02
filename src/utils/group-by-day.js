@@ -2,7 +2,10 @@ import days from '../utils/days';
 
 const groupByDay = (array) => {
   const groupedData = array.reduce((acc, item) => {
-    const { date } = item.data;
+    const {
+      slug,
+      data: { date },
+    } = item;
 
     const day = days[new Date(date).getDay()];
     const year = new Date(date).getFullYear();
@@ -16,7 +19,9 @@ const groupByDay = (array) => {
     }
 
     acc[day][year].push({
-      id: item.id,
+      slug: slug,
+      day: day,
+      year: year,
     });
 
     return acc;
