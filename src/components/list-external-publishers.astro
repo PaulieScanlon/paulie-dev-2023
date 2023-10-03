@@ -6,7 +6,7 @@ const { data } = Astro.props;
 const listData = data.sort((a, b) => b.total - a.total).slice(0, 10);
 ---
 
-<ul class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4'>
+<ul class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4 md:columns-2 gap-16'>
   {
     listData.map((item) => {
       const { publication, logo, total } = item;
