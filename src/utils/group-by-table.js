@@ -9,7 +9,6 @@ const groupByTable = (array) => {
   }, {});
 
   return groupedData;
-  //   return Object.keys(groupedData).map((key) => groupedData[key]);
 };
 
 export default groupByTable;
