@@ -109,6 +109,7 @@ const ticks = days.map((day, index) => {
 </script>
 
 <div class='border rounded border-brand-outline bg-brand-surface p-2 pb-4'>
+  <pre class='hidden'>{JSON.stringify(totalByDayAndYear, null, 2)}</pre>
   <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} role='presentation'>
     {
       guides.map((_, index) => {
