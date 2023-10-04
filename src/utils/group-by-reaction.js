@@ -15,7 +15,9 @@ const groupByReaction = (array) => {
     return acc;
   }, {});
 
-  return Object.keys(groupedData).map((key) => groupedData[key]);
+  return Object.keys(groupedData)
+    .map((key) => groupedData[key])
+    .sort((a, b) => b.total - a.total);
 };
 
 export default groupByReaction;

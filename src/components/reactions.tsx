@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as Tooltip from '@radix-ui/react-tooltip';
 
+import colors from '../utils/colors';
 import emojis from '../utils/emojis';
 import Loading from './loading';
 
@@ -74,7 +75,7 @@ const Reactions = ({ slug }) => {
   return (
     <div className='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8'>
       <div className='flex flex-col gap-2'>
-        <strong className='block text-center text-4xl text-brand-salmon'>Hey!</strong>
+        <strong className='block text-center text-4xl text-brand-secondary'>Hey!</strong>
 
         {status.submitted ? (
           <p className='m-0 text-center text-sm'>
@@ -98,7 +99,7 @@ const Reactions = ({ slug }) => {
                   <Tooltip.Trigger asChild>
                     <div>
                       <button
-                        className='group rounded-full border-2 border-brand-secondary transition-all duration-300 enabled:hover:scale-125 enabled:hover:border-brand-salmon disabled:text-brand-guide disabled:border-brand-outline'
+                        className={`group rounded-full transition-all duration-300 enabled:hover:scale-125 disabled:text-brand-guide text-brand-${colors[index]}`}
                         disabled={status.submitting || status.submitted}
                         onClick={() => handleReaction(name)}
                       >

@@ -1,22 +1,41 @@
 ---
+import { sql } from '../neon';
+
+import { getCollection } from 'astro:content';
+
 import Main from '../layouts/main.astro';
+import CollectionsList from '../components/collections-list.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-import { getCollection } from 'astro:content';
-import CollectionsList from '../components/collections-list.astro';
+import RadarChartReactions from '../components/radar-chart-reactions.astro';
+
+import groupByReaction from '../utils/group-by-reaction';
 
 const posts = await getCollection('posts');
+
+const reactions = await sql`
+SELECT * FROM reactions
+WHERE reaction <> 'wondering' AND reaction <> 'confused'
+`;
 ---
 
 <Main title='Posts' description='Posts published on paulie.dev' slug='/posts/'>
   <strong class='text-xs text-brand-primary'>Posts</strong>
   <h1 class='mb-0'>Blog Posts</h1>
   <p>
-    You'll find a mixed bag of content here. I'm mainly focussed on "How to"
-    guides but every now and then I'll throw in a curve ball.
+    You'll find a mixed bag of content here. I'm mainly focussed on "How to" guides but every now and then I'll throw in
+    a curve ball.
   </p>
   <CollectionsList collections={posts} base='/posts' />
   <Aside>
     <ProfileCard />
+    <div>
+      <h6 class='mb-0 text-base text-center leading-6 font-semibold uppercase text-brand-secondary'>Post Reactions</h6>
+      <p class='mt-0 mb-4 text-slate-300 text-sm text-center'>
+        Readers of my posts are
+        <span class='italic'>{groupByReaction(reactions)[0].reaction}</span>
+      </p>
+      <RadarChartReactions data={groupByReaction(reactions)} classNames='bg-transparent' showLegend={false} />
+    </div>
   </Aside>
 </Main>

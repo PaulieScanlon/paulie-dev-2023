@@ -1,12 +1,13 @@
 ---
-const { data } = Astro.props;
-import emojis from '../utils/emojis';
+const { data, classNames = 'bg-brand-surface', showLegend = true } = Astro.props;
+
 import colors from '../utils/colors';
+import emojis from '../utils/emojis';
 
 const chartSize = 300;
 const chartCenter = chartSize / 2;
 
-const chartData = data.sort((a, b) => b.total - a.total);
+const chartData = data;
 const max = chartData.reduce((max, current) => (current.total > max ? current.total : max), 0);
 const pointPadding = 24;
 const rings = [...Array(6).keys()];
@@ -47,7 +48,7 @@ const shape =
   }, '') + 'z';
 ---
 
-<div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
+<div class={`m-0 p-0 border rounded border-brand-outline ${classNames}`}>
   <div class='p-8'>
     <svg viewBox={`0 0 ${chartSize} ${chartSize}`} role='presentation'>
       <g transform={`translate(${chartCenter},${chartCenter})`}>
@@ -93,25 +94,27 @@ const shape =
       </g>
     </svg>
   </div>
-  <ul class='m-0 px-4'>
-    {
-      chartData.map((item, index) => {
-        const { reaction, total } = item;
+  {
+    showLegend ? (
+      <ul class='m-0 px-4'>
+        {chartData.map((item, index) => {
+          const { reaction, total } = item;
 
-        const icon = emojis.find((emoji) => {
-          return emoji.name === reaction;
-        });
+          const icon = emojis.find((emoji) => {
+            return emoji.name === reaction;
+          });
 
-        return (
-          <li class='m-0 p-0 flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline leading-[2.65rem]'>
-            <div class='flex grow items-center gap-3'>
-              <div class={`w-3 h-3 rounded-full bg-brand-${colors[index]}`} />
-              <span class='capitalize'>{icon.name}</span>
-            </div>
-            <strong>{`x${total}`}</strong>
-          </li>
-        );
-      })
-    }
-  </ul>
+          return (
+            <li class='m-0 p-0 flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline leading-[2.65rem]'>
+              <div class='flex grow items-center gap-3'>
+                <div class={`w-3 h-3 rounded-full bg-brand-${colors[index]}`} />
+                <span class='capitalize'>{icon.name}</span>
+              </div>
+              <strong>{`x${total}`}</strong>
+            </li>
+          );
+        })}
+      </ul>
+    ) : null
+  }
 </div>

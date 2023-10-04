@@ -21,6 +21,7 @@ module.exports = {
     'stroke-brand-electric',
     'stroke-brand-pink',
     'stroke-brand-fuchsia',
+    'stroke-brand-secondary',
 
     'fill-brand-teal',
     'fill-brand-mauve',
@@ -32,6 +33,7 @@ module.exports = {
     'fill-brand-electric',
     'fill-brand-pink',
     'fill-brand-fuchsia',
+    'fill-brand-secondary',
 
     'bg-brand-teal',
     'bg-brand-mauve',
@@ -43,6 +45,7 @@ module.exports = {
     'bg-brand-electric',
     'bg-brand-pink',
     'bg-brand-fuchsia',
+    'bg-brand-secondary',
 
     'text-brand-teal',
     'text-brand-mauve',
@@ -54,6 +57,7 @@ module.exports = {
     'text-brand-electric',
     'text-brand-pink',
     'text-brand-fuchsia',
+    'text-brand-secondary',
   ],
   theme: {
     extend: {
