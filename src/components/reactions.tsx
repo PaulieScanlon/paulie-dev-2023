@@ -99,7 +99,7 @@ const Reactions = ({ slug }) => {
                   <Tooltip.Trigger asChild>
                     <div>
                       <button
-                        className={`group rounded-full transition-all duration-300 enabled:hover:scale-125 disabled:text-brand-guide text-brand-${colors[index]}`}
+                        className={`group rounded-full transition-all duration-300 enabled:hover:scale-125 disabled:text-brand-guide text-brand-${emoji.color}`}
                         disabled={status.submitting || status.submitted}
                         onClick={() => handleReaction(name)}
                       >
