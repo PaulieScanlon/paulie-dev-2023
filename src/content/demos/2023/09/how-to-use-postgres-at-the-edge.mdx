@@ -20,9 +20,9 @@ This is my first project since joining [Neon](https://neon.tech/), it's actually
 
 ### What does Ping Thing do?
 
-[Ping Thing](https://neon.tech/ping-thing) visualizes the journey your request makes from the Edge Function to the Database. It's a simple concept but it's something I know is often misunderstood.
+[Ping Thing](https://neon.tech/demos/ping-thing) visualizes the journey your request makes from the Edge Function to the Database. It's a simple concept but it's something I know is often misunderstood.
 
-<Cta href='https://neon.tech/ping-thing'>Visit Ping Thing</Cta>
+<Cta href='https://neon.tech/demos/ping-thing'>Visit Ping Thing</Cta>
 
 ### Problem
 
@@ -46,7 +46,7 @@ Perhaps that's ok. Many of the new "paid services" we all know and use aim to re
 
 The TLDR here is: Edge Functions ([Lambda@Edge](https://aws.amazon.com/lambda/edge/)) run closer to the user, which is great, they also don't come with the dreaded cold start issues that you might have experienced with "ordinary" Lambda Functions. But are they the silver bullet we've been lead to believe they are. IMO meh, maybe. They are great for things that can be accomplished at the Edge, returning Hello World for instance, but as soon as you need to connect to another service, you have to ask yourself, where is that service?
 
-In the case of [Ping Thing](https://neon.tech/ping-thing) I've deployed the database to AWS `us-east-1`, which is located in North Virginia USA.
+In the case of [Ping Thing](https://neon.tech/demos/ping-thing) I've deployed the database to AWS `us-east-1`, which is located in North Virginia USA.
 
 I had one person ask why didn't I deploy it somewhere in Europe so it was closer to his location. To which I replied, "_I could have, but then it's further away from folks in the US_". So really then, what does it matter if the Edge Function runs closer to the user when the thing the Ege Function is connecting to is thousands of miles away?
 
