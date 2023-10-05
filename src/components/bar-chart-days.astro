@@ -112,8 +112,6 @@ const ticks = [...days.slice(1), 'Sun'].map((day, index) => {
 </script>
 
 <div class='border rounded border-brand-outline bg-brand-surface p-2 pb-4'>
-  <pre class='hidden total-by-day-and-year'>{JSON.stringify(totalByDayAndYear, null, 2)}</pre>
-  <pre class='hidden data'>{JSON.stringify(data, null, 2)}</pre>
   <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} role='presentation'>
     {
       guides.map((_, index) => {
