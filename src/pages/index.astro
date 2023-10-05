@@ -2,16 +2,17 @@
 import { octokit } from '../clients/octokit';
 
 import Main from '../layouts/main.astro';
+
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
+import CollectionsList from '../components/collections-list.astro';
+import GithubActivity from '../components/github-activity.astro';
+
 import { getCollection } from 'astro:content';
 
 const demos = await getCollection('demos');
 const articles = await getCollection('articles');
 const posts = await getCollection('posts');
-
-import CollectionsList from '../components/collections-list.astro';
-import GithubActivity from '../components/github-activity.astro';
 
 let activity = null;
 
