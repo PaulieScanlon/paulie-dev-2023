@@ -37,6 +37,7 @@
     "astro-embed": "^0.5.1",
     "markdown-it": "^13.0.1",
     "mdx": "^0.3.1",
+    "octokit": "^3.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-globe.gl": "^2.24.4",
