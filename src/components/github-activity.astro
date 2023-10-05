@@ -6,7 +6,7 @@ import { formatDate } from '../utils/format-date';
 
 <div class={`m-0 p-0 border rounded border-brand-outline ${classNames}`}>
   <div class='p-8'>
-    <ul class='m-0 p-0 list-none flex flex-col gap-4'>
+    <ul class='m-0 p-0 list-none flex flex-col gap-6'>
       {
         data.map((item) => {
           const {
@@ -17,18 +17,18 @@ import { formatDate } from '../utils/format-date';
           } = item;
           return (
             <li class='p-0 m-0 border-b border-b-brand-outline'>
-              <div class='flex flex-col gap-2 mb-4'>
+              <div class='flex flex-col gap-3 mb-6'>
                 <div class='flex items-center flex-wrap justify-between'>
                   <strong class={`text-sm event-color-${type}`}>{type}</strong>
-                  <time class='text-xs'>{formatDate(created_at)}</time>
+                  <time class='text-xs font-bold text-brand-primary'>{formatDate(created_at)}</time>
                 </div>
-                <a href={url} target='_blank' rel='noreferrer' class='text-xs'>
-                  {name}
-                </a>
                 {commits?.map((commit) => {
                   const { message } = commit;
                   return <small class='text-xs'>{`"${message}"`}</small>;
                 })}
+                <a href={url} target='_blank' rel='noreferrer' class='text-xs'>
+                  {name}
+                </a>
               </div>
             </li>
           );
