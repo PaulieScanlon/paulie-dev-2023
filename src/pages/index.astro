@@ -1,11 +1,6 @@
 ---
 import { octokit } from '../clients/octokit';
 
-const { data } = await octokit.request('GET /users/{username}/events', {
-  username: 'PaulieScanlon',
-  per_page: 10,
-});
-
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
@@ -17,6 +12,23 @@ const posts = await getCollection('posts');
 
 import CollectionsList from '../components/collections-list.astro';
 import GithubActivity from '../components/github-activity.astro';
+
+let activity = null;
+
+try {
+  const response = await octokit.request('GET /users/{username}/events', {
+    username: 'PaulieScanlon',
+    per_page: 10,
+  });
+
+  if (!response.data) {
+    throw new Error('Bad request');
+  }
+
+  activity = response.data;
+} catch (error) {
+  console.error(error);
+}
 ---
 
 <Main title='Home' description="Paul Scanlon's blog" slug='/'>
@@ -49,12 +61,21 @@ import GithubActivity from '../components/github-activity.astro';
   <CollectionsList collections={posts} base='/posts' slice={3} />
   <Aside>
     <ProfileCard />
-    <div>
-      <h6 class='mb-0 text-base text-center leading-6 font-semibold uppercase text-brand-secondary'>GtiHub Activity</h6>
-      <p class='mt-0 mb-4 text-slate-300 text-sm text-center'>
-        Recent events for <a href='https://github.com/PaulieScanlon' target='_blank' rel='noreferrer'>@PaulieScanlon</a>
-      </p>
-      <GithubActivity data={data} classNames='bg-transparent' />
-    </div>
+    {
+      activity ? (
+        <div>
+          <h6 class='mb-0 text-base text-center leading-6 font-semibold uppercase text-brand-secondary'>
+            GtiHub Activity
+          </h6>
+          <p class='mt-0 mb-4 text-slate-300 text-sm text-center'>
+            Recent events for{' '}
+            <a href='https://github.com/PaulieScanlon' target='_blank' rel='noreferrer'>
+              @PaulieScanlon
+            </a>
+          </p>
+          <GithubActivity data={activity} classNames='bg-transparent' />
+        </div>
+      ) : null
+    }
   </Aside>
 </Main>
