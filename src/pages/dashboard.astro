@@ -1,5 +1,6 @@
 ---
 import { sql } from '../neon';
+import { octokit } from '../clients/octokit';
 
 import Main from '../layouts/main.astro';
 
@@ -15,6 +16,7 @@ import LineChartVisits from '../components/line-chart-visits.astro';
 import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
 import PoweredByNeon from '../components/powered-by-neon.astro';
+import GithubActivity from '../components/github-activity.astro';
 
 import groupByTable from '../utils/group-by-table';
 import groupByYear from '../utils/group-by-year';
@@ -37,6 +39,7 @@ const streams = await getCollection('streams');
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
 
 let table = null;
+let activity = null;
 
 try {
   const response = await sql`
@@ -57,6 +60,21 @@ try {
 } catch (error) {
   console.error(error);
 }
+
+try {
+  const response = await octokit.request('GET /users/{username}/events', {
+    username: 'PaulieScanlon',
+    per_page: 20,
+  });
+
+  if (!response.data) {
+    throw new Error('Bad request');
+  }
+
+  activity = response.data;
+} catch (error) {
+  console.error(error);
+}
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
@@ -64,80 +82,92 @@ try {
   <h1 class='mb-0'>Built-in Analytics</h1>
   <p class='mb-16'>
     The data visualizations on this page have been created using data from local MDX files and a custom web analytics
-    solution powered by Vercel Edge Functions and a Neon Serverless Postgres database.
+    solution powered by Vercel Edge Functions and a Neon Serverless Postgres database. The recent GitHub activity list
+    has been created by using the GitHub REST API.
   </p>
-  {
-    table ? (
-      <div class='flex flex-col gap-24 min-w-full'>
-        <section>
-          <h2 class='m-0 uppercase'>Year and Month</h2>
-          <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
-          <LineChartYears data={groupByYear(collections)} />
-        </section>
-
-        <section>
-          <h2 class='m-0 uppercase'>Year and Day</h2>
-          <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
-          <BarChartDays data={groupByDay(collections)} />
-        </section>
-
-        <div class='grid gap-24 sm:gap-8 sm:grid-cols-2'>
+  <div class='flex flex-col gap-24 min-w-full'>
+    {
+      table ? (
+        <>
           <section>
-            <h2 class='m-0 uppercase'>Total by reaction</h2>
-            <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
-            <RadarChartReactions data={groupByReaction(table.reactions)} />
-            <PoweredByNeon period={groupByReaction(table.reactions).length} />
+            <h2 class='m-0 uppercase'>Year and Month</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
+            <LineChartYears data={groupByYear(collections)} />
           </section>
+
           <section>
-            <h2 class='m-0 uppercase'>Total by Tag</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top five tags.</p>
-            <DonutChartTags data={groupByTag(collections)} />
+            <h2 class='m-0 uppercase'>Year and Day</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
+            <BarChartDays data={groupByDay(collections)} />
           </section>
-        </div>
 
-        <section>
-          <h2 class='m-0 uppercase'>Total by publisher</h2>
-          <p class='mt-0 mb-4 text-slate-300'>All external publishers.</p>
-          <ListExternalPublishers data={groupByPublication(articles)} />
-        </section>
+          <div class='grid gap-24 sm:gap-8 sm:grid-cols-2'>
+            <section>
+              <h2 class='m-0 uppercase'>Total by reaction</h2>
+              <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
+              <RadarChartReactions data={groupByReaction(table.reactions)} />
+              <PoweredByNeon period={groupByReaction(table.reactions).length} />
+            </section>
+            <section>
+              <h2 class='m-0 uppercase'>Total by Tag</h2>
+              <p class='mt-0 mb-4 text-slate-300'>Top five tags.</p>
+              <DonutChartTags data={groupByTag(collections)} />
+            </section>
+          </div>
 
-        <section>
-          <h2 class='m-0 uppercase'>Total visits</h2>
-          <p class='mt-0 mb-4 text-slate-300'>All page views.</p>
-          <LineChartVisits data={groupByDate(table.analytics)} />
-          <PoweredByNeon period={groupByDate(table.analytics).length} />
-        </section>
+          <section>
+            <h2 class='m-0 uppercase'>Total by publisher</h2>
+            <p class='mt-0 mb-4 text-slate-300'>All external publishers.</p>
+            <ListExternalPublishers data={groupByPublication(articles)} />
+          </section>
 
-        <div class='flex flex-col md:flex-row gap-24 md:gap-8 overflow-hidden'>
-          <section class='w-full lg:w-1/2'>
-            <div class='flex flex-col'>
-              <h2 class='m-0 uppercase'>Total by City</h2>
-              <p class='mt-0 mb-4 text-slate-300'>Top ten city visits.</p>
-              <ListTopTenCities data={groupByCity(table.analytics)} />
-            </div>
+          <section>
+            <h2 class='m-0 uppercase'>Total visits</h2>
+            <p class='mt-0 mb-4 text-slate-300'>All page views.</p>
+            <LineChartVisits data={groupByDate(table.analytics)} />
             <PoweredByNeon period={groupByDate(table.analytics).length} />
           </section>
-          <section class='w-full lg:w-1/2'>
-            <h2 class='m-0 uppercase'>Geolocation</h2>
-            <p class='mt-0 mb-4 text-slate-300'>All city visits.</p>
-            <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
-              <div class='flex justify-center overflow-hidden'>
-                <GlobeAllCities client:only data={groupByCity(table.analytics)} />
+
+          <div class='flex flex-col md:flex-row gap-24 md:gap-8 overflow-hidden'>
+            <section class='w-full lg:w-1/2'>
+              <div class='flex flex-col'>
+                <h2 class='m-0 uppercase'>Total by City</h2>
+                <p class='mt-0 mb-4 text-slate-300'>Top ten city visits.</p>
+                <ListTopTenCities data={groupByCity(table.analytics)} />
               </div>
-            </div>
+              <PoweredByNeon period={groupByDate(table.analytics).length} />
+            </section>
+            <section class='w-full lg:w-1/2'>
+              <h2 class='m-0 uppercase'>Geolocation</h2>
+              <p class='mt-0 mb-4 text-slate-300'>All city visits.</p>
+              <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
+                <div class='flex justify-center overflow-hidden'>
+                  <GlobeAllCities client:only data={groupByCity(table.analytics)} />
+                </div>
+              </div>
+              <PoweredByNeon period={groupByDate(table.analytics).length} />
+            </section>
+          </div>
+
+          <section>
+            <h2 class='m-0 uppercase'>Popular Posts</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Top ten post views.</p>
+            <ListPopularPosts data={groupBySlug(table.analytics)} />
             <PoweredByNeon period={groupByDate(table.analytics).length} />
           </section>
-        </div>
-
+        </>
+      ) : null
+    }
+    {
+      activity ? (
         <section>
-          <h2 class='m-0 uppercase'>Popular Posts</h2>
-          <p class='mt-0 mb-4 text-slate-300'>Top ten post views.</p>
-          <ListPopularPosts data={groupBySlug(table.analytics)} />
-          <PoweredByNeon period={groupByDate(table.analytics).length} />
+          <h2 class='m-0 uppercase'>GtiHub Activity</h2>
+          <p class='mt-0 mb-4 text-slate-300'>Recent GitHub events</p>
+          <GithubActivity data={activity} />
         </section>
-      </div>
-    ) : null
-  }
+      ) : null
+    }
+  </div>
   <Aside>
     <ProfileCard />
   </Aside>

@@ -165,25 +165,25 @@ module.exports = {
               color: theme('colors.brand.text'),
             },
             '.event-color-PushEvent': {
-              color: theme('colors.brand.starfleet'),
+              backgroundColor: theme('colors.brand.starfleet'),
             },
             '.event-color-CreateEvent': {
-              color: theme('colors.brand.lime'),
+              backgroundColor: theme('colors.brand.lime'),
             },
             '.event-color-PullRequestEvent': {
-              color: theme('colors.brand.teal'),
+              backgroundColor: theme('colors.brand.teal'),
             },
             '.event-color-ForkEvent': {
-              color: theme('colors.brand.mauve'),
+              backgroundColor: theme('colors.brand.mauve'),
             },
             '.event-color-WatchEvent': {
-              color: theme('colors.brand.yellow'),
+              backgroundColor: theme('colors.brand.yellow'),
             },
             '.event-color-DeleteEvent': {
-              color: theme('colors.red.500'),
+              backgroundColor: theme('colors.red.500'),
             },
             '.event-color-IssueCommentEvent': {
-              color: theme('colors.brand.yellow'),
+              backgroundColor: theme('colors.brand.yellow'),
             },
           },
         },

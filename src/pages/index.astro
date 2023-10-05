@@ -1,35 +1,15 @@
 ---
-import { octokit } from '../clients/octokit';
-
 import Main from '../layouts/main.astro';
 
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
-import GithubActivity from '../components/github-activity.astro';
 
 import { getCollection } from 'astro:content';
 
 const demos = await getCollection('demos');
 const articles = await getCollection('articles');
 const posts = await getCollection('posts');
-
-let activity = null;
-
-try {
-  const response = await octokit.request('GET /users/{username}/events', {
-    username: 'PaulieScanlon',
-    per_page: 10,
-  });
-
-  if (!response.data) {
-    throw new Error('Bad request');
-  }
-
-  activity = response.data;
-} catch (error) {
-  console.error(error);
-}
 ---
 
 <Main title='Home' description="Paul Scanlon's blog" slug='/'>
@@ -64,16 +44,5 @@ try {
   <CollectionsList collections={posts} base='/posts' slice={3} />
   <Aside>
     <ProfileCard />
-    {
-      activity ? (
-        <div>
-          <h6 class='mb-0 text-base text-center leading-6 font-semibold uppercase text-brand-secondary'>
-            GtiHub Activity
-          </h6>
-          <p class='mt-0 mb-4 text-slate-300 text-sm text-center'>Most recent events</p>
-          <GithubActivity data={activity} classNames='bg-transparent' />
-        </div>
-      ) : null
-    }
   </Aside>
 </Main>
