@@ -27,7 +27,7 @@ const groupByDay = (array) => {
     return acc;
   }, {});
 
-  return groupedData;
+  return Object.fromEntries(days.map((day) => [day, groupedData[day]]));
 };
 
 export default groupByDay;

@@ -33,8 +33,6 @@ const totalByDayAndYear = Object.keys(data).reduce((acc, day) => {
   return acc;
 }, {});
 
-const chartData = Object.fromEntries(days.map((day) => [day, totalByDayAndYear[day]]));
-
 const chartWidth = 600;
 const chartHeight = 300;
 const barWidth = 10;
@@ -42,11 +40,13 @@ const barGap = 3;
 const offsetY = 40;
 const paddingX = 30;
 const paddingY = 50;
-const maxY = Math.max(...Object.values(chartData).flatMap((yearData: any) => yearData.map((year) => year.total)));
+const maxY = Math.max(
+  ...Object.values(totalByDayAndYear).flatMap((yearData: any) => yearData.map((year) => year.total))
+);
 
 const guides = [...Array(8).keys()];
 
-const properties = Object.values(chartData).map((property: any, index: number) => {
+const properties = Object.values(totalByDayAndYear).map((property: any, index: number) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
 
   const data = property
@@ -109,7 +109,8 @@ const ticks = days.map((day, index) => {
 </script>
 
 <div class='border rounded border-brand-outline bg-brand-surface p-2 pb-4'>
-  <pre class='hidden'>{JSON.stringify(chartData, null, 2)}</pre>
+  <pre class='hidden total-by-day-and-year'>{JSON.stringify(totalByDayAndYear, null, 2)}</pre>
+  <pre class='hidden data'>{JSON.stringify(data, null, 2)}</pre>
   <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} role='presentation'>
     {
       guides.map((_, index) => {
