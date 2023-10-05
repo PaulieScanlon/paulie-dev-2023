@@ -91,6 +91,9 @@ module.exports = {
       maxWidth: {
         '8xl': '90rem',
       },
+      backgroundImage: {
+        'x-icon': "url('https://paulie.dev/images/x-icon.svg')",
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
@@ -143,6 +146,14 @@ module.exports = {
               },
             },
             '.twitter-tweet': {
+              '&::before': {
+                content: "''",
+                display: 'block',
+                background: theme('backgroundImage.x-icon'),
+                width: 24,
+                height: 24,
+                marginBottom: 16,
+              },
               borderColor: '#232140!important',
               padding: '32px!important',
               background: theme('colors.brand.surface'),
