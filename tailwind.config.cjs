@@ -60,8 +60,9 @@ module.exports = {
     'text-brand-secondary',
 
     // This is for the GitHub Activity
-    'text-brand-starfleet',
-    'text-red-500',
+    'bg-brand-starfleet',
+    'bg-brand-electric',
+    'bg-red-500',
   ],
   theme: {
     extend: {
@@ -184,6 +185,9 @@ module.exports = {
             },
             '.event-color-IssueCommentEvent': {
               backgroundColor: theme('colors.brand.yellow'),
+            },
+            '.event-color-PullRequestReviewEvent': {
+              backgroundColor: theme('colors.brand.electric'),
             },
           },
         },
