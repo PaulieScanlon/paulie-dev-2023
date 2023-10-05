@@ -49,8 +49,7 @@ try {
     WHERE date >= NOW() - INTERVAL '30 days') analytics
   NATURAL FULL JOIN 
     (SELECT 'reactions' AS table, reactions.*
-    FROM reactions
-    WHERE reaction <> 'wondering' AND reaction <> 'confused') reactions`;
+    FROM reactions) reactions`;
 
   if (!response.length) {
     throw new Error('Bad request');
