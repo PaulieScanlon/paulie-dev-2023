@@ -10,6 +10,12 @@ import { formatDate } from '../utils/format-date';
       <ul class='flex flex-col gap-4 list-none m-0 p-0 overflow-y-auto overflow-x-hidden h-[355px]'>
         {
           data.map((item) => {
+            const cleanRepoUrl = (url) => {
+              url = url.replace('https://api.', 'https://');
+              url = url.replace('/repos', '');
+              return url;
+            };
+
             const {
               type,
               actor: { login },
@@ -33,7 +39,7 @@ import { formatDate } from '../utils/format-date';
                   </strong>
                   <strong class='text-lg flex items-center gap-2 leading-tight'>
                     Repo:
-                    <a href={url} target='_blank' rel='noreferrer' class='text-sm'>
+                    <a href={cleanRepoUrl(url)} target='_blank' rel='noreferrer' class='text-sm'>
                       {name}
                     </a>
                   </strong>
