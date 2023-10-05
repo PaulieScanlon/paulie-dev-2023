@@ -15,6 +15,7 @@ const totalByDayAndYear = Object.keys(data).reduce((acc, day) => {
     }
 
     acc[day].push({
+      day: day,
       year: year,
       total: yearCount,
     });
@@ -24,6 +25,7 @@ const totalByDayAndYear = Object.keys(data).reduce((acc, day) => {
   years.forEach((year) => {
     if (!acc[day].some((item) => item.year === year)) {
       acc[day].push({
+        day: day,
         year: year,
         total: 0,
       });
@@ -52,11 +54,12 @@ const properties = Object.values(totalByDayAndYear).map((property: any, index: n
   const data = property
     .sort((a, b) => years.indexOf(a.year) - years.indexOf(b.year))
     .map((entry, i) => {
-      const { total } = entry;
+      const { day, total } = entry;
       const height =
         chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY * 2;
       const y = chartHeight - offsetY;
       return {
+        day: day,
         year: years[i],
         total: total,
         height: total > 0 ? chartHeight - height : 1,
@@ -71,7 +74,7 @@ const properties = Object.values(totalByDayAndYear).map((property: any, index: n
   };
 });
 
-const ticks = days.map((day, index) => {
+const ticks = [...days.slice(1), 'Sun'].map((day, index) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
   return {
     day: day,
@@ -135,12 +138,13 @@ const ticks = days.map((day, index) => {
         return (
           <g>
             {data.map((d, index) => {
-              const { x, y, height, total } = d;
+              const { x, y, height, total, day } = d;
               const _y = y - height;
 
               return (
                 <g>
                   <rect
+                    data-day={day}
                     x={x}
                     y={_y}
                     width={barWidth}
