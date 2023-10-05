@@ -9,8 +9,6 @@ import TableOfContents from '../../components/table-of-contents.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
-export const prerender = true;
-
 export async function getStaticPaths() {
   const opensource = await getCollection('opensource');
 
