@@ -51,6 +51,7 @@ My preference while developing is to create a test page. In the below snippet i'
 // src/pages/some-page.astro
 
 ---
+export const prerender = true;
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts', ({ data }) => {
@@ -142,6 +143,7 @@ Go back to your test page (or wherever), and import the ` <RadarChart />` compon
 ---
 // src/pages/some-page.astro
 
+export const prerender = true;
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts', ({ data }) => {
