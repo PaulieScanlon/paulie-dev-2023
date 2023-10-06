@@ -35,6 +35,7 @@ const totalByDayAndYear = Object.keys(data).reduce((acc, day) => {
   return acc;
 }, {});
 
+
 const chartWidth = 600;
 const chartHeight = 300;
 const barWidth = 10;
@@ -48,7 +49,18 @@ const maxY = Math.max(
 
 const guides = [...Array(8).keys()];
 
-const properties = Object.values(totalByDayAndYear).map((property: any, index: number) => {
+const sortedDays = {
+  Sun: totalByDayAndYear.Sun,
+  Mon: totalByDayAndYear.Mon,
+  Tue: totalByDayAndYear.Tue,
+  Wed: totalByDayAndYear.Wed,
+  Thu: totalByDayAndYear.Thu,
+  Fri: totalByDayAndYear.Fri,
+  Sat: totalByDayAndYear.Sat,
+}
+
+
+const properties = Object.values(sortedDays).map((property: any, index: number) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
 
   const data = property
@@ -73,6 +85,8 @@ const properties = Object.values(totalByDayAndYear).map((property: any, index: n
     data: data,
   };
 });
+
+
 
 const ticks = [...days.slice(1), 'Sun'].map((day, index) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
