@@ -10,8 +10,10 @@ export async function POST({ params, request }) {
         status: 200,
       });
     } else {
-      const response =
-        await sql`SELECT reaction, COUNT(*) AS count FROM reactions WHERE slug=${slug} GROUP BY reaction;`;
+      const response = await sql(
+        'SELECT reaction, COUNT(*) AS count FROM reactions WHERE slug = $1 GROUP BY reaction',
+        [slug]
+      );
 
       return Response.json({
         message: 'A Ok!',
