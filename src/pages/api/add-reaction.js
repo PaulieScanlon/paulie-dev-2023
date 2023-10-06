@@ -11,7 +11,8 @@ export async function POST({ params, request }) {
         status: 200,
       });
     } else {
-      await sql`INSERT INTO reactions (date, slug, reaction) VALUES(${date}, ${slug}, ${reaction})`;
+      await sql('INSERT INTO reactions(date, slug, reaction) VALUES($1, $2, $3)', [date, slug, reaction]);
+
       return Response.json({
         message: 'A Ok!',
         status: 200,
