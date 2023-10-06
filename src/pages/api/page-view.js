@@ -12,15 +12,10 @@ export async function POST({ params, request }) {
         message: 'Missing required parameters',
       });
     } else {
-      await sql('INSERT INTO analytics VALUES($1, $2, $3, $4, $5, $6, $7)', [
-        date,
-        slug,
-        flag,
-        country,
-        city.replace(/[^a-zA-Z ]/g, ' '),
-        latitude,
-        longitude,
-      ]);
+      await sql(
+        'INSERT INTO analytics(date, slug, flag, country, city, latitude, longitude) VALUES($1, $2, $3, $4, $5, $6, $7)',
+        [date, slug, flag, country, city.replace(/[^a-zA-Z ]/g, ' '), latitude, longitude]
+      );
 
       return Response.json({
         message: 'A Ok!',
