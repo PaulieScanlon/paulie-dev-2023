@@ -48,20 +48,11 @@ const maxY = Math.max(
 );
 
 const guides = [...Array(8).keys()];
+const dayOrder = [...days.slice(1), 'Sun']
 
-const sortedDays = {
-  Sun: totalByDayAndYear.Sun,
-  Mon: totalByDayAndYear.Mon,
-  Tue: totalByDayAndYear.Tue,
-  Wed: totalByDayAndYear.Wed,
-  Thu: totalByDayAndYear.Thu,
-  Fri: totalByDayAndYear.Fri,
-  Sat: totalByDayAndYear.Sat,
-}
-
-
-const properties = Object.values(sortedDays).map((property: any, index: number) => {
+const properties = Object.values(totalByDayAndYear).map((property: any, index: number) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
+  const day = property[0].day
 
   const data = property
     .sort((a, b) => years.indexOf(a.year) - years.indexOf(b.year))
@@ -81,14 +72,14 @@ const properties = Object.values(sortedDays).map((property: any, index: number) 
     });
 
   return {
+    day: day,
     x: x,
     data: data,
   };
-});
+}).sort((a, b) => dayOrder.indexOf(a.day)  - dayOrder.indexOf(b.day));
 
 
-
-const ticks = [...days.slice(1), 'Sun'].map((day, index) => {
+const ticks = dayOrder.map((day, index) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
   return {
     day: day,
