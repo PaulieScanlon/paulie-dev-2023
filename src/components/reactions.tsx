@@ -139,7 +139,7 @@ const Reactions = ({ slug }) => {
       </ul>
       <div className='flex gap-1 justify-center'>
         <small className='text-brand-secondary text-xs'>Powered by</small>
-        <a href='https://bit.ly/paulie-neon' target='_blank' rel='noreferrer' className='text-xs'>
+        <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener' className='text-xs'>
           Neon
         </a>
       </div>
