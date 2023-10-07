@@ -2,8 +2,6 @@
 const { data } = Astro.props;
 
 import { formatDate } from '../utils/format-date';
-
-const repoData = data.filter((d) => d.public);
 ---
 
 <div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
@@ -11,7 +9,7 @@ const repoData = data.filter((d) => d.public);
     <div class='rounded border border-brand-outline p-4 bg-brand-background h-96 overflow-y-hidden'>
       <ul class='flex flex-col gap-4 list-none m-0 p-0 overflow-y-auto overflow-x-hidden h-[355px]'>
         {
-          repoData.map((item) => {
+          data.map((item) => {
             const cleanRepoUrl = (url) => {
               url = url.replace('https://api.', 'https://');
               url = url.replace('/repos', '');

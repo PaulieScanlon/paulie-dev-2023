@@ -61,7 +61,8 @@ try {
 }
 
 try {
-  const response = await octokit.request('GET /users/{username}/events', {
+  // https://docs.github.com/en/rest/activity/events?apiVersion=2022-11-28
+  const response = await octokit.request('GET /users/{username}/events/public', {
     username: 'PaulieScanlon',
     per_page: 20,
   });
