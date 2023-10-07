@@ -102,7 +102,6 @@ const keywords = [
 
 const { type, title, description, slug, image, tags } = Astro.props;
 
-
 const htmlTitle = `${name} | ${title}`;
 const ogImage = image ? image : `${siteUrl}${defaultImage}`;
 const seoKeywords = tags ? tags : keywords;
@@ -113,6 +112,14 @@ const isProduction = import.meta.env.PROD;
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
+     <!-- Browserful -->
+     <script
+     async
+     id='browserful-script'
+     data-project='BAI_1234'
+     src='https://analytics-project-script.vercel.app/browserful-script.js'
+     data-excluded-domains=''></script>
+
      <!-- Edge Analytics -->
      {
       isProduction ? (
@@ -134,6 +141,7 @@ const isProduction = import.meta.env.PROD;
       </script>
       ) : null
     }
+
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href='/prism-dracula.css' rel='stylesheet' />
 
