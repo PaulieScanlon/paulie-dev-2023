@@ -13,9 +13,10 @@ interface GlobeAllCitiesValues {
 
 interface GlobeAllCitiesProps {
   data: GlobeAllCitiesValues[];
+  width?: number;
 }
 
-const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) => {
+const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data, width = 390 }) => {
   const globeEl = useRef<any>();
 
   useEffect(() => {
@@ -63,7 +64,7 @@ const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data }) =
     <Globe
       ref={globeEl}
       onGlobeReady={globeReady}
-      width={390}
+      width={width}
       height={458}
       rendererConfig={{ antialias: true, alpha: true }}
       animateIn={true}
