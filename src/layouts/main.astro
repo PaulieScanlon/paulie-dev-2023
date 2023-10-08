@@ -147,36 +147,43 @@ const isProduction = import.meta.env.PROD;
     <link rel='pingback' href='https://webmention.io/paulie.dev/xmlrpc' />
 
       <!-- Browserful -->
-      <script
+    <script
       is:inline
       async
       id='browserful-script'
       data-project='BAI_1234'
       src='https://analytics-project-script.vercel.app/browserful-script.js'
-      data-excluded-domains=''></script>
+      data-excluded-domains=''>
+    </script>
  
-      <!-- Edge Analytics -->
-      {
-       isProduction ? (
-         <EdgeAnalytics />
-       ) : null
-      }
-     <!-- Google tag (gtag.js) -->
-     {
-       isProduction ? (
-       <script async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
-       <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag() {
-           dataLayer.push(arguments);
-         }
-         gtag('js', new Date());
- 
-         gtag('config', 'G-FMCW05VHZ2');
-       </script>
-       ) : null
-     }
+    <!-- Edge Analytics -->
+    {
+      isProduction ? (
+        <EdgeAnalytics />
+      ) : null
+    }
 
+    <!-- Google tag (gtag.js) -->
+    {
+      isProduction ? (
+      <script async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
+      ) : null
+    }
+
+     <!-- Google tag (datalayer) -->
+    {
+    isProduction ? (
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FMCW05VHZ2');
+      </script>) : null
+    }
+    
     <!-- Navigation -->
     <script>
       var isNavOpen = false;
