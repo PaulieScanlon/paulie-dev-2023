@@ -145,6 +145,21 @@ const isProduction = import.meta.env.PROD;
     <!-- Web mention -->
     <link rel='webmention' href='https://webmention.io/paulie.dev/webmention' />
     <link rel='pingback' href='https://webmention.io/paulie.dev/xmlrpc' />
+    <!-- Google tag (gtag.js) -->
+    {
+      isProduction ? (
+        <script is:inline async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+
+          gtag('config', 'G-FMCW05VHZ2');
+        </script>
+      ) : null
+    }
 
     <!-- Browserful -->
     <script
@@ -155,27 +170,6 @@ const isProduction = import.meta.env.PROD;
       src='https://analytics-project-script.vercel.app/browserful-script.js'
       data-excluded-domains=''>
     </script>
- 
-    <!-- Google tag (gtag.js) -->
-    {
-      isProduction ? (
-      <script is:inline async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
-      ) : null
-    }
-
-     <!-- Google tag (datalayer) -->
-    {
-    isProduction ? (
-      <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-FMCW05VHZ2');
-      </script>) : null
-    }
 
     <!-- Edge Analytics -->
     {
