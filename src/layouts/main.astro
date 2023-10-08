@@ -163,27 +163,6 @@ const isProduction = import.meta.env.PROD;
       ) : null
     }
 
-    <!-- Google tag (gtag.js) -->
-    {
-      isProduction ? (
-      <script async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
-      ) : null
-    }
-
-     <!-- Google tag (datalayer) -->
-    {
-    isProduction ? (
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-FMCW05VHZ2');
-      </script>) : null
-    }
-    
     <!-- Navigation -->
     <script>
       var isNavOpen = false;
@@ -228,6 +207,27 @@ const isProduction = import.meta.env.PROD;
       menu.addEventListener('click', handleNav);
       lightbox.addEventListener('click', handleNav);
     </script>
+
+    <!-- Google tag (gtag.js) -->
+    {
+      isProduction ? (
+      <script async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
+      ) : null
+    }
+
+     <!-- Google tag (datalayer) -->
+    {
+    isProduction ? (
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FMCW05VHZ2');
+      </script>) : null
+    }
   </head>
   <body class='prose max-w-none bg-brand-background'>
     <header
