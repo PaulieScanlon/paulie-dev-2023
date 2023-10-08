@@ -146,23 +146,6 @@ const isProduction = import.meta.env.PROD;
     <link rel='webmention' href='https://webmention.io/paulie.dev/webmention' />
     <link rel='pingback' href='https://webmention.io/paulie.dev/xmlrpc' />
 
-      <!-- Browserful -->
-    <script
-      is:inline
-      async
-      id='browserful-script'
-      data-project='BAI_1234'
-      src='https://analytics-project-script.vercel.app/browserful-script.js'
-      data-excluded-domains=''>
-    </script>
- 
-    <!-- Edge Analytics -->
-    {
-      isProduction ? (
-        <EdgeAnalytics />
-      ) : null
-    }
-
     <!-- Navigation -->
     <script is:inline>
       var isNavOpen = false;
@@ -207,6 +190,23 @@ const isProduction = import.meta.env.PROD;
       menu.addEventListener('click', handleNav);
       lightbox.addEventListener('click', handleNav);
     </script>
+
+    <!-- Browserful -->
+    <script
+      is:inline
+      async
+      id='browserful-script'
+      data-project='BAI_1234'
+      src='https://analytics-project-script.vercel.app/browserful-script.js'
+      data-excluded-domains=''>
+    </script>
+ 
+    <!-- Edge Analytics -->
+    {
+      isProduction ? (
+        <EdgeAnalytics />
+      ) : null
+    }
 
     <!-- Google tag (gtag.js) -->
     {
