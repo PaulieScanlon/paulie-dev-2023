@@ -164,7 +164,7 @@ const isProduction = import.meta.env.PROD;
     }
 
     <!-- Navigation -->
-    <script>
+    <script is:inline>
       var isNavOpen = false;
       const menu = document.querySelector('#menu');
       const lightbox = document.querySelector('#lightbox');
@@ -211,14 +211,14 @@ const isProduction = import.meta.env.PROD;
     <!-- Google tag (gtag.js) -->
     {
       isProduction ? (
-      <script async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
+      <script is:inline async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
       ) : null
     }
 
      <!-- Google tag (datalayer) -->
     {
     isProduction ? (
-      <script>
+      <script is:inline>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
           dataLayer.push(arguments);
