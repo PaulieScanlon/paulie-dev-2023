@@ -201,13 +201,6 @@ const isProduction = import.meta.env.PROD;
       data-excluded-domains=''>
     </script>
  
-    <!-- Edge Analytics -->
-    {
-      isProduction ? (
-        <EdgeAnalytics />
-      ) : null
-    }
-
     <!-- Google tag (gtag.js) -->
     {
       isProduction ? (
@@ -228,6 +221,14 @@ const isProduction = import.meta.env.PROD;
         gtag('config', 'G-FMCW05VHZ2');
       </script>) : null
     }
+
+    <!-- Edge Analytics -->
+    {
+      isProduction ? (
+        <EdgeAnalytics />
+      ) : null
+    }
+
   </head>
   <body class='prose max-w-none bg-brand-background'>
     <header
