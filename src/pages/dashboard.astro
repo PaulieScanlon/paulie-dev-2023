@@ -173,6 +173,15 @@ try {
         </>
       ) : null
     }
+    {
+      activity ? (
+        <section>
+          <h2 class='m-0 uppercase'>GtiHub Activity</h2>
+          <p class='mt-0 mb-4 text-slate-300'>Recent GitHub events</p>
+          <GithubActivity data={activity} />
+        </section>
+      ) : null
+    }
     <section class='pb-16'>
       <h2 class='m-0 uppercase text-center'>Webmentions</h2>
       <p class='mt-0 mb-4 text-brand-text text-center'>
