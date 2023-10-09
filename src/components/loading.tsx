@@ -5,7 +5,7 @@ const Loading = ({ className }) => {
     <div role='status'>
       <svg
         aria-hidden='true'
-        className={`not-prose text-transparent animate-spin w-9 h-9 ${className}`}
+        className={`not-prose text-brand-outline animate-spin w-9 h-9 ${className}`}
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'

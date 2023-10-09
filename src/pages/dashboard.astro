@@ -1,6 +1,5 @@
 ---
 import { sql } from '../neon';
-import { octokit } from '../clients/octokit';
 
 import Main from '../layouts/main.astro';
 
@@ -16,7 +15,7 @@ import LineChartVisits from '../components/line-chart-visits.astro';
 import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
 import PoweredByNeon from '../components/powered-by-neon.astro';
-import GithubActivity from '../components/github-activity.astro';
+import GithubActivity from '../components/github-activity.tsx';
 
 import groupByTable from '../utils/group-by-table';
 import groupByYear from '../utils/group-by-year';
@@ -39,7 +38,6 @@ const streams = await getCollection('streams');
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
 
 let table = null;
-let activity = null;
 let webmentions = null;
 
 try {
@@ -57,22 +55,6 @@ try {
   }
 
   table = groupByTable(response);
-} catch (error) {
-  console.error(error);
-}
-
-try {
-  // https://docs.github.com/en/rest/activity/events?apiVersion=2022-11-28
-  const response = await octokit.request('GET /users/{username}/events/public', {
-    username: 'PaulieScanlon',
-    per_page: 20,
-  });
-
-  if (!response.data) {
-    throw new Error('Bad request');
-  }
-
-  activity = response.data;
 } catch (error) {
   console.error(error);
 }
@@ -173,15 +155,13 @@ try {
         </>
       ) : null
     }
-    {
-      activity ? (
-        <section>
-          <h2 class='m-0 uppercase'>GtiHub Activity</h2>
-          <p class='mt-0 mb-4 text-slate-300'>Recent GitHub events</p>
-          <GithubActivity data={activity} />
-        </section>
-      ) : null
-    }
+
+    <section>
+      <h2 class='m-0 uppercase'>GtiHub Activity</h2>
+      <p class='mt-0 mb-4 text-slate-300'>Recent GitHub events</p>
+      <GithubActivity client:only />
+    </section>
+
     <section class='pb-16'>
       <h2 class='m-0 uppercase text-center'>Webmentions</h2>
       <p class='mt-0 mb-4 text-brand-text text-center'>
