@@ -6,7 +6,7 @@ const chartData = data.sort((a, b) => new Date(a.date).getTime() - new Date(b.da
 const chartWidth = 600;
 const chartHeight = 300;
 const offsetY = 40;
-const offsetX = 10
+const offsetX = 10;
 const paddingX = 50;
 const paddingY = 50;
 
@@ -15,8 +15,8 @@ const guides = [...Array(8).keys()];
 
 const properties = chartData.map((property, index) => {
   const { day, month, total } = property;
-  const ratio = (index / chartData.length) * chartWidth
-  const x = ratio + paddingX / 2
+  const ratio = (index / chartData.length) * (chartWidth - offsetX * 2);
+  const x = ratio + paddingX / 2;
   const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
   return {
     total: total,
