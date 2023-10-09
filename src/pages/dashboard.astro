@@ -72,6 +72,8 @@ try {
 } catch (error) {
   console.error(error);
 }
+
+console.log(webmentions.links);
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
@@ -162,42 +164,46 @@ try {
       <GithubActivity client:only />
     </section>
 
-    <section class='pb-16'>
-      <h2 class='m-0 uppercase text-center'>Webmentions</h2>
-      <p class='mt-0 mb-4 text-brand-text text-center'>
-        Webmentions feed for{' '}
-        <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener' class='text-brand-salmon'>paulie.dev</a>
-      </p>
-      <div class='flex justify-center'>
-        {
-          (
-            <ul class='flex flex-wrap justify-center list-none m-0 p-0'>
-              {webmentions.links
-                .filter((link) => link.data.author)
-                .map((link) => {
-                  const {
-                    data: {
-                      url,
-                      author: { name, photo },
-                    },
-                  } = link;
-                  return (
-                    <li class='m-0 -ml-3 p-0 w-8 h-8'>
-                      <a href={url} target='_blank' rel='noreferrer' title={name}>
-                        <img
-                          alt={name}
-                          src={photo}
-                          class='block w-8 h-8 m-0 rounded-full overflow-hidden ring-2 ring-brand-muted'
-                        />
-                      </a>
-                    </li>
-                  );
-                })}
-            </ul>
-          )
-        }
-      </div>
-    </section>
+    {
+      webmentions.links.length > 0 ? (
+        <section class='pb-16'>
+          <h2 class='m-0 uppercase text-center'>Webmentions</h2>
+          <p class='mt-0 mb-4 text-brand-text text-center'>
+            Webmentions feed for{' '}
+            <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener' class='text-brand-salmon'>
+              paulie.dev
+            </a>
+          </p>
+          <div class='flex justify-center'>
+            {
+              <ul class='flex flex-wrap justify-center list-none m-0 p-0'>
+                {webmentions.links
+                  .filter((link) => link.data.author)
+                  .map((link) => {
+                    const {
+                      data: {
+                        url,
+                        author: { name, photo },
+                      },
+                    } = link;
+                    return (
+                      <li class='m-0 -ml-3 p-0 w-8 h-8'>
+                        <a href={url} target='_blank' rel='noreferrer' title={name}>
+                          <img
+                            alt={name}
+                            src={photo}
+                            class='block w-8 h-8 m-0 rounded-full overflow-hidden ring-2 ring-brand-muted'
+                          />
+                        </a>
+                      </li>
+                    );
+                  })}
+              </ul>
+            }
+          </div>
+        </section>
+      ) : null
+    }
     <Aside>
       <ProfileCard />
     </Aside>
