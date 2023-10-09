@@ -103,7 +103,7 @@ try {
               <h2 class='m-0 uppercase'>Total by reaction</h2>
               <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
               <RadarChartReactions data={groupByReaction(table.reactions)} />
-              <PoweredByNeon period={groupByReaction(table.reactions).length} />
+              <PoweredByNeon period={groupByDate(table.analytics).length} />
             </section>
             <section>
               <h2 class='m-0 uppercase'>Total by Tag</h2>
