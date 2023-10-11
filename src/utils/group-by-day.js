@@ -7,8 +7,8 @@ const groupByDay = (array) => {
       data: { date },
     } = item;
 
-    const day = days[new Date(date).getDay()];
-    const year = new Date(date).getFullYear();
+    const day = days[new Date(date).getUTCDay()];
+    const year = new Date(date).getUTCFullYear();
 
     if (!acc[day]) {
       acc[day] = {};
