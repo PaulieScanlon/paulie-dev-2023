@@ -2,23 +2,22 @@
 const { headings } = Astro.props;
 ---
 
-<div class='px-2'>
-  <h5 class='font-semibold uppercase text-brand-secondary'>on this page</h5>
-  <ul class='list-none m-0 p-0'>
-    {
-      headings.map((heading) => {
-        const { depth, slug, text } = heading;
-        return (
-          <li class={`m-0 py-0 pl-${depth * 2}`}>
-            <a
-              href={`#${slug}`}
-              class='text-xs p-1 no-underline text-violet-300'
-            >
-              {text}
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
-</div>
+{
+  headings.length > 0 ? (
+    <div class='px-2'>
+      <h5 class='font-semibold uppercase text-brand-secondary'>on this page</h5>
+      <ul class='list-none m-0 p-0'>
+        {headings.map((heading) => {
+          const { depth, slug, text } = heading;
+          return (
+            <li class={`m-0 py-0 pl-${depth * 2}`}>
+              <a href={`#${slug}`} class='text-xs p-1 no-underline text-violet-300'>
+                {text}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ) : null
+}
