@@ -45,7 +45,7 @@ try {
   SELECT * FROM 
     (SELECT 'analytics' AS table, analytics.* 
     FROM analytics
-    WHERE date >= NOW() - INTERVAL '30 days') analytics
+    WHERE city <> 'Montreal' AND date >= NOW() - INTERVAL '30 days') analytics
   NATURAL FULL JOIN 
     (SELECT 'reactions' AS table, reactions.*
     FROM reactions) reactions`;
