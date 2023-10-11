@@ -64,6 +64,7 @@ const GlobeAllCities: FunctionComponent<GlobeAllCitiesProps> = memo(({ data, wid
     <Globe
       ref={globeEl}
       onGlobeReady={globeReady}
+      pointsMerge={true}
       width={width}
       height={458}
       rendererConfig={{ antialias: true, alpha: true }}
