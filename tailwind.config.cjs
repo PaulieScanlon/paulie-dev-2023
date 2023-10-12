@@ -171,23 +171,28 @@ module.exports = {
             '.event-color-CreateEvent': {
               backgroundColor: theme('colors.brand.lime'),
             },
-            '.event-color-PullRequestEvent': {
-              backgroundColor: theme('colors.brand.teal'),
-            },
             '.event-color-ForkEvent': {
               backgroundColor: theme('colors.brand.mauve'),
             },
             '.event-color-WatchEvent': {
-              backgroundColor: theme('colors.brand.yellow'),
+              backgroundColor: theme('colors.brand.electric'),
             },
             '.event-color-DeleteEvent': {
               backgroundColor: theme('colors.red.500'),
             },
+
             '.event-color-IssueCommentEvent': {
               backgroundColor: theme('colors.brand.yellow'),
             },
+            '.event-color-PullRequestReviewCommentEvent': {
+              backgroundColor: theme('colors.brand.yellow'),
+            },
+
+            '.event-color-PullRequestEvent': {
+              backgroundColor: theme('colors.brand.teal'),
+            },
             '.event-color-PullRequestReviewEvent': {
-              backgroundColor: theme('colors.brand.electric'),
+              backgroundColor: theme('colors.brand.teal'),
             },
           },
         },
