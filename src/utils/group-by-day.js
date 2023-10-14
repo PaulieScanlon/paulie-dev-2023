@@ -1,3 +1,5 @@
+import days from '../utils/days';
+
 const groupByDay = (array) => {
   const groupedData = array.reduce((acc, item) => {
     const {
@@ -5,15 +7,8 @@ const groupByDay = (array) => {
       data: { date },
     } = item;
 
-    const localeDate = new Date(date)
-      .toLocaleString('en-GB', {
-        weekday: 'short',
-        year: 'numeric',
-      })
-      .split(' ');
-
-    const day = localeDate[1];
-    const year = localeDate[0];
+    const day = days[new Date(date).getUTCDay()];
+    const year = new Date(date).getUTCFullYear();
 
     if (!acc[day]) {
       acc[day] = {};
