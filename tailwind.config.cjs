@@ -114,6 +114,9 @@ module.exports = {
             },
             p: {
               fontFamily: 'system-ui',
+              strong: {
+                fontWeight: 900,
+              },
             },
             a: {
               color: theme('colors.brand.secondary'),
@@ -124,6 +127,20 @@ module.exports = {
               p: {
                 margin: 0,
                 color: 'inherit',
+              },
+            },
+            ol: {
+              li: {
+                '&::marker': {
+                  color: theme('colors.brand.teal'),
+                },
+              },
+            },
+            ul: {
+              li: {
+                '&::marker': {
+                  color: theme('colors.brand.salmon'),
+                },
               },
             },
             'a, small, time': {
