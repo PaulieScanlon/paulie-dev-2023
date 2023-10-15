@@ -2,14 +2,16 @@
 type: post
 title: What Is a Proxy Redirect?
 tags: [DevOps]
-date: 2023-10-17
+date: 2023-10-15
 author: Paul Scanlon
-featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1603273280/paulie.dev/placeholder_ekfnq2.jpg
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1697385096/paulie.dev/2023/10/what-is-a-proxy-redirect_gcqtqh.jpg
 ---
 
-In this Post I'm going to describe an approach I've used in my last three jobs when creating Product Demos. It allows me to build things this: [https://neon.tech/demos/ping-thing](https://neon.tech/demos/ping-thing).
+In this Post I'm going to describe an approach I've used in my last three jobs when creating Product Demos.
 
-My demos look like they live on the main company URL e.g `https://neon.tech/demos/name-of-demo`, but are actually deployed somewhere completely different.
+It allows me to build things this: [https://neon.tech/demos/ping-thing](https://neon.tech/demos/ping-thing).
+
+My demos look like they live on the main company URL e.g `https://neon.tech/demos/name-of-demo`, but the code used to create them and where they are deployed is somewhere completely different.
 
 This approach goes by many names.
 
@@ -17,15 +19,15 @@ This approach goes by many names.
 - Corporate Proxy
 - Reverse Proxy
 
-or, if you're deploying to Vercel or Netlify, they're called Rewrites.
+or, if you're deploying to Vercel or Netlify, they're called <b class='text-brand-salmon'>Rewrites</b>.
 
-But before we get on to **Proxy Redirects**, lemme just explain "ordinary" **Redirects**.
+But before we get on to **Proxy Redirects**, I'll quickly explain "ordinary" **Redirects**.
 
 ## What is a Redirect?
 
-Let's say you you have a site, `www.example.com`. You have a page at `www.example.com/about-us`, but want to change it to `www.example.com/about`. You can't just rename the `/about-us` page to `/about` because anyone who'd previously had the `/about-us` link and visits that URL will end up seeing the 404 ([Not Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404)) page.
+Let's say you you have a site, `www.example.com`. You have a page at `www.example.com/about-us`, but want to change it to `www.example.com/about`. Naturally you can't just rename the `/about-us` page to `/about` because anyone who'd previously had the `/about-us` link, and visits that URL, will end up seeing the 404 ([Not Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404)) page.
 
-The normal solution is to add a redirect from `/about-us` to `/about`. With a redirect in place any visitors to `/about-us` will be redirected to `/about`.
+The "ordinary" solution is to add a redirect from `/about-us` to `/about`. With a redirect in place any visitors to `/about-us` will be redirected to `/about`.
 
 One of the key tenets of a redirect is that **the URL changes** when the redirect occurs. Users might only very briefly see `/about-us` in the browser address bar but, after a quick flash, they'll end up seeing `/about`.
 
@@ -35,7 +37,7 @@ All's well, that ends well.
 
 I've seen a few folks use this approach, and in a moment i'll explain why it's a bad idea, but first i'll explain the how and the why.
 
-If you're building a Product Demo it'll probably have a "shelf life", and by that I mean, after an initial wave of activity it'll be forgotten. For a number of reasons it's a bad idea to add your "demo" code to your companies main website just so you can share a real, company branded URL with the world.
+If you're building a Product Demo it'll probably have a "shelf life", and by that I mean, after an initial wave of activity it'll be forgotten. For a number of reasons it's a bad idea to add your "demo" code to your companies main website repo just so you can share a real, company branded URL with the world.
 
 But, by adding a redirect to your companies main website to your Product Demo, you can superficially obtain a real company URL to share with the world.
 
@@ -50,13 +52,13 @@ This is largely pointless and by opting to use approach you've not solved a prob
 
 ### The Analytics Problem
 
-Naturally you'll want to add Analytics to your Product Demo so you can measure how effective it was. But, you can't add your companies main Analytics tracking code to your demo because many Analytics tools will block requests that come from a different domain to the one configured in the admin settings.
+Naturally you'll want to add Analytics to your Product Demo so you can measure how effective it was. But, you can't add your companies main Analytics tracking code to your demo site because many (_probably all, I haven't checked_) Analytics providers will block requests that come from a different domain to the one configured in the admin settings. And if you've opted to redirect to a `.vercel.app` URL, the domain will be blocked.
 
 Your only other option here is to create a new Analytics account and tracking code. Whilst this will indeed capture page views, all those lovely numbers are now in a different account and won't be contributing to your companies overall traffic goals. Not to mention, at some point, someone is gonna ask you to add your numbers to their "report" which will likely be a manual task. Yuck!
 
 ## What is a Proxy Redirect?
 
-A Proxy redirect is different. Taking the above example, what we want is to "proxy redirect" users:
+A Proxy Redirect is different. Taking the above example, what we want to do is: "proxy redirect" users:
 
 1. from: `www.example.com/demos/name-of-demo`
 2. to: `www.example.com/demos/name-of-demo`
@@ -65,7 +67,7 @@ And no, that's not a mistake. One of the key tenets of a Proxy Redirect is the *
 
 Ordinarily, as I mentioned above, the server wants to respond with a 404 because it knows the "to" location doesn't exits but, instead of the server sending a 404 status code, you can override it and tell it to send a 200 ([OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)) but, you can also tell it to silently, and in the background, render the site that's been deployed to `www.name-of-demo.vercel.app` all without changing the URL seen the in the address bar... and the world will never know!
 
-Back in my early web development career (~2000) stuff like this was possible, but it required some pretty hardcore backend config. Luckily for you, in the modern day, all you have to do is copy and paste some code from the docs. (you read the docs right?)
+Back in my early web development career (~2005) stuff like this was possible, but it required some pretty hardcore backend config. Luckily for you, in the modern day, all you have to do is copy and paste some code from the docs. (you read the docs right?)
 
 How you do this will depend on what technology your companies site is built with and where it's deployed. If your companies main website is deployed to either Netlify or Vercel the following links will explain how to configure Rewrites.
 
@@ -76,7 +78,7 @@ How you do this will depend on what technology your companies site is built with
 
 This will **entirely** depend on what technology your companies main site is built with and where it's deployed, **AND** what technology your demo site is built with and where it's deployed ☝️.
 
-The steps i'm about to explain relate to the following two sites and there a configuration changes required for both of them for a Proxy Redirect to work:
+The steps i'm about to explain relate to the following two sites and configuration changes are required to both for a Proxy Redirect to work:
 
 - [neon.tech](https://neon.tech/)
   - Built with Next.js
@@ -161,15 +163,15 @@ This is a tricky one. For the most part the `assetPrefix` deals with where stati
 
 ### basePath
 
-The `basePath` is for things like `.js` and `.css`. If you don't set this, when your Next.js site is bundled it won't have the correct paths to the JavaScript and CSS that make your demo work, and look like your demo.
+The `basePath` is for things like `.js` and `.css`. If you don't set this, when your Next.js site is bundled it won't have the correct paths to the JavaScript and CSS.
 
-The `basePath` is important because with my demo its no longer deployed to the root of it's own domain. Its deployed to `/demos/ping-thing`, and not only that it's not ever on it's own domain... so you gotta give the bundler a helping hand and provide some additional paths to help the HTML correctly link to the relevant `.js` and `.css` files.
+The `basePath` is important because with my demo its no longer deployed to the root of it's own domain. Its deployed to `/demos/ping-thing`, and not only that, when deployed to production it's not ever on it's own domain... so you've got to provide some additional information to help the HTML correctly link to the relevant `.js` and `.css` files.
 
 ## Analytics
 
-This one was super easy for me. I used the same setup as [neon.tech](https://neon.tech/) because it's the same tech e.g Next.js. Yours may differ.
+This one was super easy for me. I used the same setup as [neon.tech](https://neon.tech/) because it's the same tech, E.g Next.js. Yours may be different.
 
-`NEXT_PUBLIC_GTM` is the Google Analytics tracking ID for [neon.tech](https://neon.tech/) which I can also use because [Ping Thing](https://neon.tech/demos/ping-thing), for all intents and purposes, lives on [neon.tech](https://neon.tech/). I want all page views to be tracked by our main Google Analytics account and I want them to show up in our reports.
+`NEXT_PUBLIC_GTM` is the Google Analytics tracking ID for [neon.tech](https://neon.tech/) which I can also use because [Ping Thing](https://neon.tech/demos/ping-thing), for all intents and purposes, lives on the [neon.tech](https://neon.tech/) domain. Plus, I want all page views to be tracked by our main Google Analytics account and I want them to show up in our reports.
 
 ```javascript
 // pages/_document.js
@@ -217,24 +219,40 @@ const Document = () => {
 export default Document;
 ```
 
+### Vercel Preview
+
+If you're deploying to Vercel you might notice after adding the `basePath` that you see the site's preview image displays the 404 error page. Vercel's site previews also need a helping hand to find the site.
+
+<AstroImage
+  width='1536'
+  height='864'
+  alt='Vercel Site Preview - Error'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1697383091/paulie.dev/2023/10/vercel-json-proxy-redirects_anfrgk.jpg'
+/>
+
+You can add the following to `./vercel.json` to fix that.
+
+```json
+{ "redirects": [{ "source": "/", "destination": "/demos/ping-thing", "permanent": true }] }
+```
+
+<AstroImage
+  width='1536'
+  height='864'
+  alt='Vercel Site Preview - Fixed'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1697383418/paulie.dev/2023/10/preivew-proxy-redirects_t5txcy.jpg'
+/>
+
 ## Final Thoughts
 
 I've gotta be honest, It is a bit of a ball ache, but it is worth the trouble. Using this approach for Product Demos allows you to share the URL with the world, promote your companies brand (and product) and track all the Analytics in the right place.
 
-If you've only ever built "apps" for zero users I can understand why you wouldn't know this stuff, but **websites are different to apps**. Websites are often "legacy", you have to carefully maintain them, you have to think about what it is you're doing before you do it. You can't just _"ship fast and break things"_, or whatever bullshit Vercel are telling you to do. You have to take your time, do it once, then you can get on with your life. Why on earth you'd want to go back and make changes to things because you can't be bothered to think ahead is beyond me. It's a website, you know how it needs to work. It has pages and links!
-
-Websites are, in a lot of cases, the source of truth, the bloodline for the business, your zero user app that you built in a weekend is not!
-
-...anyway
-
 Some issues I do know about.
 
 1. On Netlify you can't proxy between two different Netlify accounts. This might happen if you had the "main" Netlify account, and then maybe a different one for Developer Relations / Product Demos.
-2. You can't `redirect` a `rewrite`. We had this problem at Neon. Before you go ahead and deploy a `rewrite`, double, triple, check the URLs you want to use. All of my demos have always lived on `/demos/name-of-demo`. At Neon it was decided we'd put them on the root `/name-of-demo` (bad idea), and then later it was decided we'd put them on `/demos/`. No big deal right, we can always change stuff later.
+2. You can't `redirect` to a `rewrite` thats no longer there. Once you've decided what your rewrite URLs are, E.g `/demos/` you kinda have to stick with this. Changing your mind and URL structure later will be quite painful.
 
-It was a such a pain in the arse to make this change, it took me half a day to rewire all the pages so users who had the link already wouldn't see a 404. So, do yourself a favour, don't be agile, don't ship fast, take your time, make a decision and stick with it!
-
-And here are some I made earlier, I've also linked to the repos to show you the code isn't part of the main company website's repo.
+And here are some I made earlier, I've also linked to the repos to show you the code isn't part of the main company website's repo, and you should see from the URL's, that they look like they're a page on the main companies's website.
 
 ## Example Demos
 
