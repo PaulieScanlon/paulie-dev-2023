@@ -1,3 +1,5 @@
+import days from './days';
+
 export const formatDate = (dateString, showTime = false) => {
   const date = new Date(dateString);
 
@@ -5,6 +7,7 @@ export const formatDate = (dateString, showTime = false) => {
     timeZone: 'UTC',
     day: 'numeric',
     month: 'long',
+    weekday: 'long',
     year: 'numeric',
   });
   const timeStamp = date.toLocaleTimeString();
