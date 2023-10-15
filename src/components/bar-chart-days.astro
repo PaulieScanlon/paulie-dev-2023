@@ -32,9 +32,17 @@ const totalByDayAndYear = Object.keys(data).reduce((acc, day) => {
     }
   });
 
+  acc[day].sort((a, b) => a.year - b.year);
+
   return acc;
 }, {});
 
+const dayOrder = [...days.slice(1), 'Sun'];
+
+const totalByDayAndYearOrdered = dayOrder.reduce((result, day) => {
+  result[day] = totalByDayAndYear[day];
+  return result;
+}, {});
 
 const chartWidth = 600;
 const chartHeight = 300;
@@ -44,15 +52,14 @@ const offsetY = 40;
 const paddingX = 30;
 const paddingY = 50;
 const maxY = Math.max(
-  ...Object.values(totalByDayAndYear).flatMap((yearData: any) => yearData.map((year) => year.total))
+  ...Object.values(totalByDayAndYearOrdered).flatMap((yearData: any) => yearData.map((year) => year.total))
 );
 
 const guides = [...Array(8).keys()];
-const dayOrder = [...days.slice(1), 'Sun']
 
-const properties = Object.values(totalByDayAndYear).map((property: any, index: number) => {
+const properties = Object.values(totalByDayAndYearOrdered).map((property: any, index: number) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
-  const day = property[0].day
+  const day = property[0].day;
 
   const data = property
     .sort((a, b) => years.indexOf(a.year) - years.indexOf(b.year))
@@ -76,8 +83,7 @@ const properties = Object.values(totalByDayAndYear).map((property: any, index: n
     x: x,
     data: data,
   };
-}).sort((a, b) => dayOrder.indexOf(a.day)  - dayOrder.indexOf(b.day));
-
+});
 
 const ticks = dayOrder.map((day, index) => {
   const x = (index / days.length) * chartWidth + paddingX / 2;
