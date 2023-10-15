@@ -117,11 +117,9 @@ To configure the demo, I add the following to `next.config.js`.
 ```javascript
 // ./next.config.js
 
-const isProd = process.env.NODE_ENV === 'production';
-
 module.exports = {
-  assetPrefix: isProd ? process.env.NEXT_PUBLIC_REWRITE_PREFIX : undefined,
-  basePath: isProd ? process.env.NEXT_PUBLIC_REWRITE_PREFIX : undefined,
+  assetPrefix: process.env.NEXT_PUBLIC_REWRITE_PREFIX,
+  basePath: process.env.NEXT_PUBLIC_REWRITE_PREFIX,
 };
 ```
 
@@ -132,7 +130,7 @@ The value of `NEXT_PUBLIC_REWRITE_PREFIX` is as follows, and pay attention, ther
 #### Production
 
 ```shell
-// .env || .env.local.production
+// .env || .env.production.local
 
 NEXT_PUBLIC_REWRITE_PREFIX=/demos/ping-thing
 ```
@@ -142,7 +140,7 @@ NEXT_PUBLIC_REWRITE_PREFIX=/demos/ping-thing
 In the development environment I set the value to _nothing_. This allows me to continue developing on `https://localhost:3000` rather than `https://localhost:300/demos/ping-thing`. This step isn't necessary but I find it more convenient.
 
 ```shell
-// .env.local.development
+// .env.development.local
 
 NEXT_PUBLIC_REWRITE_PREFIX=
 
@@ -150,7 +148,7 @@ NEXT_PUBLIC_REWRITE_PREFIX=
 
 ### assetPrefix
 
-This is a tricky one. For the most part the `assetPrefix` deals with where static assets are located. In a lot of cases though, I've found I needed to prefix the `src` so that `next/image` doesn't error 🤷.
+This is a tricky one. For the most part the `assetPrefix` deals with where static assets are located. If you're using `next/image` however, you'll need prefix the `src` with the same environment variable used above to ensure the path to the static directory is correct.
 
 ```javascript
 <Image
@@ -165,7 +163,7 @@ This is a tricky one. For the most part the `assetPrefix` deals with where stati
 
 The `basePath` is for things like `.js` and `.css`. If you don't set this, when your Next.js site is bundled it won't have the correct paths to the JavaScript and CSS.
 
-The `basePath` is important because with my demo its no longer deployed to the root of it's own domain. Its deployed to `/demos/ping-thing`, and not only that, when deployed to production it's not ever on it's own domain... so you've got to provide some additional information to help the HTML correctly link to the relevant `.js` and `.css` files.
+The `basePath` is important because with my demo its no longer deployed to the root of it's own domain. Its deployed to `/demos/ping-thing`, and not only that, when deployed to production it's not even on it's own domain... so you've got to provide some additional information to help the HTML correctly link to the relevant `.js` and `.css` files.
 
 ## Analytics
 
