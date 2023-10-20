@@ -66,7 +66,7 @@ try {
   <h1>{title}</h1>
   <TagsList tags={tags} />
   <Content />
-  <Reactions client:only slug={`/posts/${slug}/`} />
+  <Reactions client:only='react' slug={`/posts/${slug}/`} />
   <Aside>
     <FeaturedImageCard alt={title} thumbnail={featuredImage} text={`${title}\n https://paulie.dev/posts/${slug}/`} />
     <TableOfContents headings={headings} />

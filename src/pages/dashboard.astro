@@ -139,7 +139,7 @@ try {
               <p class='mt-0 mb-4 text-slate-300'>All city visits.</p>
               <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
                 <div class='flex justify-center overflow-hidden'>
-                  <GlobeAllCities client:only data={groupByCity(table.analytics)} />
+                  <GlobeAllCities client:only='react' data={groupByCity(table.analytics)} />
                 </div>
               </div>
               <PoweredByNeon period={groupByDate(table.analytics).length} />
@@ -159,7 +159,7 @@ try {
     <section>
       <h2 class='m-0 uppercase'>GtiHub Activity</h2>
       <p class='mt-0 mb-4 text-slate-300'>Recent GitHub events</p>
-      <GithubActivity client:only />
+      <GithubActivity client:only='react' />
     </section>
 
     {
