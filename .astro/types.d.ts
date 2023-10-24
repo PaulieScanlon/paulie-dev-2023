@@ -522,6 +522,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/10/how-to-use-astro-with-a-sprinkling-of-react.mdx": {
+	id: "2023/10/how-to-use-astro-with-a-sprinkling-of-react.mdx";
+  slug: "2023/10/how-to-use-astro-with-a-sprinkling-of-react";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2023/10/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon.mdx": {
 	id: "2023/10/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon.mdx";
   slug: "2023/10/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon";
