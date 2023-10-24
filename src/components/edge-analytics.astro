@@ -4,7 +4,10 @@ class EdgeAnalytics extends HTMLElement {
   constructor() {
     super();
     setTimeout(function () {
-      navigator.sendBeacon('/api/page-view', JSON.stringify({ slug: window.location.pathname }));
+      navigator.sendBeacon(
+        '/api/page-view',
+        JSON.stringify({ slug: window.location.pathname, referrer: document.referrer })
+      );
     }, 10000);
   }
 }
