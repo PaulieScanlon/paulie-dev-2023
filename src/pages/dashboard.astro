@@ -129,6 +129,13 @@ const period = groupByDate(table.analytics).length - 1;
             <PoweredByNeon period={period} />
           </section>
 
+          <section>
+            <h2 class='m-0 uppercase'>Top Referrers</h2>
+            <p class='mt-0 mb-4 text-slate-300'>{`Top ${groupByReferrer(table.analytics).length} referrers.`}</p>
+            <ListPopularReferrers data={groupByReferrer(table.analytics)} />
+            <PoweredByNeon period={period} />
+          </section>
+
           <div class='flex flex-col md:flex-row gap-24 md:gap-8 overflow-hidden'>
             <section class='w-full lg:w-1/2'>
               <div class='flex flex-col'>
@@ -154,13 +161,6 @@ const period = groupByDate(table.analytics).length - 1;
             <h2 class='m-0 uppercase'>Popular Posts</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top ten post views.</p>
             <ListPopularPosts data={groupBySlug(table.analytics)} />
-            <PoweredByNeon period={period} />
-          </section>
-
-          <section>
-            <h2 class='m-0 uppercase'>Top Referrers</h2>
-            <p class='mt-0 mb-4 text-slate-300'>{`Top ${groupByReferrer(table.analytics).length} referrers.`}</p>
-            <ListPopularReferrers data={groupByReferrer(table.analytics)} />
             <PoweredByNeon period={period} />
           </section>
         </>
