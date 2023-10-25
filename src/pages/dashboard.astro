@@ -9,6 +9,7 @@ import LineChartYears from '../components/line-chart-years.astro';
 import BarChartDays from '../components/bar-chart-days.astro';
 import ListExternalPublishers from '../components/list-external-publishers.astro';
 import ListPopularPosts from '../components/list-popular-posts.astro';
+import ListPopularReferrers from '../components/list-top-referrers.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities';
 import LineChartVisits from '../components/line-chart-visits.astro';
@@ -26,6 +27,7 @@ import groupByPublication from '../utils/group-by-publication';
 import groupByTag from '../utils/group-by-tag';
 import groupBySlug from '../utils/group-by-slug';
 import groupByReaction from '../utils/group-by-reaction';
+import groupByReferrer from '../utils/group-by-referrer';
 
 import { getCollection } from 'astro:content';
 
@@ -152,6 +154,13 @@ const period = groupByDate(table.analytics).length - 1;
             <h2 class='m-0 uppercase'>Popular Posts</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top ten post views.</p>
             <ListPopularPosts data={groupBySlug(table.analytics)} />
+            <PoweredByNeon period={period} />
+          </section>
+
+          <section>
+            <h2 class='m-0 uppercase'>Top Referrers</h2>
+            <p class='mt-0 mb-4 text-slate-300'>{`Top ${groupByReferrer(table.analytics).length} referrers.`}</p>
+            <ListPopularReferrers data={groupByReferrer(table.analytics)} />
             <PoweredByNeon period={period} />
           </section>
         </>
