@@ -72,6 +72,8 @@ try {
 } catch (error) {
   console.error(error);
 }
+
+const period = groupByDate(table.analytics).length - 1;
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
@@ -103,7 +105,7 @@ try {
               <h2 class='m-0 uppercase'>Total by reaction</h2>
               <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
               <RadarChartReactions data={groupByReaction(table.reactions)} />
-              <PoweredByNeon period={groupByDate(table.analytics).length} />
+              <PoweredByNeon period={period} />
             </section>
             <section>
               <h2 class='m-0 uppercase'>Total by Tag</h2>
@@ -122,7 +124,7 @@ try {
             <h2 class='m-0 uppercase'>Total visits</h2>
             <p class='mt-0 mb-4 text-slate-300'>All page views.</p>
             <LineChartVisits data={groupByDate(table.analytics)} />
-            <PoweredByNeon period={groupByDate(table.analytics).length} />
+            <PoweredByNeon period={period} />
           </section>
 
           <div class='flex flex-col md:flex-row gap-24 md:gap-8 overflow-hidden'>
@@ -132,7 +134,7 @@ try {
                 <p class='mt-0 mb-4 text-slate-300'>Top ten city visits.</p>
                 <ListTopTenCities data={groupByCity(table.analytics)} />
               </div>
-              <PoweredByNeon period={groupByDate(table.analytics).length} />
+              <PoweredByNeon period={period} />
             </section>
             <section class='w-full lg:w-1/2'>
               <h2 class='m-0 uppercase'>Geolocation</h2>
@@ -142,7 +144,7 @@ try {
                   <GlobeAllCities client:only='react' data={groupByCity(table.analytics)} />
                 </div>
               </div>
-              <PoweredByNeon period={groupByDate(table.analytics).length} />
+              <PoweredByNeon period={period} />
             </section>
           </div>
 
@@ -150,7 +152,7 @@ try {
             <h2 class='m-0 uppercase'>Popular Posts</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top ten post views.</p>
             <ListPopularPosts data={groupBySlug(table.analytics)} />
-            <PoweredByNeon period={groupByDate(table.analytics).length} />
+            <PoweredByNeon period={period} />
           </section>
         </>
       ) : null
