@@ -1,0 +1,535 @@
+---
+export const prerender = true;
+
+import Main from '../layouts/main.astro';
+
+import { Image } from 'astro:assets';
+---
+
+<Main
+  fullWidth={true}
+  title='Independent Advocate'
+  description='Independent Product and Developer Advocacy'
+  slug='/independent-advocate/'
+>
+  <div class='mt-16 mb-32'>
+    <strong class='block text-center xl:text-2xl text-brand-primary'>Paul Scanlon</strong>
+    <h1 class='my-6 text-4xl xl:text-7xl text-center'>Independent Advocate</h1>
+    <p class='text-center xl:text-2xl mx-auto xl:max-w-xl'>
+      Hi, I'm Paul. I act <span class='text-brand-tertiary'>independently</span> to create content that drives awareness
+      of a products, features and services.
+    </p>
+    <small class='block xl:text-lg text-center mx-auto max-w-lg'>
+      On this page you'll find information about my approach to Product Marketing, Developer Advocacy... and a
+      <i>little something</i> I like to call <span class='text-brand-tertiary'>Bundles</span>.
+    </small>
+    <ul class='list-none p-0 xl:flex gap-8 justify-center mx-auto xl:max-w-5xl'>
+      <li class='flex items-center gap-2'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke-width='2'
+          class='w-5 h-5 mt-1 stroke-brand-primary'
+        >
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5'
+          ></path>
+        </svg>
+
+        <a href='https://calendly.com/paulscanlon/30min' target='_blank' rel='noopener'>Schedule a meeting</a>
+      </li>
+      <li class='flex items-center gap-2'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke-width='2'
+          class='w-5 h-5 mt-1 stroke-brand-primary'
+        >
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            d='M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75'
+          ></path>
+        </svg>
+        <a href='mailto:pauliescanlon@gmail.com' target='_blank' rel='noreferrer'>pauliescanlon@gmail.com</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class='flex flex-col gap-16 xl:gap-48'>
+    <div class='grid items-center xl:gap-16 xl:grid-cols-2'>
+      <Image
+        width='984'
+        height='554'
+        alt='About me'
+        src='/images/ia-about-me.png'
+        class='xl:order-2 m-0 border border-brand-outline rounded w-full mx-auto max-w-xl'
+      />
+      <div>
+        <h2 class='my-6 xl:text-4xl'>About Me</h2>
+        <p>
+          I've held various positions in and around Advertising, Tech and Product Development in both full-time, and
+          freelance positions since <span class='text-brand-primary'>2005</span>.
+        </p>
+        <p>
+          I sit somewhere between Product Marketing and Developer Advocacy. I specialize in the creation of technical
+          content for <span class='text-brand-secondary'>educational</span> and <span class='text-brand-tertiary'
+            >promotional</span
+          > purposes.
+        </p>
+        <p>You can read more about me on the <a href='/about/'>About</a> page.</p>
+      </div>
+    </div>
+
+    <div class='grid items-center xl:gap-16 xl:grid-cols-2'>
+      <div class='order-2'>
+        <h2 class='my-6 xl:text-4xl'>It's Not About Me!</h2>
+        <p>I'm not a tech influencer and I'm not intersted in building my own online brand.</p>
+        <p>
+          I just really like technology and love to <span class='text-brand-primary'>design</span>, <span
+            class='text-brand-secondary'>develop</span
+          > and <span class='text-brand-tertiary'>write</span>.
+        </p>
+      </div>
+      <Image
+        width='984'
+        height='554'
+        alt='Not About me'
+        src='/images/ia-not-about-me.png'
+        class='m-0 border border-brand-outline rounded w-full mx-auto max-w-xl'
+      />
+    </div>
+
+    <div class='border border-brand-outline bg-brand-surface p-8 xl:p-16'>
+      <h2 class='mt-0 mb-4 text-4xl xl:text-6xl text-center'>Bundles</h2>
+      <p class='text-center mx-auto max-w-3xl'>
+        Usually it takes a team to create go to market assets, but since I'm <b>multi-disciplined</b>, I'm able to take
+        your marketing message and bring it to life using a number of different techniques.
+      </p>
+      <p class='text-center mx-auto max-w-4xl'>
+        Bundles consist of, but are
+        <b>not</b> limited to:
+      </p>
+      <ol class='xl:flex xl:gap-16 justify-center xl:text-lg xl:font-bold'>
+        <li class='m-0 p-0'>Written Content</li>
+        <li class='m-0 p-0'>Demo site / application</li>
+        <li class='m-0 p-0'>Open-source GitHub repository</li>
+      </ol>
+    </div>
+
+    <div class='grid gap-8 xl:gap-16 xl:grid-cols-2'>
+      <div>
+        <h2 class='my-6 xl:text-4xl'>Extra Small Bundle</h2>
+        <Image
+          width='984'
+          height='554'
+          alt='Extra Small Bundle'
+          src='/images/ia-xs-bundle.jpg'
+          class='m-0 border border-brand-outline rounded w-full mx-auto max-w-xl'
+        />
+        <p>Written content with code snippets as part of the article or post.</p>
+        <p>Content can be published on either your company blog, or by a suitable external publisher.</p>
+        <hr class='my-6 border-brand-guide' />
+        <div class='flex gap-8 items-center flex-wrap justify-between'>
+          <small>Estimated cost (USD):</small>
+          <data class='block font-black text-2xl text-right' value='2,000.00'>~$1,500</data>
+        </div>
+      </div>
+      <div class='xl:order-2 xl:pt-12'>
+        <dl>
+          <dt>Smashing Magazine</dt>
+          <dd>
+            <a
+              href='https://www.smashingmagazine.com/2023/09/getting-started-with-neon-branching/'
+              target='_blank'
+              rel='noopener'>Getting Started With Neon Branching</a
+            >
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class='grid gap-8 xl:gap-16 xl:grid-cols-2'>
+      <div>
+        <h2 class='my-6 xl:text-4xl'>Small Bundle</h2>
+        <Image
+          width='984'
+          height='554'
+          alt='Small Bundle'
+          src='/images/ia-sm-bundle.jpg'
+          class='m-0 border border-brand-outline rounded w-full mx-auto max-w-xl'
+        />
+        <p>Written content with sample code publicly available on GitHub.</p>
+        <p>Content can be published on either, your company blog, or by a suitable external publisher.</p>
+        <hr class='my-6 border-brand-guide' />
+        <div class='flex gap-8 items-center flex-wrap justify-between'>
+          <small>Estimated cost (USD):</small>
+          <data class='block font-black text-2xl text-right' value='2,000.00'>~$3,000</data>
+        </div>
+      </div>
+      <div class='xl:order-2 xl:pt-12'>
+        <dl>
+          <dt>Neon Blog</dt>
+          <dd>
+            <a
+              href='https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon'
+              target='_blank'
+              rel='noopener'>Roll Your Own Analytics With Astro, Vercel Edge Functions and Neon</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Open-source Repository</dt>
+          <dd>
+            <a href='https://github.com/PaulieScanlon/neon-edge-analytics-astro-sample' target='_blank' rel='noopener'
+              >https://github.com/PaulieScanlon/neon-edge-analytics-astro-sample</a
+            >
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class='grid gap-8 xl:gap-16 xl:grid-cols-2'>
+      <div>
+        <h2 class='my-6 xl:text-4xl'>Medium Bundle</h2>
+        <Image
+          width='984'
+          height='554'
+          alt='Medium Bundle'
+          src='/images/ia-md-bundle.jpg'
+          class='m-0 border border-brand-outline rounded w-full mx-auto max-w-xl'
+        />
+        <p>
+          Written content with production code publicly available on GitHub and demo site/application deployed to <span
+            class='text-brand-tertiary'>your domain</span
+          >.
+        </p>
+        <p>Content can be published on either, your company blog, or by a suitable external publisher.</p>
+        <hr class='my-6 border-brand-guide' />
+        <div class='flex gap-8 items-center flex-wrap justify-between'>
+          <small>Estimated cost (USD):</small>
+          <data class='block font-black text-2xl text-right' value='2,000.00'>~$7,000</data>
+        </div>
+      </div>
+      <div class='xl:order-2 xl:pt-12'>
+        <dl>
+          <dt>Neon Blog</dt>
+          <dd>
+            <a href='https://neon.tech/blog/how-to-use-postgres-at-the-edge' target='_blank' rel='noopener'
+              >How to use Postgres at the Edge</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Open-source Repository</dt>
+          <dd>
+            <a href='https://github.com/neondatabase/ping-thing' target='_blank' rel='noopener'
+              >https://github.com/neondatabase/ping-thing</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Social Assets</dt>
+          <dd>
+            <a href='https://x.com/neondatabase/status/1704544628060365203?s=20' target='_blank' rel='noopener'
+              >https://x.com/neondatabase/status/1704544628060365203?s=20</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt><span role='img' aria-label='Rocket'>🚀</span> Demo Application</dt>
+          <dd>
+            <a href='https://neon.tech/demos/ping-thing' target='_blank' rel='noopener'
+              >https://neon.tech/demos/ping-thing</a
+            >
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class='grid gap-8 xl:gap-16 xl:grid-cols-2'>
+      <div>
+        <h2 class='my-6 xl:text-4xl'>Large Bundle</h2>
+        <Image
+          width='984'
+          height='554'
+          alt='Large Bundle'
+          src='/images/ia-lg-bundle.jpg'
+          class='m-0 border border-brand-outline rounded w-full mx-auto max-w-xl'
+        />
+        <p>
+          Written content with production code publicly available on GitHub and demo site/application deployed to <span
+            class='text-brand-tertiary'>your domain</span
+          >.
+        </p>
+        <p>
+          Content can be published on either, your company blog, or by a suitable external publisher, with additional
+          suppporting content that mentions, and links back to other assets from the Bundle.
+        </p>
+        <hr class='my-6 border-brand-guide' />
+        <div class='flex gap-8 items-center flex-wrap justify-between'>
+          <small>Estimated cost (USD):</small>
+          <data class='block font-black text-2xl text-right' value='2,000.00'>~$15,000</data>
+        </div>
+      </div>
+      <div class='xl:order-2 xl:pt-12'>
+        <dl>
+          <dt>Cockroach Labs Blog</dt>
+          <dd>
+            <a
+              href='https://www.cockroachlabs.com/blog/what-is-the-cockroachdb-cloud-api/'
+              target='_blank'
+              rel='noopener'>What is the CockroachDB Cloud API and why should you use It?</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Smashing Magazine</dt>
+          <dd>
+            <a
+              href='https://www.smashingmagazine.com/2023/03/dynamic-donut-charts-tailwind-css-react/'
+              target='_blank'
+              rel='noopener'>How To Create Dynamic Donut Charts With TailwindCSS And React</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Open-source Repository</dt>
+          <dd>
+            <a href='https://github.com/cockroachdb/demo-cloud-api/' target='_blank' rel='noopener'
+              >https://github.com/cockroachdb/demo-cloud-api</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Social Assets</dt>
+          <dd>
+            <a href='https://x.com/CockroachDB/status/1687172044100661248?s=20' target='_blank' rel='noopener'
+              >https://x.com/CockroachDB/status/1687172044100661248?s=20</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt><span role='img' aria-label='Rocket'>🚀</span> Demo Application</dt>
+          <dd>
+            <a href='https://www.cockroachlabs.com/demos/demo-cloud-api/' target='_blank' rel='noopener'
+              >https://www.cockroachlabs.com/demos/demo-cloud-api</a
+            >
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class='grid gap-8 xl:gap-16 xl:grid-cols-2'>
+      <div>
+        <h2 class='my-6 xl:text-4xl'>Extra Large Bundle</h2>
+        <Image
+          width='984'
+          height='554'
+          alt='Extra Large Bundle'
+          src='/images/ia-xl-bundle.jpg'
+          class='m-0 border border-brand-outline rounded w-full mx-auto max-w-xl'
+        />
+        <p>
+          Written content with production code publicly available on GitHub and demo site/application deployed to <span
+            class='text-brand-tertiary'>your domain</span
+          >.
+        </p>
+        <p>
+          Content can be published on either, your company blog, or by a suitable external publisher, with additional
+          "how to..." supporting content that mentions, and links back to other assets in the Bundle.
+        </p>
+        <hr class='my-6 border-brand-guide' />
+        <div class='flex gap-8 items-center flex-wrap justify-between'>
+          <small>Estimated cost (USD):</small>
+          <data class='block font-black text-2xl text-right' value='2,000.00'>~$40,000</data>
+        </div>
+      </div>
+      <div class='xl:order-2 xl:pt-12'>
+        <dl>
+          <dt>Cockroach Labs Blog</dt>
+          <dd>
+            <a
+              href='https://www.cockroachlabs.com/blog/multi-region-serverless-data-residency/'
+              target='_blank'
+              rel='noopener'>The Art of Data Residency and Application Architecture</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>The New Stack</dt>
+          <dd>
+            <a
+              href='https://thenewstack.io/tutorial-how-to-create-a-multi-region-node-js-lambda-api/'
+              target='_blank'
+              rel='noopener'>How to Create a Multi-Region Node.js Lambda API</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Open-source Repositories</dt>
+          <dd>
+            <a href='https://github.com/cockroachdb/demo-data-residency/' target='_blank' rel='noopener'
+              >https://github.com/cockroachdb/demo-data-residency</a
+            >
+          </dd>
+          <dd>
+            <a href='https://github.com/cockroachdb/demo-data-residency-api/' target='_blank' rel='noopener'
+              >https://github.com/cockroachdb/demo-data-residency-api</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>Social Assets</dt>
+          <dd>
+            <a href='https://x.com/CockroachDB/status/1682529684032987137?s=20' target='_blank' rel='noopener'
+              >https://x.com/CockroachDB/status/1682529684032987137?s=20</a
+            >
+          </dd>
+          <dd>
+            <a href='https://x.com/CockroachDB/status/1661032283694940161?s=20' target='_blank' rel='noopener'
+              >https://x.com/CockroachDB/status/1661032283694940161?s=20</a
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt><span role='img' aria-label='Rocket'>🚀</span> Demo Application</dt>
+          <dd>
+            <a href='https://www.cockroachlabs.com/demos/demo-data-residency' target='_blank' rel='noopener'
+              >https://www.cockroachlabs.com/demos/demo-data-residency</a
+            >
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div>
+      <h2 class='my-6 xl:text-4xl text-center'>Sample Vs Production</h2>
+      <p class='text-center mx-auto max-w-xl'>
+        You may have noticed in the Bundle descriptions I've used the terms; <span class='text-brand-primary'
+          >Sample code</span
+        > and <span class='text-brand-tertiary'>Production code</span>.
+      </p>
+      <p class='text-center'>They are different, and here's why.</p>
+      <div class='grid gap-8 xl:grid-cols-2 mt-8 mb-4 xl:mt-16 xl:mb-8'>
+        <div class='border border-brand-outline bg-brand-surface p-4 sm:p-8 rounded-lg'>
+          <h3 class='my-2 xl:text-2xl text-brand-primary'>Sample Code</h3>
+          <p>Sample code repositories contain just the code that matters, and are usually quite ugly to look at.</p>
+          <p>
+            They can be used for <span class='text-brand-primary'>educational purposes</span> but are less suitable for
+            promotional purposes.
+          </p>
+          <p>
+            Sample code will be hosted on my personal GitHub account. Preview links will use a default, "<span
+              class='text-brand-primary'>.app</span
+            >" URL.
+          </p>
+          <small class='text-small'>For Example:</small>
+          <ul>
+            <li>
+              <a
+                href='https://github.com/PaulieScanlon/the-new-stack-astro-react-sprinkling'
+                target='_blank'
+                rel='noopener'>https://github.com/PaulieScanlon/the-new-stack-astro-react-sprinkling</a
+              >
+            </li>
+            <li>
+              <a href='https://the-new-stack-astro-react-sprinkling.netlify.app/' target='_blank' rel='noopener'>
+                https://the-new-stack-astro-react-sprinkling.netlify.app</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class='border border-brand-outline bg-brand-surface p-4 sm:p-8 rounded-lg'>
+          <h3 class='my-2 xl:text-2xl text-brand-tertiary'>Production Code</h3>
+          <p>
+            Production code repositories contain all the code that matters <b>plus</b>, everything that makes a demo
+            look pretty!
+          </p>
+          <p>
+            They can be used for <span class='text-brand-tertiary'>promotional purposes</span> but are less suitable for
+            educational purposes.
+          </p>
+          <p>
+            Production code will be hosted under your companies GitHub account. Preview links will include <span
+              class='text-brand-tertiary'>your domain</span
+            > name.
+          </p>
+          <small class='text-small'>For Example:</small>
+          <ul>
+            <li>
+              <a href='https://github.com/neondatabase/ping-thing' target='_blank' rel='noopener'
+                >https://github.com/neondatabase/ping-thing</a
+              >
+            </li>
+            <li>
+              <a href='https://neon.tech/demos/ping-thing' target='_blank' rel='noopener'>
+                https://neon.tech/demos/ping-thing</a
+              >
+            </li>
+          </ul>
+          <p class='text-sm'>
+            Deploying a demo to your domain is made possible by using a Proxy Redirect. You can read more about this
+            approach works here: <a href='/posts/2023/10/what-is-a-proxy-redirect/'>What Is a Proxy Redirect?</a>
+          </p>
+        </div>
+      </div>
+      <p class='text-center mx-auto max-w-3xl'>
+        Which route to take will be determined by the project's primary objective. Both have their place in the world
+        and I'll work with you to figure out which way to go.
+      </p>
+    </div>
+
+    <div class='mb-16'>
+      <h2 class='my-6 text-center text-4xl'>Independantly Different</h2>
+      <div class='mx-auto max-w-2xl'>
+        <p class='text-center'>
+          Generally speaking, developer content looks like it was created by a Developer, and whilst <span
+            class='text-brand-secondary'>Developer Ready</span
+          > is fine, <span class='text-brand-tertiary'>Production Ready</span> is better!
+        </p>
+        <p class='text-center'>If your product or service is aimed at JavaScript developers, we should talk!</p>
+      </div>
+
+      <ul class='list-none p-0 xl:flex gap-8 justify-center mx-auto max-w-5xl'>
+        <li class='flex items-center gap-2'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='2'
+            class='w-5 h-5 mt-1 stroke-brand-primary'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5'
+            ></path>
+          </svg>
+
+          <a href='https://calendly.com/paulscanlon/30min' target='_blank' rel='noopener'>Schedule a meeting</a>
+        </li>
+        <li class='flex items-center gap-2'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='2'
+            class='w-5 h-5 mt-1 stroke-brand-primary'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75'
+            ></path>
+          </svg>
+          <a href='mailto:pauliescanlon@gmail.com' target='_blank' rel='noreferrer'>pauliescanlon@gmail.com</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</Main>

@@ -7,6 +7,7 @@ import '@fontsource/inconsolata/300.css';
 import '@fontsource/inconsolata/400.css';
 import '@fontsource/inconsolata/500.css';
 import '@fontsource/inconsolata/700.css';
+import '@fontsource/inconsolata/900.css';
 
 const siteLinks = [
   {
@@ -100,7 +101,7 @@ const keywords = [
   'Serverless Functions',
 ];
 
-const { type, title, description, slug, image, tags } = Astro.props;
+const { type, title, description, slug, image, tags, fullWidth = false } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
 const ogImage = image ? image : `${siteUrl}${defaultImage}`;
@@ -157,13 +158,13 @@ const isProduction = import.meta.env.PROD;
       isProduction ? (
         <script is:inline async src='https://www.googletagmanager.com/gtag/js?id=G-FMCW05VHZ2'></script>
         <script is:inline>
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-          gtag('config', 'G-FMCW05VHZ2');
+        gtag('config', 'G-FMCW05VHZ2');
         </script>
       ) : null
     }
@@ -176,7 +177,7 @@ const isProduction = import.meta.env.PROD;
       data-project='BAI_1234'
       src='https://analytics-project-script.vercel.app/browserful-script.js'
       data-excluded-domains=''>
-    </script>
+</script>
 
     <!-- Edge Analytics -->
     {
@@ -319,7 +320,7 @@ const isProduction = import.meta.env.PROD;
           </div>
         </div>
         <main class='lg:pl-[12.5rem]'>
-          <section class='mx-auto px-0 py-6 lg:px-16 lg:py-10 max-w-none xl:ml-0 xl:mr-[15.5rem]'>
+          <section class={`mx-auto px-0 py-6 lg:px-16 lg:py-10 max-w-none xl:ml-0 ${fullWidth ? '' : 'xl:mr-[15.5rem]'}`}>
             <article class='max-w-none min-h-[calc(100vh-19rem)]'>
               <slot />
             </article>

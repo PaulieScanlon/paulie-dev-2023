@@ -68,7 +68,7 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          text: '#e5e7eb',
+          text: '#d9dbdf',
           primary: '#f056c7',
           secondary: '#8b87ea',
           tertiary: '#58e6d9',
@@ -108,9 +108,11 @@ module.exports = {
             h1: {
               color: theme('colors.brand.text'),
               margin: '2rem 0',
+              fontWeight: 900,
             },
             'h2, h3, h4, h5, h6': {
               color: theme('colors.brand.salmon'),
+              fontWeight: 900,
             },
             p: {
               fontFamily: 'system-ui',
@@ -118,9 +120,14 @@ module.exports = {
                 fontWeight: 900,
               },
             },
+            button: {
+              fontFamily: 'system-ui',
+              fontWeight: 700,
+            },
             a: {
               color: theme('colors.brand.secondary'),
               cursor: 'pointer',
+              wordBreak: 'break-word',
               '&:hover': {
                 color: theme('colors.brand.text'),
               },
@@ -132,7 +139,7 @@ module.exports = {
             ol: {
               li: {
                 '&::marker': {
-                  color: theme('colors.brand.teal'),
+                  color: theme('colors.brand.salmon'),
                 },
               },
             },
@@ -165,6 +172,26 @@ module.exports = {
               borderRadius: '.2em',
               p: {
                 margin: 0,
+              },
+            },
+            dl: {
+              marginTop: '1.25em',
+              marginBottom: '1.25em',
+              paddingLeft: '1.625em',
+              dt: {
+                fontSize: '1.25rem',
+                color: theme('colors.brand.text'),
+                paddingLeft: '0.375em',
+              },
+              dd: {
+                display: 'list-item',
+                listStyleType: 'disc',
+                marginTop: '0.5em',
+                marginBottom: '0.5em',
+                paddingLeft: '0.375em',
+                '&::marker': {
+                  color: theme('colors.brand.salmon'),
+                },
               },
             },
             '.twitter-tweet': {
