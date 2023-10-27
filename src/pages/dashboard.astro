@@ -131,7 +131,7 @@ const period = groupByDate(table.analytics).length - 1;
 
           <section>
             <h2 class='m-0 uppercase'>Top Referrers</h2>
-            <p class='mt-0 mb-4 text-slate-300'>{`Top ${groupByReferrer(table.analytics).length} referrers.`}</p>
+            <p class='mt-0 mb-4 text-slate-300'>Top ten referrers.</p>
             <ListPopularReferrers data={groupByReferrer(table.analytics)} />
             <PoweredByNeon period={period} />
           </section>
