@@ -2,7 +2,4 @@
 # Full syntax: https://developers.google.com/search/docs/advanced/robots/create-robots-txt
 
 User-agent: *
-Disallow: /independent-advocate
-
-User-agent: *
 Allow: /
