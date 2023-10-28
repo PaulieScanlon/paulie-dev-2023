@@ -2,12 +2,12 @@
 const { href } = Astro.props;
 ---
 
-<div class='flex items-center justify-center my-16'>
+<div class='flex items-center justify-center my-24'>
   <a
     href={href}
     target='_blank'
     rel='noopener'
-    class='not-prose inline-flex text-brand-primary rounded border border-brand-primary no-underline px-4 py-2 transition-[opacity] duration-300 hover:opacity-75'
+    class='not-prose font-[system-ui] inline-flex border-2 border-brand-salmon rounded-full bg-transparent text-brand-salmon font-bold text-lg no-underline px-8 py-4 transition-color duration-300 hover:text-brand-text hover:border-brand-text'
   >
     <slot />
   </a>
