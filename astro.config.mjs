@@ -20,7 +20,7 @@ export default defineConfig({
     AutoImport({
       imports: [
         {
-          './src/components/cta.astro': [['default', 'Cta']],
+          './src/components/cta-external.astro': [['default', 'CtaExternal']],
         },
         {
           './src/components/code-sandbox.astro': [['default', 'CodeSandbox']],

@@ -70,7 +70,7 @@ module.exports = {
         brand: {
           text: '#d9dbdf',
           primary: '#f056c7',
-          secondary: '#8b87ea',
+          secondary: '#a4a0fb',
           tertiary: '#58e6d9',
           muted: '#605c9d',
           salmon: '#ff6090',
