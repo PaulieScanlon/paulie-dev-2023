@@ -4,8 +4,8 @@ const groupByYear = (array) => {
   const groupedData = array.reduce((acc, item) => {
     const { date } = item.data;
 
-    const month = months[new Date(date).getMonth()];
-    const year = new Date(date).getFullYear();
+    const month = months[new Date(date).getUTCMonth()];
+    const year = new Date(date).getUTCFullYear();
 
     if (!acc[year]) {
       acc[year] = {};

@@ -536,6 +536,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/11/spas-and-react-you-dont-always-need-server-side-rendering.mdx": {
+	id: "2023/11/spas-and-react-you-dont-always-need-server-side-rendering.mdx";
+  slug: "2023/11/spas-and-react-you-dont-always-need-server-side-rendering";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
