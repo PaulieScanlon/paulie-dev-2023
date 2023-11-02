@@ -14,67 +14,16 @@ const posts = await getCollection('posts');
 ---
 
 <Main title='Home' description="Paul Scanlon's blog" slug='/'>
-  <strong class='text-xs text-brand-primary'>Home</strong>
+  <strong class='text-sm text-brand-primary'>Home</strong>
   <h1 class='text-brand-text text-3xl sm:text-5xl mb-1'>Paul Scanlon</h1>
-  <h2 class='text-brand-salmon mt-1'>Freelance Independent Advocate</h2>
+  <h2 class='text-brand-primary mt-1'>Freelance Independent Advocate</h2>
   <p>
     I sit somewhere between Product Marketing and Developer Advocacy. I specialize in the creation of technical content
     for <span class='text-brand-secondary'>educational</span> and <span class='text-brand-tertiary'>promotional</span>
      purposes.
   </p>
 
-  <ul class='list-none p-0 xl:flex gap-4 mb-24'>
-    <li class='flex items-center gap-2'>
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        fill='none'
-        viewBox='0 0 24 24'
-        stroke-width='2'
-        class='w-5 h-5 mt-1 stroke-brand-primary'
-      >
-        <path
-          stroke-linecap='round'
-          stroke-linejoin='round'
-          d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5'
-        ></path>
-      </svg>
-
-      <a href='https://calendly.com/paulscanlon/30min' target='_blank' rel='noopener'>Schedule a meeting</a>
-    </li>
-    <li class='flex items-center gap-2'>
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        fill='none'
-        viewBox='0 0 24 24'
-        stroke-width='2'
-        class='w-5 h-5 mt-1 stroke-brand-primary'
-      >
-        <path
-          stroke-linecap='round'
-          stroke-linejoin='round'
-          d='M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75'
-        ></path>
-      </svg>
-      <span class='underline text-brand-secondary'>pauliescanlon@gmail.com</span>
-    </li>
-  </ul>
-
-  <!-- <p class='mb-24'>To read more about my services visit: <a href='/independent-advocate/'>/independent-advocate</a>.</p> -->
-  <!-- <p>
-    A long long time ago I was a Designer, but after a few years of pixel-pushing, I realized code is just better. I've
-    held various positions in and around Advertising, Tech and Product Development in both full-time, and freelance
-    positions since <span class='text-brand-primary'>2005</span>.
-  </p> -->
-  <!-- <p>
-    I once co-founded and ran an award winning digital production agency based in London called
-    <a href='https://vimeo.com/109836047' target='_blank' rel='noopener'>Super natural</a>. I started the company from
-    my kitchen and grew it to a team of 10. From 2012 to 2016 I was hands-on designer/developer, and Technical Director
-    / CTO.
-  </p> -->
-  <!-- <p class='mb-24'>
-    I'm now an
-    <!-- <a href='/independent-advocate/'>Independent Advocate</a> -->
-  <!-- <span class='text-brand-salmon'>Independent Advocate.</span> -->
+  <CtaInternal href='/independent-advocate//' classNames='mt-8 mb-24 justify-start'>Find Out More</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Articles</h2>
   <p>Here's the latest articles I've written that have been published elsewhere.</p>
