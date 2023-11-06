@@ -536,6 +536,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/11/how-to-build-a-server-side-react-app-with-vite-and-express.mdx": {
+	id: "2023/11/how-to-build-a-server-side-react-app-with-vite-and-express.mdx";
+  slug: "2023/11/how-to-build-a-server-side-react-app-with-vite-and-express";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2023/11/spas-and-react-you-dont-always-need-server-side-rendering.mdx": {
 	id: "2023/11/spas-and-react-you-dont-always-need-server-side-rendering.mdx";
   slug: "2023/11/spas-and-react-you-dont-always-need-server-side-rendering";
