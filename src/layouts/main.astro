@@ -202,6 +202,7 @@ const isProduction = import.meta.env.PROD;
         if (isNavOpen) {
           path.setAttribute('d', menuIcon);
           lightbox.classList.remove(lightboxOpen, lightboxOpenLg);
+          sidebar.classList.remove(sidebarResponsiveOpen)
           lightbox.classList.add(lightboxClosed);
           sidebar.classList.add(sidebarResponsiveClosed);
 
@@ -215,6 +216,7 @@ const isProduction = import.meta.env.PROD;
 
           isNavOpen = true;
         }
+
       };
 
       menu.addEventListener('click', handleNav);
