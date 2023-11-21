@@ -543,6 +543,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/11/im-in-an-open-relationship-with-remix.mdx": {
+	id: "2023/11/im-in-an-open-relationship-with-remix.mdx";
+  slug: "2023/11/im-in-an-open-relationship-with-remix";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2023/11/spas-and-react-you-dont-always-need-server-side-rendering.mdx": {
 	id: "2023/11/spas-and-react-you-dont-always-need-server-side-rendering.mdx";
   slug: "2023/11/spas-and-react-you-dont-always-need-server-side-rendering";
