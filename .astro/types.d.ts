@@ -1137,6 +1137,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2023/11/a-set-of-sign-In-with-google-buttons-made-with-tailwind.mdx": {
+	id: "2023/11/a-set-of-sign-In-with-google-buttons-made-with-tailwind.mdx";
+  slug: "2023/11/a-set-of-sign-in-with-google-buttons-made-with-tailwind";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 "streams": {
 "2021/04/gatsby-deep-dives-with-queen-raae.mdx": {
