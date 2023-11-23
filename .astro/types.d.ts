@@ -536,6 +536,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/11/how-qwiks-astro-integration-beats-both-react-and-vanilla-js.mdx": {
+	id: "2023/11/how-qwiks-astro-integration-beats-both-react-and-vanilla-js.mdx";
+  slug: "2023/11/how-qwiks-astro-integration-beats-both-react-and-vanilla-js";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2023/11/how-to-build-a-server-side-react-app-with-vite-and-express.mdx": {
 	id: "2023/11/how-to-build-a-server-side-react-app-with-vite-and-express.mdx";
   slug: "2023/11/how-to-build-a-server-side-react-app-with-vite-and-express";
