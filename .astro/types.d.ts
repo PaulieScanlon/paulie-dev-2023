@@ -550,6 +550,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/11/how-to-create-animated-gifs-from-sap-animations.mdx": {
+	id: "2023/11/how-to-create-animated-gifs-from-sap-animations.mdx";
+  slug: "2023/11/how-to-create-animated-gifs-from-sap-animations";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2023/11/im-in-an-open-relationship-with-remix.mdx": {
 	id: "2023/11/im-in-an-open-relationship-with-remix.mdx";
   slug: "2023/11/im-in-an-open-relationship-with-remix";
