@@ -29,7 +29,7 @@ const {
   article,
   article: {
     slug,
-    data: { title, author, tags, date, canonical },
+    data: { title, author, publication, url, tags, date, canonical },
   },
 } = Astro.props;
 
@@ -41,9 +41,12 @@ const { Content } = await article.render();
 <Main title={title} description={excerpt} slug={`/articles/${slug}/`} canonical={canonical}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
     <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
-    <span class='text-xs font-bold text-brand-tertiary'>{`By ${author}`}</span>
+    <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
   </div>
-  <h1>{title}</h1>
+  <h1 class='mb-2'>{title}</h1>
+  <small class='flex items-center gap-2 mb-8'
+    >Published by <a href={url} target='_blank' rel='noopener' class='flex items-center gap-2'> {publication}</a></small
+  >
   <TagsList tags={tags} />
   <Content />
   <Aside>
