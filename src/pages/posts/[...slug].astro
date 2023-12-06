@@ -32,7 +32,7 @@ const {
   post,
   post: {
     slug,
-    data: { title, date, tags, featuredImage },
+    data: { title, author, date, tags, featuredImage },
   },
 } = Astro.props;
 
@@ -62,7 +62,10 @@ try {
 ---
 
 <Main title={title} description={excerpt} slug={`/posts/${slug}/`} image={featuredImage}>
-  <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+  <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
+    <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+    <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
+  </div>
   <h1>{title}</h1>
   <TagsList tags={tags} />
   <Content />

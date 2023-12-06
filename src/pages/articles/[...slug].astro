@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 import Main from '../../layouts/main.astro';
@@ -29,7 +30,7 @@ const {
   article,
   article: {
     slug,
-    data: { title, author, publication, url, tags, date, canonical },
+    data: { title, author, logo, publication, url, tags, date, canonical },
   },
 } = Astro.props;
 
@@ -40,13 +41,19 @@ const { Content } = await article.render();
 
 <Main title={title} description={excerpt} slug={`/articles/${slug}/`} canonical={canonical}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
-    <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+    <div class='flex flex-col sm:flex-row gap-2 items-start sm:items-center'>
+      <div class='flex items-center gap-2'>
+        <Image width={24} height={24} alt={publication} src={logo} class='m-0' />
+        <a class='text-xs text-brand-secondary nounderline' href={url} target='_blank' rel='noopener'>
+          {publication}
+        </a>
+      </div>
+      <span class='hidden sm:inline'>&bull;</span>
+      <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+    </div>
     <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
   </div>
-  <h1 class='mb-2'>{title}</h1>
-  <small class='flex items-center gap-2 mb-8'
-    >Published by <a href={url} target='_blank' rel='noopener' class='flex items-center gap-2'> {publication}</a></small
-  >
+  <h1>{title}</h1>
   <TagsList tags={tags} />
   <Content />
   <Aside>
