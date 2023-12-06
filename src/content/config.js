@@ -20,6 +20,7 @@ export const collections = {
       tags: z.array(z.string()).optional(),
       date: z.date(),
       url: z.string(),
+      canonical: z.string().optional(),
       publication: z.string(),
       author: z.string(),
       logo: z.string(),

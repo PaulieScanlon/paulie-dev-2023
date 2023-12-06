@@ -101,9 +101,10 @@ const keywords = [
   'Serverless Functions',
 ];
 
-const { type, title, description, slug, image, tags, fullWidth = false } = Astro.props;
+const { type, title, description, slug, image, tags, fullWidth = false,canonical } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
+const linkCanonical = canonical ? canonical :`${siteUrl}${slug}`
 const ogImage = image ? image : `${siteUrl}${defaultImage}`;
 const seoKeywords = tags ? tags : keywords;
 
@@ -115,7 +116,7 @@ const isProduction = import.meta.env.PROD;
     <meta charset='utf-8' />
 
     <title>{htmlTitle}</title>
-    <link rel='canonical' href={`${siteUrl}${slug}`} />
+    <link rel='canonical' href={linkCanonical} />
 
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta name='description' content={description} />
