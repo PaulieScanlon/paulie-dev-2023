@@ -571,6 +571,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2023/12/recreating-shopifys-bfcm-globe-using-react-globe-gl.mdx": {
+	id: "2023/12/recreating-shopifys-bfcm-globe-using-react-globe-gl.mdx";
+  slug: "2023/12/recreating-shopifys-bfcm-globe-using-react-globe-gl";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
