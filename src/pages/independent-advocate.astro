@@ -4,6 +4,7 @@ export const prerender = true;
 import Main from '../layouts/main.astro';
 
 import { Image } from 'astro:assets';
+import ClickToCopyEmail from '../components/click-to-copy-email.astro';
 ---
 
 <Main
@@ -24,24 +25,9 @@ import { Image } from 'astro:assets';
       On this page you'll find information about my approach to Product Marketing, Developer Advocacy... and a
       <i>little something</i> I like to call <span class='text-brand-tertiary'>Bundles</span>.
     </small>
-    <ul class='list-none p-0'>
-      <li class='flex items-center justify-center gap-2'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke-width='1.5'
-          class='w-5 h-5 mt-1 stroke-brand-primary'
-        >
-          <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            d='M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75'
-          ></path>
-        </svg>
-        <span class='underline text-brand-secondary'>pauliescanlon@gmail.com</span>
-      </li>
-    </ul>
+    <div class='flex justify-center py-8'>
+      <ClickToCopyEmail />
+    </div>
   </div>
 
   <div class='flex flex-col gap-16 xl:gap-48'>
@@ -466,24 +452,9 @@ import { Image } from 'astro:assets';
         <p class='text-center'>If your product or service is aimed at JavaScript developers, we should talk!</p>
       </div>
 
-      <ul class='list-none p-0'>
-        <li class='flex items-center justify-center gap-2'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke-width='1.5'
-            class='w-5 h-5 mt-1 stroke-brand-primary'
-          >
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              d='M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75'
-            ></path>
-          </svg>
-          <span class='underline text-brand-secondary'>pauliescanlon@gmail.com</span>
-        </li>
-      </ul>
+      <div class='flex justify-center'>
+        <ClickToCopyEmail />
+      </div>
     </div>
   </div>
 </Main>
