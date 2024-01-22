@@ -578,6 +578,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/01/brighten-up-your-astro-site-with-kwesforms-and-rive.mdx": {
+	id: "2024/01/brighten-up-your-astro-site-with-kwesforms-and-rive.mdx";
+  slug: "2024/01/brighten-up-your-astro-site-with-kwesforms-and-rive";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {

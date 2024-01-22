@@ -79,7 +79,7 @@ module.exports = {
           lime: '#8bc34a',
           yellow: '#ffc107',
           fuchsia: '#7B1FA2',
-          blood: '#ff7901',
+          blood: '#fc5656',
           starfleet: '#0091f7',
           electric: '#b900f7',
           pink: '#ee3373',
