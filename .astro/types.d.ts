@@ -585,6 +585,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/01/take-a-qwik-break-from-react-with-astro.mdx": {
+	id: "2024/01/take-a-qwik-break-from-react-with-astro.mdx";
+  slug: "2024/01/take-a-qwik-break-from-react-with-astro";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
