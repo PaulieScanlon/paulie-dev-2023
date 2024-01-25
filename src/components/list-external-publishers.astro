@@ -11,11 +11,35 @@ const listData = data.sort((a, b) => b.total - a.total).slice(0, 10);
     listData.map((item) => {
       const { publication, logo, total } = item;
 
+      const publisherPage = {
+        Gatsby: 'https://www.gatsbyjs.com/contributors/paul-scanlon',
+        'The New Stack': 'https://thenewstack.io/author/paulscanlon/',
+        'Smashing Magazine': 'https://www.smashingmagazine.com/author/paul-scanlon/',
+        'Cockroach Labs': 'https://www.cockroachlabs.com/blog/author/paul_scanlon/',
+        Neon: null,
+        SitePoint: 'https://www.sitepoint.com/author/pscanlon/',
+        'CSS Tricks': null,
+        Netlify: 'https://www.netlify.com/blog/authors/paulie-scanlon/',
+        Storybook: 'https://medium.com/@PaulieScanlon',
+        Contentful: 'https://www.contentful.com/blog/author/paul-scanlon/',
+      };
+
       return (
         <li class='m-0 p-0 flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline leading-[3rem]'>
           <div class='flex grow items-center gap-3'>
             <Image width={18} height={18} alt={publication} src={logo} class='m-0' />
-            <span>{publication}</span>
+            {publisherPage[publication] ? (
+              <a
+                href={publisherPage[publication]}
+                target='_blank'
+                rel='noopener'
+                class='text-brand-text hover:text-brand-secondary transition-colors duration-300'
+              >
+                {publication}
+              </a>
+            ) : (
+              <span>{publication}</span>
+            )}
           </div>
           <strong>{`x${total}`}</strong>
         </li>
