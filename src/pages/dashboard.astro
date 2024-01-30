@@ -70,10 +70,12 @@ try {
 
   const data = await response.json();
 
-  webmentions = data;
+  webmentions = data.links.filter((link) => link.data.author);
 } catch (error) {
   console.error(error);
 }
+
+console.log(webmentions);
 
 const period = groupByDate(table.analytics).length - 1;
 ---
@@ -174,7 +176,7 @@ const period = groupByDate(table.analytics).length - 1;
     </section>
 
     {
-      webmentions.links.length > 0 ? (
+      webmentions.length > 0 ? (
         <section class='pb-16'>
           <h2 class='m-0 uppercase text-center'>Webmentions</h2>
           <p class='mt-0 mb-4 text-brand-text text-center'>
@@ -186,27 +188,26 @@ const period = groupByDate(table.analytics).length - 1;
           <div class='flex justify-center'>
             {
               <ul class='flex flex-wrap justify-center list-none m-0 p-0'>
-                {webmentions.links
-                  .filter((link) => link.data.author)
-                  .map((link) => {
-                    const {
-                      data: {
-                        url,
-                        author: { name, photo },
-                      },
-                    } = link;
-                    return (
-                      <li class='m-0 -ml-3 p-0 w-8 h-8'>
-                        <a href={url} target='_blank' rel='noopener' title={name}>
-                          <img
-                            alt={name}
-                            src={photo}
-                            class='block w-8 h-8 m-0 rounded-full overflow-hidden ring-2 ring-brand-muted'
-                          />
-                        </a>
-                      </li>
-                    );
-                  })}
+                {webmentions.map((link) => {
+                  const {
+                    data: {
+                      url,
+                      author: { name, photo },
+                    },
+                  } = link;
+
+                  return (
+                    <li class='m-0 -ml-3 p-0 w-8 h-8'>
+                      <a href={url} target='_blank' rel='noopener' title={name}>
+                        <img
+                          alt={name}
+                          src={photo}
+                          class='block w-8 h-8 m-0 rounded-full overflow-hidden ring-2 ring-brand-muted'
+                        />
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             }
           </div>
