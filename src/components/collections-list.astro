@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import AstroImage from '../components/astro-image.astro';
 import { formatDate } from '../utils/format-date';
 import { createExcerpt } from '../utils/create-excerpt';
+import { isNewContent } from '../utils/is-new-content';
 
 const { collections, base, slice } = Astro.props;
 ---
@@ -19,40 +20,48 @@ const { collections, base, slice } = Astro.props;
         } = collection;
 
         const excerpt = createExcerpt(collection.body);
+        const isNew = isNewContent(date);
 
         return (
-          <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-2 ease-in-out duration-500'>
-            <a
-              href={`${base}/${slug}/`}
-              class='flex flex-col sm:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline'
-            >
-              {featuredImage ? (
-                <AstroImage
-                  width={570}
-                  height={321}
-                  alt={title}
-                  url={featuredImage}
-                  className='!my-0 w-full sm:w-1/2'
-                />
-              ) : null}
-              <div class='flex flex-col gap-2'>
-                <span class='flex gap-2 items-center'>
-                  {publication ? (
-                    <>
-                      <div class='flex items-center gap-2'>
-                        <Image width={24} height={24} alt={publication} src={logo} class='m-0' />
-                        <small class='text-xs text-brand-secondary'>{publication}</small>
-                      </div>
-                      <span>&bull;</span>
-                    </>
-                  ) : null}
-
-                  <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
-                </span>
-                <strong class='block text-brand-text text-xl'>{title}</strong>
-                <p class='font-light'>{`${excerpt.substring(0, 100)}...`}</p>
+          <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-2 ease-in-out duration-500 cursor-pointer'>
+            <div class='relative overflow-hidden'>
+              <div class={`absolute right-0 top-0 h-16 w-16 ${isNew ? 'block' : 'hidden'}`}>
+                <div class='absolute transform rotate-45 bg-brand-primary text-center text-white font-semibold shadow-lg right-[-60px] top-[16px] w-[170px]'>
+                  NEW
+                </div>
               </div>
-            </a>
+              <a
+                href={`${base}/${slug}/`}
+                class='flex flex-col sm:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline'
+              >
+                {featuredImage ? (
+                  <AstroImage
+                    width={570}
+                    height={321}
+                    alt={title}
+                    url={featuredImage}
+                    className='!my-0 w-full sm:w-1/2'
+                  />
+                ) : null}
+                <div class='flex flex-col gap-2'>
+                  <span class='flex gap-2 items-center'>
+                    {publication ? (
+                      <>
+                        <div class='flex items-center gap-2'>
+                          <Image width={24} height={24} alt={publication} src={logo} class='m-0' />
+                          <small class='text-xs text-brand-secondary'>{publication}</small>
+                        </div>
+                        <span>&bull;</span>
+                      </>
+                    ) : null}
+
+                    <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+                  </span>
+                  <strong class='block text-brand-text text-xl'>{title}</strong>
+                  <p class='font-light'>{`${excerpt.substring(0, 100)}...`}</p>
+                </div>
+              </a>
+            </div>
           </li>
         );
       })
