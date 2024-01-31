@@ -12,8 +12,11 @@ import goeJson from '../utils/ne_110m_admin_0_countries.geojson.json';
   }}
 >
 </div>
-<script src='//unpkg.com/three' is:inline></script>
-<script src='//unpkg.com/globe.gl' is:inline></script>
+
+<!-- modules come from public/scripts and have been copied from node_modules. -->
+<!-- Check package.json for version -->
+<script src='/scripts/globe.gl.min.js' is:inline></script>
+<script src='/scripts/three.min.js' is:inline></script>
 
 <script define:vars={{ data, width, height, goeJson }}>
   const points = data.map((data) => {

@@ -35,12 +35,14 @@
     "astro": "^3.0.12",
     "astro-auto-import": "^0.3.1",
     "astro-embed": "^0.5.1",
+    "globe.gl": "^2.32.1",
     "markdown-it": "^13.0.1",
     "mdx": "^0.3.1",
     "octokit": "^3.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "three": "^0.160.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
