@@ -3,10 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import AutoImport from 'astro-auto-import';
 import vercel from '@astrojs/vercel/serverless';
+import qwikdev from '@qwikdev/astro';
 
-import react from '@astrojs/react';
-
-// https://astro.build/config
 export default defineConfig({
   output: 'server',
   adapter: vercel({
@@ -18,6 +16,7 @@ export default defineConfig({
   },
   integrations: [
     tailwind(),
+    qwikdev(),
     AutoImport({
       imports: [
         {
@@ -40,6 +39,5 @@ export default defineConfig({
     mdx({
       syntaxHighlight: 'prism',
     }),
-    react(),
   ],
 });

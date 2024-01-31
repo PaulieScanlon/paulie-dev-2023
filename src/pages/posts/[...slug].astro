@@ -8,7 +8,7 @@ import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
 import FeaturedImageCard from '../../components/featured-image-card.astro';
 import TableOfContents from '../../components/table-of-contents.astro';
-import Reactions from '../../components/reactions.tsx';
+import Reactions from '../../components/reactions';
 
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
@@ -69,7 +69,7 @@ try {
   <h1>{title}</h1>
   <TagsList tags={tags} />
   <Content />
-  <Reactions client:only='react' slug={`/posts/${slug}/`} />
+  <Reactions slug={`/posts/${slug}/`} />
   <Aside>
     <FeaturedImageCard alt={title} thumbnail={featuredImage} text={`${title}\n https://paulie.dev/posts/${slug}/`} />
     <TableOfContents headings={headings} />
@@ -108,3 +108,4 @@ try {
     }
   </Aside>
 </Main>
+../../components/reactions.jsx

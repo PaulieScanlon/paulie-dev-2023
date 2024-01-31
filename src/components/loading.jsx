@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
+import { component$ } from '@builder.io/qwik';
 
-const Loading = ({ className }) => {
+const Loading = component$(() => {
   return (
-    <div role='status'>
+    <div role='status' className='h-[40px]'>
       <svg
         aria-hidden='true'
-        className={`not-prose text-brand-outline animate-spin w-9 h-9 ${className}`}
+        className='not-prose text-brand-outline animate-spin w-9 h-9 fill-brand-salmon'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -22,15 +22,6 @@ const Loading = ({ className }) => {
       <span className='sr-only'>Loading...</span>
     </div>
   );
-};
-
-Loading.defaultProps = {
-  className: 'fill-brand-salmon',
-};
-
-Loading.propTypes = {
-  /** The class names to apply */
-  className: PropTypes.string,
-};
+});
 
 export default Loading;

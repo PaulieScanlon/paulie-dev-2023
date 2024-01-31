@@ -16,7 +16,7 @@ import LineChartVisits from '../components/line-chart-visits.astro';
 import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
 import PoweredByNeon from '../components/powered-by-neon.astro';
-import GithubActivity from '../components/github-activity.tsx';
+import GithubActivity from '../components/github-activity';
 
 import groupByTable from '../utils/group-by-table';
 import groupByYear from '../utils/group-by-year';
@@ -170,7 +170,7 @@ const period = groupByDate(table.analytics).length - 1;
     <section>
       <h2 class='m-0 uppercase'>GtiHub Activity</h2>
       <p class='mt-0 mb-4 text-slate-300'>Recent GitHub events</p>
-      <GithubActivity client:only='react' />
+      <GithubActivity />
     </section>
 
     {

@@ -1,42 +1,37 @@
-import { useEffect, useState } from 'react';
+import { component$, useVisibleTask$, useSignal } from '@builder.io/qwik';
 import { octokit } from '../clients/octokit';
 
 import Loading from './loading';
 import { formatDate } from '../utils/format-date';
 
-const GitHubActivity = () => {
-  const [data, setData] = useState(null);
+const GitHubActivity = component$(() => {
+  const data = useSignal(null);
 
-  const getData = async () => {
+  useVisibleTask$(async () => {
     try {
-      // https://docs.github.com/en/rest/activity/events?apiVersion=2022-11-28
       const response = await octokit.request('GET /users/{username}/events/public', {
         username: 'PaulieScanlon',
         per_page: 20,
       });
 
-      if (!response.data) {
-        throw new Error('Bad request');
+      if (response.status !== 200) {
+        throw new Error();
       }
 
-      setData(response.data);
+      data.value = response.data;
     } catch (error) {
       console.error(error);
     }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  });
 
   return (
     <div className='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
       <div className='p-4'>
         <div className='rounded border border-brand-outline p-4 bg-brand-background h-96 overflow-y-hidden'>
-          {data ? (
+          {data.value ? (
             <>
               <ul className='flex flex-col gap-4 list-none m-0 p-0 overflow-y-auto overflow-x-hidden h-[355px]'>
-                {data.map((item, index) => {
+                {data.value.map((item, index) => {
                   const cleanRepoUrl = (url) => {
                     url = url.replace('https://api.', 'https://');
                     url = url.replace('/repos', '');
@@ -119,6 +114,6 @@ const GitHubActivity = () => {
       </div>
     </div>
   );
-};
+});
 
 export default GitHubActivity;
