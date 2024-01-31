@@ -2573,11 +2573,6 @@ frame-ticker@1:
   dependencies:
     simplesignal "^2.1.6"
 
-fromentries@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/fromentries/-/fromentries-1.3.2.tgz#e4bca6808816bf8f93b52750f1127f5a6fd86e3a"
-  integrity sha512-cHEpEQHUg0f8XdtZCc2ZAhrHzKzT0MrFUTcvx+hfxYu7rGMDc5SKoXFh+n4YigxsHXRzc6OrCshdR1bWH6HHyg==
-
 fs-constants@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs-constants/-/fs-constants-1.0.0.tgz#6be0de9be998ce16af8afc24497b9ee9b7ccd9ad"
@@ -2688,17 +2683,17 @@ globals@^11.1.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"
   integrity sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==
 
-globe.gl@^2.29:
-  version "2.29.3"
-  resolved "https://registry.yarnpkg.com/globe.gl/-/globe.gl-2.29.3.tgz#b5fd42ee25f4ef3ee579bd3996363527ba1600f3"
-  integrity sha512-G/X3CHoyNSbl2eGjGT61Blo9bnZmmt0BhTS3gTLGxkiTUvpkvnV3q+Jz/vZnX4Yn1iBWaCBTfutFPp16FSDxTg==
+globe.gl@^2.32.1:
+  version "2.32.1"
+  resolved "https://registry.yarnpkg.com/globe.gl/-/globe.gl-2.32.1.tgz#b0c7ddd0cab9ec6cbc6f8e11a5e3a5eb88e165f6"
+  integrity sha512-6Uzcz3rPHnHQYYrqwUBJ9l9rYNxAjUNmQJQ2nIQIygcm6K+yYUOXhupaV4yYPcQmMaHDbzeaDd51x916uHUimA==
   dependencies:
     "@tweenjs/tween.js" "18 - 21"
     accessor-fn "1"
     kapsule "1"
     three ">=0.118 <1"
-    three-globe "^2.28"
-    three-render-objects "^1.28"
+    three-globe "^2.30"
+    three-render-objects "^1.29"
 
 graceful-fs@^4.1.2, graceful-fs@^4.1.5, graceful-fs@^4.2.9:
   version "4.2.11"
@@ -3065,11 +3060,6 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
-
-jerrypick@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/jerrypick/-/jerrypick-1.1.1.tgz#db0b15841a53cfe492de2db9544eecf8de73203c"
-  integrity sha512-XTtedPYEyVp4t6hJrXuRKr/jHj8SC4z+4K0b396PMkov6muL+i8IIamJIvZWe3jUspgIJak0P+BaWKawMYNBLg==
 
 jiti@^1.18.2:
   version "1.20.0"
@@ -4544,7 +4534,7 @@ prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@15, prop-types@^15.8.1:
+prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -4599,27 +4589,10 @@ react-dom@^18.0.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-globe.gl@^2.24.4:
-  version "2.24.4"
-  resolved "https://registry.yarnpkg.com/react-globe.gl/-/react-globe.gl-2.24.4.tgz#a2e2b9bd8147e5317c7571f15483822f13a399fe"
-  integrity sha512-Z4WUYAfFo6FgU5By0hLPgAiL8yjSn6lKf8TGk5PCgBr6A52GwkOJ6UmKYbWnQ6DmK8ZuQU9rLcxnspYSi1JSBg==
-  dependencies:
-    globe.gl "^2.29"
-    prop-types "15"
-    react-kapsule "2"
-
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
-
-react-kapsule@2:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-kapsule/-/react-kapsule-2.4.0.tgz#50d296ed2872a6db89f2de176eebb1a4ce2cccb8"
-  integrity sha512-w4Yv9CgWdj8kWGQEPNWFGJJ08dYEZHZpiaFR/DgZjCMBNqv9wus2Gy1qvHVJmJbzvAZbq6jdvFC+NYzEqAlNhQ==
-  dependencies:
-    fromentries "^1.3.2"
-    jerrypick "^1.1.1"
 
 react-refresh@^0.14.0:
   version "0.14.0"
@@ -5322,10 +5295,10 @@ three-geojson-geometry@1:
     d3-geo "1 - 3"
     earcut "2"
 
-three-globe@^2.28:
-  version "2.29.3"
-  resolved "https://registry.yarnpkg.com/three-globe/-/three-globe-2.29.3.tgz#1997f4e4c0219ede996a69962c0f99a555b1253c"
-  integrity sha512-Ooh0BnAghE/AVy3l0VWmSLR8Qc4v6UD5b9MJ8x8owBRbviOt0MJr323e6VGs6qRr3j6bqr1gocxfQKK4g0OnQw==
+three-globe@^2.30:
+  version "2.30.0"
+  resolved "https://registry.yarnpkg.com/three-globe/-/three-globe-2.30.0.tgz#ae6b0dcaab5be5e1b258101e270165d2aab9481e"
+  integrity sha512-eS3y9cOv3fDkFUAHg6XOT42IY1uU8PcPMEvNQ/iz0f8zQlo+TyTSGLC1cNSAozxbRtx0excmZQ7idV5DPH4JbA==
   dependencies:
     "@tweenjs/tween.js" "18 - 21"
     accessor-fn "1"
@@ -5347,10 +5320,10 @@ three-globe@^2.28:
     tinycolor2 "1"
     yaot "^1.1"
 
-three-render-objects@^1.28:
-  version "1.28.6"
-  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.28.6.tgz#96386dcafd270e509606691139018c4a093ff495"
-  integrity sha512-e1Dls7NbT9XvKByueLRFRFKIAnNRL9sz7Ul318uXkP/f9uZjUFmelgloBAK3PSQ5xJd++FsKCf7ZIteSWNzTpA==
+three-render-objects@^1.29:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/three-render-objects/-/three-render-objects-1.29.0.tgz#fb9769e62784f02682d7d26626dda4fec2655deb"
+  integrity sha512-HzVjL12KG2ko5VoU3aO/qFbtVu5Md5SN8dSzjGS7uNeTmYSAdQQZmg+R6zgctmvUrEjA78vO6ZGAC9y/9o/H2A==
   dependencies:
     "@tweenjs/tween.js" "18 - 21"
     accessor-fn "1"
