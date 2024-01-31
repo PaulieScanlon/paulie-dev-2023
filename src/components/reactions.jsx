@@ -6,7 +6,7 @@ import Loading from './loading';
 const Reactions = component$(({ slug }) => {
   const data = useSignal(null);
   const counts = useSignal(null);
-  const status = useStore({ submitting: false, submitted: false, reaction: '' });
+  const status = useStore({ submitting: true, submitted: false, reaction: '' });
 
   const getReactions = $(async () => {
     try {
@@ -25,7 +25,7 @@ const Reactions = component$(({ slug }) => {
         acc[item.reaction] = parseInt(item.count);
         return acc;
       }, {});
-
+      status.submitting = false;
       data.value = json.data;
     } catch (error) {
       console.error(error);
