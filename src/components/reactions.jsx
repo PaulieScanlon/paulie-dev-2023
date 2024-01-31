@@ -83,26 +83,33 @@ const Reactions = component$(({ slug }) => {
           const { name, d, color } = emoji;
           return (
             <li key={index} className='m-0 p-0 w-10 h-10'>
-              <div>
+              <div className='relative group'>
                 <button
-                  className={`group rounded-full transition-all duration-300 enabled:hover:scale-125 disabled:text-brand-guide text-brand-${color}`}
+                  className={`rounded-full transition-all duration-300 enabled:hover:scale-125 disabled:text-brand-guide text-brand-${color}`}
                   disabled={status.submitting || status.submitted}
                   onClick$={() => handleReaction(name)}
                 >
                   {status.submitting && status.reaction === name ? (
                     <Loading />
                   ) : (
-                    <svg
-                      aria-labelledby={`reaction-${name}`}
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='not-prose rounded-full w-full h-full transition-colors duration-300'
-                      viewBox='0 0 32 32'
-                      fill='currentColor'
-                    >
-                      <path d={d} />
-                    </svg>
+                    <>
+                      <svg
+                        aria-labelledby={`reaction-${name}`}
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='not-prose rounded-full w-full h-full transition-colors duration-300'
+                        viewBox='0 0 32 32'
+                        fill='currentColor'
+                      >
+                        <path d={d} />
+                      </svg>
+                    </>
                   )}
                 </button>
+                {status.submitting || status.submitted ? null : (
+                  <span className='absolute top-14 left-1/2 -translate-x-1/2 block text-center text-xs bg-brand-outline border border-brand-guide rounded px-2 py-0.5 duration-200 transition-opacity opacity-0 group-hover:opacity-100 capitalize'>
+                    {name}
+                  </span>
+                )}
                 <small className='block font-bold text-center text-brand-muted h-6'>
                   {counts.value && counts.value[name] ? counts.value[name] : 0}
                 </small>
