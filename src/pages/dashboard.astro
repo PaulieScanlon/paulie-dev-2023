@@ -11,7 +11,7 @@ import ListExternalPublishers from '../components/list-external-publishers.astro
 import ListPopularPosts from '../components/list-popular-posts.astro';
 import ListPopularReferrers from '../components/list-top-referrers.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
-import GlobeAllCities from '../components/globe-all-cities';
+import GlobeAllCities from '../components/globe-all-cities.astro';
 import LineChartVisits from '../components/line-chart-visits.astro';
 import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
@@ -74,8 +74,6 @@ try {
 } catch (error) {
   console.error(error);
 }
-
-console.log(webmentions);
 
 const period = groupByDate(table.analytics).length - 1;
 ---
@@ -152,7 +150,7 @@ const period = groupByDate(table.analytics).length - 1;
               <p class='mt-0 mb-4 text-slate-300'>All city visits.</p>
               <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
                 <div class='flex justify-center overflow-hidden'>
-                  <GlobeAllCities client:only='react' data={groupByCity(table.analytics)} />
+                  <GlobeAllCities data={groupByCity(table.analytics)} />
                 </div>
               </div>
               <PoweredByNeon period={period} />
