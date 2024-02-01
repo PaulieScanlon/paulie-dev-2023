@@ -62,7 +62,7 @@ const Reactions = component$(({ slug }) => {
   });
 
   return (
-    <div className='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8 my-32'>
+    <div className='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8 mt-32 mb-8'>
       <div className='flex flex-col gap-2'>
         <strong className='block text-center text-4xl text-brand-secondary'>Hey!</strong>
 

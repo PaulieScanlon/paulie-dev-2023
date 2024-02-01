@@ -8,7 +8,7 @@ import ProfileCard from '../components/profile-card.astro';
 import LineChartYears from '../components/line-chart-years.astro';
 import BarChartDays from '../components/bar-chart-days.astro';
 import ListExternalPublishers from '../components/list-external-publishers.astro';
-import ListPopularPosts from '../components/list-popular-posts.astro';
+import ListPopular from '../components/list-popular.astro';
 import ListPopularReferrers from '../components/list-top-referrers.astro';
 import ListTopTenCities from '../components/list-top-ten-cities.astro';
 import GlobeAllCities from '../components/globe-all-cities.astro';
@@ -40,7 +40,7 @@ const streams = await getCollection('streams');
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
 
 let table = null;
-let webmentions = null;
+// let webmentions = null;
 
 try {
   const response = await sql`
@@ -61,19 +61,19 @@ try {
   console.error(error);
 }
 
-try {
-  const response = await fetch(`https://webmention.io/api/mentions?token=${import.meta.env.WEBMENTION_API_KEY}`);
+// try {
+//   const response = await fetch(`https://webmention.io/api/mentions?token=${import.meta.env.WEBMENTION_API_KEY}`);
 
-  if (response.status !== 200) {
-    throw new Error('Bad request');
-  }
+//   if (response.status !== 200) {
+//     throw new Error('Bad request');
+//   }
 
-  const data = await response.json();
+//   const data = await response.json();
 
-  webmentions = data.links.filter((link) => link.data.author);
-} catch (error) {
-  console.error(error);
-}
+//   webmentions = data.links.filter((link) => link.data.author);
+// } catch (error) {
+//   console.error(error);
+// }
 
 const period = groupByDate(table.analytics).length - 1;
 ---
@@ -131,7 +131,7 @@ const period = groupByDate(table.analytics).length - 1;
 
           <section>
             <h2 class='m-0 uppercase'>Top Referrers</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top ten referrers.</p>
+            <p class='mt-0 mb-4 text-slate-300'>Top Ten referrers.</p>
             <ListPopularReferrers data={groupByReferrer(table.analytics)} />
             <PoweredByNeon period={period} />
           </section>
@@ -140,14 +140,14 @@ const period = groupByDate(table.analytics).length - 1;
             <section class='w-full lg:w-1/2'>
               <div class='flex flex-col'>
                 <h2 class='m-0 uppercase'>Total by City</h2>
-                <p class='mt-0 mb-4 text-slate-300'>Top ten city visits.</p>
+                <p class='mt-0 mb-4 text-slate-300'>Top Ten City visits.</p>
                 <ListTopTenCities data={groupByCity(table.analytics)} />
               </div>
               <PoweredByNeon period={period} />
             </section>
             <section class='w-full lg:w-1/2'>
               <h2 class='m-0 uppercase'>Geolocation</h2>
-              <p class='mt-0 mb-4 text-slate-300'>All city visits.</p>
+              <p class='mt-0 mb-4 text-slate-300'>All City visits.</p>
               <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
                 <div class='flex justify-center overflow-hidden'>
                   <GlobeAllCities data={groupByCity(table.analytics)} />
@@ -159,8 +159,33 @@ const period = groupByDate(table.analytics).length - 1;
 
           <section>
             <h2 class='m-0 uppercase'>Popular Posts</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top ten post views.</p>
-            <ListPopularPosts data={groupBySlug(table.analytics)} />
+            <p class='mt-0 mb-4 text-slate-300'>Top Ten Post views.</p>
+            <ListPopular
+              data={groupBySlug(table.analytics)
+                .filter((item) => {
+                  if (item.slug.includes('/posts/2')) {
+                    return item;
+                  }
+                })
+                .sort((a, b) => b.total - a.total)
+                .slice(0, 10)}
+            />
+            <PoweredByNeon period={period} />
+          </section>
+
+          <section>
+            <h2 class='m-0 uppercase'>Popular Articles</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Top Ten Article views.</p>
+            <ListPopular
+              data={groupBySlug(table.analytics)
+                .filter((item) => {
+                  if (item.slug.includes('/articles/2')) {
+                    return item;
+                  }
+                })
+                .sort((a, b) => b.total - a.total)
+                .slice(0, 10)}
+            />
             <PoweredByNeon period={period} />
           </section>
         </>
@@ -173,7 +198,7 @@ const period = groupByDate(table.analytics).length - 1;
       <GithubActivity />
     </section>
 
-    {
+    <!-- {
       webmentions.length > 0 ? (
         <section class='pb-16'>
           <h2 class='m-0 uppercase text-center'>Webmentions</h2>
@@ -211,7 +236,7 @@ const period = groupByDate(table.analytics).length - 1;
           </div>
         </section>
       ) : null
-    }
+    } -->
     <Aside>
       <ProfileCard />
     </Aside>

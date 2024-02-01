@@ -40,25 +40,26 @@ const excerpt = `${createExcerpt(post.body).substring(0, 70)}...`;
 
 const { Content, headings } = await post.render();
 
-const target = `https://www.paulie.dev/posts/${slug}/`;
-let webmentions = null;
+// const target = `https://www.paulie.dev/posts/${slug}/`;
 
-try {
-  const response = await fetch(`https://webmention.io/api/mentions.jf2?target=${target}`);
+// let webmentions = null;
 
-  if (!response.ok) {
-    throw new Error();
-  }
+// try {
+//   const response = await fetch(`https://webmention.io/api/mentions.jf2?target=${target}`);
 
-  if (response.status !== 200) {
-    throw new Error('Bad request');
-  }
+//   if (!response.ok) {
+//     throw new Error();
+//   }
 
-  const data = await response.json();
-  webmentions = data;
-} catch (error) {
-  console.error(error);
-}
+//   if (response.status !== 200) {
+//     throw new Error('Bad request');
+//   }
+
+//   const data = await response.json();
+//   webmentions = data;
+// } catch (error) {
+//   console.error(error);
+// }
 ---
 
 <Main title={title} description={excerpt} slug={`/posts/${slug}/`} image={featuredImage}>
@@ -73,7 +74,7 @@ try {
   <Aside>
     <FeaturedImageCard alt={title} thumbnail={featuredImage} text={`${title}\n https://paulie.dev/posts/${slug}/`} />
     <TableOfContents headings={headings} />
-    {
+    <!-- {
       webmentions.children.length > 0 ? (
         <div class='flex flex-col gap-4 border border-brand-outline rounded p-8'>
           <h6 class='m-0 font-semibold uppercase text-center text-brand-secondary'>Webmentions</h6>
@@ -105,7 +106,6 @@ try {
           </div>
         </div>
       ) : null
-    }
+    } -->
   </Aside>
 </Main>
-../../components/reactions.jsx
