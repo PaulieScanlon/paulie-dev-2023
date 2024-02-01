@@ -111,7 +111,7 @@ const isProduction = import.meta.env.PROD;
         <script is:inline>
           setTimeout(function () {
             navigator.sendBeacon(
-              'https://paulie.dev/api/page-view',
+              '/api/page-view',
               JSON.stringify({ slug: window.location.pathname, referrer: document.referrer })
             );
           }, 10000);
