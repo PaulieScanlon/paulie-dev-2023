@@ -1,6 +1,4 @@
 ---
-import EdgeAnalytics from '../components/edge-analytics.astro';
-
 import Layout from './layout';
 
 import '@fontsource/inconsolata/300.css';
@@ -110,10 +108,10 @@ const isProduction = import.meta.env.PROD;
       <!-- Edge Analytics -->
       {
         isProduction ? (
-        <script is:inline async>
+        <script is:inline>
           setTimeout(function () {
             navigator.sendBeacon(
-              '/api/page-view',
+              'https://paulie.dev/api/page-view',
               JSON.stringify({ slug: window.location.pathname, referrer: document.referrer })
             );
           }, 10000);
