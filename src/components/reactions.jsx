@@ -62,30 +62,30 @@ const Reactions = component$(({ slug }) => {
   });
 
   return (
-    <div className='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8 mt-32 mb-8'>
-      <div className='flex flex-col gap-2'>
-        <strong className='block text-center text-4xl text-brand-secondary'>Hey!</strong>
+    <div class='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8 mt-32 mb-8'>
+      <div class='flex flex-col gap-2'>
+        <strong class='block text-center text-4xl text-brand-secondary'>Hey!</strong>
 
         {status.submitted ? (
-          <p className='m-0 text-center text-sm'>
+          <p class='m-0 text-center text-sm'>
             Splendid, thank you!{' '}
             <span role='img' aria-label='Victory Hand emoji'>
               ✌️
             </span>
           </p>
         ) : (
-          <p className='m-0 text-center text-sm'>Leave a reaction and let me know how I'm doing.</p>
+          <p class='m-0 text-center text-sm'>Leave a reaction and let me know how I'm doing.</p>
         )}
       </div>
 
-      <ul className='list-none p-0 m-0 flex items-center justify-center gap-3 pb-4'>
+      <ul class='list-none p-0 m-0 flex items-center justify-center gap-3 pb-4'>
         {emojis.map((emoji, index) => {
           const { name, d, color } = emoji;
           return (
-            <li key={index} className='m-0 p-0 w-10 h-10'>
-              <div className='relative group'>
+            <li key={index} class='m-0 p-0 w-10 h-10'>
+              <div class='relative group'>
                 <button
-                  className={`rounded-full transition-all duration-300 enabled:hover:scale-125 disabled:text-brand-guide text-brand-${color}`}
+                  class={`rounded-full transition-all duration-300 enabled:hover:scale-125 disabled:text-brand-guide text-brand-${color}`}
                   disabled={status.submitting || status.submitted}
                   onClick$={() => handleReaction(name)}
                 >
@@ -96,7 +96,7 @@ const Reactions = component$(({ slug }) => {
                       <svg
                         aria-labelledby={`reaction-${name}`}
                         xmlns='http://www.w3.org/2000/svg'
-                        className='not-prose rounded-full w-full h-full transition-colors duration-300'
+                        class='not-prose rounded-full w-full h-full transition-colors duration-300'
                         viewBox='0 0 32 32'
                         fill='currentColor'
                       >
@@ -106,11 +106,11 @@ const Reactions = component$(({ slug }) => {
                   )}
                 </button>
                 {status.submitting || status.submitted ? null : (
-                  <span className='absolute top-14 left-1/2 -translate-x-1/2 block text-center text-xs bg-brand-outline border border-brand-guide rounded px-2 py-0.5 duration-200 transition-opacity opacity-0 group-hover:opacity-100 capitalize'>
+                  <span class='absolute top-14 left-1/2 -translate-x-1/2 block text-center text-xs bg-brand-outline border border-brand-guide rounded px-2 py-0.5 duration-200 transition-opacity opacity-0 group-hover:opacity-100 capitalize'>
                     {name}
                   </span>
                 )}
-                <small className='block font-bold text-center text-brand-muted h-6'>
+                <small class='block font-bold text-center text-brand-muted h-6'>
                   {counts.value && counts.value[name] ? counts.value[name] : 0}
                 </small>
               </div>
@@ -118,9 +118,9 @@ const Reactions = component$(({ slug }) => {
           );
         })}
       </ul>
-      <div className='flex gap-1 justify-center'>
-        <small className='text-brand-secondary text-xs'>Powered by</small>
-        <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener' className='text-xs'>
+      <div class='flex gap-1 justify-center'>
+        <small class='text-brand-secondary text-xs'>Powered by</small>
+        <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener' class='text-xs'>
           Neon
         </a>
       </div>
