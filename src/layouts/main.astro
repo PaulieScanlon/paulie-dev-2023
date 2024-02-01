@@ -35,7 +35,7 @@ const keywords = [
   'Serverless Functions',
   'Edge Functions',
   'SQL',
-  'Postgres'
+  'Postgres',
 ];
 
 const { type, title, description, slug, image, tags, fullWidth = false, canonical } = Astro.props;
@@ -90,6 +90,7 @@ const isProduction = import.meta.env.PROD;
 
     <!-- Custom CSS -->
     <link href='/prism-dracula.css' rel='stylesheet' />
+
       <!-- Google tag (gtag.js) -->
       {
         isProduction ? (
@@ -105,11 +106,18 @@ const isProduction = import.meta.env.PROD;
           </script>
         ) : null
       }
-  
+
       <!-- Edge Analytics -->
       {
         isProduction ? (
-          <EdgeAnalytics />
+        <script is:inline async>
+          setTimeout(function () {
+            navigator.sendBeacon(
+              '/api/page-view',
+              JSON.stringify({ slug: window.location.pathname, referrer: document.referrer })
+            );
+          }, 10000);
+        </script>
         ) : null
       }
   </head>
