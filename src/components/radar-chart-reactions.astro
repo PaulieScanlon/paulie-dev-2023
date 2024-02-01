@@ -8,7 +8,7 @@ const chartCenter = chartSize / 2;
 
 const chartData = data;
 const max = chartData.reduce((max, current) => (current.total > max ? current.total : max), 0);
-const pointPadding = 24;
+const pointPadding = 48;
 const rings = [...Array(6).keys()];
 
 const centerX = (angle, distance) => Math.cos(angle - Math.PI / 2) * distance;
@@ -73,7 +73,7 @@ const shape =
         }
         <path d={shape} class='stroke-brand-text/50 fill-brand-text/20' stroke-width={1}></path>
         {
-          properties.reverse().map((property, index) => {
+          properties.reverse().map((property) => {
             const { reaction, x, y } = property;
 
             const icon = emojis.find((emoji) => {
