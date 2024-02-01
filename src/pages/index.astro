@@ -22,23 +22,23 @@ const posts = await getCollection('posts');
     technical content for <span class='text-brand-secondary'>educational</span> and <span class='text-brand-tertiary'
       >promotional</span
     >
-     purposes.
+    purposes.
   </p>
 
   <CtaInternal href='/independent-advocate//' classNames='mt-8 mb-24 justify-start'>Find Out More</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Articles</h2>
-  <p>Here's the latest articles I've written that have been published elsewhere.</p>
+  <p>Latest Articles written for external publishers.</p>
   <CollectionsList collections={articles} base='/articles' slice={3} />
   <CtaInternal href='/articles/'>See All Articles</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Posts</h2>
-  <p>Here's the latest posts I've written and published here on my site.</p>
+  <p>Latest Posts published here on my site.</p>
   <CollectionsList collections={posts} base='/posts' slice={3} />
   <CtaInternal href='/posts/'>See All Posts</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Demos</h2>
-  <p>Here's some bigger projects!</p>
+  <p>Product demonstration projects.</p>
   <CollectionsList collections={demos} base='/demos' slice={3} />
   <CtaInternal href='/demos/'>See All Demos</CtaInternal>
 
