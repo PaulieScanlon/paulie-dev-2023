@@ -3,7 +3,12 @@ import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
 import { siteLinks, socialLinks } from './nav-links';
 
-const Layout = component$(({ fullWidth, slug }) => {
+interface Props {
+  fullWidth: boolean;
+  slug: string;
+}
+
+const Layout = component$<Props>(({ fullWidth, slug }) => {
   const isNavOpen = useSignal(false);
 
   const handleNav = $(() => {

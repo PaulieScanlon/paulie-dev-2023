@@ -3,7 +3,11 @@ import { component$, useVisibleTask$, useSignal, useStore, $ } from '@builder.io
 import emojis from '../utils/emojis';
 import Loading from './loading';
 
-const Reactions = component$(({ slug }) => {
+interface Props {
+  slug: String;
+}
+
+const Reactions = component$<Props>(({ slug }) => {
   const data = useSignal(null);
   const counts = useSignal(null);
   const status = useStore({ submitting: true, submitted: false, reaction: '' });

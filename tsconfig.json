@@ -4,6 +4,6 @@
     "checkJs": false,
     "allowJs": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "@builder.io/qwik"
   }
 }

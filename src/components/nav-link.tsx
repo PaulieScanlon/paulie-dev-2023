@@ -1,6 +1,13 @@
 import { component$ } from '@builder.io/qwik';
 
-const NavLink = component$(({ title, icon, slug, isActive }) => {
+interface Props {
+  title: string;
+  icon: string;
+  slug: string;
+  isActive: boolean;
+}
+
+const NavLink = component$<Props>(({ title, icon, slug, isActive }) => {
   return (
     <a
       href={slug}
