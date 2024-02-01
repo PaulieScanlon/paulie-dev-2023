@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
@@ -19,7 +17,7 @@ const articles = await getCollection('articles');
     <a href='https://www.smashingmagazine.com/author/paul-scanlon/' target='_blank' rel='noopener'>
       Smashing Magazine</a
     >
-     and
+    and
     <a href='https://css-tricks.com/' target='_blank' rel='noopener'> CSS Tricks</a>.
   </p>
   <CollectionsList collections={articles} base='/articles' />

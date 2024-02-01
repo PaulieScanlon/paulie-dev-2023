@@ -1,6 +1,4 @@
 ---
-import EdgeAnalytics from '../components/edge-analytics.astro';
-
 import Layout from './layout';
 
 import '@fontsource/inconsolata/300.css';
@@ -35,7 +33,7 @@ const keywords = [
   'Serverless Functions',
   'Edge Functions',
   'SQL',
-  'Postgres'
+  'Postgres',
 ];
 
 const { type, title, description, slug, image, tags, fullWidth = false, canonical } = Astro.props;
@@ -90,6 +88,7 @@ const isProduction = import.meta.env.PROD;
 
     <!-- Custom CSS -->
     <link href='/prism-dracula.css' rel='stylesheet' />
+
       <!-- Google tag (gtag.js) -->
       {
         isProduction ? (
@@ -105,11 +104,18 @@ const isProduction = import.meta.env.PROD;
           </script>
         ) : null
       }
-  
+
       <!-- Edge Analytics -->
       {
         isProduction ? (
-          <EdgeAnalytics />
+        <script is:inline>
+          setTimeout(function () {
+            navigator.sendBeacon(
+              'https://paulie.dev/api/page-view',
+              JSON.stringify({ slug: window.location.pathname, referrer: document.referrer })
+            );
+          }, 10000);
+        </script>
         ) : null
       }
   </head>
