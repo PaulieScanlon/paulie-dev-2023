@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel/serverless';
 import qwikdev from '@qwikdev/astro';
 
 export default defineConfig({
-  output: 'hybrid',
+  output: 'server',
   adapter: vercel({
     edgeMiddleware: true,
     maxDuration: 300,
