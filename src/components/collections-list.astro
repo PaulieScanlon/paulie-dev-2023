@@ -1,9 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import AstroImage from '../components/astro-image.astro';
+import AstroImage from './astro-image.astro';
+import NewLabel from './new-label';
+
 import { formatDate } from '../utils/format-date';
 import { createExcerpt } from '../utils/create-excerpt';
-import { isNewContent } from '../utils/is-new-content';
 
 const { collections, base, slice } = Astro.props;
 ---
@@ -20,16 +21,11 @@ const { collections, base, slice } = Astro.props;
         } = collection;
 
         const excerpt = createExcerpt(collection.body);
-        const isNew = isNewContent(date);
 
         return (
           <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-2 ease-in-out duration-500 cursor-pointer'>
             <div class='relative overflow-hidden'>
-              <div class={`absolute right-0 top-0 h-16 w-16 ${isNew ? 'block' : 'hidden'}`}>
-                <div class='absolute transform rotate-45 bg-brand-primary text-center text-white font-semibold shadow-lg right-[-60px] top-[16px] w-[170px]'>
-                  NEW
-                </div>
-              </div>
+              <NewLabel date={date} />
               <a
                 href={`${base}/${slug}/`}
                 class='flex flex-col sm:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline'
