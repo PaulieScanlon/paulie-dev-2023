@@ -2,7 +2,8 @@
 const { audioFeedId } = Astro.props;
 ---
 
-<div id='audiofeed-embed' class='min-h-[92px]'></div>
+<div id='audiofeed-embed' class='min-h-[90px] w-full sticky top-[73px] drop-shadow-2xl z-50 overflow-hidden rounded'>
+</div>
 
 <script define:vars={{ audioFeedId }}>
   var episodeUrl = `https://audiofeed.ai/embed/${audioFeedId}?theme=light`;
@@ -34,7 +35,8 @@ const { audioFeedId } = Astro.props;
       iframe.height = iframeHeight;
       iframe.style.width = iframeWidth;
       iframe.style.height = iframeHeight;
-      iframe.style.backgroundColor = backgroundColor;
+      iframe.style.backgroundColor = 'transparent';
+      iframe.setAttribute('allow-same-origin', '');
       var targetDiv = document.getElementById('audiofeed-embed');
       if (targetDiv) {
         targetDiv.appendChild(iframe);
