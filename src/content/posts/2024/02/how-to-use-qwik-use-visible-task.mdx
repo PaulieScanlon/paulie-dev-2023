@@ -1,0 +1,129 @@
+---
+type: post
+title: "How to use Qwik's useVisibleTask$"
+tags: [Qwik]
+date: 2024-02-01
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1706832540/paulie.dev/2024/02/qwik-bites-useVisibleTask_czhft9.jpg
+---
+
+In this post I'll be explaining how, and why I used Qwik's [`useVisibleTask$`](https://qwik.dev/docs/guides/best-practices/#use-usevisibletask-as-a-last-resort). I felt this needed explaining because, as you'll see from the docs, the Quik team explicitly mention using it "as a last resort".
+
+In my case however, it's far from a last resort, and because of my requirements, this approach made the most sense, and more than that. `useVisibleTask$` has a super cool trick up it's sleeve that you might not be aware of.
+
+## My Requirements
+
+If you scroll to the bottom of this post (or any post on my site) you'll see a "reactions" component. I use this to capture sentiment from my readers. It's sometimes helpful for me to understand if something i've written really sucks. In any case, the reactions component works as follows.
+
+<AstroImage
+  width='768'
+  height='432'
+  alt='Screenshot of Reaction component on paulie.dev'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706833271/paulie.dev/2024/02/1-reaction-component_h3f2ek.jpg'
+/>
+
+### 1. Fetch Reactions
+
+The component displays a count for each reaction, this is an accumulated total for each reaction related to each slug.
+
+### 2. Post Reaction
+
+The component allows users to click one of the colorful faces and submit a reaction.
+
+### 3. Re-fetch Reactions
+
+After a reaction has been successfully posted, I re-fetch the data to show the latest totals.
+
+This component is "client-side" only, and I'll now explain why.
+
+## Client-side Data Fetching
+
+Most of the pages on my site are static, I want them this way so they are fast and, after I publish, the content rarely changes so there's no real need for these pages to be server-side rendered. But, they would need to be if I wanted both `GET` and `POST` functionality to work.
+
+I considered doing both the `GET` and `POST` server-side but converting all of my post pages into server-side rendered pages seems like a dumb move. Static will always be faster.
+
+Another thing I considered is where this component is in the page, and how crucial it is to the user experience.
+
+Given that the component is right at the bottom of the page, and not every user scrolls that far, and that there's no real benefit to the user, this component is actually fine to do all it's "data work" on the client.
+
+## Qwik trick up it's sleeve
+
+That other cool thing is, Qwik's `useVisibleTask$` utilizes an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). Meaning that the "fetch" only happens when the component is scrolled into the viewport. How cool is that!
+
+So now, rather than fetching data for no reason using server-side data fetching, i'm only fetching data **if** a user actually gets to the bottom of the page, and here's how it works.
+
+## How to use Qwik's useVisibleTask$
+
+```javascript
+import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
+
+const Reactions = component$(({ slug }) => {
+  const counts = useSignal(null);
+
+  const getReactions = $(async () => {
+    try {
+      const response = await fetch('/api/get-reactions', {
+        method: 'POST',
+        body: JSON.stringify({ slug: slug }),
+      });
+
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      const json = await response.json();
+
+      counts.value = json.data.reduce((items, item) => {
+        items[item.reaction] = parseInt(item.count);
+        return items;
+      }, {});
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  useVisibleTask$(() => {
+    getReactions();
+  });
+
+  const handleReaction = $(async (reaction) => {
+    try {
+      const response = await fetch('/api/add-reaction', {
+        method: 'POST',
+        body: JSON.stringify({ slug: slug, reaction: reaction }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Bad response');
+      }
+
+      getReactions();
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  return <div>...</div>;
+});
+
+export default Reactions;
+```
+
+The way this works is by using `useVisibleTask$` to call a function called `getReactions`, which as you'd imagine, gets all the reactions. I then use a `reduce` to add them all up and store the resulting totals in the `counts` `useSignal` value.
+
+I also have a `handleReaction` function which is called `onClick$` by each of the colorful faces, and after a `POST` is successful I call the `getReactions` function again.
+
+As I mentioned, and I'll reiterate this again, the data fetching for `getReactions` won't even happen unless a user scrolls to the bottom of each page. The page itself is static and will load faster than if it had been server-side rendered.
+
+You can see this in action (depending on your connection speed), where the colorful faces aren't colorful and 0 counts are displayed while the data fetching is in progress.
+
+<AstroImage
+  width='768'
+  height='432'
+  alt='Screenshot of Reaction component loading on paulie.dev'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706836734/paulie.dev/2024/02/2-reaction-loading_pvigqs.jpg'
+/>
+
+## Final Thoughts
+
+So there you have it, a completely valid use case for client-side data handling and I hope you'll agree, for my requirements its the best way to do it.

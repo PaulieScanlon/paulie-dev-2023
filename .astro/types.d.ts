@@ -1179,6 +1179,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2024/02/how-to-use-qwik-use-visible-task.mdx": {
+	id: "2024/02/how-to-use-qwik-use-visible-task.mdx";
+  slug: "2024/02/how-to-use-qwik-use-visible-task";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 "streams": {
 "2021/04/gatsby-deep-dives-with-queen-raae.mdx": {

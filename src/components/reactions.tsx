@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Reactions = component$<Props>(({ slug }) => {
-  const data = useSignal(null);
   const counts = useSignal(null);
   const status = useStore({ submitting: true, submitted: false, reaction: '' });
 
@@ -25,12 +24,11 @@ const Reactions = component$<Props>(({ slug }) => {
 
       const json = await response.json();
 
-      counts.value = json.data.reduce((acc, item) => {
-        acc[item.reaction] = parseInt(item.count);
-        return acc;
+      counts.value = json.data.reduce((items, item) => {
+        items[item.reaction] = parseInt(item.count);
+        return items;
       }, {});
       status.submitting = false;
-      data.value = json.data;
     } catch (error) {
       console.error(error);
     }
