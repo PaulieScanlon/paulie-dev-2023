@@ -26,6 +26,7 @@ export const collections = {
       publication: z.string(),
       author: z.string(),
       logo: z.string(),
+      featuredImage: z.string().optional(),
     }),
   }),
   streams: defineCollection({

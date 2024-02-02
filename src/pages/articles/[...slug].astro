@@ -7,6 +7,7 @@ import { getCollection } from 'astro:content';
 import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
+import FeaturedImageCard from '../../components/featured-image-card.astro';
 import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
@@ -31,7 +32,7 @@ const {
   article,
   article: {
     slug,
-    data: { title, author, logo, publication, url, tags, date, canonical, audioFeedId },
+    data: { title, author, logo, publication, url, tags, date, canonical, featuredImage, audioFeedId },
   },
 } = Astro.props;
 
@@ -40,7 +41,7 @@ const excerpt = `${createExcerpt(article.body).substring(0, 70)}...`;
 const { Content } = await article.render();
 ---
 
-<Main title={title} description={excerpt} slug={`/articles/${slug}/`} canonical={canonical}>
+<Main title={title} description={excerpt} slug={`/articles/${slug}/`} canonical={canonical} image={featuredImage}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
     <div class='flex flex-col sm:flex-row gap-2 items-start sm:items-center'>
       <div class='flex items-center gap-2'>
@@ -60,6 +61,16 @@ const { Content } = await article.render();
 
   <Content />
   <Aside>
+    {
+      featuredImage ? (
+        <FeaturedImageCard
+          alt={title}
+          thumbnail={featuredImage}
+          text={`${title}\n https://paulie.dev/articles/${slug}/`}
+        />
+      ) : null
+    }
+
     <ProfileCard />
   </Aside>
 </Main>
