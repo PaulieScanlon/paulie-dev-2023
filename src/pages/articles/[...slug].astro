@@ -8,6 +8,7 @@ import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
 import FeaturedImageCard from '../../components/featured-image-card.astro';
+import TableOfContents from '../../components/table-of-contents.astro';
 import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
@@ -38,7 +39,7 @@ const {
 
 const excerpt = `${createExcerpt(article.body).substring(0, 70)}...`;
 
-const { Content } = await article.render();
+const { Content, headings } = await article.render();
 ---
 
 <Main title={title} description={excerpt} slug={`/articles/${slug}/`} canonical={canonical} image={featuredImage}>
@@ -68,8 +69,10 @@ const { Content } = await article.render();
           thumbnail={featuredImage}
           text={`${title}\n https://paulie.dev/articles/${slug}/`}
         />
-      ) : null
+      ) : (
+        <ProfileCard />
+      )
     }
-    <ProfileCard />
+    <TableOfContents headings={headings} />
   </Aside>
 </Main>
