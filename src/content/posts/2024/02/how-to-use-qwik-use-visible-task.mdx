@@ -40,11 +40,11 @@ This component is "client-side" only, and I'll now explain why.
 
 Most of the pages on my site are static, I want them this way so they are fast and, after I publish, the content rarely changes so there's no real need for these pages to be server-side rendered. But, they would need to be if I wanted both `GET` and `POST` functionality to work.
 
-I considered doing both the `GET` and `POST` server-side but converting all of my post pages into server-side rendered pages seems like a dumb move. Static will always be faster.
+I considered doing both the `GET` and `POST` server-side but, converting all of my post pages into server-side rendered pages seems like a dumb move. Static will always be faster.
 
 Another thing I considered is where this component is in the page, and how crucial it is to the user experience.
 
-Given that the component is right at the bottom of the page, and not every user scrolls that far, and that there's no real benefit to the user, this component is actually fine to do all it's "data work" on the client.
+Given that the component is right at the bottom of the page (and not every user scrolls that far) and that there's no real benefit to the user, this component is actually fine to do all it's "data work" on the client.
 
 ## Qwik trick up it's sleeve
 
@@ -126,4 +126,4 @@ You can see this in action (depending on your connection speed), where the color
 
 ## Final Thoughts
 
-So there you have it, a completely valid use case for client-side data handling and I hope you'll agree, for my requirements its the best way to do it.
+So there you have it, a completely valid use case for client-side data fetching and I hope you'll agree, for my requirements, its the best way to do it.
