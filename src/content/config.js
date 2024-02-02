@@ -4,6 +4,7 @@ export const collections = {
   posts: defineCollection({
     type: 'content',
     schema: z.object({
+      audioFeedId: z.string().optional(),
       type: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
@@ -15,6 +16,7 @@ export const collections = {
   articles: defineCollection({
     type: 'content',
     schema: z.object({
+      audioFeedId: z.string().optional(),
       type: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
