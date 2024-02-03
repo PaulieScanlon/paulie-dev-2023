@@ -1,8 +1,9 @@
-import { component$, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 
 import Globe from 'globe.gl';
 import * as THREE from 'three';
 
+import Loading from '../components/loading';
 import goeJson from '../utils/ne_110m_admin_0_countries.geojson.json';
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
 }
 
 const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) => {
+  const isLoaded = useSignal(false);
+
   const points = data.map((data) => {
     const { latitude, longitude, total } = data;
 
@@ -26,7 +29,9 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
 
   useVisibleTask$(() => {
     const world = Globe({ animateIn: true, rendererConfig: { antialias: true, alpha: true } })
-      .onGlobeReady(() => {})
+      .onGlobeReady(() => {
+        isLoaded.value = true;
+      })
       .pointOfView({
         lat: 19.054339351561637,
         lng: -50.421161072148465,
@@ -91,13 +96,20 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
   });
 
   return (
-    <div
-      id='globe'
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-      }}
-    ></div>
+    <>
+      {isLoaded.value ? null : (
+        <div class='absolute flex items-center justify-center h-full w-full'>
+          <Loading />
+        </div>
+      )}
+      <div
+        id='globe'
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+        }}
+      ></div>
+    </>
   );
 });
 
