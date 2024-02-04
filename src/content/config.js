@@ -4,6 +4,7 @@ export const collections = {
   posts: defineCollection({
     type: 'content',
     schema: z.object({
+      draft: z.boolean().optional(),
       audioFeedId: z.string().optional(),
       type: z.string(),
       title: z.string(),

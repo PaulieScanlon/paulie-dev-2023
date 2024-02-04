@@ -16,6 +16,7 @@ const { collections, base, slice } = Astro.props;
     collections
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
       .slice(0, slice || collections.length)
+      .filter((item) => item.data.draft !== true)
       .map((collection) => {
         const {
           slug,
