@@ -3,7 +3,7 @@ import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 import Globe from 'globe.gl';
 import * as THREE from 'three';
 
-import Loading from '../components/loading';
+import Loading from './loading';
 import goeJson from '../utils/ne_110m_admin_0_countries.geojson.json';
 
 interface Props {

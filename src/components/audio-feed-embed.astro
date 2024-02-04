@@ -1,8 +1,13 @@
 ---
 const { audioFeedId } = Astro.props;
+import Loading from './loading';
 ---
 
-<div id='audiofeed-embed' class='min-h-[90px] w-full sticky top-[73px] drop-shadow-2xl z-10 overflow-hidden rounded'>
+<div
+  id='audiofeed-embed'
+  class='min-h-[90px] w-full sticky top-[73px] drop-shadow-2xl z-10 overflow-hidden rounded bg-white'
+>
+  <Loading classNames='text-brand-text absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2' />
 </div>
 
 <script define:vars={{ audioFeedId }}>
@@ -39,6 +44,7 @@ const { audioFeedId } = Astro.props;
       iframe.setAttribute('allow-same-origin', '');
       var targetDiv = document.getElementById('audiofeed-embed');
       if (targetDiv) {
+        document.getElementById('loading').style.display = 'none';
         targetDiv.appendChild(iframe);
       }
     }

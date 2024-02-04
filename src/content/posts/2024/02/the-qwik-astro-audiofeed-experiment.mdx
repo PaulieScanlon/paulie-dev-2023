@@ -10,15 +10,15 @@ featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v170693697
 
 This is an experimental blog post where i'll write a very brief 'How to...' guide for creating an [Astro](https://astro.build/) site and add [Jack Shelton's](https://twitter.com/TheJackShelton) superb [@qwikdev/astro](https://github.com/QwikDev/astro#readme) integration.
 
-Using [AudioFeed](https://audiofeed.ai/) I'm able to create a video, with audio using only the text and images seen in this post. Creating 'How to...' content using AI, in my opinion, is a brilliant solution to a problem I've encountered on multiple occasions when attempting to learn something new.
+With [AudioFeed](https://audiofeed.ai/) I'm able to create a video, with audio, using only the text and images seen in this post. Creating 'How to...' content using AI, in my opinion, is a brilliant solution to a problem I've encountered on multiple occasions when attempting to learn something new.
 
 ## The DevRel Video Problem
 
-Videos recorded by humans quickly become out of date and there's no way to update them (other than to rerecord them) still, many tech companies _(Supabase)_ leave these out of date videos published on sharing platforms, and in some cases, in the actual documentation!
+Videos recorded by humans quickly become out of date, and there's no way to update them (other than to rerecord them) still, many tech companies _(Supabase)_ leave these out of date videos published on sharing platforms, and in some cases, in their actual documentation!
 
 By using written content that is converted into audio, and screenshots inserted as slides, an AI solution means updates and changes can be made as and when required. When things change (and they do, often) a new video can be created with the click of a button.
 
-No more out of date, misleading videos littering the docs!
+No more out of date misleading videos littering the docs!
 
 ## AudioFeed
 
@@ -196,7 +196,9 @@ And that's it. You now have Qwik installed and working. Congratulations.
 
 ## The Making Of
 
-Naturally, my first step was to write the code so I knew the steps required to write the guide. The next step was to create an Artboard in Photoshop of each of the images used in this post, which will later become frames of the video. In cases where it's a "terminal output" i've recreated a terminal window using Photoshop's shape tools and added editable text layers for the text.
+Naturally, my first step was to write the code so I knew the steps required to write the guide. The next step was to create an Artboard in Photoshop for each of the images used in this post, (which will later become frames of the video). In cases where it's a "terminal output", i've recreated a terminal window using Photoshop's shape tools and added editable text layers for the text.
+
+### Creating Frames In Photoshop
 
 Creating these "frames" in Photoshop as Artboards allows me to very quickly make changes, then export all Artboards in one go using a Photoshop feature: "Export > Artboards to Files...". With the Artboards exported as individual .jpegs I can now create the segments in AudioFeed.
 
@@ -207,6 +209,8 @@ Creating these "frames" in Photoshop as Artboards allows me to very quickly make
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706982090/paulie.dev/2024/02/get-started-with-astro-and-qwik-11.photoshop_ddqr79.jpg'
 />
 
+### Creating Segments In AudioFeed
+
 Segments in AudioFeed are where you add text which will be converted into spoken word audio.
 
 <AstroImage
@@ -216,7 +220,7 @@ Segments in AudioFeed are where you add text which will be converted into spoken
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706982090/paulie.dev/2024/02/get-started-with-astro-and-qwik-12.audio-feed_m2r4rh.jpg'
 />
 
-You also have the option to add an image to each segment, this is where I add the Artboards exported from Photoshop. There are a number of options available to help you redraft what you've written under the "Content Tools" menu. You can select a host for different voice types.
+Here you'll see the option to add an image to each segment, this is where I add the Artboards exported from Photoshop. There are a number of options available to help you redraft what you've written under the "Content Tools" menu. You can also select a host for different voice types.
 
 When you've added all the segments, and generated audio for each, you can go ahead and publish the episode. AudioFeed will then convert all segments into a single audio or video file ready to be published to Podcast feeds, or downloaded and distributed. It's pretty cool stuff!
 
@@ -226,7 +230,7 @@ If it's not obvious by now, i'm a proponent of "written first" content. It's the
 
 I believe there are significant business benefits to using this approach. For starters, the whole thing is editable. Making a change to the audio (text) or screenshots can be accomplished very easily, and a quick republish means the video can be updated and redistributed.
 
-Compare that to the significant effort required for a human to rerecord an entire video and then edit it. Moreover, the text editing can be done by anyone, you don't need any specific software, or (dare I say it) any real skill to make a change. It's kinda the same as making a change using a Content Managment System (CMS), but the output is more than just text and images.
+Compare that to the significant effort required for a human to rerecord an entire video and then edit it. Moreover, the text editing can be done by anyone, you don't need any specific software, or (dare I say it) any real skill to make text changes. It's kinda the same as making a change using a Content Management System (CMS), but the output is more than just text and images.
 
 Don't quote me on this but, future features from [AudioFeed](https://audiofeed.ai/) may include the following:
 
@@ -240,4 +244,4 @@ Check it out today at: [audiofeed.ai](https://audiofeed.ai/)
 
 Oh and I almost forgot.
 
-AudioFeed have player embed you can add it to any post or article. Here's an example for something I wrote recently: [I’m in an Open Relationship with Remix](/articles/2023/11/im-in-an-open-relationship-with-remix/)
+AudioFeed have a player embed that you can add to any post or article. Here's an example for something I wrote recently: [I’m in an Open Relationship with Remix](/articles/2023/11/im-in-an-open-relationship-with-remix/)
