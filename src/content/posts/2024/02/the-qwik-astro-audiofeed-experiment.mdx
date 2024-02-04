@@ -38,7 +38,7 @@ embed video here
 
 If you don't already have an Astro site, head over to the docs to get started [https://docs.astro.build/en/install/manual/](https://docs.astro.build/en/install/manual/). There are a number of ways to kick start your Astro project, my preference is to follow the manual install. It'll take you about 30 seconds longer than using the CLI, but you'll probably learn something... which is nice.
 
-### Install the Qwik Integration
+#### Install the Qwik Integration
 
 As before with installing Astro, there are a number of ways to install the integration. I prefer to use `yarn` but you can use `npx`, `pnpm` or `yarn`. Type one of the following in your terminal.
 
@@ -87,7 +87,7 @@ If all has gone to plan the dependencies will install, the config will be update
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923758/paulie.dev/2024/02/get-started-with-astro-and-qwik-5.done_cbyft6.jpg'
 />
 
-### Creating a Qwik Component
+#### Creating a Qwik Component
 
 Create a new directory named src (if you don't already have one), then create a directory named components (if you don't already have one). Inside the components directory create a new file. I've named mine: `use-signal-component.jsx`, but Qwik also supports the TypeScript `.tsx` extension.
 
@@ -136,7 +136,7 @@ export default UseSignalQwikComponent;
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923759/paulie.dev/2024/02/get-started-with-astro-and-qwik-6.qwik-component_fdir4i.jpg'
 />
 
-### Creating an Astro Page
+#### Creating an Astro Page
 
 Create a new directory in src named pages, (if you don't already have one) then create a new `.astro` file. I've named mine: `index.astro`. Add the following code to import the Qwik component and return it in Jsx.
 
@@ -164,7 +164,7 @@ import UseSignalComponent from '../components/use-signal-component';
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923758/paulie.dev/2024/02/get-started-with-astro-and-qwik-7.astro-page_widy2t.jpg'
 />
 
-### Preview The Page
+#### Preview The Page
 
 If you're seeing no errors, and your dev server is running (type `npm run dev` if it's not), then navigate to the page you just created. In my case I created an index page so will be able to preview my page on the root localhost URL.
 
@@ -186,7 +186,7 @@ And as you'd expect, if you click the button, the useSignal value will be set to
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923759/paulie.dev/2024/02/get-started-with-astro-and-qwik-9.show-rocket_xcjz85.jpg'
 />
 
-### Finished
+#### Finished
 
 And that's it. You now have Qwik installed and working. Congratulations.
 

@@ -9,9 +9,18 @@ const { headings } = Astro.props;
       <ul class='list-none m-0 p-0'>
         {headings.map((heading) => {
           const { depth, slug, text } = heading;
+
+          const getPaddingDepth = {
+            [2]: '4',
+            [3]: '6',
+            [4]: '8',
+            [5]: '10',
+            [6]: '12',
+          };
+
           return (
-            <li class={`m-0 py-0 pl-${depth * 2}`}>
-              <a href={`#${slug}`} class='text-xs p-1 no-underline text-violet-300'>
+            <li data-depth={depth} class={`m-0 py-0.5 pl-${getPaddingDepth[depth]}`}>
+              <a href={`#${slug}`} class='font-[system-ui] text-[0.65rem] p-1 no-underline text-violet-300'>
                 {text}
               </a>
             </li>
