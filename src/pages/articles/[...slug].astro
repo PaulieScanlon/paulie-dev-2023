@@ -9,6 +9,7 @@ import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
 import FeaturedImageCard from '../../components/featured-image-card.astro';
 import TableOfContents from '../../components/table-of-contents.astro';
+import Reactions from '../../components/reactions';
 import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
@@ -61,6 +62,7 @@ const { Content, headings } = await article.render();
   {audioFeedId ? <AudioFeedEmbed audioFeedId={audioFeedId} /> : null}
 
   <Content />
+  {audioFeedId ? <Reactions slug={`/articles/${slug}/`} /> : null}
   <Aside>
     {
       featuredImage ? (
