@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Gatsby or Theme UI Link
 tags: [React, Gatsby, JavaScript, Theme UI]
 date: 2020-04-17
@@ -23,7 +23,7 @@ First let's look at the Gatsby Link
 import { Link } from 'gatsby';
 
 const SomeComponent = () => {
-  return <Link to="/">Back to home</Link>;
+  return <Link to='/'>Back to home</Link>;
 };
 ```
 
@@ -37,7 +37,7 @@ Now let's look at the Theme UI Link
 import { Link } from '@theme-ui/components';
 
 const SomeComponent = () => {
-  return <Link href="https://www.paulie.dev">https://www.paulie.dev</Link>;
+  return <Link href='https://www.paulie.dev'>https://www.paulie.dev</Link>;
 };
 ```
 
@@ -58,8 +58,8 @@ import { Link } from '@theme-ui/components';
 const SomeComponent = () => {
   return (
     <>
-      <Link to="/">Back to home</Link>
-      <Link href="https://www.paulie.dev">https://www.paulie.dev</Link>
+      <Link to='/'>Back to home</Link>
+      <Link href='https://www.paulie.dev'>https://www.paulie.dev</Link>
     </>
   );
 };
@@ -77,10 +77,10 @@ import { Link } from '@theme-ui/components';
 const SomeComponent = () => {
   return (
     <>
-      <Link sx={{ color: 'primary' }} to="/">
+      <Link sx={{ color: 'primary' }} to='/'>
         Back to home
       </Link>
-      <Link sx={{ color: 'secondary' }} href="https://www.paulie.dev">
+      <Link sx={{ color: 'secondary' }} href='https://www.paulie.dev'>
         https://www.paulie.dev
       </Link>
     </>
@@ -94,7 +94,7 @@ CSS styles. Instead it'll pass the `sx` prop on as an attribute with an odd look
 The rendered DOM node might look like this 👇
 
 ```javascript
-<a sx="[object Object]" href="/">
+<a sx='[object Object]' href='/'>
   Back to home
 </a>
 ```
@@ -123,10 +123,10 @@ import { Link } from '@theme-ui/components';
 const SomeComponent = () => {
   return (
     <>
-      <Link sx={{ color: 'primary' }} to="/" as={GatsbyLink}>
+      <Link sx={{ color: 'primary' }} to='/' as={GatsbyLink}>
         Back to home
       </Link>
-      <Link sx={{ color: 'secondary' }} href="https://www.paulie.dev">
+      <Link sx={{ color: 'secondary' }} href='https://www.paulie.dev'>
         https://www.paulie.dev
       </Link>
     </>

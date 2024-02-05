@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: How to use React's Context API with Gatsby
 tags: [Gatsby, React]
 date: 2022-11-01
@@ -150,18 +150,8 @@ const Header = () => {
         {({ isNavOpen, handleNav }) => {
           return (
             <button onClick={handleNav}>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 24 24'
-                fill='currentColor'
-                width={24}
-                height={24}
-              >
-                <path
-                  d={`${
-                    isNavOpen ? 'M5.47 5.47a.75.75...' : 'M3 6.75A.75.75...'
-                  }`}
-                />
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' width={24} height={24}>
+                <path d={`${isNavOpen ? 'M5.47 5.47a.75.75...' : 'M3 6.75A.75.75...'}`} />
               </svg>
             </button>
           );

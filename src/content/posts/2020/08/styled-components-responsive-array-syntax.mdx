@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Styled Components Responsive Array Syntax
 tags: ['React', 'JavaScript', 'Styled Components']
 date: 2020-08-19
@@ -87,10 +87,7 @@ Make sure you've implemented `<MrButton />` somewhere in your app and are passin
 
 ```javascript
 // app.js
-<MrButton
-  backgroundColor={['hotpink', 'mouve', 'purple']}
-  width={['100%', '50%', 'auto']}
->
+<MrButton backgroundColor={['hotpink', 'mouve', 'purple']} width={['100%', '50%', 'auto']}>
   Click Me
 </MrButton>
 ```

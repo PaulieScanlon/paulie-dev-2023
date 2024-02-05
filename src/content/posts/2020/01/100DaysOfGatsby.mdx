@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: 100DaysOfGatsby
 tags: [Gatsby]
 date: 2020-01-01
@@ -118,8 +118,7 @@ Here's another lame demo.
 ```javascript
 <SourceWords>
   {(sourceWords) => {
-    const currentYear =
-      sourceWords.wordCountByMonth[sourceWords.wordCountByMonth.length - 1];
+    const currentYear = sourceWords.wordCountByMonth[sourceWords.wordCountByMonth.length - 1];
     return (
       <Box>
         {currentYear.map((month, index) => {
@@ -170,14 +169,8 @@ component right here in the `.mdx`
 ```javascript
 <SourceWords>
   {(source) => {
-    const {
-      wordCountTotal,
-      wordCountAverage,
-      wordCountHighest,
-      wordCountLowest,
-      timeToReadTotal,
-      timeToReadAverage,
-    } = source;
+    const { wordCountTotal, wordCountAverage, wordCountHighest, wordCountLowest, timeToReadTotal, timeToReadAverage } =
+      source;
     return (
       <ul>
         <li>{`wordCountTotal: ${wordCountTotal}`}</li>
@@ -740,9 +733,7 @@ import { ThemeProvider } from 'theme-ui';
 
 import yourTheme from '../src/gatsby-plugin-theme-ui';
 
-addDecorator((storyFn) => (
-  <ThemeProvider theme={yourTheme}>{storyFn()}</ThemeProvider>
-));
+addDecorator((storyFn) => <ThemeProvider theme={yourTheme}>{storyFn()}</ThemeProvider>);
 ```
 
 The `addDecorator` works a bit like `wrapRootElement` does in Gatsby and provides a nice way to _wrap_ all Storybook
@@ -1376,9 +1367,7 @@ Ahh!! so now we need to put the quotes back in ... regex to the rescue again!
 ```javascript
 <CodeMirror
   value={JSON.stringify(themeObject, null, 2).replace(/"(\w+)"\s*:/g, '$1:')}
-  onChange={(event) =>
-    JSON.parse(event.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2": '))
-  }
+  onChange={(event) => JSON.parse(event.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2": '))}
 />
 ```
 
@@ -2636,9 +2625,9 @@ interface IWrapRootElement {
   element: React.ReactNode;
 }
 
-export const wrapRootElement: FunctionComponent<IWrapRootElement> = ({
-  element,
-}) => <MdxEmbedProvider>{element}</MdxEmbedProvider>;
+export const wrapRootElement: FunctionComponent<IWrapRootElement> = ({ element }) => (
+  <MdxEmbedProvider>{element}</MdxEmbedProvider>
+);
 ```
 
 The first thing i changed was the name of this "component" because `wrapRootElement` is part of the gatsby api and i
@@ -2668,9 +2657,7 @@ interface IProviderProps {
   element: React.ReactNode;
 }
 
-module.exports = ({ element }: IProviderProps) => (
-  <MdxEmbedProvider>{element}</MdxEmbedProvider>
-);
+module.exports = ({ element }: IProviderProps) => <MdxEmbedProvider>{element}</MdxEmbedProvider>;
 ```
 
 Whilst i think i could have kept the ES6 method for exporting in `gatsby-browser.js` it wasn't working in
@@ -3232,11 +3219,7 @@ By providing a `navigationOrder` you can sort like this 👇
 ```javascript
 const navigationOrder = ['Home', 'About', 'Contact'];
 
-graphQlData.sort(
-  (a, b) =>
-    navigationOrder.indexOf(a.navigationLabel) -
-    navigationOrder.indexOf(b.navigationLabel)
-);
+graphQlData.sort((a, b) => navigationOrder.indexOf(a.navigationLabel) - navigationOrder.indexOf(b.navigationLabel));
 ```
 
 Unlike the default method of sorting instead of simply determining if `a - b` we can use the `indexOf` from the
@@ -3532,10 +3515,7 @@ I've never really understood regex but i did spend some time reading, watching a
 Here's the final regex pattern `/<a href="\/w/g` which when used in the response looks like this
 
 ```javascript
-text['*'].replace(
-  /<a href="\/w/g,
-  '<a target="_blank" href="//en.wikipedia.org/w'
-);
+text['*'].replace(/<a href="\/w/g, '<a target="_blank" href="//en.wikipedia.org/w');
 ```
 
 I added the `target="_blank"` as it feels like a better option for users, perhaps i'll turn this into a prop but it
@@ -3734,10 +3714,7 @@ export default {
 and `directoryPath` is as follows;
 
 ```javascript
-const directoryPath = path.join(
-  process.cwd(),
-  '../@pauliescanlon/gatsby-mdx-embed/src/components'
-);
+const directoryPath = path.join(process.cwd(), '../@pauliescanlon/gatsby-mdx-embed/src/components');
 ```
 
 First i'm using `path.join` to make sure i don't end up with un-wanted `/`'s, then i'm using `process.cwd` which is the
@@ -3884,8 +3861,7 @@ both of the above methods.
 ```javascript
 const anchorScroll = (location) => {
   if (location && location.hash) {
-    const item = document.querySelectorAll(`a[href^="${location.hash}"]`)[0]
-      .offsetTop;
+    const item = document.querySelectorAll(`a[href^="${location.hash}"]`)[0].offsetTop;
     const mainNavHeight = document.querySelector(`header`).offsetHeight;
     setTimeout(() => {
       window.scrollTo({

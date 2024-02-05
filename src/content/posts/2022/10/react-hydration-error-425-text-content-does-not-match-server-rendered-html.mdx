@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: React hydration error 425 "Text content does not match server-rendered HTML"
 tags: [Gatsby, React]
 date: 2022-10-20
@@ -297,9 +297,9 @@ import { graphql } from 'gatsby';
 const Page = ({
   data: {
     markdownRemark: {
-      frontmatter: { title, date, dateShort, dateLong }
-    }
-  }
+      frontmatter: { title, date, dateShort, dateLong },
+    },
+  },
 }) => {
   return (
     <main>

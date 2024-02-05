@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Intersection Observer
 tags: [React, JavaScript]
 date: 2020-04-15
@@ -42,7 +42,7 @@ const ReactObserver = ({ children }) => {
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.2
+        threshold: 0.2,
       }
     );
     if (ref && ref.current) {
@@ -114,7 +114,7 @@ const ReactObserver = ({ children }) => {
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.2
+        threshold: 0.2,
       }
     );
     if (ref && ref.current) {
@@ -156,7 +156,7 @@ const ReactObserver = ({ children }) => {
       {
         root: null,
         rootMargin: '0px',
-        threshold: [0, 1]
+        threshold: [0, 1],
       }
     );
     if (ref && ref.current) {
@@ -197,7 +197,7 @@ const ReactObserver = ({ children, threshold }) => {
       {
         root: null,
         rootMargin: '0px',
-        threshold: threshold
+        threshold: threshold,
       }
     );
     if (ref && ref.current) {
@@ -210,7 +210,7 @@ const ReactObserver = ({ children, threshold }) => {
 
 ReactObserver.propTypes = {
   /** The threshold values */
-  threshold: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
+  threshold: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
 };
 
 export default ReactObserver;
@@ -222,7 +222,7 @@ And to use it you can do something like this 👇
 <ReactObserver threshold={0.5}>
   <h1>Oh hai</h1>
   <p>I'm a child of the React Observer</p>
-  <img src="http://place-puppy.com/2000x2000" alt="puppy" style={{ width: 300, height: 300 }} />
+  <img src='http://place-puppy.com/2000x2000' alt='puppy' style={{ width: 300, height: 300 }} />
 </ReactObserver>
 ```
 

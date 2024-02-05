@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Sourcing local .json files with Gatsby
 tags: [Node.js, Gatsby, JavaScript, JSON]
 date: 2021-04-05
@@ -63,8 +63,8 @@ exports.sourceNodes = ({ actions: { createNode }, createContentDigest }) => {
       id: `post-${index}`,
       internal: {
         type: `post`,
-        contentDigest: createContentDigest(data)
-      }
+        contentDigest: createContentDigest(data),
+      },
     });
   });
 };
@@ -141,8 +141,8 @@ exports.sourceNodes = ({ actions: { createNode }, createContentDigest }) => {
         id: `post-${index}`,
         internal: {
           type: `post`,
-          contentDigest: createContentDigest(data)
-        }
+          contentDigest: createContentDigest(data),
+        },
       });
     }
   });
@@ -209,17 +209,17 @@ module.exports = {
     {
       resolve: `gatsby-transformer-json`,
       options: {
-        typeName: `post`
-      }
+        typeName: `post`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content`,
-        ignore: [`**/\.*`] // ignore files starting with a dot
-      }
-    }
-  ]
+        ignore: [`**/\.*`], // ignore files starting with a dot
+      },
+    },
+  ],
 };
 ```
 

@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: 'Understanding Theme UI: 6 - The Hacks'
 tags: [JavaScript, React, Theme UI]
 date: 2021-02-09
@@ -47,7 +47,7 @@ export default {
     muted: '#8b87ea',
     primary: '#f056c7',
     secondary: '#c39eff',
-    background: '#131127'
+    background: '#131127',
   },
   buttons: {
     primary: {
@@ -57,19 +57,19 @@ export default {
       cursor: 'pointer',
       minWidth: 120,
       px: 3,
-      py: 2
+      py: 2,
     },
     secondary: {
       variant: 'buttons.primary',
       color: 'background',
-      backgroundColor: 'secondary'
+      backgroundColor: 'secondary',
     },
     ghost: {
       variant: 'buttons.primary',
       color: 'muted',
-      backgroundColor: 'background'
-    }
-  }
+      backgroundColor: 'background',
+    },
+  },
 };
 ```
 
@@ -105,25 +105,25 @@ Theme 👇
 
 export default {
   fonts: {
-    heading: 'Inconsolata, monospace'
+    heading: 'Inconsolata, monospace',
   },
   fontSizes: [12, 16, 18],
   text: {
     heading: {
       fontFamily: 'heading',
-      fontSize: 2
-    }
+      fontSize: 2,
+    },
   },
   styles: {
     h3: {
       variant: 'text.heading',
-      color: 'secondary'
+      color: 'secondary',
     },
     h4: {
       variant: 'text.heading',
-      color: 'text'
-    }
-  }
+      color: 'text',
+    },
+  },
 };
 ```
 
@@ -164,11 +164,11 @@ To target a child by `id` you can do this 👇
     '#menu--1': {
       borderColor: 'primary',
       borderStyle: 'solid',
-      borderWidth: '1px'
-    }
+      borderWidth: '1px',
+    },
   }}
 >
-  <div id="menu--1">...</div>
+  <div id='menu--1'>...</div>
 </Box>
 ```
 
@@ -180,11 +180,11 @@ To target a child by `class` you can do this 👇
     '.menu': {
       borderColor: 'primary',
       borderStyle: 'solid',
-      borderWidth: '1px'
-    }
+      borderWidth: '1px',
+    },
   }}
 >
-  <div className="menu">...</div>
+  <div className='menu'>...</div>
 </Box>
 ```
 
@@ -196,11 +196,11 @@ To target a child by `data-` attribute you can do this 👇
     '[data-reach-menu-list="menu"]': {
       borderColor: 'primary',
       borderStyle: 'solid',
-      borderWidth: '1px'
-    }
+      borderWidth: '1px',
+    },
   }}
 >
-  <div data-reach-menu-list="menu">...</div>
+  <div data-reach-menu-list='menu'>...</div>
 </Box>
 ```
 
@@ -254,30 +254,30 @@ import { Box } from 'theme-ui';
 export const LogoIcon = () => {
   return (
     <Box
-      as="svg"
+      as='svg'
       sx={{
         '.logo-outline': {
-          fill: 'surface'
+          fill: 'surface',
         },
         '.logo-solid': {
-          fill: 'primary'
+          fill: 'primary',
         },
         '.logo-detail': {
-          fill: 'text'
-        }
+          fill: 'text',
+        },
       }}
     >
       <g>
-        <path className="logo-solid" d="..." />
-        <g className="logo-detail">
-          <path d="..." />
-          <path d="..." />
-          <path d="..." />
-          <path d="..." />
-          <path d="..." />
+        <path className='logo-solid' d='...' />
+        <g className='logo-detail'>
+          <path d='...' />
+          <path d='...' />
+          <path d='...' />
+          <path d='...' />
+          <path d='...' />
         </g>
 
-        <path className="logo-outline" d="..." />
+        <path className='logo-outline' d='...' />
       </g>
     </Box>
   );
@@ -303,14 +303,14 @@ export const MrKeyframes = () => {
 
   const animation = keyframes({
     '0%': {
-      opacity: 1
+      opacity: 1,
     },
     '20%': {
-      opacity: 0
+      opacity: 0,
     },
     '100%': {
-      opacity: 1
-    }
+      opacity: 1,
+    },
   });
 
   return (
@@ -319,14 +319,14 @@ export const MrKeyframes = () => {
         gap: 1,
         p: 5,
         textAlign: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
       Loading
       <Grid
         sx={{
           gridAutoFlow: 'column',
-          gap: 2
+          gap: 2,
         }}
       >
         {dots.map((dot, index) => (
@@ -342,7 +342,7 @@ export const MrKeyframes = () => {
               borderRadius: `${size}`,
               height: `${size}`,
               width: `${size}`,
-              opacity: 0
+              opacity: 0,
             }}
           />
         ))}
@@ -369,7 +369,7 @@ Src 👇
     boxShadow: (theme) => `0 0 7px 3px ${theme.colors.secondary}`,
     backgroundColor: 'surface',
     color: 'secondary',
-    p: 3
+    p: 3,
   }}
 >
   I'm a Box

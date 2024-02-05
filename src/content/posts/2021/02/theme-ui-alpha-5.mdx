@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: 'Understanding Theme UI: 5 - Media Queries'
 tags: [JavaScript, React, Theme UI]
 date: 2021-02-03
@@ -31,9 +31,9 @@ Src 👇
 
 ```javascript
 <Box
-  className="demo-box"
+  className='demo-box'
   sx={{
-    padding: ['xs', 'sm', 'md', 'lg']
+    padding: ['xs', 'sm', 'md', 'lg'],
   }}
 >
   I'm a Box
@@ -169,7 +169,7 @@ Src 👇
   sx={{
     borderColor: ['red', 'green', 'yellow', 'hotpink'],
     borderStyle: ['solid', 'dashed'],
-    borderWidth: '6px'
+    borderWidth: '6px',
   }}
 >
   I'm a Box

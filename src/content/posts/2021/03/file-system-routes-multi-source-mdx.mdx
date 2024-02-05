@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: 'Gatsby File System Route API: Multiple Source MDX'
 tags: [React, Gatsby, JavaScript, MDX]
 date: 2021-03-16
@@ -80,16 +80,16 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/things/posts`
-      }
+        path: `${__dirname}/src/things/posts`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/things/projects`
-      }
-    }
-  ]
+        path: `${__dirname}/src/things/projects`,
+      },
+    },
+  ],
 };
 ```
 
@@ -275,18 +275,18 @@ const MdxPage = ({
   data,
   data: {
     mdx: {
-      frontmatter: { variant }
-    }
-  }
+      frontmatter: { variant },
+    },
+  },
 }) => {
   const templates = {
     posts: <PostsTemplate data={data} />,
-    projects: <ProjectsTemplate data={data} />
+    projects: <ProjectsTemplate data={data} />,
   };
 
   return (
     <Fragment>
-      <Link to="/">Back</Link>
+      <Link to='/'>Back</Link>
       {templates[variant] ? templates[variant] : null}
     </Fragment>
   );

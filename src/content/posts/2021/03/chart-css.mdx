@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: 'Create Accessible Data Visualization for your Gatsby Blog with Charts.css'
 tags: [React, Gatsby, JavaScript, MDX, Charts CSS]
 date: 2021-03-27
@@ -181,7 +181,7 @@ const TagsData = ({ children }) => {
       } else {
         items.push({
           tag: item,
-          count: 1
+          count: 1,
         });
       }
       return items;
@@ -215,24 +215,24 @@ The above will return an array containing the tag names and a count value for ea
 [
   {
     tag: 'Gatsby',
-    count: 5
+    count: 5,
   },
   {
     tag: 'JavaScript',
-    count: 4
+    count: 4,
   },
   {
     tag: 'React',
-    count: 3
+    count: 3,
   },
   {
     tag: 'TypeScript',
-    count: 2
+    count: 2,
   },
   {
     tag: 'CSS',
-    count: 1
-  }
+    count: 1,
+  },
 ];
 ```
 

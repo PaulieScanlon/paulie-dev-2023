@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Gatsby SEO Component
 tags: [Gatsby, JavaScript]
 date: 2020-08-24
@@ -28,7 +28,7 @@ Then open up your `gatsby-config.js` and add the plugin to the plugins array
 ```javascript
 // gatsby-config.js
 module.exports = {
-  plugins: [`gatsby-plugin-react-helmet`]
+  plugins: [`gatsby-plugin-react-helmet`],
 };
 ```
 
@@ -83,32 +83,32 @@ export const Seo = ({ title, description, keywords, url, ogImage, favicon, lang,
     <Helmet>
       <title>{`${title} | ${page}`}</title>
       <html lang={lang} />
-      <meta name="description" content={description} />
-      <meta name="image" content={`${url}/${ogImage}`} />
-      <meta name="image:alt" content={description} />
-      <meta name="keywords" content={keywords.join(', ')} />
+      <meta name='description' content={description} />
+      <meta name='image' content={`${url}/${ogImage}`} />
+      <meta name='image:alt' content={description} />
+      <meta name='keywords' content={keywords.join(', ')} />
 
-      <link rel="icon" type="image/png" sizes="16x16" href={`${url}/${favicon.ico}`} />
+      <link rel='icon' type='image/png' sizes='16x16' href={`${url}/${favicon.ico}`} />
 
-      <link rel="icon" type="image/png" sizes="16x16" href={`${url}/${favicon.sm}`} />
+      <link rel='icon' type='image/png' sizes='16x16' href={`${url}/${favicon.sm}`} />
 
-      <link rel="icon" type="image/png" sizes="32x32" href={`${url}/${favicon.lg}`} />
+      <link rel='icon' type='image/png' sizes='32x32' href={`${url}/${favicon.lg}`} />
 
       {/* Facebook */}
-      <meta property="og:type" content={type} />
-      <meta property="og:title" content={page} />
-      <meta property="og:url" content={`${url}${path}`} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${url}/${ogImage}`} />
-      <meta property="og:image:alt" content={description}></meta>
+      <meta property='og:type' content={type} />
+      <meta property='og:title' content={page} />
+      <meta property='og:url' content={`${url}${path}`} />
+      <meta property='og:description' content={description} />
+      <meta property='og:image' content={`${url}/${ogImage}`} />
+      <meta property='og:image:alt' content={description}></meta>
 
       {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={page} />
-      <meta name="twitter:url" content={`${url}${path}`} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${url}/${ogImage}`} />
-      <meta name="twitter:image:alt" content={description}></meta>
+      <meta name='twitter:card' content='summary_large_image' />
+      <meta name='twitter:title' content={page} />
+      <meta name='twitter:url' content={`${url}${path}`} />
+      <meta name='twitter:description' content={description} />
+      <meta name='twitter:image' content={`${url}/${ogImage}`} />
+      <meta name='twitter:image:alt' content={description}></meta>
     </Helmet>
   );
 };
@@ -128,7 +128,7 @@ Seo.propTypes = {
   favicon: PropTypes.shape({
     ico: PropTypes.string,
     sm: PropTypes.string,
-    lg: PropTypes.string
+    lg: PropTypes.string,
   }),
   /** Lang to use as meta lang */
   lang: PropTypes.string.isRequired,
@@ -137,7 +137,7 @@ Seo.propTypes = {
   /** The page name */
   page: PropTypes.string.isRequired,
   /** The path to the page */
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
 };
 ```
 
@@ -200,8 +200,8 @@ import { useSiteMetadata } from '../utils/useSiteMetadata';
 const IndexPage = () => {
   const {
     site: {
-      siteMetadata: { title, description, keywords, url, ogImage, favicon, lang }
-    }
+      siteMetadata: { title, description, keywords, url, ogImage, favicon, lang },
+    },
   } = useSiteMetadata();
 
   return (
@@ -214,9 +214,9 @@ const IndexPage = () => {
         ogImage={ogImage}
         favicon={favicon}
         lang={lang}
-        type="website"
-        page="Home"
-        path=""
+        type='website'
+        page='Home'
+        path=''
       />
       <h1>This is index.js</h1>
       ...

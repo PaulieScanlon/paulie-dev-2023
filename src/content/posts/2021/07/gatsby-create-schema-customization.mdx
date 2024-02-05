@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Modify Gatsby's GraphQL data types using createSchemaCustomization
 tags: [React, Gatsby, JavaScript, GraphQL]
 date: 2021-07-02
@@ -104,13 +104,7 @@ if the `node.internal.type` equals `apod`, which is the new node I created in ye
 // gatsby-node.js
 const { createRemoteFileNode } = require('gatsby-source-filesystem');
 
-exports.onCreateNode = async ({
-  node,
-  actions: { createNode },
-  createNodeId,
-  cache,
-  store,
-}) => {
+exports.onCreateNode = async ({ node, actions: { createNode }, createNodeId, cache, store }) => {
   if (node.internal.type === 'apod') {
     node.image = await createRemoteFileNode({
       url: node.url,
@@ -252,9 +246,7 @@ called from Gatsby Node using this function:
 ```javascript
 // gatsby-node.js
 
-exports.createSchemaCustomization = ({
-  actions: { createTypes, printTypeDefinitions },
-}) => {
+exports.createSchemaCustomization = ({ actions: { createTypes, printTypeDefinitions } }) => {
   printTypeDefinitions({ path: './typeDefs.txt' });
 };
 ```

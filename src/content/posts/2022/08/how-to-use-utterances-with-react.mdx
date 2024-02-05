@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: How to use Utterances with React
 tags: [React, JavaScript]
 date: 2022-08-10
@@ -29,11 +29,11 @@ required to get going, it's pretty straightforward.
 
 ```javascript
 <script
-  src="https://utteranc.es/client.js"
-  repo="[ENTER REPO HERE]"
-  issue-term="pathname"
-  theme="github-light"
-  crossorigin="anonymous"
+  src='https://utteranc.es/client.js'
+  repo='[ENTER REPO HERE]'
+  issue-term='pathname'
+  theme='github-light'
+  crossorigin='anonymous'
   defer
 ></script>
 ```
@@ -103,7 +103,7 @@ const UtterancesComments = () => {
       'issue-term': 'pathname',
       theme: 'github-light',
       crossOrigin: 'anonymous',
-      defer: true
+      defer: true,
     };
 
     Object.entries(config).forEach(([key, value]) => {
@@ -160,7 +160,7 @@ const config = {
   'issue-term': 'pathname',
   theme: 'github-light',
   crossOrigin: 'anonymous',
-  defer: true
+  defer: true,
 };
 ```
 

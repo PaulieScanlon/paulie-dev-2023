@@ -6,7 +6,7 @@ export const collections = {
     schema: z.object({
       draft: z.boolean().optional(),
       audioFeedId: z.string().optional(),
-      type: z.string(),
+      base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
       date: z.date(),
@@ -18,7 +18,7 @@ export const collections = {
     type: 'content',
     schema: z.object({
       audioFeedId: z.string().optional(),
-      type: z.string(),
+      base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
       date: z.date(),
@@ -33,7 +33,7 @@ export const collections = {
   streams: defineCollection({
     type: 'content',
     schema: z.object({
-      type: z.string(),
+      base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
       date: z.date(),
@@ -46,7 +46,7 @@ export const collections = {
   demos: defineCollection({
     type: 'content',
     schema: z.object({
-      type: z.string(),
+      base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
       date: z.date(),
@@ -57,7 +57,7 @@ export const collections = {
   opensource: defineCollection({
     type: 'content',
     schema: z.object({
-      type: z.string(),
+      base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
       date: z.date(),

@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Use Netlify Functions and the Twitter API v2 as a CMS for your Gatsby blog
 tags: ['JavaScript', 'React', 'Gatsby', 'Netlify Functions', 'Twitter API v2']
 date: 2020-11-17
@@ -166,8 +166,8 @@ module.exports = {
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
     consumer_secret: process.env.TWITTER_CONSUMER_KEY_SECRET,
     access_token: process.env.TWITTER_ACCESS_TOKEN,
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-  })
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  }),
 };
 ```
 
@@ -214,16 +214,16 @@ exports.handler = async (event, context, callback) => {
   const { data } = await client.get(`users/by/username/${process.env.GATSBY_TWITTER_USERNAME}`, {
     user: {
       fields:
-        'created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld'
-    }
+        'created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld',
+    },
   });
 
   callback(null, {
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
     },
     statusCode: 200,
-    body: JSON.stringify({ user: data })
+    body: JSON.stringify({ user: data }),
   });
 };
 ```

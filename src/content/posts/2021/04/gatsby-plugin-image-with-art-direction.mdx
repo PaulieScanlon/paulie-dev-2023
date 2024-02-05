@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: 'Gatsby Plugin Image: withArtDirection'
 tags: [React, Gatsby, JavaScript, Gatsby Plugins]
 date: 2021-04-09
@@ -51,10 +51,7 @@ const {
   allFile: { nodes },
 } = useStaticQuery(graphql`
   query {
-    allFile(
-      filter: { sourceInstanceName: { eq: "lemon" }, ext: { eq: ".jpg" } }
-      sort: { fields: name, order: DESC }
-    ) {
+    allFile(filter: { sourceInstanceName: { eq: "lemon" }, ext: { eq: ".jpg" } }, sort: { fields: name, order: DESC }) {
       nodes {
         name
         sourceInstanceName

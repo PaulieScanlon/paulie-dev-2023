@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Syntax highlighting with Gatsby, MDX, Tailwind and Prism React Renderer
 tags: [Gatsby, React, JavaScript, MDX, Tailwind, Prism]
 date: 2022-08-08
@@ -54,11 +54,7 @@ This component looks a little something like this.
 import React from 'react';
 
 const RootElement = ({ children }) => {
-  return (
-    <main className='mx-auto px-2 sm:px-4 prose prose-sm sm:prose'>
-      {children}
-    </main>
-  );
+  return <main className='mx-auto px-2 sm:px-4 prose prose-sm sm:prose'>{children}</main>;
 };
 
 export default RootElement;
@@ -115,11 +111,7 @@ import PrismSyntaxHighlight from '../../components/prism-syntax-highlight';
 
 const components = {
   code: ({ children, className }) => {
-    return (
-      <PrismSyntaxHighlight className={className}>
-        {children}
-      </PrismSyntaxHighlight>
-    );
+    return <PrismSyntaxHighlight className={className}>{children}</PrismSyntaxHighlight>;
   },
 };
 
@@ -158,11 +150,7 @@ I pass the `className` on to the `<PrismSyntaxHighlight />` component via a prop
 
 const components = {
   code: ({ children, className }) => {
-    return (
-      <PrismSyntaxHighlight className={className}>
-        {children}
-      </PrismSyntaxHighlight>
-    );
+    return <PrismSyntaxHighlight className={className}>{children}</PrismSyntaxHighlight>;
   },
 };
 ```
@@ -220,12 +208,7 @@ const PrismSyntaxHighlight = ({ children, className }) => {
   const language = className.replace(/language-/gm, '');
 
   return (
-    <Highlight
-      {...defaultProps}
-      code={children}
-      language={language}
-      theme={theme}
-    >
+    <Highlight {...defaultProps} code={children} language={language} theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <code className={className} style={style}>
           {tokens.slice(0, -1).map((line, i) => (

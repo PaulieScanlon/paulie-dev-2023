@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: How to Create Custom Marketo Forms With React
 tags: [Next.js, React, Marketo]
 date: 2022-12-22
@@ -91,21 +91,21 @@ import useMarketo from '../hooks/use-marketo';
 const MarketoForm = memo(({ debug, formId }) => {
   useMarketo({
     formId: formId,
-    callback: () => {}
+    callback: () => {},
   });
 
-  return <form id={`mktoForm_${formId}`} className={debug ? 'block' : 'hidden'} aria-hidden="true" />;
+  return <form id={`mktoForm_${formId}`} className={debug ? 'block' : 'hidden'} aria-hidden='true' />;
 });
 
 MarketoForm.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 MarketoForm.propTypes = {
   /** Show the real Marketo form */
   debug: PropTypes.bool,
   /** The Marketo Form Id */
-  formId: PropTypes.string.isRequired
+  formId: PropTypes.string.isRequired,
 };
 
 export default MarketoForm;
@@ -263,14 +263,14 @@ const NewsletterForm = ({ formId }) => {
     event.preventDefault();
 
     dispatch({
-      type: 'isSubmitting'
+      type: 'isSubmitting',
     });
 
     window.MktoForms2.getForm(formId)
       .vals({ Email: email })
       .onSuccess(() => {
         dispatch({
-          type: 'success'
+          type: 'success',
         });
         setEmail('');
         return false;
@@ -280,42 +280,42 @@ const NewsletterForm = ({ formId }) => {
 
   return (
     <Fragment>
-      <h3 className="m-0">Newsletter Form</h3>
+      <h3 className='m-0'>Newsletter Form</h3>
       <p>Example form used to capture email addresses only.</p>
-      <div className="bg-white rounded border border-brand-gray-b p-8 sm:px-16 pt-16">
-        <h3 className="m-0 font-bold text-brand-deep-purple">Signup to Our Newsletter</h3>
-        <small className="block mb-8 text-brand-gray">* Required fields</small>
-        <form onSubmit={handleSubmit} className="form">
-          <label className="form--label">
-            <span className="form--label-text">
-              Email<span className="form--label-required">*</span>
+      <div className='bg-white rounded border border-brand-gray-b p-8 sm:px-16 pt-16'>
+        <h3 className='m-0 font-bold text-brand-deep-purple'>Signup to Our Newsletter</h3>
+        <small className='block mb-8 text-brand-gray'>* Required fields</small>
+        <form onSubmit={handleSubmit} className='form'>
+          <label className='form--label'>
+            <span className='form--label-text'>
+              Email<span className='form--label-required'>*</span>
             </span>
             <input
-              className="form--input"
-              type="email"
+              className='form--input'
+              type='email'
               required
-              placeholder="you@example.xyz"
+              placeholder='you@example.xyz'
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
             />
           </label>
-          <span className="form--announce-container">
-            {state.isSubmitting ? <span className="text-brand-orange">Submitting...</span> : null}
-            {state.success ? <span className="form--announce-success">Thanks for signing up.</span> : null}
+          <span className='form--announce-container'>
+            {state.isSubmitting ? <span className='text-brand-orange'>Submitting...</span> : null}
+            {state.success ? <span className='form--announce-success'>Thanks for signing up.</span> : null}
           </span>
-          <button type="submit" className="transition-all form--button-submit" disabled={state.isSubmitting}>
+          <button type='submit' className='transition-all form--button-submit' disabled={state.isSubmitting}>
             {state.isSubmitting ? 'Please wait...' : 'Subscribe'}
           </button>
         </form>
-        <small className="preferences--cta">
+        <small className='preferences--cta'>
           To update your email preferences visit{' '}
           <a
-            href="https://www.cockroachlabs.com/email-preferences/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-brand-deep-purple hover:!text-brand-primary"
+            href='https://www.cockroachlabs.com/email-preferences/'
+            target='_blank'
+            rel='noreferrer'
+            className='text-brand-deep-purple hover:!text-brand-primary'
           >
             cockroachlabs.com
           </a>
@@ -328,7 +328,7 @@ const NewsletterForm = ({ formId }) => {
 
 NewsletterForm.propTypes = {
   /** The Marketo Form Id */
-  formId: PropTypes.string.isRequired
+  formId: PropTypes.string.isRequired,
 };
 
 export default NewsletterForm;

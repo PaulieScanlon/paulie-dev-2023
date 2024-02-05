@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: Storybook - An alternative approach
 tags: ['Storybook', 'JavaScript', 'React']
 date: 2020-10-27
@@ -101,7 +101,7 @@ _Your exact config will differ if your directory structure is different from the
 // .storybook/main.js
 
 module.exports = {
-  stories: ['../src/components/**/*.stories.@(js|mdx|tsx)']
+  stories: ['../src/components/**/*.stories.@(js|mdx|tsx)'],
 };
 ```
 
@@ -197,18 +197,18 @@ import PropTypes from 'prop-types';
 
 export const MrButton = ({ children, isBoogyTime, ...props }) => (
   <button {...props} style={{ width: '100%' }}>
-    {isBoogyTime ? <span role="img">🕺 </span> : null}
+    {isBoogyTime ? <span role='img'>🕺 </span> : null}
     {children}
   </button>
 );
 
 MrButton.propTypes = {
   /** Displays man dancing emoji */
-  isBoogyTime: PropTypes.bool
+  isBoogyTime: PropTypes.bool,
 };
 
 MrButton.defaultProps = {
-  isBoogyTime: false
+  isBoogyTime: false,
 };
 ```
 
@@ -226,7 +226,7 @@ interface MrsButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export const MrsButton: FunctionComponent<MrsButtonProps> = ({ children, isBoogyTime = false, ...props }) => (
   <button {...props} style={{ width: '100%' }}>
-    {isBoogyTime ? <span role="img">🕺 </span> : null}
+    {isBoogyTime ? <span role='img'>🕺 </span> : null}
     {children}
   </button>
 );
@@ -245,8 +245,8 @@ export default {
   title: 'components/MrButton',
   parameters: {
     component: MrButton,
-    componentSubtitle: 'The MrButton component is of html type button'
-  }
+    componentSubtitle: 'The MrButton component is of html type button',
+  },
 };
 
 export const Usage = () => <MrButton>Mr Button</MrButton>;
@@ -596,13 +596,13 @@ export const ArgsStory = (args) => <MrButton onClick={() => args.handleClick('�
 ArgsStory.parameters = {
   docs: {
     description: {
-      story: '...'
-    }
-  }
+      story: '...',
+    },
+  },
 };
 
 ArgsStory.args = {
-  handleClick: (emoji) => action('handleClick')(emoji)
+  handleClick: (emoji) => action('handleClick')(emoji),
 };
 ```
 
@@ -622,9 +622,9 @@ export const TemplateStory = Template.bind({});
 TemplateStory.parameters = {
   docs: {
     description: {
-      story: '...'
-    }
-  }
+      story: '...',
+    },
+  },
 };
 
 TemplateStory.decorators = [
@@ -632,7 +632,7 @@ TemplateStory.decorators = [
     <div style={{ margin: '3em' }}>
       <Story />
     </div>
-  )
+  ),
 ];
 
 TemplateStory.args = { ['aria-label']: 'A button that mostly does nothing' };
@@ -645,7 +645,7 @@ TemplateStory.args = { ['aria-label']: 'A button that mostly does nothing' };
 
 <div
   style={{
-    margin: '3em'
+    margin: '3em',
   }}
 >
   <No Display Name />

@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: gatsby-theme-terminal
 tags: [Gatsby, Gatsby Themes]
 date: 2020-02-28
@@ -157,16 +157,7 @@ create something a bit more eye catching, like one of `<Card />`components used 
       excerpt,
       fields: { slug },
     } = posts[3].node;
-    return (
-      <Card
-        title={title}
-        featuredImage={featuredImage}
-        tags={tags}
-        date={date}
-        excerpt={excerpt}
-        slug={slug}
-      />
-    );
+    return <Card title={title} featuredImage={featuredImage} tags={tags} date={date} excerpt={excerpt} slug={slug} />;
   }}
 </SourceList>
 ```

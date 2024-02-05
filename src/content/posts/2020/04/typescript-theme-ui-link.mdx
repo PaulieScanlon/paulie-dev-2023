@@ -1,5 +1,5 @@
 ---
-type: post
+base: posts
 title: TypeScript Theme UI Link
 tags: ['React', 'Gatsby', 'TypeScript', 'Theme UI']
 date: 2020-04-24
@@ -53,10 +53,10 @@ import { Link } from '@theme-ui/components';
 const SomeComponent = () => {
   return (
     <>
-      <Link sx={{ color: 'primary' }} to="/" as={GatsbyLink}>
+      <Link sx={{ color: 'primary' }} to='/' as={GatsbyLink}>
         Back to home
       </Link>
-      <Link sx={{ color: 'secondary' }} href="https://www.paulie.dev">
+      <Link sx={{ color: 'secondary' }} href='https://www.paulie.dev'>
         https://www.paulie.dev
       </Link>
     </>
@@ -160,7 +160,7 @@ There is one caveat to using this method that i think you should know about. The
 since **MrLinky** is actually a Gatsby link we won't be able to use variant as a prop like this 👇
 
 ```javascript
-<MrLinky variant="links.navigation" />
+<MrLinky variant='links.navigation' />
 ```
 
 ...but we can still take advantage of the `variant` prop by passing it on via the `sx` prop e.g 👇
@@ -238,6 +238,6 @@ MrsLinky.propTypes = {
   /** Theme UI JSX pragma */
   sx: PropTypes.any,
   /** Inherited props from AnchorHTMLAttributes and GatsbyLinkProps  */
-  rest: PropTypes.any
+  rest: PropTypes.any,
 };
 ```
