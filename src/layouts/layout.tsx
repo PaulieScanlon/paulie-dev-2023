@@ -1,6 +1,9 @@
 import { Slot, component$, useSignal, $ } from '@builder.io/qwik';
 import Logo from '../components/logo';
+
 import NavLink from '../components/nav-link';
+import SiteSearch from '../components/site-search';
+
 import { siteLinks, socialLinks } from './nav-links';
 
 interface Props {
@@ -20,11 +23,14 @@ const Layout = component$<Props>(({ fullWidth, slug }) => {
       <header class='fixed top-0 z-40 w-full backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent'>
         <div class='max-w-8xl mx-auto'>
           <div class='py-4 mx-4 lg:px-8 lg:mx-0'>
-            <div class='relative flex items-center'>
+            <div class='relative flex items-center gap-8'>
               <a class='flex items-center' href='/' aria-current='page'>
                 <span class='sr-only'>Paul Scanlon's Site</span>
                 <Logo />
               </a>
+              <div class='hidden lg:flex ml-12 w-full max-w-[47.8rem]'>
+                <SiteSearch />
+              </div>
               <div class='relative flex lg:hidden items-center ml-auto'>
                 <button
                   id='menu'
@@ -59,7 +65,7 @@ const Layout = component$<Props>(({ fullWidth, slug }) => {
           aria-label='lightbox'
           tab-index='0'
           role='button'
-          className={`z-20 top-0 left-0 w-screen  h-screen bg-black opacity-80 ${
+          class={`z-20 top-0 left-0 w-screen  h-screen bg-black opacity-80 ${
             isNavOpen.value ? 'fixed' : 'hidden'
           } lg:hidden`}
           onClick$={handleNav}
@@ -68,12 +74,12 @@ const Layout = component$<Props>(({ fullWidth, slug }) => {
         <div class='max-w-8xl mx-auto px-4 sm:px-6 md:px-8'>
           <div
             id='sidebar'
-            className={`lg:block fixed z-30 inset-0 top-[3.8125rem] transition-all duration-300 right-auto w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] ${
+            class={`lg:block fixed z-30 inset-0 top-[3.8125rem] transition-all duration-300 right-auto w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] ${
               isNavOpen.value ? 'left-[max(0px,calc(50%-45rem))]' : '-left-[240px]'
             }`}
           >
-            <div class='relative'>
-              <ul class='flex flex-col gap-2 m-0 p-0'>
+            <div class='relative pt-6'>
+              <ul class='flex flex-col gap-2 m-0 p-0 list-none'>
                 {siteLinks.map((item, index) => {
                   const { title, icon, link } = item;
                   const s = slug.slice(1);
@@ -82,18 +88,18 @@ const Layout = component$<Props>(({ fullWidth, slug }) => {
                   const isActive = s.length <= 0 && s.startsWith(l) ? true : l.length > 0 && s.startsWith(l);
 
                   return (
-                    <li key={index} class='m-0 p-0 list-none'>
+                    <li key={index} class='m-0 p-0'>
                       <NavLink title={title} icon={icon} slug={link} isActive={isActive} />
                     </li>
                   );
                 })}
               </ul>
               <hr class='border border-brand-outline my-8' />
-              <ul class='flex flex-col gap-2 m-0 p-0'>
+              <ul class='flex flex-col gap-2 m-0 p-0 list-none'>
                 {socialLinks.map((item, index) => {
                   const { url, title, icon, rel } = item;
                   return (
-                    <li key={index} class='m-0 p-0 list-none'>
+                    <li key={index} class='m-0 p-0'>
                       <a
                         href={url}
                         target='_blank'
