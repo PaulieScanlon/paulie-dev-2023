@@ -40,4 +40,9 @@ export default defineConfig({
       syntaxHighlight: 'prism',
     }),
   ],
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 10000,
+    },
+  },
 });
