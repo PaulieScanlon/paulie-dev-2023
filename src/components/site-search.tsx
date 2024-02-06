@@ -9,8 +9,6 @@ interface Props {
 }
 
 const SiteSearch = component$<Props>(({ site }) => {
-  console.log('SiteSearch: ', site);
-
   const isModalOpen = useSignal(false);
   const links = useSignal<any[]>();
   const results = useSignal<any[]>([]);
@@ -58,8 +56,10 @@ const SiteSearch = component$<Props>(({ site }) => {
       }
     });
 
+    console.log('SiteSearch: ', site);
+
     try {
-      const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
+      const content = await fetch(`${site}/all-content.json`);
       const { search } = await content.json();
 
       console.log('search: ', search);
