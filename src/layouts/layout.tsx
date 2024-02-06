@@ -1,7 +1,8 @@
 import { Slot, component$, useSignal, $ } from '@builder.io/qwik';
-import Logo from '../components/logo';
 
+import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
+import SiteSearch from '../components/site-search';
 
 import { siteLinks, socialLinks } from './nav-links';
 
@@ -76,6 +77,9 @@ const Layout = component$<Props>(({ fullWidth, slug }) => {
           >
             <div class='relative pt-6'>
               <ul class='flex flex-col gap-2 m-0 p-0 list-none'>
+                <li class='m-0 p-0'>
+                  <SiteSearch />
+                </li>
                 {siteLinks.map((item, index) => {
                   const { title, icon, link } = item;
                   const s = slug.slice(1);
