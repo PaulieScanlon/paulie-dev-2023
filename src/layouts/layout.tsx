@@ -2,7 +2,6 @@ import { Slot, component$, useSignal, $ } from '@builder.io/qwik';
 import Logo from '../components/logo';
 
 import NavLink from '../components/nav-link';
-import SiteSearch from '../components/site-search';
 
 import { siteLinks, socialLinks } from './nav-links';
 
@@ -28,9 +27,6 @@ const Layout = component$<Props>(({ fullWidth, slug }) => {
                 <span class='sr-only'>Paul Scanlon's Site</span>
                 <Logo />
               </a>
-              <div class='hidden lg:flex ml-12 w-full max-w-[47.8rem]'>
-                <SiteSearch />
-              </div>
               <div class='relative flex lg:hidden items-center ml-auto'>
                 <button
                   id='menu'
