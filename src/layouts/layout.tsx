@@ -9,9 +9,11 @@ import { siteLinks, socialLinks } from './nav-links';
 interface Props {
   fullWidth: boolean;
   slug: string;
+  site: string;
 }
 
-const Layout = component$<Props>(({ fullWidth, slug }) => {
+const Layout = component$<Props>(({ fullWidth, slug, site }) => {
+  console.log('Layout: ', site);
   const isNavOpen = useSignal(false);
 
   const handleNav = $(() => {
@@ -78,7 +80,7 @@ const Layout = component$<Props>(({ fullWidth, slug }) => {
             <div class='relative pt-6'>
               <ul class='flex flex-col gap-2 m-0 p-0 list-none'>
                 <li class='m-0 p-0'>
-                  <SiteSearch />
+                  <SiteSearch site={site} />
                 </li>
                 {siteLinks.map((item, index) => {
                   const { title, icon, link } = item;

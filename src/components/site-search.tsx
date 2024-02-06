@@ -4,7 +4,13 @@ import Fuse from 'fuse.js';
 
 import { formatDate } from '../utils/format-date';
 
-const SiteSearch = component$(() => {
+interface Props {
+  site: string;
+}
+
+const SiteSearch = component$<Props>(({ site }) => {
+  console.log('SiteSearch: ', site);
+
   const isModalOpen = useSignal(false);
   const links = useSignal<any[]>();
   const results = useSignal<any[]>([]);
@@ -51,8 +57,6 @@ const SiteSearch = component$(() => {
         handleModal();
       }
     });
-
-    console.log('import.meta.env.SITE: ', import.meta.env.SITE);
 
     try {
       const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
