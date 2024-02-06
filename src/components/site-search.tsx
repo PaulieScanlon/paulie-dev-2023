@@ -10,8 +10,8 @@ interface Props {
 
 const SiteSearch = component$<Props>(({ search }) => {
   const isModalOpen = useSignal(false);
-  const all = useSignal<any[]>(search);
-  const filtered = useSignal<any[]>(search);
+  const all = useSignal(search);
+  const filtered = useSignal(search);
 
   const handleModal = $(() => {
     isModalOpen.value = !isModalOpen.value;
@@ -27,22 +27,22 @@ const SiteSearch = component$<Props>(({ search }) => {
       keys: ['title', 'date'],
     });
 
+    const results = fuse.search(value).map((data: any) => {
+      const {
+        item: { path, title, date },
+      } = data;
+
+      return {
+        title,
+        date,
+        path,
+      };
+    });
+
     if (value) {
-      filtered.value = fuse
-        .search(value)
-        .map((data) => {
-          const {
-            item: { path, title, date },
-          } = data;
-          return {
-            title,
-            date,
-            path,
-          };
-        })
-        .sort((a: any, b: any) => b.date - a.date);
+      filtered.value = results;
     } else {
-      filtered.value = all.value;
+      filtered.value = all;
     }
   });
 

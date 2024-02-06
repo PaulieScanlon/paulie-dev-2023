@@ -46,7 +46,7 @@ const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
 
-const content = await fetch(`${ import.meta.env.SITE}/all-content.json`);
+const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 const { search } = await content.json();
 ---
 
