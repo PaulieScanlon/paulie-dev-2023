@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
+import { component$, useSignal, $, useOnDocument, noSerialize } from '@builder.io/qwik';
 import { Modal, ModalContent } from '@qwik-ui/headless';
 import Fuse from 'fuse.js';
 
@@ -39,9 +39,9 @@ const SiteSearch = component$<Props>(({ search }) => {
     });
 
     if (value) {
-      filtered.value = results;
+      filtered.value = noSerialize(results);
     } else {
-      filtered.value = all;
+      filtered.value = noSerialize(all);
     }
   });
 
