@@ -3,8 +3,6 @@ export const prerender = true;
 
 import { sql } from '../neon';
 
-import { getCollection } from 'astro:content';
-
 import Main from '../layouts/main.astro';
 import CollectionsList from '../components/collections-list.astro';
 import Aside from '../components/aside.astro';
@@ -13,7 +11,9 @@ import RadarChartReactions from '../components/radar-chart-reactions.astro';
 
 import groupByReaction from '../utils/group-by-reaction';
 
-const posts = await getCollection('posts');
+const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
+
+const { posts } = await content.json();
 
 const reactions = await sql`
 SELECT * FROM reactions
