@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
 import { Modal, ModalContent } from '@qwik-ui/headless';
 import Fuse from 'fuse.js';
 
@@ -7,7 +7,6 @@ import { formatDate } from '../utils/format-date';
 interface Props {
   search: any;
 }
-
 const SiteSearch = component$<Props>(({ search }) => {
   const isModalOpen = useSignal(false);
   const all = useSignal(search);
@@ -46,16 +45,15 @@ const SiteSearch = component$<Props>(({ search }) => {
     }
   });
 
-  useVisibleTask$(async () => {
-    document.addEventListener('keydown', function (event) {
+  useOnDocument(
+    'keydown',
+    $((event) => {
       if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
-        console.log('Cmd + K pressed!');
-
         event.preventDefault();
         handleModal();
       }
-    });
-  });
+    })
+  );
 
   return (
     <>
