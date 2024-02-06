@@ -7,7 +7,7 @@ import ProfileCard from '../components/profile-card.astro';
 
 import CollectionsList from '../components/collections-list.astro';
 
-const content = await fetch('http://localhost:4321/all-content.json');
+const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
 const { streams } = await content.json();
 ---

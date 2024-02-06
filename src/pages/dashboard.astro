@@ -31,7 +31,7 @@ import groupBySlug from '../utils/group-by-slug';
 import groupByReaction from '../utils/group-by-reaction';
 import groupByReferrer from '../utils/group-by-referrer';
 
-const content = await fetch('http://localhost:4321/all-content.json');
+const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
 const { articles, collections } = await content.json();
 

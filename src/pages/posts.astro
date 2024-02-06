@@ -11,7 +11,7 @@ import RadarChartReactions from '../components/radar-chart-reactions.astro';
 
 import groupByReaction from '../utils/group-by-reaction';
 
-const content = await fetch('http://localhost:4321/all-content.json');
+const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
 const { posts } = await content.json();
 
