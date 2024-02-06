@@ -8,11 +8,9 @@ import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 import CtaInternal from '../components/cta-internal.astro';
 
-import { getCollection } from 'astro:content';
+const content = await fetch('http://localhost:4321/all-content.json');
 
-const demos = await getCollection('demos');
-const articles = await getCollection('articles');
-const posts = await getCollection('posts');
+const { demos, articles, posts } = await content.json();
 ---
 
 <Main title='Home' description="Paul Scanlon's blog" slug='/'>

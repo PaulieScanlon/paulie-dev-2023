@@ -14,7 +14,7 @@ const { collections, slice } = Astro.props;
 <ul class='list-none my-8 p-0 flex flex-col gap-8'>
   {
     collections
-      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+      .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
       .slice(0, slice || collections.length)
       .filter((item) => item.data.draft !== true)
       .map((collection) => {

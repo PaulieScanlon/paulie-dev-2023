@@ -4,10 +4,11 @@ export const prerender = true;
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-import { getCollection } from 'astro:content';
 import CollectionsList from '../components/collections-list.astro';
 
-const opensource = await getCollection('opensource');
+const content = await fetch('http://localhost:4321/all-content.json');
+
+const { opensource } = await content.json();
 ---
 
 <Main title='Open-source' description='Open-source projects currently maintained' slug='/opensource/'>
