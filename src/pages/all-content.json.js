@@ -20,6 +20,7 @@ export const GET = async ({ params, request }) => {
       return {
         date: date,
         title: title,
+        base: base,
         path: `/${base}/${slug}`,
       };
     })

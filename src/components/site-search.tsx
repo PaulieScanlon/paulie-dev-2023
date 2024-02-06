@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useOnDocument, noSerialize } from '@builder.io/qwik';
+import { component$, useSignal, $, sync$, useOnDocument, noSerialize } from '@builder.io/qwik';
 import { Modal, ModalContent } from '@qwik-ui/headless';
 import Fuse from 'fuse.js';
 
@@ -28,13 +28,14 @@ const SiteSearch = component$<Props>(({ search }) => {
 
     const results = fuse.search(value).map((data: any) => {
       const {
-        item: { path, title, date },
+        item: { base, path, title, date },
       } = data;
 
       return {
         title,
         date,
         path,
+        base,
       };
     });
 
@@ -49,7 +50,6 @@ const SiteSearch = component$<Props>(({ search }) => {
     'keydown',
     $((event) => {
       if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
         handleModal();
       }
     })
@@ -100,18 +100,27 @@ const SiteSearch = component$<Props>(({ search }) => {
               esc
             </button>
           </div>
-          <ul class='h-[300px] overflow-auto all-none p-0 m-0'>
+          <ul class='h-[300px] overflow-auto list-none p-0 m-0'>
             {filtered.value.length > 0 ? (
               filtered.value.map((data, index) => {
-                const { path, title, date } = data;
+                const { path, title, date, base } = data;
                 return (
                   <li
                     key={index}
                     class='cursor-pointer m-0 p-0 border-b-[1px] border-brand-outline hover:bg-brand-fuchsia'
                   >
-                    <a href={path} class='not-prose group flex flex-col px-4 py-3 text-slate-300 hover:text-white'>
-                      <span class='text-brand-primary group-hover:text-white text-[0.6rem]'>{formatDate(date)}</span>
-                      {title}
+                    <a href={path} class='group no-underline'>
+                      <div class=' px-4 py-3 text-slate-300 hover:text-white'>
+                        <div class='flex items-end pb-4 justify-between'>
+                          <time class='text-brand-primary group-hover:text-white text-[0.6rem]'>
+                            {formatDate(date)}
+                          </time>
+                          <span class='text-[0.65rem] uppercase bg-brand-outline rounded px-1 py-0.5 -mt-2'>
+                            {base}
+                          </span>
+                        </div>
+                        {title}
+                      </div>
                     </a>
                   </li>
                 );
