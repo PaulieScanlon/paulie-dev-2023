@@ -5,7 +5,10 @@ import AutoImport from 'astro-auto-import';
 import vercel from '@astrojs/vercel/serverless';
 import qwikdev from '@qwikdev/astro';
 
+const isProd = import.meta.env.PROD;
+
 export default defineConfig({
+  site: isProd ? 'https://paulie.dev' : 'http://localhost:4321',
   output: 'server',
   adapter: vercel({
     edgeMiddleware: true,
