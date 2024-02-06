@@ -52,12 +52,19 @@ const SiteSearch = component$(() => {
       }
     });
 
-    const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
+    console.log('import.meta.env.SITE: ', import.meta.env.SITE);
 
-    const { search } = await content.json();
+    try {
+      const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
+      const { search } = await content.json();
 
-    links.value = search;
-    results.value = search;
+      console.log('search: ', search);
+
+      links.value = search;
+      results.value = search;
+    } catch (error) {
+      console.error('Failed to fetch from static endpoint');
+    }
   });
 
   return (
