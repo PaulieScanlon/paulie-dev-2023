@@ -4,13 +4,17 @@ export const prerender = true;
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-import { getCollection } from 'astro:content';
 import CollectionsList from '../components/collections-list.astro';
 
-const streams = await getCollection('streams');
+import { streams, search } from '../utils/get-all-collections';
 ---
 
-<Main title='Streams' description="I don't like being on camera, but I'll do it if I have to" slug='/streams/'>
+<Main
+  title='Streams'
+  description="I don't like being on camera, but I'll do it if I have to"
+  slug='/streams/'
+  search={search}
+>
   <strong class='text-sm text-brand-primary'>Streams</strong>
   <h1 class='mb-0'>Streams and Webinars</h1>
   <p>

@@ -17,6 +17,7 @@ export const collections = {
   articles: defineCollection({
     type: 'content',
     schema: z.object({
+      draft: z.boolean().optional(),
       audioFeedId: z.string().optional(),
       base: z.string(),
       title: z.string(),
@@ -33,6 +34,7 @@ export const collections = {
   streams: defineCollection({
     type: 'content',
     schema: z.object({
+      draft: z.boolean().optional(),
       base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
@@ -46,6 +48,7 @@ export const collections = {
   demos: defineCollection({
     type: 'content',
     schema: z.object({
+      draft: z.boolean().optional(),
       base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
@@ -57,6 +60,7 @@ export const collections = {
   opensource: defineCollection({
     type: 'content',
     schema: z.object({
+      draft: z.boolean().optional(),
       base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),

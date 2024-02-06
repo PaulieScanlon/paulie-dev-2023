@@ -36,7 +36,7 @@ const keywords = [
   'Postgres',
 ];
 
-const { type, title, description, slug, image, tags, fullWidth = false, canonical } = Astro.props;
+const { type, title, description, slug, image, tags, fullWidth = false, canonical, search } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
 const linkCanonical = canonical ? canonical : `${siteUrl}${slug}`;
@@ -45,6 +45,7 @@ const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
 ---
+
 
 <html lang='en'>
   <head>
@@ -114,7 +115,7 @@ const isProduction = import.meta.env.PROD;
       }
   </head>
   <body class='prose max-w-none bg-brand-background'>
-    <Layout fullWidth={fullWidth} slug={slug}>
+    <Layout fullWidth={fullWidth} slug={slug} search={search}>
       <slot />
     </Layout>
   </body>

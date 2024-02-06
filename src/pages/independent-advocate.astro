@@ -5,6 +5,8 @@ import Main from '../layouts/main.astro';
 
 import { Image } from 'astro:assets';
 import ClickToCopyEmail from '../components/click-to-copy-email';
+
+import { search } from '../utils/get-all-collections';
 ---
 
 <Main
@@ -13,6 +15,7 @@ import ClickToCopyEmail from '../components/click-to-copy-email';
   description='Independent Product and Developer Advocacy'
   slug='/independent-advocate/'
   image='https://paulie.dev/images/ia-open-graph-image.jpg'
+  search={search}
 >
   <div class='mt-16 mb-32'>
     <strong class='block text-center xl:text-2xl text-brand-primary'>Paul Scanlon</strong>

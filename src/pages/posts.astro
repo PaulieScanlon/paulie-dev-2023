@@ -3,8 +3,6 @@ export const prerender = true;
 
 import { sql } from '../neon';
 
-import { getCollection } from 'astro:content';
-
 import Main from '../layouts/main.astro';
 import CollectionsList from '../components/collections-list.astro';
 import Aside from '../components/aside.astro';
@@ -12,8 +10,7 @@ import ProfileCard from '../components/profile-card.astro';
 import RadarChartReactions from '../components/radar-chart-reactions.astro';
 
 import groupByReaction from '../utils/group-by-reaction';
-
-const posts = await getCollection('posts');
+import { posts, search } from '../utils/get-all-collections';
 
 const reactions = await sql`
 SELECT * FROM reactions
@@ -21,7 +18,7 @@ WHERE reaction <> 'wondering' AND reaction <> 'confused'
 `;
 ---
 
-<Main title='Posts' description='Posts published on paulie.dev' slug='/posts/'>
+<Main title='Posts' description='Posts published on paulie.dev' slug='/posts/' search={search}>
   <strong class='text-sm text-brand-primary'>Posts</strong>
   <h1 class='mb-0'>Blog Posts</h1>
   <p>

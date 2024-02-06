@@ -12,6 +12,7 @@ import Reactions from '../../components/reactions';
 
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
+import { search } from '../../utils/get-all-collections';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -41,7 +42,7 @@ const excerpt = `${createExcerpt(post.body).substring(0, 70)}...`;
 const { Content, headings } = await post.render();
 ---
 
-<Main title={title} description={excerpt} slug={`/posts/${slug}/`} image={featuredImage}>
+<Main title={title} description={excerpt} slug={`/posts/${slug}/`} image={featuredImage} search={search}>
   {
     draft ? (
       <p class='bg-brand-yellow rounded text-sm text-brand-background py-1 text-center'>

@@ -4,13 +4,12 @@ export const prerender = true;
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-import { getCollection } from 'astro:content';
 import CollectionsList from '../components/collections-list.astro';
 
-const articles = await getCollection('articles');
+import { articles, search } from '../utils/get-all-collections';
 ---
 
-<Main title='Articles' description='Articles written for external publications' slug='/articles/'>
+<Main title='Articles' description='Articles written for external publications' slug='/articles/' search={search}>
   <strong class='text-sm text-brand-primary'>Articles</strong>
   <h1 class='mb-0'>External Publishers</h1>
   <p>

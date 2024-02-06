@@ -8,14 +8,10 @@ import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 import CtaInternal from '../components/cta-internal.astro';
 
-import { getCollection } from 'astro:content';
-
-const demos = await getCollection('demos');
-const articles = await getCollection('articles');
-const posts = await getCollection('posts');
+import { demos, articles, posts, search } from '../utils/get-all-collections';
 ---
 
-<Main title='Home' description="Paul Scanlon's blog" slug='/'>
+<Main title='Home' description="Paul Scanlon's blog" slug='/' search={search}>
   <strong class='text-sm text-brand-primary'>Home</strong>
   <h1 class='text-brand-text text-3xl sm:text-5xl mb-1'>Paul Scanlon</h1>
   <h2 class='text-brand-text font-semibold mt-1'>Independent Advocate (Freelance)</h2>

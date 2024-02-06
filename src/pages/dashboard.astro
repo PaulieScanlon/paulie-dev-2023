@@ -30,16 +30,7 @@ import groupByTag from '../utils/group-by-tag';
 import groupBySlug from '../utils/group-by-slug';
 import groupByReaction from '../utils/group-by-reaction';
 import groupByReferrer from '../utils/group-by-referrer';
-
-import { getCollection } from 'astro:content';
-
-const articles = await getCollection('articles');
-const demos = await getCollection('demos');
-const opensource = await getCollection('opensource');
-const posts = await getCollection('posts');
-const streams = await getCollection('streams');
-
-const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
+import { articles, collections, search } from '../utils/get-all-collections';
 
 let table = null;
 
@@ -65,7 +56,7 @@ try {
 const period = groupByDate(table.analytics).length - 1;
 ---
 
-<Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
+<Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/' search={search}>
   <strong class='text-sm text-brand-primary'>Dashboard</strong>
   <h1 class='mb-0'>Built-in Analytics</h1>
   <p class='mb-16'>

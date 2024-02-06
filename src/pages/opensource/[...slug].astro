@@ -8,8 +8,10 @@ import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
 import FeaturedImageCard from '../../components/featured-image-card.astro';
 import TableOfContents from '../../components/table-of-contents.astro';
+
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
+import { search } from '../../utils/get-all-collections';
 
 export async function getStaticPaths() {
   const opensource = await getCollection('opensource');
@@ -39,7 +41,7 @@ const excerpt = `${createExcerpt(open.body).substring(0, 70)}...`;
 const { Content, headings } = await open.render();
 ---
 
-<Main title={title} description={excerpt} slug={`/opensource/${slug}/`}>
+<Main title={title} description={excerpt} slug={`/opensource/${slug}/`} search={search}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
     <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
     <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>

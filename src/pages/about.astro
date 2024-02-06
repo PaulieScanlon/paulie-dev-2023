@@ -6,9 +6,11 @@ import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 
 import { Vimeo, YouTube } from 'astro-embed';
+
+import { search } from '../utils/get-all-collections';
 ---
 
-<Main title='About' description='A little bit more about me' slug='/about/'>
+<Main title='About' description='A little bit more about me' slug='/about/' search={search}>
   <strong class='text-sm text-brand-primary'>About</strong>
   <h1 class='mb-0'>More about me</h1>
   <p>Hey there! 👋</p>

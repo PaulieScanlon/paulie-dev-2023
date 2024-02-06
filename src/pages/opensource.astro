@@ -4,13 +4,12 @@ export const prerender = true;
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-import { getCollection } from 'astro:content';
 import CollectionsList from '../components/collections-list.astro';
 
-const opensource = await getCollection('opensource');
+import { opensource, search } from '../utils/get-all-collections';
 ---
 
-<Main title='Open-source' description='Open-source projects currently maintained' slug='/opensource/'>
+<Main title='Open-source' description='Open-source projects currently maintained' slug='/opensource/' search={search}>
   <strong class='text-sm text-brand-primary'>Open-source</strong>
   <h1 class='mb-0'>Open-source projects</h1>
   <p>I'm currently only maintaining the following projects.</p>

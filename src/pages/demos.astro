@@ -4,13 +4,12 @@ export const prerender = true;
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-import { getCollection } from 'astro:content';
 import CollectionsList from '../components/collections-list.astro';
 
-const demos = await getCollection('demos');
+import { demos, search } from '../utils/get-all-collections';
 ---
 
-<Main title='Demos' description='Product demos and marketing proof of concepts' slug='/demos/'>
+<Main title='Demos' description='Product demos and marketing proof of concepts' slug='/demos/' search={search}>
   <strong class='text-sm text-brand-primary'>Demos</strong>
   <h1 class='mb-0'>Marketing Campaigns, Projects and Demos</h1>
   <p>

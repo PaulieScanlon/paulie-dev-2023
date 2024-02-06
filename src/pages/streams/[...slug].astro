@@ -7,8 +7,10 @@ import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
 import ProfileCard from '../../components/profile-card.astro';
+
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
+import { search } from '../../utils/get-all-collections';
 
 export async function getStaticPaths() {
   const streams = await getCollection('streams');
@@ -38,7 +40,7 @@ const excerpt = `${createExcerpt(stream.body).substring(0, 70)}...`;
 const { Content } = await stream.render();
 ---
 
-<Main title={title} description={excerpt} slug={`/streams/${slug}/`}>
+<Main title={title} description={excerpt} slug={`/streams/${slug}/`} search={search}>
   <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <TagsList tags={tags} />
