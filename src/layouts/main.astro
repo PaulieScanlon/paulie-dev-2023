@@ -7,9 +7,7 @@ import '@fontsource/inconsolata/500.css';
 import '@fontsource/inconsolata/700.css';
 import '@fontsource/inconsolata/900.css';
 
-// console.log('import.meta.env.SITE: ', import.meta.env.SITE);
-const site = import.meta.env.SITE
-console.log('main: ', site)
+
 const name = 'Paul Scanlon';
 const siteUrl = 'https://paulie.dev';
 const defaultImage = '/images/paulie-open-graph-image-2022.jpg';
@@ -47,6 +45,9 @@ const ogImage = image ? image : `${siteUrl}${defaultImage}`;
 const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
+
+const content = await fetch(`${ import.meta.env.SITE}/all-content.json`);
+const { search } = await content.json();
 ---
 
 <html lang='en'>
@@ -117,7 +118,7 @@ const isProduction = import.meta.env.PROD;
       }
   </head>
   <body class='prose max-w-none bg-brand-background'>
-    <Layout fullWidth={fullWidth} slug={slug} site={site}>
+    <Layout fullWidth={fullWidth} slug={slug} search={search}>
       <slot />
     </Layout>
   </body>
