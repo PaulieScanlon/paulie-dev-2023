@@ -34,6 +34,7 @@
     "astro": "^4.3.3",
     "astro-auto-import": "^0.4.2",
     "astro-embed": "^0.6.1",
+    "fuse.js": "^7.0.0",
     "globe.gl": "^2.32.1",
     "markdown-it": "^13.0.1",
     "mdx": "^0.3.1",
