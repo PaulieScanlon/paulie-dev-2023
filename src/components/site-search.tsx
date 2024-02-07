@@ -1,8 +1,6 @@
 import { component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
 import { Modal, ModalContent } from '@qwik-ui/headless';
 
-import { formatDate } from '../utils/format-date';
-
 interface Props {
   search: any;
 }
@@ -104,9 +102,6 @@ const SiteSearch = component$<Props>(({ search }) => {
                     <a href={path} class='group no-underline'>
                       <div class=' px-4 py-3 text-slate-300 hover:text-white'>
                         <div class='flex items-end pb-4 justify-between'>
-                          <time class='text-brand-primary group-hover:text-white text-[0.6rem]'>
-                            {formatDate(date)}
-                          </time>
                           <span class='text-[0.65rem] uppercase bg-brand-outline rounded px-1 py-0.5 -mt-2'>
                             {base}
                           </span>
