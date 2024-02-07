@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useOnDocument, noSerialize } from '@builder.io/qwik';
+import { component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
 import { Modal, ModalContent } from '@qwik-ui/headless';
 
 import { formatDate } from '../utils/format-date';
@@ -42,9 +42,9 @@ const SiteSearch = component$<Props>(({ search }) => {
     });
 
     if (value) {
-      filtered.value = noSerialize(results);
+      filtered.value = results;
     } else {
-      filtered.value = noSerialize(all.value);
+      filtered.value = all.value;
     }
   });
 
