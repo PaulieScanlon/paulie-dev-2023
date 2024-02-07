@@ -117,7 +117,7 @@ module.exports = {
             p: {
               fontFamily: 'system-ui',
               strong: {
-                fontWeight: 900,
+                fontWeight: 700,
               },
             },
             button: {

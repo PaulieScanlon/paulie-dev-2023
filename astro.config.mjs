@@ -32,6 +32,9 @@ export default defineConfig({
           './src/components/astro-image.astro': [['default', 'AstroImage']],
         },
         {
+          './src/components/video-player.astro': [['default', 'VideoPlayer']],
+        },
+        {
           'astro-embed': ['Tweet', 'Vimeo', 'YouTube'],
         },
         {

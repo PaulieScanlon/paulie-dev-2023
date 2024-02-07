@@ -1,16 +1,15 @@
 ---
-draft: true
 base: posts
-title: The Qwik, Astro, AudioFeed Experiment
-tags: [Qwik, Astro, AudioFeed, AI]
+title: The Qwik, Astro, Audiofeed Experiment
+tags: [Qwik, Astro, Audiofeed, AI]
 date: 2024-02-06
 author: Paul Scanlon
-featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1706936972/paulie.dev/2024/02/get-started-with-qwik-astro_pldfqj.jpg
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261626/paulie.dev/2024/02/get-started-with-qwik-astro_qtxmyq.jpg
 ---
 
 This is an experimental blog post where i'll write a very brief 'How to...' guide for creating an [Astro](https://astro.build/) site and add [Jack Shelton's](https://twitter.com/TheJackShelton) superb [@qwikdev/astro](https://github.com/QwikDev/astro#readme) integration.
 
-With [AudioFeed](https://audiofeed.ai/) I'm able to create a video, with audio, using only the text and images seen in this post. Creating 'How to...' content using AI, in my opinion, is a brilliant solution to a problem I've encountered on multiple occasions when attempting to learn something new.
+With [Audiofeed](https://audiofeed.ai/) I'm able to create a video, with audio, using only the text and images seen in this post. Creating 'How to...' content using AI, in my opinion, is a brilliant solution to a problem I've encountered on multiple occasions when attempting to learn something new.
 
 ## The DevRel Video Problem
 
@@ -20,15 +19,13 @@ By using written content that is converted into audio, and screenshots inserted 
 
 No more out of date misleading videos littering the docs!
 
-## AudioFeed
+## Audiofeed
 
-[AudioFeed](https://audiofeed.ai/) has been created by friend, ex-Gatsby colleague, and all round mega-dude [Shane Thomas](https://twitter.com/smthomas3). It's early days for the product but it's looking good. Whilst this video feels a little _rudimentary_, I think the potential is clear.
+[Audiofeed](https://audiofeed.ai/) has been created by friend, ex-Gatsby colleague, and all round mega-dude [Shane Thomas](https://twitter.com/smthomas3). It's early days for the product but it's looking good. Whilst this video feels a little _rudimentary_, I think the potential is clear.
 
 Below you'll find the finished experiment (an AI generated video), and below that is the actual 'How to...' guide. At the bottom of this post I'll explain how it was made.
 
-```
-embed video here
-```
+<VideoPlayer src='https://res.cloudinary.com/www-paulie-dev/video/upload/v1707269314/paulie.dev/2024/02/The_Qwik_Astro_Audiofeed_Experiment_pojxep.mp4' />
 
 <div class='not-prose uppercase w-full border border-brand-salmon rounded bg-brand-surface p-2 font-bold text-brand-salmon text-center'>
   ### ‹ start how to guide ›
@@ -57,7 +54,7 @@ pnpm astro add @qwikdev/astro
   width='960'
   height='545'
   alt='Screenshot of @qwikdev/astro install options'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706927178/paulie.dev/2024/02/get-started-with-astro-and-qwik-2.install-with-astro_x5gsay.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261710/paulie.dev/2024/02/get-started-with-astro-and-qwik-2.install-with-astro_yul7bx.jpg'
 />
 
 You'll then be prompted to confirm it's ok to install the required dependencies. Press the Enter key to continue.
@@ -66,7 +63,7 @@ You'll then be prompted to confirm it's ok to install the required dependencies.
   width='960'
   height='545'
   alt='Screenshot of install dependencies confirmation'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923758/paulie.dev/2024/02/get-started-with-astro-and-qwik-3.confirm-install_uz99g8.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261710/paulie.dev/2024/02/get-started-with-astro-and-qwik-3.confirm-install_piqheb.jpg'
 />
 
 The final prompt from the CLI is to confirm it's ok to update your `astro.config.mjs` file with the `qwikDev` integration.
@@ -75,7 +72,7 @@ The final prompt from the CLI is to confirm it's ok to update your `astro.config
   width='960'
   height='545'
   alt='Screenshot of install integration confirmation'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923758/paulie.dev/2024/02/get-started-with-astro-and-qwik-4.confirm-changes_gfwsnv.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261711/paulie.dev/2024/02/get-started-with-astro-and-qwik-4.confirm-changes_yvvhav.jpg'
 />
 
 If all has gone to plan the dependencies will install, the config will be updated and you should be looking at a message in your terminal that says **success. Configuration up-to date**, and **Done**.
@@ -84,7 +81,7 @@ If all has gone to plan the dependencies will install, the config will be update
   width='960'
   height='545'
   alt='Screenshot of install complete'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923758/paulie.dev/2024/02/get-started-with-astro-and-qwik-5.done_cbyft6.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261710/paulie.dev/2024/02/get-started-with-astro-and-qwik-5.done_b8mv27.jpg'
 />
 
 #### Creating a Qwik Component
@@ -93,14 +90,14 @@ Create a new directory named src (if you don't already have one), then create a 
 
 This simple component uses useSignal which, if you're familiar with React is a little like `useState`, and will be used to hold a boolean value of `true` or `false`.
 
-There's an event handler function which is called `onClick` by the button which sets the boolean value to true if its false, and false if it's true.
+There's a function named `handleVisibility` which will be called by the `onClick` event handler attribute on the button which sets the boolean value of `isVisible` to true if its false, and false if it's true.
 
-The boolean value can then be used with a conditional (ternary) operator to determine if the Rocket emoji is returned or not.
+The isVisible value can then be used with a conditional (ternary) operator to determine if the Rocket emoji is returned or not.
 
 ```javascript
 import { component$, useSignal, $ } from '@builder.io/qwik';
 
-const UseSignalQwikComponent = component$(() => {
+const UseSignalComponent = component$(() => {
   const isVisible = useSignal(true);
 
   const handleVisibility = $(() => {
@@ -126,19 +123,19 @@ const UseSignalQwikComponent = component$(() => {
   );
 });
 
-export default UseSignalQwikComponent;
+export default UseSignalComponent;
 ```
 
 <AstroImage
   width='960'
   height='545'
   alt='Screenshot Qwik component'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923759/paulie.dev/2024/02/get-started-with-astro-and-qwik-6.qwik-component_fdir4i.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707264118/paulie.dev/2024/02/get-started-with-astro-and-qwik-6.qwik-component_uuxjhq.jpg'
 />
 
 #### Creating an Astro Page
 
-Create a new directory in src named pages, (if you don't already have one) then create a new `.astro` file. I've named mine: `index.astro`. Add the following code to import the Qwik component and return it in Jsx.
+Create a new directory in src named pages, (if you don't already have one) then create a new `.astro` file. I've named mine: `index.astro`. Add the following code to import the Qwik component and add it to the page.
 
 ```javascript
 ---
@@ -161,7 +158,7 @@ import UseSignalComponent from '../components/use-signal-component';
   width='960'
   height='545'
   alt='Screenshot Astro page'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923758/paulie.dev/2024/02/get-started-with-astro-and-qwik-7.astro-page_widy2t.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261712/paulie.dev/2024/02/get-started-with-astro-and-qwik-7.astro-page_eniqo8.jpg'
 />
 
 #### Preview The Page
@@ -174,7 +171,7 @@ By default the Rocket will be visible because the default value in the useSignal
   width='960'
   height='545'
   alt='Screenshot preview page - Rocket returned by Jsx'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923759/paulie.dev/2024/02/get-started-with-astro-and-qwik-8.hide-rocket_arhszn.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261713/paulie.dev/2024/02/get-started-with-astro-and-qwik-8.hide-rocket_eez8rl.jpg'
 />
 
 And as you'd expect, if you click the button, the useSignal value will be set to `false` and the Rocket won't be returned.
@@ -183,7 +180,7 @@ And as you'd expect, if you click the button, the useSignal value will be set to
   width='960'
   height='545'
   alt='Screenshot preview page - Rocket not returned by Jsx'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706923759/paulie.dev/2024/02/get-started-with-astro-and-qwik-9.show-rocket_xcjz85.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261714/paulie.dev/2024/02/get-started-with-astro-and-qwik-9.show-rocket_pklevl.jpg'
 />
 
 #### Finished
@@ -200,29 +197,29 @@ Naturally, my first step was to write the code so I knew the steps required to w
 
 ### Creating Frames In Photoshop
 
-Creating these "frames" in Photoshop as Artboards allows me to very quickly make changes, then export all Artboards in one go using a Photoshop feature: "Export > Artboards to Files...". With the Artboards exported as individual .jpegs I can now create the segments in AudioFeed.
+Creating these "frames" in Photoshop as Artboards allows me to very quickly make changes, then export all Artboards in one go using a Photoshop feature: "Export > Artboards to Files...". With the Artboards exported as individual .jpegs I can now create the segments in Audiofeed.
 
 <AstroImage
   width='960'
   height='545'
   alt='Screenshot Photoshop Artboards'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706982090/paulie.dev/2024/02/get-started-with-astro-and-qwik-11.photoshop_ddqr79.jpg'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261715/paulie.dev/2024/02/get-started-with-astro-and-qwik-10.photoshop_awrnau.jpg'
 />
 
-### Creating Segments In AudioFeed
+### Creating Segments In Audiofeed
 
-Segments in AudioFeed are where you add text which will be converted into spoken word audio.
+Segments in Audiofeed are where you add text which will be converted into spoken word audio.
 
 <AstroImage
   width='960'
   height='545'
-  alt='Screenshot AudioFeed Segments'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1706982090/paulie.dev/2024/02/get-started-with-astro-and-qwik-12.audio-feed_m2r4rh.jpg'
+  alt='Screenshot Audiofeed Segments'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1707261945/paulie.dev/2024/02/get-started-with-astro-and-qwik-12.audio-feed_gnvfo1.jpg'
 />
 
 Here you'll see the option to add an image to each segment, this is where I add the Artboards exported from Photoshop. There are a number of options available to help you redraft what you've written under the "Content Tools" menu. You can also select a host for different voice types.
 
-When you've added all the segments, and generated audio for each, you can go ahead and publish the episode. AudioFeed will then convert all segments into a single audio or video file ready to be published to Podcast feeds, or downloaded and distributed. It's pretty cool stuff!
+When you've added all the segments, and generated audio for each, you can go ahead and publish the episode. Audiofeed will then convert all segments into a single audio or video file ready to be published to Podcast feeds, or downloaded and distributed. It's pretty cool stuff!
 
 ## Final Thoughts
 
@@ -232,16 +229,17 @@ I believe there are significant business benefits to using this approach. For st
 
 Compare that to the significant effort required for a human to rerecord an entire video and then edit it. Moreover, the text editing can be done by anyone, you don't need any specific software, or (dare I say it) any real skill to make text changes. It's kinda the same as making a change using a Content Management System (CMS), but the output is more than just text and images.
 
-Don't quote me on this but, future features from [AudioFeed](https://audiofeed.ai/) may include the following:
+Don't quote me on this but, future features from [Audiofeed](https://audiofeed.ai/) may include the following:
 
 - Automatic closed caption generation from text segments (required for accessibility)
 - AI Generated (animated / speaking) Little Face In The Corner (LFITC)
 - Intro video upload. (crucial for DevRels keen to plaster their stupid face all over the internet)
+- Video Player iFrame Embed code. (Will auto update if changes are made)
 
-I'm excited to watch as the team at AudioFeed develop this product further, and I'll be continuing to experiment with the format. And who knows, maybe one day soon, we'll see the end of human recorded, out of date and misleading videos in documentation.
+I'm excited to watch as the team at Audiofeed develop this product further, and I'll be continuing to experiment with the format. And who knows, maybe one day soon, we'll see the end of human recorded, out of date and misleading videos in documentation.
 
 Check it out today at: [audiofeed.ai](https://audiofeed.ai/)
 
 Oh and I almost forgot.
 
-AudioFeed have a player embed that you can add to any post or article. Here's an example for something I wrote recently: [I’m in an Open Relationship with Remix](/articles/2023/11/im-in-an-open-relationship-with-remix/)
+Audiofeed have a player embed that you can add to any post or article. Here's an example for something I wrote recently: [I’m in an Open Relationship with Remix](/articles/2023/11/im-in-an-open-relationship-with-remix/)
