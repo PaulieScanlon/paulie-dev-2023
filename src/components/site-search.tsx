@@ -34,11 +34,11 @@ const SiteSearch = component$<Props>(({ search }) => {
 
   return (
     <div class='relative'>
-      <div class=' w-full flex justify-between items-center font-medium text-brand-tertiary transition-all duration-300 rounded border border-brand-outline bg-surface px-3 py-2 hover:text-white hover:bg-brand-muted/20'>
+      <div class=' w-full flex justify-between items-center font-medium transition-all duration-300 rounded border border-brand-outline bg-surface px-3 py-2 hover:text-white hover:bg-brand-muted/20'>
         <input
           type='search'
           placeholder='Search'
-          class='basis-full bg-transparent text-white focus:outline-none bg-surface'
+          class='basis-full bg-transparent text-white placeholder:text-brand-tertiary focus:outline-none bg-surface'
           onInput$={handleChange}
           onFocusIn$={handleList}
           onFocusOut$={handleList}
