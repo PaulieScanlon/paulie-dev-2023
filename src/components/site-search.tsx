@@ -88,7 +88,7 @@ const SiteSearch = component$<Props>(({ search }) => {
               <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
             </svg>
             <input
-              type='text'
+              type='search'
               placeholder='Search'
               class='basis-full bg-transparent text-white focus:outline-none bg-surface'
               onInput$={handleChange}
