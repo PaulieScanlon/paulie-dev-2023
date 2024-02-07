@@ -1,6 +1,5 @@
-import { component$, useSignal, $, sync$, useOnDocument, noSerialize } from '@builder.io/qwik';
+import { component$, useSignal, $, useOnDocument, noSerialize } from '@builder.io/qwik';
 import { Modal, ModalContent } from '@qwik-ui/headless';
-import Fuse from 'fuse.js';
 
 import { formatDate } from '../utils/format-date';
 
@@ -16,7 +15,10 @@ const SiteSearch = component$<Props>(({ search }) => {
     isModalOpen.value = !isModalOpen.value;
   });
 
-  const handleChange = $((event) => {
+  const handleChange = $(async (event) => {
+    const FuseModule = await import('fuse.js');
+    const Fuse = FuseModule.default;
+
     const {
       target: { value },
     } = event;
@@ -42,7 +44,7 @@ const SiteSearch = component$<Props>(({ search }) => {
     if (value) {
       filtered.value = noSerialize(results);
     } else {
-      filtered.value = noSerialize(all);
+      filtered.value = noSerialize(all.value);
     }
   });
 
@@ -100,6 +102,9 @@ const SiteSearch = component$<Props>(({ search }) => {
               esc
             </button>
           </div>
+          <div class='text-brand-muted text-xs pt-2 pb-4'>{`${
+            filtered.value.length > 0 ? filtered.value.length : 0
+          } results`}</div>
           <ul class='h-[300px] overflow-auto list-none p-0 m-0'>
             {filtered.value.length > 0 ? (
               filtered.value.map((data, index) => {
@@ -127,7 +132,7 @@ const SiteSearch = component$<Props>(({ search }) => {
               })
             ) : (
               <div class='flex items-center justify-center text-center h-full'>
-                <span class='font-semibold text-lg text-slate-500 -mt-8'>No filtered found.</span>
+                <div class='font-semibold text-lg text-center text-slate-500 -mt-8'>No results found.</div>
               </div>
             )}
           </ul>
