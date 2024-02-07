@@ -15,30 +15,17 @@ const SiteSearch = component$<Props>(({ search }) => {
     isModalOpen.value = !isModalOpen.value;
   });
 
-  const handleChange = $(async (event) => {
-    const FuseModule = await import('fuse.js');
-    const Fuse = FuseModule.default;
-
+  const handleChange = $((event) => {
     const {
       target: { value },
     } = event;
 
-    const fuse = new Fuse(all.value, {
-      threshold: 0.5,
-      keys: ['title', 'date'],
-    });
+    const results = all.value.filter((item) => {
+      const { title } = item;
 
-    const results = fuse.search(value).map((data: any) => {
-      const {
-        item: { base, path, title, date },
-      } = data;
-
-      return {
-        title,
-        date,
-        path,
-        base,
-      };
+      if (title.toLowerCase().includes(value.toLowerCase())) {
+        return item;
+      }
     });
 
     if (value) {
