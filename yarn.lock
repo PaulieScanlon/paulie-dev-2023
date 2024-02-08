@@ -1007,11 +1007,6 @@
     "@octokit/webhooks-types" "7.1.0"
     aggregate-error "^3.1.0"
 
-"@qwik-ui/headless@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@qwik-ui/headless/-/headless-0.2.2.tgz#5583c0decbc2094b8d387008cb51d82d66e1ea2a"
-  integrity sha512-6x2of9pWacGeS9A79e2rqZXLPVj6iJ9FsPbIR2NJm1TvT1duMNEtMZCjGlBfiDSrff2010GuvO/HvoD8Kng6tg==
-
 "@qwikdev/astro@^0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@qwikdev/astro/-/astro-0.5.2.tgz#769cf9100d1a5ab166c36a9ed0fbf474cc48079e"
