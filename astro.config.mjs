@@ -46,6 +46,9 @@ export default defineConfig({
       syntaxHighlight: 'prism',
     }),
   ],
+  build: {
+    inlineStylesheets: 'always',
+  },
   vite: {
     build: {
       chunkSizeWarningLimit: 10000,

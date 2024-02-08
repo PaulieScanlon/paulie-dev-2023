@@ -92,37 +92,39 @@ const SiteSearch = component$<Props>(({ search }) => {
           <div class='text-brand-muted text-xs pt-2 pb-4'>{`${
             filtered.value.length > 0 ? filtered.value.length : 0
           } results`}</div>
-          <ul class='h-[300px] overflow-auto list-none p-0 m-0'>
-            {filtered.value.length > 0 ? (
-              filtered.value.map((data, index) => {
-                const { path, title, date, base } = data;
-                return (
-                  <li
-                    key={index}
-                    class='cursor-pointer m-0 p-0 border-b-[1px] border-brand-outline hover:bg-brand-fuchsia'
-                  >
-                    <a href={path} class='group no-underline'>
-                      <div class=' px-4 py-3 text-slate-300 hover:text-white'>
-                        <div class='flex items-end pb-4 justify-between'>
-                          <time class='text-brand-primary group-hover:text-white text-[0.6rem]'>
-                            {formatDate(date)}
-                          </time>
-                          <span class='text-[0.65rem] uppercase bg-brand-outline rounded px-1 py-0.5 -mt-2'>
-                            {base}
-                          </span>
+          <div class='h-[300px] overflow-y-auto'>
+            <ul class=' list-none p-0 m-0'>
+              {filtered.value.length > 0 ? (
+                filtered.value.map((data, index) => {
+                  const { path, title, date, base } = data;
+                  return (
+                    <li
+                      key={index}
+                      class='cursor-pointer m-0 p-0 border-b-[1px] border-brand-outline hover:bg-brand-fuchsia'
+                    >
+                      <a href={path} class='block group no-underline'>
+                        <div class=' px-4 py-3 text-slate-300 hover:text-white'>
+                          <div class='flex items-end pb-4 justify-between'>
+                            <time class='text-brand-primary group-hover:text-white text-[0.6rem]'>
+                              {formatDate(date)}
+                            </time>
+                            <span class='text-[0.65rem] uppercase bg-brand-outline rounded px-1 py-0.5 -mt-2'>
+                              {base}
+                            </span>
+                          </div>
+                          {title}
                         </div>
-                        {title}
-                      </div>
-                    </a>
-                  </li>
-                );
-              })
-            ) : (
-              <div class='flex items-center justify-center text-center h-full'>
-                <div class='font-semibold text-lg text-center text-slate-500 -mt-8'>No results found.</div>
-              </div>
-            )}
-          </ul>
+                      </a>
+                    </li>
+                  );
+                })
+              ) : (
+                <div class='flex items-center justify-center text-center h-full'>
+                  <div class='font-semibold text-lg text-center text-slate-500 -mt-8'>No results found.</div>
+                </div>
+              )}
+            </ul>
+          </div>
         </ModalContent>
       </Modal>
     </>
