@@ -12,19 +12,6 @@ const SiteSearch = component$<Props>(({ search }) => {
 
   const handleModal = $(() => {
     isModalOpen.value = !isModalOpen.value;
-
-    if (isModalOpen.value) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-  });
-
-  useVisibleTask$(({ track }) => {
-    track(() => isModalOpen.value);
-    if (isModalOpen.value) {
-      document.getElementById('input').focus();
-    }
   });
 
   const handleBackdrop = $((event) => {
@@ -50,6 +37,16 @@ const SiteSearch = component$<Props>(({ search }) => {
       filtered.value = results;
     } else {
       filtered.value = all.value;
+    }
+  });
+
+  useVisibleTask$(({ track }) => {
+    track(() => isModalOpen.value);
+    if (isModalOpen.value) {
+      document.getElementById('input').focus();
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
     }
   });
 
