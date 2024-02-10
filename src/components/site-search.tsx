@@ -20,17 +20,30 @@ const SiteSearch = component$<Props>(({ search }) => {
     }
   });
 
-  const handleChange = $((event) => {
+  const handleChange = $(async (event) => {
+    const FuseModule = await import('fuse.js');
+    const Fuse = FuseModule.default;
+
     const {
       target: { value },
     } = event;
 
-    const results = all.value.filter((item) => {
-      const { title } = item;
+    const fuse = new Fuse(all.value, {
+      threshold: 0.5,
+      keys: ['title', 'date'],
+    });
 
-      if (title.toLowerCase().includes(value.toLowerCase())) {
-        return item;
-      }
+    const results = fuse.search(value).map((data: any) => {
+      const {
+        item: { base, path, title, date },
+      } = data;
+
+      return {
+        title,
+        date,
+        path,
+        base,
+      };
     });
 
     if (value) {
