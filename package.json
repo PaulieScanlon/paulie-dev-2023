@@ -23,7 +23,7 @@
   "homepage": "https://github.com/PaulieScanlon/paulie-dev-2023#readme",
   "dependencies": {
     "@astrojs/mdx": "^1.0.3",
-    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^5.0.1",
     "@builder.io/qwik": "^1.4.2",
     "@fontsource/inconsolata": "^5.0.8",
@@ -37,7 +37,7 @@
     "markdown-it": "^13.0.1",
     "mdx": "^0.3.1",
     "octokit": "^3.1.1",
-    "tailwindcss": "^3.0.24",
+    "tailwindcss": "^3.4.1",
     "three": "^0.160.1",
     "typescript": "^5.3.2"
   },
