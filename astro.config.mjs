@@ -12,7 +12,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     edgeMiddleware: true,
-    maxDuration: 300,
+    maxDuration: 10,
   }),
   image: {
     domains: ['res.cloudinary.com'],
@@ -46,9 +46,9 @@ export default defineConfig({
       syntaxHighlight: 'prism',
     }),
   ],
-  build: {
-    inlineStylesheets: 'always',
-  },
+  // build: {
+  //   inlineStylesheets: 'always',
+  // },
   vite: {
     build: {
       chunkSizeWarningLimit: 10000,

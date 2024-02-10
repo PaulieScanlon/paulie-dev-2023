@@ -4,6 +4,8 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   safelist: [
+    // These are for the modal
+    'backdrop-blur',
     // These are for the TOC
     'pl-4',
     'pl-5',
