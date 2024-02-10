@@ -20,7 +20,7 @@ const SiteSearch = component$<Props>(({ search }) => {
     }
   });
 
-  const handleChange = $(async (event) => {
+  const handleInput = $(async (event) => {
     const FuseModule = await import('fuse.js');
     const Fuse = FuseModule.default;
 
@@ -112,7 +112,7 @@ const SiteSearch = component$<Props>(({ search }) => {
                 type='search'
                 placeholder='Search'
                 class='basis-full bg-transparent text-white focus:outline-none bg-surface'
-                onInput$={handleChange}
+                onInput$={handleInput}
               />
               <button
                 class='text-xs uppercase bg-brand-outline rounded px-2 py-1 transition-all duration-300 hover:bg-brand-muted/20'
