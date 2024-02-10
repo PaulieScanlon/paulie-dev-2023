@@ -12,7 +12,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     edgeMiddleware: true,
-    maxDuration: 300,
+    maxDuration: 10,
   }),
   image: {
     domains: ['res.cloudinary.com'],
