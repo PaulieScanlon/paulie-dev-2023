@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
+import { component$, useSignal, $, useOnDocument, useVisibleTask$ } from '@builder.io/qwik';
 
 import { formatDate } from '../utils/format-date';
 
@@ -17,6 +17,13 @@ const SiteSearch = component$<Props>(({ search }) => {
       document.body.classList.add('overflow-hidden');
     } else {
       document.body.classList.remove('overflow-hidden');
+    }
+  });
+
+  useVisibleTask$(({ track }) => {
+    track(() => isModalOpen.value);
+    if (isModalOpen.value) {
+      document.getElementById('input').focus();
     }
   });
 
@@ -90,6 +97,7 @@ const SiteSearch = component$<Props>(({ search }) => {
                 <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
               </svg>
               <input
+                id='input'
                 type='search'
                 placeholder='Search'
                 class='basis-full bg-transparent text-white focus:outline-none bg-surface'
