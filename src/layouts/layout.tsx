@@ -21,7 +21,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
 
   return (
     <>
-      <header class='fixed top-0 z-40 w-full backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent'>
+      <header class='fixed top-0 z-30 w-full backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent'>
         <div class='max-w-8xl mx-auto'>
           <div class='py-4 mx-4 lg:px-8 lg:mx-0'>
             <div class='relative flex items-center gap-8'>
