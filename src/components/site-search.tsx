@@ -60,6 +60,7 @@ const SiteSearch = component$<Props>(({ search }) => {
       document.body.classList.add('overflow-hidden');
     } else {
       document.body.classList.remove('overflow-hidden');
+      filtered.value = all.value;
     }
   });
 
