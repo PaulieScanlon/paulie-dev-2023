@@ -43,24 +43,27 @@ const maxY = Math.max(
 const guides = [...Array(8).keys()];
 
 const properties = Object.values(totalByYearAndMonth).map((property: any) => {
-  return property
-    .sort((a, b) => months.indexOf(a.month) - months.indexOf(b.month))
-    .map((entry, index) => {
-      const { total } = entry;
+  return {
+    total: property.reduce((items, item) => items + item.total, 0),
+    data: property
+      .sort((a, b) => months.indexOf(a.month) - months.indexOf(b.month))
+      .map((entry, index) => {
+        const { total } = entry;
 
-      const x = (index / months.length) * chartWidth + paddingX / 2;
-      const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
+        const x = (index / months.length) * chartWidth + paddingX / 2;
+        const y = chartHeight - offsetY - (total / maxY) * (chartHeight - (paddingY + offsetY)) - paddingY + offsetY;
 
-      return {
-        total: total,
-        x: x,
-        y: y,
-      };
-    });
+        return {
+          total: total,
+          x: x,
+          y: y,
+        };
+      }),
+  };
 });
 
 const points = properties.map((point): any => {
-  return point.map((p) => {
+  return point.data.map((p) => {
     const { x, y } = p;
     return `${x},${y}`;
   });
@@ -133,7 +136,7 @@ const ticks = months.map((month, index) => {
     }
     {
       properties.map((property, index) => {
-        return property.map((p) => {
+        return property.data.map((p) => {
           const { total, x, y } = p;
 
           return (
@@ -184,10 +187,10 @@ const ticks = months.map((month, index) => {
   {
     years.map((year: string, index: number) => {
       return (
-        <li class='m-0 p-0'>
+        <li class='relative m-0 p-0'>
           <button
             id={year}
-            class={`years-btn years-btn-${year} text-brand-${colors[index]} px-2 py-1 bg-brand-surface rounded border border-brand-outline transition-colors duration-300 hover:bg-brand-text/10 font-normal text-xs`}
+            class={`years-btn years-btn-${year} text-brand-${colors[index]} px-2 py-1 bg-brand-surface rounded border border-brand-outline transition-colors duration-300 hover:bg-brand-text/10 font-normal text-[0.75rem]`}
           >
             {year}
           </button>
@@ -196,3 +199,9 @@ const ticks = months.map((month, index) => {
     })
   }
 </ul>
+
+<!-- <span
+class={`not-prose absolute -top-3 -right-3 rounded-full w-6 h-6 flex items-center justify-center border border-brand-outline bg-brand-surface text-brand-${colors[index]} text-[0.65rem] z-10`}
+>
+{`x${properties[index].total}`}
+</span> -->
