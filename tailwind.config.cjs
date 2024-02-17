@@ -107,14 +107,18 @@ module.exports = {
             '*:not(h1, h2, h3, h4, h5, h6, a, code)': {
               color: theme('colors.brand.text'),
             },
+
             h1: {
               color: theme('colors.brand.text'),
               margin: '2rem 0',
               fontWeight: 900,
             },
             'h2, h3, h4, h5, h6': {
-              color: theme('colors.brand.salmon'),
-              fontWeight: 900,
+              a: {
+                fontWeight: 900,
+                textDecoration: 'none',
+                color: theme('colors.brand.salmon'),
+              },
             },
             p: {
               fontFamily: 'system-ui',

@@ -4,6 +4,8 @@ import mdx from '@astrojs/mdx';
 import AutoImport from 'astro-auto-import';
 import vercel from '@astrojs/vercel/serverless';
 import qwikdev from '@qwikdev/astro';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const isProd = import.meta.env.PROD;
 
@@ -44,6 +46,7 @@ export default defineConfig({
     }),
     mdx({
       syntaxHighlight: 'prism',
+      rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
     }),
   ],
   // build: {

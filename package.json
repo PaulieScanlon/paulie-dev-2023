@@ -38,6 +38,8 @@
     "markdown-it": "^13.0.1",
     "mdx": "^0.3.1",
     "octokit": "^3.1.1",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
     "tailwindcss": "^3.4.1",
     "three": "^0.160.1",
     "typescript": "^5.3.2"
