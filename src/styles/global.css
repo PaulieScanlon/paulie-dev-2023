@@ -1,0 +1,3 @@
+html {
+  scroll-padding-top: 100px; /* height of fixed header + offset */
+}
