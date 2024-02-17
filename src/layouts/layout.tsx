@@ -21,7 +21,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
 
   return (
     <>
-      <header class='fixed top-0 z-30 w-full backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent'>
+      <header class='fixed top-0 w-full height-[72px] backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent z-30'>
         <div class='max-w-8xl mx-auto'>
           <div class='py-4 mx-4 lg:px-8 lg:mx-0'>
             <div class='relative flex items-center gap-8'>
@@ -69,15 +69,15 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           onClick$={handleNav}
         ></div>
 
-        <div class='max-w-8xl mx-auto px-4 sm:px-6 md:px-8'>
+        <div class='max-w-8xl pt-[72px] mx-auto px-4 sm:px-6 md:px-8'>
           <div
             id='sidebar'
-            class={`lg:block fixed z-30 inset-0 top-[3.8125rem] transition-all duration-300 right-auto w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] ${
+            class={`lg:block fixed inset-0 top-[73px] transition-all duration-300 right-auto w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] z-50 ${
               isNavOpen.value ? 'left-[max(0px,calc(50%-45rem))]' : '-left-[240px]'
             }`}
           >
-            <div class='relative pt-6'>
-              <ul class='flex flex-col gap-2 m-0 p-0 list-none'>
+            <div class='relative'>
+              <ul class='flex flex-col gap-2 m-0 p-0 pt-4 list-none'>
                 <li class='m-0 p-0'>
                   <SiteSearch search={search} />
                 </li>
@@ -120,9 +120,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           </div>
           <main class='lg:pl-[12.5rem]'>
             <section
-              class={`mx-auto px-0 py-6 lg:px-16 lg:py-10 mt-[72px] max-w-none xl:ml-0 ${
-                fullWidth ? '' : 'xl:mr-[15.5rem]'
-              }`}
+              class={`mx-auto px-0 py-6 lg:px-16 lg:py-10 max-w-none xl:ml-0 ${fullWidth ? '' : 'xl:mr-[15.5rem]'}`}
             >
               <article class='max-w-none min-h-[calc(100vh-19rem)]'>
                 <Slot />
