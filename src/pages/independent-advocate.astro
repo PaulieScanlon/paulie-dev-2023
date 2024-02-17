@@ -1,10 +1,10 @@
 ---
 export const prerender = true;
+import { Image } from 'astro:assets';
 
 import Main from '../layouts/main.astro';
-
-import { Image } from 'astro:assets';
 import ClickToCopyEmail from '../components/click-to-copy-email';
+import CtaExternal from '../components/cta-external.astro';
 ---
 
 <Main
@@ -202,11 +202,10 @@ import ClickToCopyEmail from '../components/click-to-copy-email';
           </dd>
         </dl>
         <dl>
-          <dt><span role='img' aria-label='Rocket'>🚀</span> Demo Application</dt>
-          <dd>
-            <a href='https://neon.tech/demos/ping-thing' target='_blank' rel='noopener'
-              >https://neon.tech/demos/ping-thing</a
-            >
+          <dd class='not-prose !list-none'>
+            <CtaExternal href='https://neon.tech/demos/ping-thing' className='!justify-start my-8'>
+              Visit Demo
+            </CtaExternal>
           </dd>
         </dl>
       </div>
@@ -271,12 +270,9 @@ import ClickToCopyEmail from '../components/click-to-copy-email';
           </dd>
         </dl>
         <dl>
-          <dt><span role='img' aria-label='Rocket'>🚀</span> Demo Application</dt>
-          <dd>
-            <a href='https://www.cockroachlabs.com/demos/demo-cloud-api/' target='_blank' rel='noopener'
-              >https://www.cockroachlabs.com/demos/demo-cloud-api</a
-            >
-          </dd>
+          <CtaExternal href='https://www.cockroachlabs.com/demos/demo-cloud-api/' className='!justify-start my-8'>
+            Visit Demo
+          </CtaExternal>
         </dl>
       </div>
     </div>
@@ -354,12 +350,9 @@ import ClickToCopyEmail from '../components/click-to-copy-email';
           </dd>
         </dl>
         <dl>
-          <dt><span role='img' aria-label='Rocket'>🚀</span> Demo Application</dt>
-          <dd>
-            <a href='https://www.cockroachlabs.com/demos/demo-data-residency' target='_blank' rel='noopener'
-              >https://www.cockroachlabs.com/demos/demo-data-residency</a
-            >
-          </dd>
+          <CtaExternal href='https://www.cockroachlabs.com/demos/demo-data-residency' className='!justify-start my-8'>
+            Visit Demo
+          </CtaExternal>
         </dl>
       </div>
     </div>
