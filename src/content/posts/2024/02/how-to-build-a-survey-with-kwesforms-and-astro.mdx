@@ -1,0 +1,622 @@
+---
+draft: true
+base: posts
+title: How to Build a Survey With KwesForms and Astro
+tags: [Astro, KwesForms, JavaScript, SVG]
+date: 2024-02-21
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1708552496/paulie.dev/2024/02/kwes-forms-readers-survey-featured-image_dreoep.jpg
+---
+
+In this post I'll explain how I built a survey form using [KwesForms](https://kwesforms.com/) and Astro, complete with some fancy data viz to me help better understand the results.
+
+To give you a taste of what's to come, below you'll find links to a live preview and the GitHub repo.
+
+- 🚀 [https://kwes-forms-readers-survey.netlify.app/](https://kwes-forms-readers-survey.netlify.app/)
+- ⚙️ [https://github.com/PaulieScanlon/kwes-forms-readers-survey](https://github.com/PaulieScanlon/kwes-forms-readers-survey)
+
+<a href='https://kwes-forms-readers-survey.netlify.app/' target='_blank' rel='no-opener'>
+  <AstroImage
+    width='1440'
+    height='900'
+    alt='Screenshot of paulie.dev Readers Survery'
+    url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1708534998/paulie.dev/2024/02/kwes-forms-readers-survey-readers-survey_im1dfp.jpg'
+  />
+</a>
+
+## Getting Started
+
+To get started with KwesForms, you'll first need to [Sign up](https://kwesforms.com/register), then you can create your first form. Here's the [Getting Started](https://kwesforms.com/docs/v2/form-setup) guide from the KwesForms docs.
+
+When using KwesForms with Astro, I've found it easier to load KwesForms from the CDN and use Astro's `is:inline` [script directive](https://docs.astro.build/en/guides/client-side-scripts/#load-external-scripts), E.g.
+
+```html
+<script is:inline src="https://kwesforms.com/v2/kwes-script.js"></script>
+```
+
+Add the KwesForms script to the bottom of any Astro page that will use KwesForms. You can see the `src` for my survey page here: [index.astro](https://github.com/PaulieScanlon/kwes-forms-readers-survey/blob/main/src/pages/index.astro).
+
+## Building a Form
+
+When following the setup guide from the KwesForms docs you'll be given code snippets to copy and paste into your page. A very minimal example looks like the below.
+
+```html
+<form redirect="/submitted" action="https://kwesforms.com/api/foreign/forms/swj...">
+  <label for="name">Your Name</label>
+  <input type="text" name="name" />
+
+  <button type="submit">Submit</button>
+</form>
+```
+
+I've added an extra attribute to the above code snippet to control the behavior of my form after data has been been submitted. Using the `redirect` attribute I can redirect to a [/submitted](https://kwes-forms-readers-survey.netlify.app/submitted) page.
+
+### Form Fields
+
+I've mainly used HTML select and radio buttons for my form, and below i'll explain how each of them work.
+
+#### Select
+
+The first field in my survey form is a standard HTML select. Nothing extra is required here from the KwesForms side of things.
+
+```html
+<label for="time">Time</label>
+<select id="time" name="time">
+  <option hidden>Please select</option>
+  <option>🌞 Daytime</option>
+  <option>🌚 Nighttime</option>
+  <option>🌓 Anytime</option>
+</select>
+```
+
+#### Radio Group
+
+The second set of fields in my form are a "radio group" and have been wrapped in an HTML fieldset element. You'll also notice I've given the fieldset an attribute of `data-kw-group`. Defining a group using this `data-` attribute allows KwesForms to apply any rules that may have been defined to each element within the group.
+
+```html
+<fieldset data-kw-group rules="required">
+  <div>
+    <input type="radio" id="novice" name="experience" value="1-5" />
+    <label for="novice">1-5</label>
+  </div>
+  <div>
+    <input type="radio" id="intermediate" name="experience" value="5-10" />
+    <label for="intermediate">5-10</label>
+  </div>
+  <div>
+    <input type="radio" id="proficient" name="experience" value="10-20" />
+    <label for="proficient">10-20</label>
+  </div>
+  <div>
+    <input type="radio" id="expert" name="experience" value="20+" />
+    <label for="expert">20+</label>
+  </div>
+</fieldset>
+```
+
+#### Repeater Fields
+
+The third set of fields in my form are super cool! KwesForms calls them [repeater fields](https://kwesforms.com/docs/v2/repeater-fields). These are fields that you define **once** in your code, but can be duplicated or removed by the user to enable multi-input answers.
+
+```html
+<fieldset repeater name="unique_name">
+  <div repeater-group>
+    <div>
+      <label for="technology">Technology</label>
+      <select id="technology" name="technology">
+        <option hidden>Please select</option>
+        <option>React</option>
+        <option>Qwik</option>
+        <option>Astro</option>
+        <option>Remix</option>
+        <option>Serverless</option>
+        <option>Edge</option>
+        <option>Postgres</option>
+        <option>SQL</option>
+        <option>CSS</option>
+        <option>SVG</option>
+      </select>
+    </div>
+  </div>
+</fieldset>
+```
+
+You'll see from the image below that KwesForms automatically injects an "add" button, and in cases where a field has been added, KwesForms will automatically inject a "remove" buttons — I told you they were super cool!
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of repeater fields'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1708537736/paulie.dev/2024/02/kwes-forms-readers-survey-repeater-fields_auhpy2.jpg'
+/>
+
+## Validation
+
+KwesForms is client-side form solution and will perform client-side [validation](https://kwesforms.com/docs/v2/form-validation) and comes built in with some handy announce fields which you can style however you like, but what's really cool is that KwesForms also handles server-side validation for you automatically!
+
+## Spam Protection
+
+Another feature I really like about KwesForms is it's built-in [spam protection](https://kwesforms.com/docs/v2/spam-protection), powered by AI!
+
+## Data Collection
+
+Now that you have a form set up and capturing data, you might be asking, where does the data go?
+
+Every form submission can be viewed in the KwesForms Dashboard and there are a number of filters and actions available to you for viewing, sorting or deleting data.
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of KwesForms submissions'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1708538100/paulie.dev/2024/02/kwes-forms-readers-survey-kwesforms-submisssions_ryo0hd.jpg'
+/>
+
+## More Data
+
+But... whilst looking at a list of data is good, being able to transform this data into something more fancy is what i'm really interested in.
+
+### KwesForms API
+
+KwesForms has an API which can be used to "fetch" all data submitted by any form. Once you have a method in place for requesting data, you can do whatever you like with it. Which is what i've done on the [/results](https://kwes-forms-readers-survey.netlify.app/results) page. By using a little bit of High School Maths and the SVG element I've created some Data Visualization to make it easier to understand.
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of Bar Chart on Results page'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1708559198/paulie.dev/2024/02/kwes-forms-readers-survey-resutls_byxp4d.jpg'
+/>
+
+To achieve this I'm making a request to the KwesForms API using the [Get All Submissions](https://documenter.getpostman.com/view/7275049/S1ERwd7y?version=latest#243bb0c8-80e2-4122-b8b2-f094b0fdd69d) endpoint.
+
+The request I've used in my survey runs server-side inside of Astro's code fences and looks a bit like the below.
+
+```javascript
+// src/pages/index.astro
+---
+const response = await fetch(
+  `https://kwes.io/api/v1/forms/${import.meta.env.KWESFORMS_FORM_ID}/submissions?mode=production`,
+  {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${import.meta.env.KWESFORMS_API_KEY}`,
+    },
+    redirect: 'follow',
+  }
+);
+
+const data = await response.json();
+---
+```
+
+There's two additional bits of information you'll need to make an API call, they are as follows.
+
+- `FORM_ID`: You'll find this in your browser's address bar and it'll be a four digit number E.g. <code class='opacity-50'>kwesforms.com/websites/4411/forms/</code><code class='not-prose text-brand-tertiary font-bold'>4694</code>
+
+- `API_KEY`: You can find this under the account dropdown and it'll be a long alpha-numeric number E.g. `gwEvpqTVnGDA4s5vOHeIAcOxSO566jXZ5EPjfFj...`
+
+The response for the above endpoint will look similar to the below but naturally, it'll depend on the fields you have in your form.
+
+```json
+[
+  {
+    ...
+    "time": "🌞 Daytime",
+    "experience": "1-5",
+    "unique_name": [
+      {
+        "technology__1": "CSS"
+      }
+    ]
+  },
+  {
+    ...
+    "time": "🌚 Nighttime",
+    "experience": "20+",
+    "unique_name": [
+      {
+        "technology__1": "Edge"
+      },
+      {
+        "technology__2": "Remix"
+      }
+    ]
+  }
+]
+
+```
+
+## Data Visualization
+
+To create data visualization from this data it needs to be grouped, and then counted. For the **time** and **experience** data the process is pretty much the same but I've created two functions to group each of these.
+
+### groupByTime
+
+This function groups the data by the **time** key from the response.
+
+```javascript
+export const groupByTime = (data) => {
+  const groupedData = data.reduce((result, item) => {
+    const { time } = item;
+    const existingItemIndex = result.findIndex((obj) => obj.name === time);
+
+    if (existingItemIndex !== -1) {
+      result[existingItemIndex].count++;
+    } else {
+      result.push({ name: time, count: 1 });
+    }
+
+    return result;
+  }, []);
+
+  return groupedData;
+};
+
+// usage
+const byTime = groupByTime(data);
+```
+
+You can see the `src` for this function here: [group-by-time.js](https://github.com/PaulieScanlon/kwes-forms-readers-survey/blob/main/src/utils/group-by-time.js)
+
+The result of this function will look similar to the below.
+
+```json
+[
+  {
+    "name": "🌞 Daytime",
+    "count": 5
+  },
+  {
+    "name": "🌚 Nighttime",
+    "count": 7
+  },
+  {
+    "name": "🌓 Anytime",
+    "count": 1
+  }
+]
+```
+
+### groupByExperience
+
+This function groups the data by the **experience** key from the response.
+
+```javascript
+export const groupByExperience = (data) => {
+  const groupedData = data.reduce((result, item) => {
+    const { experience } = item;
+    const existingItemIndex = result.findIndex((obj) => obj.name === experience);
+
+    if (existingItemIndex !== -1) {
+      result[existingItemIndex].count++;
+    } else {
+      result.push({ name: experience, count: 1 });
+    }
+
+    return result;
+  }, []);
+
+  return groupedData;
+};
+
+// usage
+const byExperience = groupByExperience(data);
+```
+
+The result of this function will look similar to the below.
+
+```json
+[
+  {
+    "name": "1-5",
+    "count": 4
+  },
+  {
+    "name": "20+",
+    "count": 4
+  },
+  {
+    "name": "5-10",
+    "count": 2
+  },
+  {
+    "name": "10-20",
+    "count": 3
+  }
+]
+```
+
+You can see the `src` for this function here: [group-by-experience.js](https://github.com/PaulieScanlon/kwes-forms-readers-survey/blob/main/src/utils/group-by-experience.js)
+
+### groupByTechnology
+
+This function uses a `forEach` to iterate over the **unique_name** array and then groups the data by **name**.
+
+```javascript
+export const groupByTechnology = (data) => {
+  const groupedData = data.reduce((result, item) => {
+    const { unique_name } = item;
+
+    unique_name.forEach((key) => {
+      const name = Object.values(key)[0];
+      const existingItemIndex = result.findIndex((obj) => obj.name === name);
+
+      if (existingItemIndex !== -1) {
+        result[existingItemIndex].count++;
+      } else {
+        result.push({ name, count: 1 });
+      }
+    });
+
+    return result;
+  }, []);
+
+  return groupedData;
+};
+
+// usage
+const byTechnology = groupByTechnology(data);
+```
+
+The result of this function will look similar to the below.
+
+```json
+[
+  {
+    "name": "CSS",
+    "count": 2
+  },
+  {
+    "name": "SQL",
+    "count": 1
+  },
+  {
+    "name": "Edge",
+    "count": 1
+  },
+  {
+    "name": "Remix",
+    "count": 3
+  },
+  {
+    "name": "Qwik",
+    "count": 5
+  }
+]
+```
+
+You can see the `src` for this function here: [group-by-technology.js](https://github.com/PaulieScanlon/kwes-forms-readers-survey/blob/main/src/utils/group-by-technology.js)
+
+In call cases, the returned shape is an array of objects containing a `name` and `count` value. This data can now be used to drive the data visualization.
+
+## Creating the Bar Chart
+
+The Bar Chart I've used in my survey has been "hand cranked". You could install a charting library if you want but you might find it harder to style, and in some cases it might only work when JavaScript is enabled in the browser.
+
+Using my "hand-cranked" approach, the chart will be super lightweight, you won't be sending any additional client-side JavaScript to browser, it can be rendered on the server, and will work even if JavaScript is disabled in the browser.
+
+### Data Fetching
+
+The first step is to fetch the data and pass it on to a Bar Chart component via a prop named `data` E.g.
+
+```javascript
+// src/pages/results.astro
+
+---
+import { groupByTechnology } from '../utils/group-by-technology'
+import BarChart from '../components/bar-chart.astro';
+
+const response = await fetch('https://kwes.io/api/v1/forms/...');
+
+const data = await response.json();
+
+const byTechnology = groupByTechnology(data);
+---
+
+<BarChart data={byTechnology} />
+```
+
+### Setting Up Defaults
+
+The next step is destructure the `data` from `Astro.props`, install / import [d3-scale](https://www.npmjs.com/package/d3-scale) and setup some defaults.
+
+```javascript
+// src/components/bar-chart.astro
+---
+const { data } = Astro.props;
+
+import { scaleLinear } from 'd3-scale';
+
+const chartWidth = 1920;
+const chartHeight = 1080;
+
+const paddingL = 100;
+const paddingR = 100;
+const paddingT = 100;
+const paddingB = 180;
+const gap = 20;
+const maxValue = data.reduce((items, item) => Math.max(items, item.count), 0);
+const xAxis = new Array(8).fill(null);
+const axisPaddingB = 80;
+const axisPaddingT = 100;
+const xValues = scaleLinear().domain([0, maxValue]).range([0, maxValue]).ticks(xAxis.length);
+const colorValues = scaleLinear().domain([0, data.length]).range(['#f056c7', '#0091f7', '#58e6d9']);
+---
+```
+
+### Bar Chart Properties
+
+This step is used to create a properties object that will drive the chart. Each value, `x`, `y`, `width`, `height`, etc can be calculated by using values from the data set.
+
+```diff
+// src/components/bar-chart.astro
+---
+
+const { data } = Astro.props;
+
+import { scaleLinear } from 'd3-scale';
+
+const chartWidth = 1920;
+const chartHeight = 1080;
+
+const paddingL = 100;
+const paddingR = 100;
+const paddingT = 100;
+const paddingB = 180;
+const gap = 20;
+const maxValue = data.reduce((items, item) => Math.max(items, item.count), 0);
+const xAxis = new Array(8).fill(null);
+const axisPaddingB = 80;
+const axisPaddingT = 100;
+const xValues = scaleLinear().domain([0, maxValue]).range([0, maxValue]).ticks(xAxis.length);
+const colorValues = scaleLinear().domain([0, data.length]).range(['#f056c7', '#0091f7', '#58e6d9']);
+
++ const properties = data
++  .sort((a, b) => b.count - a.count)
++  .map((property, index) => {
++    const { name, count } = property;
+
++    const x = paddingL;
++    const width = ((chartWidth - paddingL - paddingR) / maxValue) * count;
++    const height = (chartHeight - paddingT - paddingB) / data.length;
++    const y = height * index + paddingT;
+
++    return {
++      name: name,
++      count: count,
++      font: 40,
++      x: x,
++      textX: x - paddingL / 2,
++      y: y + gap,
++      width: width,
++      height: height - gap,
++      color: colorValues(index * 2),
++    };
++  });
+---
+```
+
+### Bar Chart Axis
+
+This step is to create some properties to help display the xAxis on the chart.
+
+```diff
+// src/components/bar-chart.astro
+---
+
+const { data } = Astro.props;
+
+import { scaleLinear } from 'd3-scale';
+
+const chartWidth = 1920;
+const chartHeight = 1080;
+
+const paddingL = 100;
+const paddingR = 100;
+const paddingT = 100;
+const paddingB = 180;
+const gap = 20;
+const maxValue = data.reduce((items, item) => Math.max(items, item.count), 0);
+const xAxis = new Array(8).fill(null);
+const axisPaddingB = 80;
+const axisPaddingT = 100;
+const xValues = scaleLinear().domain([0, maxValue]).range([0, maxValue]).ticks(xAxis.length);
+const colorValues = scaleLinear().domain([0, data.length]).range(['#f056c7', '#0091f7', '#58e6d9']);
+
+const properties = data
+ .sort((a, b) => b.count - a.count)
+ .map((property, index) => {
+   const { name, count } = property;
+     ...
+ });
+
++ const axis = xAxis.map((_, index) => {
++  const x = ((chartWidth - paddingR) / xAxis.length - 1) * index;
++  const width = 2;
++  const height = chartHeight - axisPaddingT - axisPaddingB;
++  const y = axisPaddingT;
+
++  return {
++    x: x + paddingL,
++    y: y,
++    width: width,
++    height: height,
++    value: xValues[index],
++  };
++ });
+
+---
+```
+
+### Display The Data
+
+This last step is the finished SVG element complete with two `Array.map`s that iterate over the `properties` and `axis` arrays defined above.
+
+```diff
+// src/components/bar-chart.astro
+---
+
+const { data } = Astro.props;
+
+...
+
+---
+
++ <svg
++  xmlns='http://www.w3.org/2000/svg'
++  viewBox={`0 0 ${chartWidth} ${chartHeight}`}
++ >
+
++ {
++   axis.map((axi) => {
++     const { value, x, y, width, height } = axi;
+
++      return (
++        <>
++          <rect x={x} y={y} width={width} height={height} />
++          <text x={x} y={y + height} text-anchor='middle' font-size={30}>
++            {value}
++          </text>
++        </>
++      );
++    })
++  }
+
++  {
++    properties.map((property) => {
++      const { name, count, font, x, y, width, height, color } = property;
+
++     return (
++       <>
++          <rect x={x} y={y} width={width} height={height} fill={color} />
++          <text
++            x={textX}
++            y={y + height / 2 + font / 2.6}
++            class='fill-brand-text font-bold'
++            text-anchor='start'
++            font-size={font}
++          >
++            {`x${count}`}
++          </text>
++          <text
++            x={chartWidth - paddingR - 20}
++            y={y + height / 2 + font / 2.6}
++            text-anchor='end'
++            font-size={font}
++          >
++           {name}
++          </text>
++        </>
++      );
++    })
++  }
++ </svg>
+
+```
+
+You can see the `src` for the Bar Chart here: [bar-chart.astro](https://github.com/PaulieScanlon/kwes-forms-readers-survey/blob/main/src/components/bar-chart.astro)
+
+## Finished
+
+And that's it, a fully custom survey form complete with data visualization, and all data is stored safely and securely within KwesForms in case you wish to do anything else with it.

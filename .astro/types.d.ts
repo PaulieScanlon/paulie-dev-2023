@@ -1150,6 +1150,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2024/02/how-to-build-a-survey-with-kwesforms-and-astro.mdx": {
+	id: "2024/02/how-to-build-a-survey-with-kwesforms-and-astro.mdx";
+  slug: "2024/02/how-to-build-a-survey-with-kwesforms-and-astro";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 "2024/02/how-to-use-qwik-use-visible-task.mdx": {
 	id: "2024/02/how-to-use-qwik-use-visible-task.mdx";
   slug: "2024/02/how-to-use-qwik-use-visible-task";
