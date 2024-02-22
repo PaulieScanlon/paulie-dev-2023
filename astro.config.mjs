@@ -7,6 +7,8 @@ import qwikdev from '@qwikdev/astro';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
+import { rehypeExternalLinks } from './src/utils/rehype-external-links';
+
 const isProd = import.meta.env.PROD;
 
 export default defineConfig({
@@ -46,12 +48,9 @@ export default defineConfig({
     }),
     mdx({
       syntaxHighlight: 'prism',
-      rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
+      rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeExternalLinks],
     }),
   ],
-  // build: {
-  //   inlineStylesheets: 'always',
-  // },
   vite: {
     build: {
       chunkSizeWarningLimit: 10000,
