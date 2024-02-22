@@ -99,7 +99,7 @@ The second set of fields in my form are a "radio group" and have been wrapped in
 The third set of fields in my form are super cool! KwesForms calls them [repeater fields](https://kwesforms.com/docs/v2/repeater-fields). These are fields that you define **once** in your code, but can be duplicated or removed by the user to enable multi-input answers.
 
 ```html
-<fieldset repeater name="unique_name">
+<fieldset repeater name="technology">
   <div repeater-group>
     <div>
       <label for="technology">Technology</label>
@@ -204,7 +204,7 @@ The response for the above endpoint will look similar to the below but naturally
     ...
     "time": "🌞 Daytime",
     "experience": "1-5",
-    "unique_name": [
+    "technology": [
       {
         "technology__1": "CSS"
       }
@@ -214,7 +214,7 @@ The response for the above endpoint will look similar to the below but naturally
     ...
     "time": "🌚 Nighttime",
     "experience": "20+",
-    "unique_name": [
+    "technology": [
       {
         "technology__1": "Edge"
       },
@@ -331,14 +331,14 @@ You can see the `src` for this function here: [group-by-experience.js](https://g
 
 ### groupByTechnology
 
-This function uses a `forEach` to iterate over the **unique_name** array and then groups the data by **name**.
+This function uses a `forEach` to iterate over the **technology** array and then groups the data by **name**.
 
 ```javascript
 export const groupByTechnology = (data) => {
   const groupedData = data.reduce((result, item) => {
-    const { unique_name } = item;
+    const { technology } = item;
 
-    unique_name.forEach((key) => {
+    technology.forEach((key) => {
       const name = Object.values(key)[0];
       const existingItemIndex = result.findIndex((obj) => obj.name === name);
 
