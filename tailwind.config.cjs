@@ -166,7 +166,7 @@ module.exports = {
             },
             code: {
               color: theme('colors.brand.tertiary'),
-              wordBreak: 'break-all',
+              wordBreak: 'break-word',
               '&::before': {
                 content: '"" !important',
               },
