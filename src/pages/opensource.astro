@@ -12,7 +12,10 @@ const { opensource } = await content.json();
 ---
 
 <Main title='Open-source' description='Open-source projects currently maintained' slug='/opensource/'>
-  <strong class='text-sm text-brand-primary'>Open-source</strong>
+  <strong class='flex items-center justify-between gap-2 text-sm text-brand-primary'
+    >Open-source
+    <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${opensource.length}`}</span>
+  </strong>
   <h1 class='mb-0'>Open-source projects</h1>
   <p>I'm currently only maintaining the following projects.</p>
   <CollectionsList collections={opensource} />

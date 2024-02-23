@@ -13,7 +13,10 @@ const { streams } = await content.json();
 ---
 
 <Main title='Streams' description="I don't like being on camera, but I'll do it if I have to" slug='/streams/'>
-  <strong class='text-sm text-brand-primary'>Streams</strong>
+  <strong class='flex items-center justify-between gap-2 text-sm text-brand-primary'
+    >Streams
+    <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${streams.length}`}</span>
+  </strong>
   <h1 class='mb-0'>Streams and Webinars</h1>
   <p>
     For the most part I prefer to build something, and then write about it. I have, will, and do dabble with Streams and

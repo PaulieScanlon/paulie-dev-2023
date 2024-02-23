@@ -22,7 +22,10 @@ WHERE reaction <> 'wondering' AND reaction <> 'confused'
 ---
 
 <Main title='Posts' description='Posts published on paulie.dev' slug='/posts/'>
-  <strong class='text-sm text-brand-primary'>Posts</strong>
+  <strong class='flex items-center justify-between gap-2 text-sm text-brand-primary'
+    >Posts
+    <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${posts.length}`}</span>
+  </strong>
   <h1 class='mb-0'>Blog Posts</h1>
   <p>
     You'll find a mixed bag of content here. I'm mainly focussed on "How to" guides but every now and then I'll throw in
