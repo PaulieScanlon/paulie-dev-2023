@@ -72,7 +72,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
         <div class='max-w-8xl pt-[72px] mx-auto px-4 sm:px-6 md:px-8'>
           <div
             id='sidebar'
-            class={`lg:block fixed inset-0 top-[73px] transition-all duration-300 right-auto w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] z-50 ${
+            class={`lg:block fixed inset-0 top-[73px] transition-all duration-300 right-auto lg:w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] z-50 ${
               isNavOpen.value ? 'left-[max(0px,calc(50%-45rem))]' : '-left-[240px]'
             }`}
           >

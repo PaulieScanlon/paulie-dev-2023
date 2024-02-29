@@ -12,6 +12,14 @@ const SiteSearch = component$<Props>(({ search }) => {
 
   const handleModal = $(() => {
     isModalOpen.value = !isModalOpen.value;
+
+    const sidebar = document.getElementById('sidebar');
+
+    if (isModalOpen.value) {
+      sidebar.style.width = '100%';
+    } else {
+      sidebar.style.width = '14.5rem';
+    }
   });
 
   const handleBackdrop = $((event) => {
