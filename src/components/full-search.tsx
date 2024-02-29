@@ -66,7 +66,7 @@ const FullSearch = component$<Props>(({ search, isModalOpen, handleModal }) => {
     <>
       {isModalOpen ? (
         <dialog
-          class='fixed inset-0 top-0 left-0 flex items-center justify-center bg-black/50 backdrop-blur w-screen h-screen p-4 z-30'
+          class='fixed inset-0 top-0 left-0 flex items-center justify-center bg-black/50 backdrop-blur w-screen h-screen p-4 z-40'
           onClick$={handleBackdrop}
         >
           <div class='grow-0 w-full max-w-3xl bg-brand-surface p-4'>

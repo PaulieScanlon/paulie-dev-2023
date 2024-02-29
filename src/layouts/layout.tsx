@@ -39,7 +39,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
 
   return (
     <>
-      <header class='fixed top-0 w-full height-[72px] backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent z-20'>
+      <header class='fixed top-0 w-full height-[72px] backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent z-30'>
         <div class='max-w-8xl mx-auto'>
           <div class='py-4 mx-4 lg:px-8 lg:mx-0'>
             <div class='relative flex items-center gap-8'>
@@ -82,7 +82,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           aria-label='lightbox'
           tab-index='0'
           role='button'
-          class={`z-20 top-0 left-0 w-screen  h-screen bg-black opacity-80 ${
+          class={`z-10 top-0 left-0 w-screen  h-screen bg-black opacity-80 ${
             isNavOpen.value ? 'fixed' : 'hidden'
           } lg:hidden`}
           onClick$={handleNav}
@@ -91,7 +91,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
         <div class='max-w-8xl pt-[72px] mx-auto px-4 sm:px-6 md:px-8'>
           <div
             id='sidebar'
-            class={`lg:block fixed inset-0 top-[73px] transition-all duration-300 right-auto lg:w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] z-10 ${
+            class={`lg:block fixed inset-0 top-[73px] transition-all duration-300 right-auto lg:w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] z-20 ${
               isNavOpen.value ? 'left-[max(0px,calc(50%-45rem))]' : '-left-[240px]'
             }`}
           >
