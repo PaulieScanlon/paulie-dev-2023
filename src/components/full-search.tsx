@@ -1,26 +1,16 @@
-import { component$, useSignal, $, useOnDocument, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 
 import { formatDate } from '../utils/format-date';
 
 interface Props {
   search: any;
+  isModalOpen: Boolean;
+  handleModal: () => void;
 }
-const SiteSearch = component$<Props>(({ search }) => {
-  const isModalOpen = useSignal(false);
+
+const FullSearch = component$<Props>(({ search, isModalOpen, handleModal }) => {
   const all = useSignal(search);
   const filtered = useSignal(search);
-
-  const handleModal = $(() => {
-    isModalOpen.value = !isModalOpen.value;
-
-    const sidebar = document.getElementById('sidebar');
-
-    if (isModalOpen.value) {
-      sidebar.style.width = '100%';
-    } else {
-      sidebar.style.width = '14.5rem';
-    }
-  });
 
   const handleBackdrop = $((event) => {
     if (event.target.localName === 'dialog') {
@@ -62,8 +52,8 @@ const SiteSearch = component$<Props>(({ search }) => {
   });
 
   useVisibleTask$(({ track }) => {
-    track(() => isModalOpen.value);
-    if (isModalOpen.value) {
+    track(() => isModalOpen);
+    if (isModalOpen) {
       document.getElementById('input').focus();
       document.body.classList.add('overflow-hidden');
     } else {
@@ -72,42 +62,11 @@ const SiteSearch = component$<Props>(({ search }) => {
     }
   });
 
-  useOnDocument(
-    'keydown',
-    $((event) => {
-      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
-        handleModal();
-      }
-      if (event.key === 'Escape' && isModalOpen.value) {
-        handleModal();
-      }
-    })
-  );
-
   return (
     <>
-      <button
-        onClick$={handleModal}
-        type='button'
-        class='not-prose w-full flex justify-between items-center font-medium text-brand-tertiary transition-all duration-300 rounded border border-brand-outline bg-surface px-3 py-2 hover:text-white hover:bg-brand-muted/20'
-      >
-        <span class='flex items-center gap-x-3'>
-          <svg aria-hidden='true' class='h-4 w-4 stroke-2' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-            <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
-          </svg>
-          Search
-        </span>
-
-        <kbd class='flex gap-1 font-sans font-semibold'>
-          <abbr title='Command' class='no-underline mt-[1px]'>
-            ⌘
-          </abbr>
-          K
-        </kbd>
-      </button>
-      {isModalOpen.value ? (
+      {isModalOpen ? (
         <dialog
-          class='fixed inset-0 top-0 left-0 flex items-center justify-center bg-black/50 backdrop-blur w-screen h-screen p-4'
+          class='fixed inset-0 top-0 left-0 flex items-center justify-center bg-black/50 backdrop-blur w-screen h-screen p-4 z-30'
           onClick$={handleBackdrop}
         >
           <div class='grow-0 w-full max-w-3xl bg-brand-surface p-4'>
@@ -174,4 +133,4 @@ const SiteSearch = component$<Props>(({ search }) => {
   );
 });
 
-export default SiteSearch;
+export default FullSearch;

@@ -1,27 +1,45 @@
-import { Slot, component$, useSignal, $ } from '@builder.io/qwik';
+import { Slot, component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
 
 import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
-import SiteSearch from '../components/site-search';
+import FullSearch from '../components/full-search';
+import QuickSearch from '../components/quick-search';
 
 import { siteLinks, socialLinks } from './nav-links';
 
 interface Props {
   fullWidth: boolean;
   slug: string;
-  search: string;
+  search: any;
 }
 
 const Layout = component$<Props>(({ fullWidth, slug, search }) => {
+  const isModalOpen = useSignal(false);
   const isNavOpen = useSignal(false);
 
   const handleNav = $(() => {
     isNavOpen.value = !isNavOpen.value;
   });
 
+  const handleModal = $(() => {
+    isModalOpen.value = !isModalOpen.value;
+  });
+
+  useOnDocument(
+    'keydown',
+    $((event) => {
+      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+        handleModal();
+      }
+      if (event.key === 'Escape' && isModalOpen) {
+        handleModal();
+      }
+    })
+  );
+
   return (
     <>
-      <header class='fixed top-0 w-full height-[72px] backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent z-30'>
+      <header class='fixed top-0 w-full height-[72px] backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent z-20'>
         <div class='max-w-8xl mx-auto'>
           <div class='py-4 mx-4 lg:px-8 lg:mx-0'>
             <div class='relative flex items-center gap-8'>
@@ -57,6 +75,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           </div>
         </div>
       </header>
+      <FullSearch search={search} isModalOpen={isModalOpen.value} handleModal={handleModal} />
       <div class='relative'>
         <div
           id='lightbox'
@@ -72,14 +91,14 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
         <div class='max-w-8xl pt-[72px] mx-auto px-4 sm:px-6 md:px-8'>
           <div
             id='sidebar'
-            class={`lg:block fixed inset-0 top-[73px] transition-all duration-300 right-auto lg:w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] z-50 ${
+            class={`lg:block fixed inset-0 top-[73px] transition-all duration-300 right-auto lg:w-[14.5rem] py-4 px-6 overflow-y-auto border-r border-brand-outline bg-brand-background lg:left-[max(0px,calc(50%-45rem))] z-10 ${
               isNavOpen.value ? 'left-[max(0px,calc(50%-45rem))]' : '-left-[240px]'
             }`}
           >
             <div class='relative'>
               <ul class='flex flex-col gap-2 m-0 p-0 pt-4 list-none'>
                 <li class='m-0 p-0'>
-                  <SiteSearch search={search} />
+                  <QuickSearch handleModal={handleModal} />
                 </li>
                 {siteLinks.map((item, index) => {
                   const { title, icon, link } = item;
