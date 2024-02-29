@@ -549,6 +549,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: any
 } & { render(): Render[".mdx"] };
+"2024/02/how-to-build-site-search-with-astro-qwik-and-fuse-js.mdx": {
+	id: "2024/02/how-to-build-site-search-with-astro-qwik-and-fuse-js.mdx";
+  slug: "2024/02/how-to-build-site-search-with-astro-qwik-and-fuse-js";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
 "2024/02/javascript-on-demand-how-qwik-differs-from-react-hydration.mdx": {
 	id: "2024/02/javascript-on-demand-how-qwik-differs-from-react-hydration.mdx";
   slug: "2024/02/javascript-on-demand-how-qwik-differs-from-react-hydration";
