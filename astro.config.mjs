@@ -39,6 +39,9 @@ export default defineConfig({
           './src/components/video-player.astro': [['default', 'VideoPlayer']],
         },
         {
+          './src/components/stackblitz-embed.tsx': [['default', 'StackBlitz']],
+        },
+        {
           'astro-embed': ['Tweet', 'Vimeo', 'YouTube'],
         },
         {
@@ -47,6 +50,9 @@ export default defineConfig({
       ],
     }),
     mdx({
+      // optimize: {
+      //   customComponentNames: ['StackBlitz'],
+      // },
       syntaxHighlight: 'prism',
       rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeExternalLinks],
     }),
