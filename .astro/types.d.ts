@@ -1178,9 +1178,9 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
-"2024/03/test.mdx": {
-	id: "2024/03/test.mdx";
-  slug: "2024/03/test";
+"2024/03/how-to-use-stackblitz-with-astro-and-qwik-for-technical-writing.mdx": {
+	id: "2024/03/how-to-use-stackblitz-with-astro-and-qwik-for-technical-writing.mdx";
+  slug: "2024/03/how-to-use-stackblitz-with-astro-and-qwik-for-technical-writing";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">

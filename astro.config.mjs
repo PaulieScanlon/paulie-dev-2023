@@ -6,8 +6,7 @@ import vercel from '@astrojs/vercel/serverless';
 import qwikdev from '@qwikdev/astro';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-
-import { rehypeExternalLinks } from './src/utils/rehype-external-links';
+import rehypeExternalLinks from 'rehype-external-links';
 
 const isProd = import.meta.env.PROD;
 
@@ -54,7 +53,11 @@ export default defineConfig({
       //   customComponentNames: ['StackBlitz'],
       // },
       syntaxHighlight: 'prism',
-      rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeExternalLinks],
+      rehypePlugins: [
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+        [rehypeExternalLinks, { rel: ['nofollow'], target: ['_blank'] }],
+      ],
     }),
   ],
   vite: {
