@@ -7,10 +7,11 @@ interface Props {
   hideExplorer?: boolean;
   height?: number;
   theme?: 'dark' | 'light' | 'default' | null;
+  clickToLoad?: boolean;
 }
 
 const StackBlitz = component$<Props>(
-  ({ id, file, view = null, hideExplorer = false, height = 600, theme = 'dark' }) => {
+  ({ id, file, view = null, hideExplorer = false, height = 600, theme = 'dark', clickToLoad = false }) => {
     useVisibleTask$(async () => {
       const sdk = (await import('@stackblitz/sdk')).default;
 
@@ -22,6 +23,7 @@ const StackBlitz = component$<Props>(
         hideNavigation: true,
         height: height,
         theme: theme,
+        clickToLoad: clickToLoad,
       });
     });
 
