@@ -12,8 +12,7 @@ interface Props {
 const StackBlitz = component$<Props>(
   ({ id, file, view = null, hideExplorer = false, height = 600, theme = 'dark' }) => {
     useVisibleTask$(async () => {
-      const sdkModule = await import('@stackblitz/sdk');
-      const sdk = sdkModule.default;
+      const sdk = (await import('@stackblitz/sdk')).default;
 
       sdk.embedProjectId('stackblitz-embed', id, {
         forceEmbedLayout: true,
