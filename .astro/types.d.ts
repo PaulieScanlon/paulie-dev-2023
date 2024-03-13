@@ -570,6 +570,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/03/adding-resumability-to-astro-with-qwik.mdx": {
+	id: "2024/03/adding-resumability-to-astro-with-qwik.mdx";
+  slug: "2024/03/adding-resumability-to-astro-with-qwik";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2024/03/how-to-build-embed-components-with-astro-qwik-and-stackblitz.mdx": {
 	id: "2024/03/how-to-build-embed-components-with-astro-qwik-and-stackblitz.mdx";
   slug: "2024/03/how-to-build-embed-components-with-astro-qwik-and-stackblitz";
