@@ -1,6 +1,7 @@
 const groupByPublication = (array) => {
   const groupedData = array.reduce((acc, item) => {
     const { publication, logo } = item.data;
+
     const key = publication;
 
     if (!acc[key]) {
