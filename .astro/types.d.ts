@@ -584,6 +584,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/03/say-no-to-ship-it-culture-slow-and-steady-wins-the-race.mdx": {
+	id: "2024/03/say-no-to-ship-it-culture-slow-and-steady-wins-the-race.mdx";
+  slug: "2024/03/say-no-to-ship-it-culture-slow-and-steady-wins-the-race";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
