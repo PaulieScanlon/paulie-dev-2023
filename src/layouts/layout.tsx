@@ -11,9 +11,15 @@ interface Props {
   fullWidth: boolean;
   slug: string;
   search: any;
+  newPosts: number;
+  newArticles: number;
 }
 
-const Layout = component$<Props>(({ fullWidth, slug, search }) => {
+const Layout = component$<Props>(({ fullWidth, slug, search, newPosts, newArticles }) => {
+  const newItems = {
+    posts: newPosts,
+    articles: newArticles,
+  };
   const isModalOpen = useSignal(false);
   const isNavOpen = useSignal(false);
 
@@ -105,11 +111,13 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
                   const s = slug.slice(1);
                   const l = link.slice(1);
 
+                  const newCount = newItems[title.toLowerCase()] || null;
+
                   const isActive = s.length <= 0 && s.startsWith(l) ? true : l.length > 0 && s.startsWith(l);
 
                   return (
                     <li key={index} class='m-0 p-0'>
-                      <NavLink title={title} icon={icon} slug={link} isActive={isActive} />
+                      <NavLink title={title} icon={icon} slug={link} isActive={isActive} newCount={newCount} />
                     </li>
                   );
                 })}

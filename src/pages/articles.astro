@@ -8,7 +8,6 @@ import { getCollection } from 'astro:content';
 import CollectionsList from '../components/collections-list.astro';
 
 const articles = await getCollection('articles');
-console.log(articles.length);
 ---
 
 <Main title='Articles' description='Articles written for external publications' slug='/articles/'>
