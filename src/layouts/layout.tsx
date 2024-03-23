@@ -1,9 +1,10 @@
-import { Slot, component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
+import { Slot, component$, useSignal, useStore, $, useOnDocument, useVisibleTask$ } from '@builder.io/qwik';
 
 import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
 import FullSearch from '../components/full-search';
 import QuickSearch from '../components/quick-search';
+import { isNewContent } from '../utils/is-new-content';
 
 import { siteLinks, socialLinks } from './nav-links';
 
@@ -11,17 +12,24 @@ interface Props {
   fullWidth: boolean;
   slug: string;
   search: any;
-  newPosts: number;
-  newArticles: number;
 }
 
-const Layout = component$<Props>(({ fullWidth, slug, search, newPosts, newArticles }) => {
-  const newItems = {
-    posts: newPosts,
-    articles: newArticles,
-  };
+const Layout = component$<Props>(({ fullWidth, slug, search }) => {
   const isModalOpen = useSignal(false);
   const isNavOpen = useSignal(false);
+
+  const newItems = search
+    .filter((item) => {
+      const { date } = item;
+      if (isNewContent(date)) {
+        return item;
+      }
+    })
+    .reduce((items, item) => {
+      const base = item.base;
+      items[base] = (items[base] || 0) + 1;
+      return items;
+    }, {});
 
   const handleNav = $(() => {
     isNavOpen.value = !isNavOpen.value;
@@ -112,7 +120,6 @@ const Layout = component$<Props>(({ fullWidth, slug, search, newPosts, newArticl
                   const l = link.slice(1);
 
                   const newCount = newItems[title.toLowerCase()] || null;
-
                   const isActive = s.length <= 0 && s.startsWith(l) ? true : l.length > 0 && s.startsWith(l);
 
                   return (

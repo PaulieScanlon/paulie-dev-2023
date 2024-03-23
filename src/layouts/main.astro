@@ -51,16 +51,6 @@ const isProduction = import.meta.env.PROD;
 const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
 const { search } = await content.json();
-
-const filteredByNew = search.filter(data => data.new !== false)
-
-const countByBase = filteredByNew.reduce((items, item) => {
-  const base = item.base;
-  items[base] = (items[base] || 0) + 1;
-  return items;
-}, {});
-
-
 ---
 
 <html lang='en'>
@@ -137,7 +127,7 @@ const countByBase = filteredByNew.reduce((items, item) => {
       }
   </head>
   <body class='prose max-w-none bg-brand-background'>
-    <Layout fullWidth={fullWidth} slug={slug} search={search} newPosts={countByBase.posts} newArticles={countByBase.articles}>
+    <Layout fullWidth={fullWidth} slug={slug} search={search}>
       <slot />
     </Layout>
   </body>

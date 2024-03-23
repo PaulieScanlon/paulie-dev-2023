@@ -1,5 +1,4 @@
 import { getCollection } from 'astro:content';
-import { isNewContent } from '../utils/is-new-content';
 
 export const GET = async ({ params, request }) => {
   const articles = await getCollection('articles');
@@ -19,7 +18,6 @@ export const GET = async ({ params, request }) => {
       } = data;
 
       return {
-        new: isNewContent(date),
         date: date,
         title: title,
         base: base,
