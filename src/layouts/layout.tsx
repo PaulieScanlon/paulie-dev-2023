@@ -107,7 +107,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search, newPosts, newArticl
                   <QuickSearch handleModal={handleModal} />
                 </li>
                 {siteLinks.map((item, index) => {
-                  const { title, icon, link } = item;
+                  const { title, icon, stroke, link } = item;
                   const s = slug.slice(1);
                   const l = link.slice(1);
 
@@ -117,7 +117,14 @@ const Layout = component$<Props>(({ fullWidth, slug, search, newPosts, newArticl
 
                   return (
                     <li key={index} class='m-0 p-0'>
-                      <NavLink title={title} icon={icon} slug={link} isActive={isActive} newCount={newCount} />
+                      <NavLink
+                        title={title}
+                        icon={icon}
+                        stroke={stroke}
+                        slug={link}
+                        isActive={isActive}
+                        newCount={newCount}
+                      />
                     </li>
                   );
                 })}

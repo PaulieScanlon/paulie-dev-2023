@@ -3,12 +3,13 @@ import { component$ } from '@builder.io/qwik';
 interface Props {
   title: string;
   icon: string;
+  stroke: boolean;
   slug: string;
   isActive: boolean;
   newCount: number;
 }
 
-const NavLink = component$<Props>(({ title, icon, slug, isActive, newCount }) => {
+const NavLink = component$<Props>(({ title, icon, stroke, slug, isActive, newCount }) => {
   return (
     <a
       href={slug}
@@ -16,7 +17,14 @@ const NavLink = component$<Props>(({ title, icon, slug, isActive, newCount }) =>
         isActive ? 'text-brand-primary' : 'hover:text-brand-text text-slate-300'
       }`}
     >
-      <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' fill='currentColor' viewBox='0 0 24 24'>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        class='h-4 w-4'
+        stroke-width='3'
+        stroke={`${stroke ? 'currentColor' : 'none'}`}
+        fill={`${stroke ? 'none' : 'currentColor'}`}
+        viewBox='0 0 24 24'
+      >
         <path stroke-linecap='round' stroke-linejoin='round' d={icon}></path>
       </svg>
       {newCount ? (
