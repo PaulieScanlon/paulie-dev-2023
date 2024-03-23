@@ -591,6 +591,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: any
 } & { render(): Render[".mdx"] };
+"2024/03/us-tech-cannot-comprehend-the-digital-nomad-way-of-life.mdx": {
+	id: "2024/03/us-tech-cannot-comprehend-the-digital-nomad-way-of-life.mdx";
+  slug: "2024/03/us-tech-cannot-comprehend-the-digital-nomad-way-of-life";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
