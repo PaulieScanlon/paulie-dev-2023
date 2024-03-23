@@ -69,6 +69,12 @@ const countByBase = filteredByNew.reduce((items, item) => {
 
     <title>{htmlTitle}</title>
     <link rel='canonical' href={linkCanonical} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="paulie.dev"
+      href={`${Astro.site}rss.xml`}
+    />
 
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta name='description' content={description} />
