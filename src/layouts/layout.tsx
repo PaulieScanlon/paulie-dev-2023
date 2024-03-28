@@ -1,9 +1,11 @@
 import { Slot, component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
+import ghosts from '../content/ghosts/ghost-content.json';
 
 import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
 import FullSearch from '../components/full-search';
 import QuickSearch from '../components/quick-search';
+
 import { isNewContent } from '../utils/is-new-content';
 
 import { siteLinks, socialLinks } from './nav-links';
@@ -18,10 +20,22 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
   const isModalOpen = useSignal(false);
   const isNavOpen = useSignal(false);
 
-  const newItems = search
+  const newItems = [
+    ...search,
+    ...ghosts.map((item) => {
+      const {
+        data: { date, base },
+      } = item;
+
+      return {
+        base: base,
+        date: new Date(date),
+      };
+    }),
+  ]
     .filter((item) => {
       const { date } = item;
-      if (isNewContent(new Date(date))) {
+      if (isNewContent(date)) {
         return item;
       }
     })
@@ -89,11 +103,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           </div>
         </div>
       </header>
-      <FullSearch
-        search={search.filter((item) => item.base !== 'ghosts')}
-        isModalOpen={isModalOpen.value}
-        handleModal={handleModal}
-      />
+      <FullSearch search={search} isModalOpen={isModalOpen.value} handleModal={handleModal} />
       <div class='relative'>
         <div
           id='lightbox'

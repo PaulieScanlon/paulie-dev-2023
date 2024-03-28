@@ -1,5 +1,6 @@
 ---
 // export const prerender = false;
+import ghosts from '../content/ghosts/ghost-content.json';
 
 import { sql } from '../neon';
 
@@ -34,6 +35,8 @@ import groupByReferrer from '../utils/group-by-referrer';
 const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
 const { articles, collections } = await content.json();
+
+const mergedCollections = [...collections, ...ghosts];
 
 let table = null;
 
@@ -74,13 +77,13 @@ const period = groupByDate(table.analytics).length - 1;
           <section>
             <h2 class='m-0 uppercase'>Year and Month</h2>
             <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
-            <LineChartYears data={groupByYear(collections)} />
+            <LineChartYears data={groupByYear(mergedCollections)} />
           </section>
 
           <section>
             <h2 class='m-0 uppercase'>Year and Day</h2>
             <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
-            <BarChartDays data={groupByDay(collections)} />
+            <BarChartDays data={groupByDay(mergedCollections)} />
           </section>
 
           <div class='grid gap-24 sm:gap-8 sm:grid-cols-2'>
@@ -93,7 +96,7 @@ const period = groupByDate(table.analytics).length - 1;
             <section>
               <h2 class='m-0 uppercase'>Total by Tag</h2>
               <p class='mt-0 mb-4 text-slate-300'>Top five tags.</p>
-              <DonutChartTags data={groupByTag(collections)} />
+              <DonutChartTags data={groupByTag(mergedCollections)} />
             </section>
           </div>
 
