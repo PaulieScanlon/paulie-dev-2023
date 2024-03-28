@@ -1241,7 +1241,14 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		
+		"ghosts": {
+"ghost-content": {
+	id: "ghost-content";
+  collection: "ghosts";
+  data: any
+};
+};
+
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;

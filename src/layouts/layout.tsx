@@ -1,4 +1,4 @@
-import { Slot, component$, useSignal, useStore, $, useOnDocument, useVisibleTask$ } from '@builder.io/qwik';
+import { Slot, component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
 
 import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
@@ -21,7 +21,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
   const newItems = search
     .filter((item) => {
       const { date } = item;
-      if (isNewContent(date)) {
+      if (isNewContent(new Date(date))) {
         return item;
       }
     })
@@ -89,7 +89,11 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           </div>
         </div>
       </header>
-      <FullSearch search={search} isModalOpen={isModalOpen.value} handleModal={handleModal} />
+      <FullSearch
+        search={search.filter((item) => item.base !== 'ghosts')}
+        isModalOpen={isModalOpen.value}
+        handleModal={handleModal}
+      />
       <div class='relative'>
         <div
           id='lightbox'

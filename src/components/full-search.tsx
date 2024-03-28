@@ -104,7 +104,7 @@ const FullSearch = component$<Props>(({ search, isModalOpen, handleModal }) => {
                         class='cursor-pointer m-0 p-0 border-b-[1px] border-brand-outline hover:bg-brand-fuchsia'
                       >
                         <a href={path} class='block group no-underline'>
-                          <div class=' px-4 py-3 text-slate-300 hover:text-white'>
+                          <div class=' px-4 py-3 text-slate-300 hover:text-white font-medium'>
                             <div class='flex items-end pb-4 justify-between'>
                               <time class='text-brand-primary group-hover:text-white text-[0.6rem]'>
                                 {formatDate(date)}

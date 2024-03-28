@@ -23,47 +23,86 @@ const { collections, slice } = Astro.props;
           data: { base, featuredImage, logo, publication, title, date, tags },
         } = collection;
 
-        const excerpt = createExcerpt(collection.body);
+        const excerpt = collection.body ? createExcerpt(collection.body) : '';
 
-        return (
-          <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-2 ease-in-out duration-500 cursor-pointer'>
-            <div class='relative overflow-hidden'>
-              <NewLabel date={date} />
-              <a
-                href={`/${base}/${slug}/`}
-                class='flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline'
-              >
-                {featuredImage ? (
-                  <AstroImage
-                    width={570}
-                    height={321}
-                    alt={title}
-                    url={featuredImage}
-                    className='!my-0 w-full md:w-1/2'
-                  />
-                ) : null}
-                <div class='flex flex-col gap-2'>
-                  <span class='flex flex-col sm:flex-row gap-2 sm:items-center'>
-                    {publication ? (
-                      <>
-                        <div class='flex items-center gap-2'>
-                          <Image width={24} height={24} alt={publication} src={logo} class='m-0' />
-                          <small class='text-xs text-brand-secondary'>{publication}</small>
-                        </div>
-                        <span class='hidden sm:inline-block'>&bull;</span>
-                      </>
-                    ) : null}
+        if (base === 'ghosts') {
+          return (
+            <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface shadow-lg select-none'>
+              <div class='relative overflow-hidden cursor-not-allowed'>
+                <NewLabel date={date} />
+                <div class='flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline'>
+                  {featuredImage ? (
+                    <AstroImage
+                      width={570}
+                      height={321}
+                      alt={title}
+                      url={featuredImage}
+                      className='!my-0 w-full md:w-1/2'
+                    />
+                  ) : null}
+                  <div class='flex flex-col gap-2'>
+                    <span class='flex flex-col sm:flex-row gap-2 sm:items-center'>
+                      {publication ? (
+                        <>
+                          <div class='flex items-center gap-2'>
+                            <Image width={24} height={24} alt={publication} src={logo} class='m-0 blur-[3px]' />
+                            <small class='text-xs text-brand-secondary blur-[2px]'>{publication}</small>
+                          </div>
+                          <span class='hidden sm:inline-block'>&bull;</span>
+                        </>
+                      ) : null}
 
-                    <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
-                  </span>
-                  <strong class='block text-brand-text text-xl'>{title}</strong>
-                  <p class='font-light text-sm'>{`${excerpt.substring(0, 120)}...`}</p>
-                  <TagsList tags={tags} className='mt-2 mb-0' />
+                      <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+                    </span>
+                    <strong class='block text-brand-text text-xl blur-[3px]'>{title}</strong>
+                    <p class='font-light text-sm blur-[3px]'>{`${excerpt.substring(0, 120)}...`}</p>
+                    <TagsList tags={tags} className='mt-2 mb-0' />
+                  </div>
                 </div>
-              </a>
-            </div>
-          </li>
-        );
+              </div>
+            </li>
+          );
+        } else {
+          return (
+            <li class='m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-2 ease-in-out duration-500 cursor-pointer'>
+              <div class='relative overflow-hidden'>
+                <NewLabel date={date} />
+                <a
+                  href={`/${base}/${slug}/`}
+                  class='flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline'
+                >
+                  {featuredImage ? (
+                    <AstroImage
+                      width={570}
+                      height={321}
+                      alt={title}
+                      url={featuredImage}
+                      className='!my-0 w-full md:w-1/2'
+                    />
+                  ) : null}
+                  <div class='flex flex-col gap-2'>
+                    <span class='flex flex-col sm:flex-row gap-2 sm:items-center'>
+                      {publication ? (
+                        <>
+                          <div class='flex items-center gap-2'>
+                            <Image width={24} height={24} alt={publication} src={logo} class='m-0' />
+                            <small class='text-xs text-brand-secondary'>{publication}</small>
+                          </div>
+                          <span class='hidden sm:inline-block'>&bull;</span>
+                        </>
+                      ) : null}
+
+                      <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+                    </span>
+                    <strong class='block text-brand-text text-xl'>{title}</strong>
+                    <p class='font-light text-sm'>{`${excerpt.substring(0, 120)}...`}</p>
+                    <TagsList tags={tags} className='mt-2 mb-0' />
+                  </div>
+                </a>
+              </div>
+            </li>
+          );
+        }
       })
   }
 </ul>

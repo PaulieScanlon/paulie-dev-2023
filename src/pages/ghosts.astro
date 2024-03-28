@@ -1,0 +1,30 @@
+---
+export const prerender = true;
+
+import Main from '../layouts/main.astro';
+import Aside from '../components/aside.astro';
+import ProfileCard from '../components/profile-card.astro';
+
+import CollectionsList from '../components/collections-list.astro';
+
+const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
+
+const { ghosts } = await content.json();
+---
+
+<Main title='Ghosts' description="Articles I've written for clients... and the World will never know" slug='/ghosts/'>
+  <strong class='flex items-center justify-between gap-2 text-sm text-brand-primary'
+    >Ghosts
+    <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${ghosts.length}`}</span>
+  </strong>
+  <h1 class='mb-0'>Ghost Written</h1>
+  <p>
+    Articles I've written for clients... and the World will never know. <span role='img' aria-label='Pensive Face'
+      >😔</span
+    >
+  </p>
+  <CollectionsList collections={ghosts} />
+  <Aside>
+    <ProfileCard />
+  </Aside>
+</Main>
