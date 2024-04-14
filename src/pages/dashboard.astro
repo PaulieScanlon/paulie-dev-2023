@@ -147,7 +147,7 @@ const period = groupByDate(table.analytics).length - 1;
             <ListPopular
               data={groupBySlug(table.analytics)
                 .filter((item) => {
-                  if (item.slug.includes('/posts/2')) {
+                  if (item.slug.includes('/posts/')) {
                     return item;
                   }
                 })
@@ -163,7 +163,7 @@ const period = groupByDate(table.analytics).length - 1;
             <ListPopular
               data={groupBySlug(table.analytics)
                 .filter((item) => {
-                  if (item.slug.includes('/articles/2')) {
+                  if (item.slug.includes('/articles/')) {
                     return item;
                   }
                 })
