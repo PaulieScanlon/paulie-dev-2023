@@ -605,6 +605,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/04/how-to-simplify-global-state-management-in-react-using-jotai.mdx": {
+	id: "2024/04/how-to-simplify-global-state-management-in-react-using-jotai.mdx";
+  slug: "2024/04/how-to-simplify-global-state-management-in-react-using-jotai";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2024/04/how-to-use-sanity-cms-with-astro.mdx": {
 	id: "2024/04/how-to-use-sanity-cms-with-astro.mdx";
   slug: "2024/04/how-to-use-sanity-cms-with-astro";
