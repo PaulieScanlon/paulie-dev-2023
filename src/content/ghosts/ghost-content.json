@@ -1,5 +1,19 @@
 [
   {
+    "body": "In the web development world, it's hard to go more than a few days without hearing about Vite. Its popularity has skyrocketed since its release in April 2020. At the time of writing this post, the project has blown past 64k stars on GitHub and over 12 million weekly downloads and now powers most open-source frameworks like Nuxt, SvelteKit, Astro, SolidStart and Remix (just to name a few)",
+    "collection": "ghosts",
+    "data": {
+      "base": "ghosts",
+      "title": "What is Vite (and why is it so popular)?",
+      "date": "2024-04-29",
+      "tags": ["Vite"],
+      "url": "https://blog.stackblitz.com/posts/what-is-vite-introduction/",
+      "publication": "StackBlitz",
+      "author": "Paul Scanlon",
+      "logo": "https://res.cloudinary.com/www-paulie-dev/image/upload/v1711649582/paulie.dev/Logos/stackblitz-logo_e4l0co.png"
+    }
+  },
+  {
     "body": "The following blog post outlines points covered in our recent webinar which you can watch in full here: StackBlitz for Design Systems. For the past several years, enterprise design systems teams have reached out to us for help replicating the workflows we enable for the maintainers of open source projects like Angular, Material UI, and Astro but within the secure confines of their own infrastructure.",
     "collection": "ghosts",
     "data": {
