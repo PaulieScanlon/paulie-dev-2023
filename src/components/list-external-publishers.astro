@@ -6,9 +6,9 @@ const { data } = Astro.props;
 const listData = data.sort((a, b) => b.total - a.total);
 ---
 
-<ul class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4 md:px-8 md:py-4 md:columns-2 gap-16'>
+<ol class='m-0 p-0 border rounded border-brand-outline bg-brand-surface px-4 pt-2 md:columns-2 gap-16'>
   {
-    listData.map((item) => {
+    listData.map((item, index) => {
       const { publication, logo, total } = item;
 
       const publisherPage = {
@@ -29,18 +29,16 @@ const listData = data.sort((a, b) => b.total - a.total);
       return (
         <li class='m-0 p-0 flex items-center gap-4 leading-[3rem]'>
           <div class='flex grow items-center gap-3'>
+            <small class='flex shrink-0 items-center justify-center w-6 h-6 rounded-full font-bold leading-4 text-brand-salmon border-2 border-brand-salmon'>
+              {index + 1}
+            </small>
             <Image width={18} height={18} alt={publication} src={logo} class='m-0' />
             {publisherPage[publication] ? (
-              <a
-                href={publisherPage[publication]}
-                target='_blank'
-                rel='noopener'
-                class='text-brand-text hover:text-brand-secondary transition-colors duration-300'
-              >
+              <a href={publisherPage[publication]} target='_blank' rel='noopener' class='text-sm'>
                 {publication}
               </a>
             ) : (
-              <span>{publication}</span>
+              <span class='text-sm'>{publication}</span>
             )}
           </div>
           <strong>{`x${total}`}</strong>
@@ -48,4 +46,4 @@ const listData = data.sort((a, b) => b.total - a.total);
       );
     })
   }
-</ul>
+</ol>
