@@ -633,6 +633,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/05/design-system-component-documentation.mdx": {
+	id: "2024/05/design-system-component-documentation.mdx";
+  slug: "2024/05/design-system-component-documentation";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
