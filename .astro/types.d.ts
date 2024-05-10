@@ -640,6 +640,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/05/how-to-use-sanity-portable-text-with-astro.mdx": {
+	id: "2024/05/how-to-use-sanity-portable-text-with-astro.mdx";
+  slug: "2024/05/how-to-use-sanity-portable-text-with-astro";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
