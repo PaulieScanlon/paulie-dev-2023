@@ -15,7 +15,6 @@ export default defineConfig({
   output: 'hybrid',
   adapter: vercel({
     edgeMiddleware: true,
-    functionPerRoute: true,
   }),
   image: {
     domains: ['res.cloudinary.com'],
