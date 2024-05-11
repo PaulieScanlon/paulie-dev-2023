@@ -1,9 +1,10 @@
+import type { APIRoute } from 'astro';
 import { sql } from '../../neon';
 import { geolocation } from '@vercel/edge';
 
-export async function POST({ params, request }) {
+export const POST: APIRoute = async ({ request }) => {
   const { slug, referrer } = await new Response(request.body).json();
-  console.log('api referrer: ', referrer);
+
   const { flag, country, city, latitude, longitude } = geolocation(request);
   const date = new Date();
 
@@ -27,7 +28,7 @@ export async function POST({ params, request }) {
       message: 'Error',
     });
   }
-}
+};
 
 export const config = {
   runtime: 'edge',

@@ -13,7 +13,7 @@ const Reactions = component$<Props>(({ slug }) => {
 
   const getReactions = $(async () => {
     try {
-      const response = await fetch('/api/get-reactions', {
+      const response = await fetch('/api/reactions-by-slug', {
         method: 'POST',
         body: JSON.stringify({ slug: slug }),
       });

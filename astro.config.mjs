@@ -12,10 +12,10 @@ const isProd = import.meta.env.PROD;
 
 export default defineConfig({
   site: isProd ? 'https://paulie.dev' : 'http://localhost:4321',
-  output: 'server',
+  output: 'hybrid',
   adapter: vercel({
     edgeMiddleware: true,
-    maxDuration: 10,
+    functionPerRoute: true,
   }),
   image: {
     domains: ['res.cloudinary.com'],

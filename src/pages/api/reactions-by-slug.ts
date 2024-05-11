@@ -1,6 +1,7 @@
+import type { APIRoute } from 'astro';
 import { sql } from '../../neon';
 
-export async function POST({ params, request }) {
+export const POST: APIRoute = async ({ request }) => {
   const { slug } = await new Response(request.body).json();
 
   try {
@@ -27,7 +28,7 @@ export async function POST({ params, request }) {
       status: 500,
     });
   }
-}
+};
 
 export const config = {
   runtime: 'edge',
