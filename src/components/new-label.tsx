@@ -14,7 +14,7 @@ const NewLabel = component$<Props>(({ date }) => {
 
   return (
     <div class={`absolute right-0 top-0 h-16 w-16 ${isNew.value ? 'block' : 'hidden'}`}>
-      <div class='absolute transform rotate-45 bg-brand-primary text-center text-white font-semibold shadow-lg right-[-60px] top-[16px] w-[170px]'>
+      <div class='absolute transform rotate-45 bg-brand-primary text-center text-white font-semibold shadow-lg right-[-60px] top-[16px] w-[170px] select-none'>
         NEW
       </div>
     </div>
