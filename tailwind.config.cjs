@@ -65,6 +65,9 @@ module.exports = {
     'bg-brand-starfleet',
     'bg-brand-electric',
     'bg-red-500',
+
+    // These are for the Ghosts collections cards
+    'cursor-not-allowed',
   ],
   theme: {
     extend: {
