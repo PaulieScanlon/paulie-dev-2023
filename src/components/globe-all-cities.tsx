@@ -1,10 +1,6 @@
 import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 
-import Globe from 'globe.gl';
-import * as THREE from 'three';
-
 import Loading from './loading';
-import goeJson from '../utils/ne_110m_admin_0_countries.geojson.json';
 
 interface Props {
   data: any;
@@ -27,7 +23,13 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
     };
   });
 
-  useVisibleTask$(() => {
+  useVisibleTask$(async () => {
+    const goeJson = await import('../utils/ne_110m_admin_0_countries.geojson.json');
+
+    const GlobeModule = await import('globe.gl');
+    const Globe = GlobeModule.default;
+    const THREE = await import('three');
+
     const world = Globe({ animateIn: true, rendererConfig: { antialias: true, alpha: true } })
       .onGlobeReady(() => {
         isLoaded.value = true;
@@ -65,14 +67,14 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
           })
         );
       })
-      .customThreeObjectUpdate((obj, d) => {
+      .customThreeObjectUpdate((obj, d: any) => {
         Object.assign(obj.position, world.getCoords(d.lat, d.lng, d.alt));
       })
       .atmosphereColor('#655ea0')
       .hexPolygonsData(goeJson.features)
       .hexPolygonResolution(3)
       .hexPolygonMargin(0.4)
-      .hexPolygonColor((geometry) => {
+      .hexPolygonColor((geometry: any) => {
         return ['#2a2469', '#322a7a', '#3d338e', '#423b8f'][geometry.properties.abbrev_len % 4];
       })
       .showGraticules(true)
