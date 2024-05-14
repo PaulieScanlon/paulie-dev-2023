@@ -41,17 +41,17 @@ const { demos, articles, posts } = await content.json();
   <h2 class='mb-0 text-brand-salmon'>Latest Articles</h2>
   <p>Latest Articles written for external publishers.</p>
   <CollectionsList collections={articles} slice={5} />
-  <CtaInternal href='/articles/'>See All Articles</CtaInternal>
+  <CtaInternal href='/articles/'>{`See All ${articles.length} Articles`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Posts</h2>
   <p>Latest Posts published here on my site.</p>
   <CollectionsList collections={posts} slice={5} />
-  <CtaInternal href='/posts/'>See All Posts</CtaInternal>
+  <CtaInternal href='/posts/'>{`See All ${posts.length} Posts`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Demos</h2>
   <p>Product demonstration projects.</p>
   <CollectionsList collections={demos} slice={5} />
-  <CtaInternal href='/demos/'>See All Demos</CtaInternal>
+  <CtaInternal href='/demos/'>{`See All ${demos.length} Demos`}</CtaInternal>
 
   <Aside>
     <ProfileCard />
