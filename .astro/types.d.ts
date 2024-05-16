@@ -654,6 +654,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/05/outer-excuses-why-javascript-developers-should-learn-sql.mdx": {
+	id: "2024/05/outer-excuses-why-javascript-developers-should-learn-sql.mdx";
+  slug: "2024/05/outer-excuses-why-javascript-developers-should-learn-sql";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
