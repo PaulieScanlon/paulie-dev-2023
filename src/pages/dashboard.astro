@@ -20,6 +20,7 @@ import LineChartVisits from '../components/line-chart-visits.astro';
 import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
 import PoweredByNeon from '../components/powered-by-neon.astro';
+import HappyAllCities from '../components/happy-all-cities';
 import GithubActivity from '../components/github-activity';
 
 import groupByTable from '../utils/group-by-table';
@@ -42,7 +43,7 @@ const mergedCollections = [...collections, ...ghosts];
 let table = null;
 
 try {
-  const response = await sql`
+  const result = await sql`
   SELECT * FROM 
     (SELECT 'analytics' AS table, analytics.* 
     FROM analytics
@@ -51,11 +52,11 @@ try {
     (SELECT 'reactions' AS table, reactions.*
     FROM reactions) reactions`;
 
-  if (!response.length) {
+  if (!result.length) {
     throw new Error('Bad request');
   }
 
-  table = groupByTable(response);
+  table = groupByTable(result);
 } catch (error) {
   console.error(error);
 }
@@ -141,6 +142,13 @@ const period = groupByDate(table.analytics).length - 1;
               <PoweredByNeon period={period} />
             </section>
           </div>
+
+          <section>
+            <h2 class='m-0 uppercase'>Happiest Cities</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Top 50 happiest cities</p>
+            <HappyAllCities />
+            <PoweredByNeon />
+          </section>
 
           <section>
             <h2 class='m-0 uppercase'>Popular Posts</h2>
