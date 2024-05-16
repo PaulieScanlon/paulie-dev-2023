@@ -4,15 +4,18 @@ export const prerender = true;
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
+import { formatDate } from '../../utils/format-date';
+import { createExcerpt } from '../../utils/create-excerpt';
+
 import Main from '../../layouts/main.astro';
+
 import Aside from '../../components/aside.astro';
+import CtaExternal from '../../components/cta-external.astro';
 import TagsList from '../../components/tags-list.astro';
 import FeaturedImageCard from '../../components/featured-image-card.astro';
 import TableOfContents from '../../components/table-of-contents.astro';
 import Reactions from '../../components/reactions';
 import ProfileCard from '../../components/profile-card.astro';
-import { formatDate } from '../../utils/format-date';
-import { createExcerpt } from '../../utils/create-excerpt';
 import AudioFeedEmbed from '../../components/audio-feed-embed.astro';
 
 export async function getStaticPaths() {
@@ -62,6 +65,7 @@ const { Content, headings } = await article.render();
   {audioFeedId ? <AudioFeedEmbed audioFeedId={audioFeedId} /> : null}
 
   <Content />
+  <CtaExternal href={url}>{`Read on ${publication}`}</CtaExternal>
   {audioFeedId ? <Reactions slug={`/articles/${slug}/`} /> : null}
   <Aside>
     {
