@@ -50,7 +50,7 @@ const HappyAllCities = component$<Props>(({ period }) => {
                     const { city, country, flag, count } = row;
                     return (
                       <tr key={index} class='border-b-0 even:bg-brand-surface odd:bg-brand-background'>
-                        <td class='align-middle text-nowrap p-4'>
+                        <td class='align-middle p-4 whitespace-nowrap'>
                           <svg
                             aria-labelledby={`reaction-${name}`}
                             xmlns='http://www.w3.org/2000/svg'
