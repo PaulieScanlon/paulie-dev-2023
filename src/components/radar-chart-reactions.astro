@@ -8,7 +8,7 @@ const chartCenter = chartSize / 2;
 
 const chartData = data;
 const max = chartData.reduce((max, current) => (current.total > max ? current.total : max), 0);
-const pointPadding = 48;
+const pointPadding = 6;
 const rings = [...Array(6).keys()];
 
 const centerX = (angle, distance) => Math.cos(angle - Math.PI / 2) * distance;
@@ -47,7 +47,7 @@ const shape =
   }, '') + 'z';
 ---
 
-<div class={`m-0 p-0 border rounded border-brand-outline ${classNames}`}>
+<div class={`grow m-0 p-0 border rounded border-brand-outline ${classNames}`}>
   <div class='p-8'>
     <svg viewBox={`0 0 ${chartSize} ${chartSize}`} role='presentation'>
       <g transform={`translate(${chartCenter},${chartCenter})`}>

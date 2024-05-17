@@ -1,8 +1,8 @@
 ---
-const { period } = Astro.props;
+const { period, className } = Astro.props;
 ---
 
-<div class='mt-4 leading-3'>
+<div class={`mt-4 leading-3 ${className}`}>
   {period ? <time class='block text-brand-muted text-xs'>{`Totals from last ${period} Days`}</time> : null}
   <small class='text-brand-secondary text-xs'>Powered by{' '}</small>
   <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener' class='text-xs'>Neon</a>

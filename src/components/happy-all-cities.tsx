@@ -4,14 +4,19 @@ import { formatNumber } from '../utils/format-number';
 import Loading from './loading';
 import emojis from '../utils/emojis';
 
-const HappyAllCities = component$(() => {
+interface Props {
+  period: number;
+}
+
+const HappyAllCities = component$<Props>(({ period }) => {
   const data = useSignal(null);
   const happy = emojis.find((emoji) => emoji.name === 'happy');
 
   useVisibleTask$(async () => {
     try {
       const response = await fetch('/api/happy-by-city', {
-        method: 'GET',
+        method: 'POST',
+        body: JSON.stringify({ period: period }),
       });
 
       if (response.status !== 200) {

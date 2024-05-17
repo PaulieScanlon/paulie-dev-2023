@@ -41,16 +41,18 @@ const { articles, collections } = await content.json();
 const mergedCollections = [...collections, ...ghosts];
 
 let table = null;
+const period = 30;
 
 try {
-  const result = await sql`
+  const result = await sql(`
   SELECT * FROM 
     (SELECT 'analytics' AS table, analytics.* 
     FROM analytics
-    WHERE city <> 'Medell C  ADn' AND date >= NOW() - INTERVAL '30 days') analytics
+    WHERE date >= NOW() - INTERVAL '${period} days') analytics
   NATURAL FULL JOIN 
     (SELECT 'reactions' AS table, reactions.*
-    FROM reactions) reactions`;
+    FROM reactions
+    WHERE date >= NOW() - INTERVAL '${period} days') reactions`);
 
   if (!result.length) {
     throw new Error('Bad request');
@@ -60,8 +62,6 @@ try {
 } catch (error) {
   console.error(error);
 }
-
-const period = groupByDate(table.analytics).length - 1;
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
@@ -88,13 +88,13 @@ const period = groupByDate(table.analytics).length - 1;
             <BarChartDays data={groupByDay(mergedCollections)} />
           </section>
 
-          <div class='grid gap-24 sm:gap-8 sm:grid-cols-2'>
-            <section>
+          <div class='grid sm:gap-x-8 sm:grid-cols-2'>
+            <section class='flex flex-col'>
               <h2 class='m-0 uppercase'>Total by reaction</h2>
               <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
               <RadarChartReactions data={groupByReaction(table.reactions)} />
-              <PoweredByNeon period={period} />
             </section>
+            <PoweredByNeon period={period} className='mb-24 sm:order-3' />
             <section>
               <h2 class='m-0 uppercase'>Total by Tag</h2>
               <p class='mt-0 mb-4 text-slate-300'>Top five tags.</p>
@@ -146,7 +146,7 @@ const period = groupByDate(table.analytics).length - 1;
           <section>
             <h2 class='m-0 uppercase'>Happiest Cities</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top 50 happiest cities</p>
-            <HappyAllCities />
+            <HappyAllCities period={period} />
             <PoweredByNeon period={period} />
           </section>
 
