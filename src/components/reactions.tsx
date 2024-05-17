@@ -96,7 +96,8 @@ const Reactions = component$<Props>(({ slug }) => {
                   ) : (
                     <>
                       <svg
-                        aria-labelledby={`reaction-${name}`}
+                        role='img'
+                        aria-label={`reaction-${name}`}
                         xmlns='http://www.w3.org/2000/svg'
                         class='not-prose rounded-full w-full h-full transition-colors duration-300'
                         viewBox='0 0 32 32'

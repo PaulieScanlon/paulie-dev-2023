@@ -52,7 +52,8 @@ const HappyAllCities = component$<Props>(({ period }) => {
                       <tr key={index} class='border-b-0 even:bg-brand-surface odd:bg-brand-background'>
                         <td class='align-middle p-4 whitespace-nowrap'>
                           <svg
-                            aria-labelledby={`reaction-${name}`}
+                            role='img'
+                            aria-label='reaction-happy'
                             xmlns='http://www.w3.org/2000/svg'
                             class='not-prose mr-2 inline-block rounded-full w-5 h-5 transition-colors duration-300 fill-brand-tertiary'
                             viewBox='0 0 32 32'
