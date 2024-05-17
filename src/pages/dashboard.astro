@@ -23,7 +23,6 @@ import PoweredByNeon from '../components/powered-by-neon.astro';
 import HappyAllCities from '../components/happy-all-cities';
 import GithubActivity from '../components/github-activity';
 
-import groupByTable from '../utils/group-by-table';
 import groupByYear from '../utils/group-by-year';
 import groupByDay from '../utils/group-by-day';
 import groupByDate from '../utils/group-by-date';
@@ -40,25 +39,26 @@ const { articles, collections } = await content.json();
 
 const mergedCollections = [...collections, ...ghosts];
 
-let table = null;
+let analyticsData = null;
+let reactionsData = null;
 const period = 30;
 
 try {
-  const result = await sql(`
-  SELECT * FROM 
-    (SELECT 'analytics' AS table, analytics.* 
+  analyticsData = await sql(`
+    SELECT * 
     FROM analytics
-    WHERE date >= NOW() - INTERVAL '${period} days') analytics
-  NATURAL FULL JOIN 
-    (SELECT 'reactions' AS table, reactions.*
-    FROM reactions
-    WHERE date >= NOW() - INTERVAL '${period} days') reactions`);
+    WHERE date >= NOW() - INTERVAL '${period} days'
+`);
 
-  if (!result.length) {
+  reactionsData = await sql(`
+    SELECT * 
+    FROM reactions
+    WHERE date >= NOW() - INTERVAL '${period} days'
+`);
+
+  if (!analyticsData.length || !reactionsData.length) {
     throw new Error('Bad request');
   }
-
-  table = groupByTable(result);
 } catch (error) {
   console.error(error);
 }
@@ -74,7 +74,7 @@ try {
   </p>
   <div class='flex flex-col gap-24 min-w-full'>
     {
-      table ? (
+      analyticsData && reactionsData ? (
         <>
           <section>
             <h2 class='m-0 uppercase'>Year and Month</h2>
@@ -92,7 +92,7 @@ try {
             <section class='flex flex-col'>
               <h2 class='m-0 uppercase'>Total by reaction</h2>
               <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
-              <RadarChartReactions data={groupByReaction(table.reactions)} />
+              <RadarChartReactions data={groupByReaction(reactionsData)} />
             </section>
             <PoweredByNeon period={period} className='mb-24 sm:order-3' />
             <section>
@@ -111,14 +111,14 @@ try {
           <section>
             <h2 class='m-0 uppercase'>Total visits</h2>
             <p class='mt-0 mb-4 text-slate-300'>All page views.</p>
-            <LineChartVisits data={groupByDate(table.analytics)} />
+            <LineChartVisits data={groupByDate(analyticsData)} />
             <PoweredByNeon period={period} />
           </section>
 
           <section>
             <h2 class='m-0 uppercase'>Top Referrers</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top Ten referrers.</p>
-            <ListPopularReferrers data={groupByReferrer(table.analytics)} />
+            <ListPopularReferrers data={groupByReferrer(analyticsData)} />
             <PoweredByNeon period={period} />
           </section>
 
@@ -127,7 +127,7 @@ try {
               <div class='flex flex-col'>
                 <h2 class='m-0 uppercase'>Total by City</h2>
                 <p class='mt-0 mb-4 text-slate-300'>Top Ten City visits.</p>
-                <ListTopTenCities data={groupByCity(table.analytics)} />
+                <ListTopTenCities data={groupByCity(analyticsData)} />
               </div>
               <PoweredByNeon period={period} />
             </section>
@@ -136,7 +136,7 @@ try {
               <p class='mt-0 mb-4 text-slate-300'>All City visits.</p>
               <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
                 <div class='flex justify-center overflow-hidden'>
-                  <GlobeAllCities data={groupByCity(table.analytics)} />
+                  <GlobeAllCities data={groupByCity(analyticsData)} />
                 </div>
               </div>
               <PoweredByNeon period={period} />
@@ -154,7 +154,7 @@ try {
             <h2 class='m-0 uppercase'>Popular Posts</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top Ten Post views.</p>
             <ListPopular
-              data={groupBySlug(table.analytics)
+              data={groupBySlug(analyticsData)
                 .filter((item) => {
                   if (item.slug.includes('/posts/')) {
                     return item;
@@ -170,7 +170,7 @@ try {
             <h2 class='m-0 uppercase'>Popular Articles</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top Ten Article views.</p>
             <ListPopular
-              data={groupBySlug(table.analytics)
+              data={groupBySlug(analyticsData)
                 .filter((item) => {
                   if (item.slug.includes('/articles/')) {
                     return item;
