@@ -26,8 +26,6 @@ const HappyAllCities = component$(() => {
     }
   });
 
-  console.log(data.value);
-
   return (
     <div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
       <div class='p-4'>
