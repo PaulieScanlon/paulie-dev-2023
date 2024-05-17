@@ -8,7 +8,7 @@ import TagsList from './tags-list.astro';
 import { formatDate } from '../utils/format-date';
 import { createExcerpt } from '../utils/create-excerpt';
 
-const { collections, slice } = Astro.props;
+const { collections, slice, highlighted } = Astro.props;
 ---
 
 <ul class='list-none my-8 p-0 flex flex-col gap-8'>
@@ -69,7 +69,7 @@ const { collections, slice } = Astro.props;
                   </span>
                   <strong class={`block text-brand-text text-xl ${isGhost ? 'blur-[3px]' : ''}`}>{title}</strong>
                   <p class={`font-light text-sm ${isGhost ? 'blur-[3px]' : ''}`}>{`${excerpt.substring(0, 120)}...`}</p>
-                  <TagsList tags={tags} className='mt-2 mb-0 ' />
+                  <TagsList tags={tags} className='mt-2 mb-0' highlighted={highlighted} />
                 </div>
               </a>
             </div>

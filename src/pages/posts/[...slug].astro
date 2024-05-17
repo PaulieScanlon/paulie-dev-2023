@@ -54,7 +54,7 @@ const { Content, headings } = await post.render();
     <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
   </div>
   <h1>{title}</h1>
-  <TagsList tags={tags} />
+  <TagsList tags={tags} link={true} />
   <Content />
   <Reactions slug={`/posts/${slug}/`} />
   <Aside>

@@ -37,7 +37,7 @@ const {
   article,
   article: {
     slug,
-    data: { title, author, logo, publication, url, tags, date, canonical, featuredImage, audioFeedId },
+    data: { base, title, author, logo, publication, url, tags, date, canonical, featuredImage, audioFeedId },
   },
 } = Astro.props;
 
@@ -61,7 +61,7 @@ const { Content, headings } = await article.render();
     <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
   </div>
   <h1>{title}</h1>
-  <TagsList tags={tags} />
+  <TagsList tags={tags} link={true} />
   {audioFeedId ? <AudioFeedEmbed audioFeedId={audioFeedId} /> : null}
 
   <Content />
