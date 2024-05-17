@@ -4,13 +4,12 @@ const { data, classNames = 'bg-brand-surface', showLegend = true } = Astro.props
 import emojis from '../utils/emojis';
 
 const chartSize = 300;
+const emojiSize = 24;
 const chartCenter = chartSize / 2;
 
 const chartData = data;
-const max = chartData.reduce((max, current) => (current.total > max ? current.total : max), 0);
-const pointPadding = 6;
+const max = chartData.reduce((items, item) => (item.total > items ? item.total : items), 0);
 const rings = [...Array(6).keys()];
-
 const centerX = (angle, distance) => Math.cos(angle - Math.PI / 2) * distance;
 const centerY = (angle, distance) => Math.sin(angle - Math.PI / 2) * distance;
 
@@ -32,10 +31,10 @@ const axis = chartData.map((_, index) => {
 
 const properties = chartData.map((item, index) => {
   const { reaction, total } = item;
-  const clamp = Number(total / (max + pointPadding));
+  const clamp = Number(total / max);
   const angle = (Math.PI * 2 * index) / chartData.length;
-  const x = centerX(angle, (clamp * chartSize) / 2);
-  const y = centerY(angle, (clamp * chartSize) / 2);
+  const x = centerX(angle, (clamp * (chartSize - emojiSize)) / 2);
+  const y = centerY(angle, (clamp * (chartSize - emojiSize)) / 2);
   return { reaction: reaction, total: total, x: x, y: y };
 });
 
