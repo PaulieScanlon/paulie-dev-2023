@@ -10,7 +10,7 @@ const { tags, className = 'mb-8', highlighted, link = false } = Astro.props;
       const isHighlighted = formatSlug(tag) === highlighted ? true : false;
       return (
         <li
-          class={`m-0 rounded ${isHighlighted ? 'text-sm text-brand-tertiary' : 'text-xs text-brand-salmon'} border border-brand-outline bg-brand-surface`}
+          class={`m-0 p-0 rounded ${isHighlighted ? 'text-sm text-brand-yellow border-brand-yellow/40' : 'text-xs text-brand-salmon border-brand-outline'} border border-brand-outline bg-brand-surface`}
         >
           {link ? (
             <a
