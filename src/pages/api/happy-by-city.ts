@@ -10,6 +10,7 @@ export const GET: APIRoute = async () => {
         INNER JOIN reactions 
         ON analytics.slug = reactions.slug
         WHERE reactions.reaction = 'happy'
+        AND analytics.date >= CURRENT_DATE - INTERVAL '30 days'
         GROUP BY analytics.city, analytics.country, analytics.flag
       )
       SELECT city, country, flag, count
