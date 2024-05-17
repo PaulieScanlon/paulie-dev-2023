@@ -36,7 +36,7 @@ const HappyAllCities = component$<Props>(({ period }) => {
       <div class='p-4'>
         <div class='rounded border border-brand-outline p-4 bg-brand-background h-96 overflow-y-hidden'>
           {data.value ? (
-            <div class='overflow-y-auto overflow-x-auto h-[355px]'>
+            <div class='overflow-y-auto overflow-x-auto shadow-inner h-[365px]'>
               <table class='m-0 table-auto text-base'>
                 <thead class='font-medium border-b-2 border-b-brand-outline'>
                   <tr>

@@ -30,7 +30,7 @@ const GitHubActivity = component$(() => {
         <div class='rounded border border-brand-outline p-4 bg-brand-background h-96 overflow-y-hidden'>
           {data.value ? (
             <>
-              <ul class='flex flex-col gap-4 list-none m-0 p-0 overflow-y-auto overflow-x-hidden h-[355px]'>
+              <ul class='flex flex-col gap-4 list-none m-0 p-0 overflow-y-auto overflow-x-hidden shadow-inner h-[365px]'>
                 {data.value.map((item, index) => {
                   const cleanRepoUrl = (url) => {
                     url = url.replace('https://api.', 'https://');
