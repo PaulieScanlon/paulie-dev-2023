@@ -1,7 +1,9 @@
 export const prerender = true;
 
-import { ImageResponse } from '@vercel/og';
 import { getCollection } from 'astro:content';
+import { ImageResponse } from '@vercel/og';
+import fs from 'fs';
+import path from 'path';
 
 import { formatDate } from '../../../utils/format-date';
 
@@ -12,6 +14,9 @@ export async function GET({ props }) {
       data: { title, logo, date, publication, base, author },
     },
   } = props;
+
+  const InconsolataBlack = fs.readFileSync(path.resolve('./public/fonts/Inconsolata-Black.ttf'));
+  const InconsolataBold = fs.readFileSync(path.resolve('./public/fonts/Inconsolata-Bold.ttf'));
 
   const html = {
     type: 'div',
@@ -59,11 +64,11 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'pl-4 font-bold',
+                        tw: 'pl-4 ',
                         style: {
                           color: '#a4a0fb',
                           fontSize: '20px',
-                          fontFamily: 'Inconsolata',
+                          fontFamily: 'Inconsolata Bold',
                         },
                         children: publication,
                       },
@@ -71,11 +76,11 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'pl-2 font-bold',
+                        tw: 'pl-2 ',
                         style: {
                           color: '#d9dbdf',
                           fontSize: '20px',
-                          fontFamily: 'Inconsolata',
+                          fontFamily: 'Inconsolata Bold',
                         },
                         children: '•',
                       },
@@ -83,11 +88,11 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'pl-2 font-bold',
+                        tw: 'pl-2',
                         style: {
                           color: '#f056c7',
                           fontSize: '20px',
-                          fontFamily: 'Inconsolata',
+                          fontFamily: 'Inconsolata Bold',
                         },
                         children: formatDate(date),
                       },
@@ -98,54 +103,54 @@ export async function GET({ props }) {
               {
                 type: 'div',
                 props: {
-                  tw: 'font-bold',
+                  tw: 'mt-4',
                   style: {
                     color: '#d9dbdf',
                     fontSize: '60px',
                     fontWeight: 'bold',
-                    fontFamily: 'Inconsolata',
+                    fontFamily: 'Inconsolata Black',
                   },
                   children: title,
                 },
               },
-            ],
-          },
-        },
-        {
-          type: 'div',
-          props: {
-            tw: 'absolute right-[40px] bottom-[40px] flex items-center',
-            children: [
               {
                 type: 'div',
                 props: {
-                  tw: 'text-2xl',
-                  style: {
-                    color: '#ff6090',
-                    fontFamily: 'Inconsolata',
-                  },
-                  children: author,
-                },
-              },
-              {
-                type: 'div',
-                props: {
-                  tw: 'px-2 text-2xl',
-                  style: {
-                    color: '#d9dbdf',
-                    fontSize: '30px',
-                  },
-                  children: '|',
-                },
-              },
-              {
-                type: 'div',
-                props: {
-                  tw: 'text-2xl capitalize',
-                  style: {
-                    color: '#d9dbdf',
-                  },
-                  children: base,
+                  tw: 'flex items-center mt-12',
+                  children: [
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'text-xl',
+                        style: {
+                          color: '#d9dbdf',
+                          fontFamily: 'Inconsolata',
+                        },
+                        children: author,
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'px-2 text-xl',
+                        style: {
+                          color: '#d9dbdf',
+                          fontSize: '20px',
+                        },
+                        children: '|',
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'text-xl capitalize',
+                        style: {
+                          color: '#58e6d9',
+                        },
+                        children: base,
+                      },
+                    },
+                  ],
                 },
               },
             ],
@@ -162,6 +167,18 @@ export async function GET({ props }) {
   return new ImageResponse(html, {
     width: 1200,
     height: 600,
+    fonts: [
+      {
+        name: 'Inconsolata Bold',
+        data: InconsolataBold.buffer,
+        style: 'normal',
+      },
+      {
+        name: 'Inconsolata Black',
+        data: InconsolataBlack.buffer,
+        style: 'normal',
+      },
+    ],
   });
 }
 
