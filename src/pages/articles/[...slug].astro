@@ -33,20 +33,24 @@ export async function getStaticPaths() {
   });
 }
 
+const site = Astro.site.href;
+
 const {
   article,
   article: {
     slug,
-    data: { base, title, author, logo, publication, url, tags, date, canonical, featuredImage, audioFeedId },
+    data: { title, author, logo, publication, url, tags, date, canonical, featuredImage, audioFeedId },
   },
 } = Astro.props;
 
 const excerpt = `${createExcerpt(article.body).substring(0, 70)}...`;
 
 const { Content, headings } = await article.render();
+
+const ogImage = `${site}/articles/${slug}/og.png`;
 ---
 
-<Main title={title} description={excerpt} slug={`/articles/${slug}/`} canonical={canonical} image={featuredImage}>
+<Main title={title} description={excerpt} slug={`/articles/${slug}/`} canonical={canonical} image={ogImage}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
     <div class='flex flex-col sm:flex-row gap-2 items-start sm:items-center'>
       <div class='flex items-center gap-2'>
