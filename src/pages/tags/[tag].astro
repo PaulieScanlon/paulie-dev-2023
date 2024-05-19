@@ -39,15 +39,19 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params;
+const site = Astro.site.href;
+
 const { name, collections } = Astro.props;
 
 const filteredCollection = collections.filter((collection) => {
   const sanitizedTags = collection.data.tags.map((tag) => formatSlug(tag));
   return sanitizedTags.includes(formatSlug(tag));
 });
+
+const ogImage = `${site}/tags/${tag}/og.png`;
 ---
 
-<Main title={name} slug={`/tags/${tag}/`}>
+<Main title={name} slug={`/tags/${tag}/`} image={ogImage}>
   <strong class='flex items-center justify-between gap-2 text-sm text-brand-primary'
     >{name}
     <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'
