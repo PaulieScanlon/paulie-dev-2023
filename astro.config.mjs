@@ -19,6 +19,9 @@ export default defineConfig({
   image: {
     domains: ['res.cloudinary.com'],
   },
+  redirects: {
+    '/tags': '/',
+  },
   integrations: [
     tailwind(),
     qwikdev(),
