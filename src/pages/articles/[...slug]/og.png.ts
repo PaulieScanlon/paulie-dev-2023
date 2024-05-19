@@ -21,7 +21,7 @@ export async function GET({ props }) {
   const html = {
     type: 'div',
     props: {
-      tw: 'w-full h-full flex items-center justify-center relative px-22',
+      tw: 'w-full h-full flex items-center relative px-24',
       children: [
         {
           type: 'div',
@@ -40,7 +40,7 @@ export async function GET({ props }) {
         {
           type: 'div',
           props: {
-            tw: 'pl-14 shrink flex flex-col',
+            tw: 'pl-14 flex flex-col',
             children: [
               {
                 type: 'div',
@@ -143,11 +143,11 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'text-2xl capitalize',
+                        tw: 'text-2xl',
                         style: {
                           color: '#58e6d9',
                         },
-                        children: base,
+                        children: `paulie.dev/${base}`,
                       },
                     },
                   ],

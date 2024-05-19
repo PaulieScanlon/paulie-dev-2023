@@ -15,10 +15,15 @@ export async function GET({ props }) {
   const InconsolataBlack = fs.readFileSync(path.resolve('./public/fonts/Inconsolata-Black.ttf'));
   const InconsolataBold = fs.readFileSync(path.resolve('./public/fonts/Inconsolata-Bold.ttf'));
 
+  const filteredCollection = collections.filter((collection) => {
+    const sanitizedTags = collection.data.tags.map((tag) => formatSlug(tag));
+    return sanitizedTags.includes(formatSlug(name));
+  });
+
   const html = {
     type: 'div',
     props: {
-      tw: 'w-full h-full flex items-center justify-center relative px-16',
+      tw: 'w-full h-full flex items-center relative px-24',
       children: [
         {
           type: 'div',
@@ -37,24 +42,22 @@ export async function GET({ props }) {
         {
           type: 'div',
           props: {
-            tw: 'pl-16 shrink flex flex-col',
+            tw: 'pl-16 flex flex-col',
             children: [
               {
                 type: 'div',
                 props: {
-                  tw: 'flex items-center',
+                  tw: 'flex items-center justify-between',
                   children: [
                     {
                       type: 'div',
                       props: {
-                        tw: 'flex pl-2 border rounded p-2',
+                        tw: 'text-3xl',
                         style: {
-                          color: '#f056c7',
-                          borderColor: '#232140',
-                          fontSize: '20px',
+                          color: '#a4a0fb',
                           fontFamily: 'Inconsolata Bold',
                         },
-                        children: `x${collections.length}`,
+                        children: name,
                       },
                     },
                   ],
@@ -70,49 +73,108 @@ export async function GET({ props }) {
                     fontWeight: 'bold',
                     fontFamily: 'Inconsolata Black',
                   },
-                  children: name,
+                  children: `Tagged with ${name}`,
                 },
               },
-              //   {
-              //     type: 'div',
-              //     props: {
-              //       tw: 'flex items-center mt-12',
-              //       children: [
-              //         {
-              //           type: 'div',
-              //           props: {
-              //             tw: 'text-xl',
-              //             style: {
-              //               color: '#d9dbdf',
-              //               fontFamily: 'Inconsolata',
-              //             },
-              //             children: author,
-              //           },
-              //         },
-              //         {
-              //           type: 'div',
-              //           props: {
-              //             tw: 'px-2 text-xl',
-              //             style: {
-              //               color: '#d9dbdf',
-              //               fontSize: '20px',
-              //             },
-              //             children: '|',
-              //           },
-              //         },
-              //         {
-              //           type: 'div',
-              //           props: {
-              //             tw: 'text-xl capitalize',
-              //             style: {
-              //               color: '#58e6d9',
-              //             },
-              //             children: base,
-              //           },
-              //         },
-              //       ],
-              //     },
-              //   },
+              {
+                type: 'div',
+                props: {
+                  tw: 'flex items-center mt-4',
+                  children: [
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'text-2xl',
+                        style: {
+                          color: '#d9dbdf',
+                          fontFamily: 'Inconsolata',
+                        },
+                        children: "Here you'll find",
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'pl-3 flex text-2xl capitalize',
+                        style: {
+                          color: '#f056c7',
+                        },
+                        children: filteredCollection.length,
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'pl-3 text-2xl',
+                        style: {
+                          color: '#d9dbdf',
+                        },
+                        children: filteredCollection.length > 1 ? 'pieces of content about' : 'piece of content about',
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'pl-3 flex text-2xl capitalize',
+                        style: {
+                          color: '#ffc107',
+                        },
+                        children: name,
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'text-2xl',
+                        style: {
+                          color: '#d9dbdf',
+                        },
+                        children: '.',
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                type: 'div',
+                props: {
+                  tw: 'flex items-center mt-12',
+                  children: [
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'text-2xl',
+                        style: {
+                          color: '#d9dbdf',
+                          fontFamily: 'Inconsolata',
+                        },
+                        children: 'Paul Scanlon',
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'px-2 text-2xl',
+                        style: {
+                          color: '#d9dbdf',
+                          fontSize: '30px',
+                        },
+                        children: '|',
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'text-2xl lowercase',
+                        style: {
+                          color: '#58e6d9',
+                        },
+                        children: `paulie.dev/tags/${name}`,
+                      },
+                    },
+                  ],
+                },
+              },
             ],
           },
         },
