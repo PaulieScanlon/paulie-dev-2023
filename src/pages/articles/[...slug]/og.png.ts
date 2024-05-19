@@ -21,7 +21,7 @@ export async function GET({ props }) {
   const html = {
     type: 'div',
     props: {
-      tw: 'w-full h-full flex items-center justify-center relative px-16',
+      tw: 'w-full h-full flex items-center justify-center relative px-22',
       children: [
         {
           type: 'div',
@@ -40,7 +40,7 @@ export async function GET({ props }) {
         {
           type: 'div',
           props: {
-            tw: 'pl-16 shrink flex flex-col',
+            tw: 'pl-14 shrink flex flex-col',
             children: [
               {
                 type: 'div',
@@ -50,7 +50,7 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'w-[32px] h-[32px] flex',
+                        tw: 'w-[44px] h-[44px] flex mb-1',
                         children: [
                           {
                             type: 'img',
@@ -64,10 +64,10 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'pl-4 ',
+                        tw: 'pl-4 text-3xl',
                         style: {
                           color: '#a4a0fb',
-                          fontSize: '20px',
+
                           fontFamily: 'Inconsolata Bold',
                         },
                         children: publication,
@@ -76,10 +76,10 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'pl-2 ',
+                        tw: 'pl-2 text-3xl',
                         style: {
                           color: '#d9dbdf',
-                          fontSize: '20px',
+
                           fontFamily: 'Inconsolata Bold',
                         },
                         children: '•',
@@ -88,10 +88,10 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'pl-2',
+                        tw: 'pl-2 text-3xl',
                         style: {
                           color: '#f056c7',
-                          fontSize: '20px',
+
                           fontFamily: 'Inconsolata Bold',
                         },
                         children: formatDate(date),
@@ -121,7 +121,7 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'text-xl',
+                        tw: 'text-2xl',
                         style: {
                           color: '#d9dbdf',
                           fontFamily: 'Inconsolata',
@@ -132,10 +132,10 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'px-2 text-xl',
+                        tw: 'px-2 text-2xl',
                         style: {
                           color: '#d9dbdf',
-                          fontSize: '20px',
+                          fontSize: '30px',
                         },
                         children: '|',
                       },
@@ -143,7 +143,7 @@ export async function GET({ props }) {
                     {
                       type: 'div',
                       props: {
-                        tw: 'text-xl capitalize',
+                        tw: 'text-2xl capitalize',
                         style: {
                           color: '#58e6d9',
                         },
