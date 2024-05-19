@@ -55,6 +55,14 @@ const filteredCollection = collections.filter((collection) => {
     >
   </strong>
   <h1 class='mb-0'>{`Tagged with ${name}`}</h1>
+  <p>
+    Here you'll find <strong class='text-brand-primary'>{filteredCollection.length}</strong>
+    <span>{filteredCollection.length > 1 ? 'pieces' : 'piece'}</span> of content I've written about
+    <strong class='text-brand-yellow'>{name}</strong>. <span>{filteredCollection.length > 1 ? "They've" : "It's"}</span>
+    either been published here on my site, or by <span
+      >{filteredCollection.length > 1 ? 'external publications' : 'an external publication'}</span
+    >.
+  </p>
   <CollectionsList collections={filteredCollection} highlighted={tag} />
   <Aside>
     <ProfileCard />
