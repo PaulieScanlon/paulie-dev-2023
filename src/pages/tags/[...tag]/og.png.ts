@@ -17,7 +17,7 @@ export async function GET({ props }) {
 
   return new ImageResponse(
     html`<div tw="relative flex w-full h-full items-center px-48" style="background-color: #131127">
-      <div tw="absolute flex items-center top-12 left-18">
+      <div tw="absolute flex items-center top-12 left-16">
         <img
           tw="w-16 h-16"
           src="https://res.cloudinary.com/www-paulie-dev/image/upload/v1716149515/paulie.dev/Images/icon-logo_v1_x4nt1i.png"
