@@ -30,7 +30,7 @@ export async function GET({ props }) {
         <div tw="flex text-6xl leading-tight mb-2" style="color: #d9dbdf; fontFamily: Inconsolata Black">
           Tagged with ${name}
         </div>
-        <div tw="flex text-4xl leading-tight mb-12" style="color: #d9dbdf; fontFamily: Inconsolata Bold">
+        <div tw="flex text-3xl leading-tight mb-12" style="color: #d9dbdf; fontFamily: Roboto Regular">
           Here you'll find <strong tw="px-3" style="color: #f056c7">${filteredCollection.length}</strong> pieces of
           content about <strong tw="pl-3" style="color: #ffc107">${name}</strong>.
         </div>
@@ -47,6 +47,12 @@ export async function GET({ props }) {
       width: 1200,
       height: 600,
       fonts: [
+        {
+          name: 'Roboto Regular',
+          data: fs.readFileSync(path.resolve('./public/fonts/Roboto-Regular.ttf')),
+          weight: 400,
+          style: 'normal',
+        },
         {
           name: 'Inconsolata Bold',
           data: fs.readFileSync(path.resolve('./public/fonts/Inconsolata-Bold.ttf')),
