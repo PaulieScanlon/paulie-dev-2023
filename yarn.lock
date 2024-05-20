@@ -862,10 +862,10 @@
     fs-extra "^11.1.1"
     vite-tsconfig-paths "^4.2.1"
 
-"@resvg/resvg-wasm@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@resvg/resvg-wasm/-/resvg-wasm-2.4.0.tgz#e01164b9a267c822e1ff797daa2fb91b663ea6f0"
-  integrity sha512-C7c51Nn4yTxXFKvgh2txJFNweaVcfUPQxwEUFw4aWsCmfiBDJsTSwviIF8EcwjQ6k8bPyMWCl1vw4BdxE569Cg==
+"@resvg/resvg-wasm@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@resvg/resvg-wasm/-/resvg-wasm-2.6.2.tgz#128ba6be09a9af776cb01b3e7957d5680724eb34"
+  integrity sha512-FqALmHI8D4o6lk/LRWDnhw95z5eO+eAa6ORjVg09YRR7BkcM6oPHU9uyC0gtQG5vpFLvgpeU4+zEAz2H8APHNw==
 
 "@rollup/pluginutils@^4.0.0":
   version "4.2.1"
@@ -1198,15 +1198,6 @@
     micromatch "^4.0.2"
     node-gyp-build "^4.2.2"
     resolve-from "^5.0.0"
-
-"@vercel/og@^0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@vercel/og/-/og-0.6.2.tgz#228b064451c6ea4e3900e2c94404bec57f7fd172"
-  integrity sha512-OTe0KE37F5Y2eTys6eMnfopC+P4qr2ooXUTFyFPTplYSPwowmFk/HLD1FXtbKLjqsIH0SgekcJWad+C5uX4nkg==
-  dependencies:
-    "@resvg/resvg-wasm" "2.4.0"
-    satori "0.10.9"
-    yoga-wasm-web "0.3.3"
 
 abbrev@1:
   version "1.1.1"
@@ -4724,6 +4715,15 @@ octokit@^3.1.1:
     "@octokit/request-error" "^5.0.0"
     "@octokit/types" "^12.0.0"
 
+og-img@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/og-img/-/og-img-0.2.1.tgz#20e38d344e30c506e845ca158ac877ace6460132"
+  integrity sha512-hX13CeCoKlFcls9MSyA2IB06q9KNKYhnTJlVYqBnW53h//hQkVBZb3kwfCL1+o1I5zbh7JhIbsgTTrpWxckpgQ==
+  dependencies:
+    "@resvg/resvg-wasm" "^2.6.2"
+    satori "^0.10.13"
+    satori-html "^0.3.2"
+
 once@^1.3.0, once@^1.3.1, once@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
@@ -5572,10 +5572,17 @@ sanitize-html@^2.13.0:
     parse-srcset "^1.0.2"
     postcss "^8.3.11"
 
-satori@0.10.9:
-  version "0.10.9"
-  resolved "https://registry.yarnpkg.com/satori/-/satori-0.10.9.tgz#efde2898ab4a5b09c072f0f4e112ac4a7d6a499c"
-  integrity sha512-XU9EELUEZuioT4acLIpCXxHcFzrsC8muvg0MY28d+TlqwxbkTzBmWbw+3+hnCzXT7YZ0Qm8k3eXktDaEu+qmEw==
+satori-html@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/satori-html/-/satori-html-0.3.2.tgz#9c3c10a5f910c063139953dfe7c6a87dfe48cc79"
+  integrity sha512-wjTh14iqADFKDK80e51/98MplTGfxz2RmIzh0GqShlf4a67+BooLywF17TvJPD6phO0Hxm7Mf1N5LtRYvdkYRA==
+  dependencies:
+    ultrahtml "^1.2.0"
+
+satori@^0.10.13:
+  version "0.10.13"
+  resolved "https://registry.yarnpkg.com/satori/-/satori-0.10.13.tgz#658a9920f55268d2002819387a80a0b6d4bdc262"
+  integrity sha512-klCwkVYMQ/ZN5inJLHzrUmGwoRfsdP7idB5hfpJ1jfiJk1ErDitK8Hkc6Kll1+Ox2WtqEuGecSZLnmup3CGzvQ==
   dependencies:
     "@shuding/opentype.js" "1.4.0-beta.0"
     css-background-parser "^0.1.0"
@@ -6196,6 +6203,11 @@ uc.micro@^2.0.0, uc.micro@^2.1.0:
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-2.1.0.tgz#f8d3f7d0ec4c3dea35a7e3c8efa4cb8b45c9e7ee"
   integrity sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==
 
+ultrahtml@^1.2.0:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/ultrahtml/-/ultrahtml-1.5.3.tgz#e7a903a4b28a0e49b71b0801b444050bb0a369c7"
+  integrity sha512-GykOvZwgDWZlTQMtp5jrD4BVL+gNn2NVlVafjcFUJ7taY20tqYdwdoWBFy6GBJsNTZe1GkGPkSl5knQAjtgceg==
+
 undici-types@~5.26.4:
   version "5.26.5"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
@@ -6616,7 +6628,7 @@ yocto-queue@^1.0.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.0.0.tgz#7f816433fb2cbc511ec8bf7d263c3b58a1a3c251"
   integrity sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==
 
-yoga-wasm-web@0.3.3, yoga-wasm-web@^0.3.3:
+yoga-wasm-web@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/yoga-wasm-web/-/yoga-wasm-web-0.3.3.tgz#eb8e9fcb18e5e651994732f19a220cb885d932ba"
   integrity sha512-N+d4UJSJbt/R3wqY7Coqs5pcV0aUj2j9IaQ3rNj9bVCLld8tTGKRa2USARjnvZJWVx1NDmQev8EknoczaOQDOA==
