@@ -27,7 +27,7 @@ export async function GET({ props }) {
         <div tw="flex items-center mb-6">
           <div tw="text-4xl" style="color: #a4a0fb; fontFamily: Inconsolata Bold">${name}</div>
         </div>
-        <div tw="flex text-6xl leading-tight mb-2" style="color: #d9dbdf; fontFamily: Inconsolata Black">
+        <div tw="flex text-6xl leading-tight mb-1" style="color: #d9dbdf; fontFamily: Inconsolata Black">
           Tagged with ${name}
         </div>
         <div tw="flex text-3xl leading-tight mb-12" style="color: #d9dbdf; fontFamily: Roboto Regular">
