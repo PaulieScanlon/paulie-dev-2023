@@ -23,6 +23,7 @@
   "homepage": "https://github.com/PaulieScanlon/paulie-dev-2023#readme",
   "dependencies": {
     "@astrojs/mdx": "^1.0.3",
+    "@astrojs/partytown": "^2.1.0",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^5.0.1",
