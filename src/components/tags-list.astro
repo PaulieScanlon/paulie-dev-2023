@@ -14,7 +14,7 @@ const { tags, className = 'mb-8', highlighted, link = false } = Astro.props;
         >
           {link ? (
             <a
-              href={`/tags/${formatSlug(tag)}`}
+              href={`/tags/${formatSlug(tag)}/`}
               class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors'
             >
               {tag}
