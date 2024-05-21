@@ -20,6 +20,7 @@ import LineChartVisits from '../components/line-chart-visits.astro';
 import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
 import PoweredByNeon from '../components/powered-by-neon.astro';
+import PoweredByMdx from '../components/powered-by-mdx.astro';
 import HappyAllCities from '../components/happy-all-cities';
 import GithubActivity from '../components/github-activity';
 
@@ -32,6 +33,7 @@ import groupByTag from '../utils/group-by-tag';
 import groupBySlug from '../utils/group-by-slug';
 import groupByReaction from '../utils/group-by-reaction';
 import groupByReferrer from '../utils/group-by-referrer';
+import isNewContent from '../utils/is-new-content';
 
 const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
@@ -77,46 +79,50 @@ try {
       analyticsData && reactionsData ? (
         <>
           <section>
-            <h2 class='m-0 uppercase'>Year and Month</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
+            <h2 class='m-0 uppercase'>Totals by Year and Month</h2>
+            <p class='mt-0 mb-4 text-slate-300'>All content.</p>
             <LineChartYears data={groupByYear(mergedCollections)} />
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Year and Day</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Total published content.</p>
+            <h2 class='m-0 uppercase'>Totals by Year and Day</h2>
+            <p class='mt-0 mb-4 text-slate-300'>All content.</p>
             <BarChartDays data={groupByDay(mergedCollections)} />
           </section>
 
           <div class='grid sm:gap-x-8 sm:grid-cols-2'>
             <section class='flex flex-col'>
-              <h2 class='m-0 uppercase'>Total by reaction</h2>
-              <p class='mt-0 mb-4 text-slate-300'>All reactions.</p>
+              <h2 class='m-0 uppercase'>Totals by reaction</h2>
+              <p class='mt-0 mb-4 text-slate-300'>Recent reactions.</p>
               <RadarChartReactions data={groupByReaction(reactionsData)} />
             </section>
             <PoweredByNeon period={period} className='mb-24 sm:order-3' />
             <section>
-              <h2 class='m-0 uppercase'>Total by Tag</h2>
-              <p class='mt-0 mb-4 text-slate-300'>Top five tags.</p>
-              <DonutChartTags data={groupByTag(mergedCollections)} />
+              <h2 class='m-0 uppercase'>Totals by Tag</h2>
+              <p class='mt-0 mb-4 text-slate-300'>Recent tags.</p>
+              <DonutChartTags
+                data={groupByTag(mergedCollections.filter(({ data: { date } }) => isNewContent(date)))}
+                dataLength={groupByTag(mergedCollections).length}
+              />
             </section>
+            <PoweredByMdx period={period} className='mb-24 sm:order-4' />
           </div>
 
           <section>
-            <h2 class='m-0 uppercase'>Total by publisher</h2>
-            <p class='mt-0 mb-4 text-slate-300'>All external publishers.</p>
+            <h2 class='m-0 uppercase'>Totals by publisher</h2>
+            <p class='mt-0 mb-4 text-slate-300'>All publishers.</p>
             <ListExternalPublishers data={groupByPublication(articles)} />
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Total visits</h2>
-            <p class='mt-0 mb-4 text-slate-300'>All page views.</p>
+            <h2 class='m-0 uppercase'>Totals by site visits</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Recent site visits.</p>
             <LineChartVisits data={groupByDate(analyticsData)} />
             <PoweredByNeon period={period} />
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Top Referrers</h2>
+            <h2 class='m-0 uppercase'>Totals by referrer</h2>
             <p class='mt-0 mb-4 text-slate-300'>Top Ten referrers.</p>
             <ListPopularReferrers data={groupByReferrer(analyticsData)} />
             <PoweredByNeon period={period} />
@@ -125,15 +131,15 @@ try {
           <div class='flex flex-col md:flex-row gap-24 md:gap-8 overflow-hidden'>
             <section class='w-full lg:w-1/2'>
               <div class='flex flex-col'>
-                <h2 class='m-0 uppercase'>Total by City</h2>
-                <p class='mt-0 mb-4 text-slate-300'>Top Ten City visits.</p>
+                <h2 class='m-0 uppercase'>Totals by city</h2>
+                <p class='mt-0 mb-4 text-slate-300'>Recent city visits.</p>
                 <ListTopTenCities data={groupByCity(analyticsData)} />
               </div>
               <PoweredByNeon period={period} />
             </section>
             <section class='w-full lg:w-1/2'>
-              <h2 class='m-0 uppercase'>Geolocation</h2>
-              <p class='mt-0 mb-4 text-slate-300'>All City visits.</p>
+              <h2 class='m-0 uppercase'>Location visualization</h2>
+              <p class='mt-0 mb-4 text-slate-300'>Recent geolocation visits.</p>
               <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
                 <div class='flex justify-center overflow-hidden'>
                   <GlobeAllCities data={groupByCity(analyticsData)} />

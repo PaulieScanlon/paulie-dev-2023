@@ -1,5 +1,5 @@
 import { component$, useSignal, useTask$ } from '@builder.io/qwik';
-import { isNewContent } from '../utils/is-new-content';
+import isNewContent from '../utils/is-new-content';
 
 interface Props {
   date: Date;

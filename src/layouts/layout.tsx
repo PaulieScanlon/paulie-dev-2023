@@ -6,7 +6,7 @@ import NavLink from '../components/nav-link';
 import FullSearch from '../components/full-search';
 import QuickSearch from '../components/quick-search';
 
-import { isNewContent } from '../utils/is-new-content';
+import isNewContent from '../utils/is-new-content';
 
 import { siteLinks, socialLinks } from './nav-links';
 

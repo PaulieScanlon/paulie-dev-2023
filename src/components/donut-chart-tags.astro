@@ -1,5 +1,5 @@
 ---
-const { data } = Astro.props;
+const { data, dataLength } = Astro.props;
 
 import colors from '../utils/colors';
 
@@ -41,7 +41,7 @@ const gradient = chartData
       </clipPath>
       <text text-anchor='middle' x='50' y='49' class='text-[0.45rem] fill-brand-text font-bold'>Tags Analytics</text>
       <text text-anchor='middle' x='50' y='56' class='text-[0.28rem] fill-brand-salmon'
-        >{`Displaying ${chartData.length} of ${data.length}`}</text
+        >{`Displaying ${chartData.length} of ${dataLength}`}</text
       >
       <foreignObject x='0' y='0' width='100' height='100' clip-path='url(#hole)'>
         <div

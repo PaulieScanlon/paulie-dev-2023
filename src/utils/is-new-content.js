@@ -1,4 +1,4 @@
-export const isNewContent = (inputDate) => {
+const isNewContent = (inputDate) => {
   const currentDate = new Date();
   const inputDateObj = new Date(inputDate);
 
@@ -8,3 +8,5 @@ export const isNewContent = (inputDate) => {
 
   return daysDifference < 30;
 };
+
+export default isNewContent;
