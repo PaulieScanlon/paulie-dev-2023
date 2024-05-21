@@ -96,7 +96,7 @@ try {
               <p class='mt-0 mb-4 text-slate-300'>Recent reactions.</p>
               <RadarChartReactions data={groupByReaction(reactionsData)} />
             </section>
-            <PoweredByNeon period={period} className='mb-24 sm:order-3' />
+            <PoweredByNeon period={period} className='mb-24 sm:mb-0 sm:order-3' />
             <section>
               <h2 class='m-0 uppercase'>Totals by Tag</h2>
               <p class='mt-0 mb-4 text-slate-300'>Recent tags.</p>
@@ -105,7 +105,7 @@ try {
                 dataLength={groupByTag(mergedCollections).length}
               />
             </section>
-            <PoweredByMdx period={period} className='mb-24 sm:order-4' />
+            <PoweredByMdx period={period} className='sm:order-4' />
           </div>
 
           <section>
