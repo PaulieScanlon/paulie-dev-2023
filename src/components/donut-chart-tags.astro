@@ -2,6 +2,7 @@
 const { data, dataLength } = Astro.props;
 
 import colors from '../utils/colors';
+import { formatSlug } from '../utils/format-slug';
 
 const chartSize = 100;
 const chartData = data.sort((a, b) => b.total - a.total).slice(0, 5);
@@ -58,12 +59,13 @@ const gradient = chartData
     {
       chartData.map((item, index) => {
         const { tag, total } = item;
+
         return (
           <li class='m-0 p-0 flex items-center gap-4 border-b border-b-transparent [&:not(:last-child)]:border-b-brand-outline leading-[2.65rem]'>
-            <div class='flex grow items-center gap-3'>
+            <a href={`/tags/${formatSlug(tag)}`} class='flex grow items-center gap-3'>
               <div class={`w-3 h-3 rounded-full bg-brand-${colors[index]}`} />
-              <span>{tag}</span>
-            </div>
+              <span class='text-inherit'>{tag}</span>
+            </a>
             <strong>{`x${total}`}</strong>
           </li>
         );
