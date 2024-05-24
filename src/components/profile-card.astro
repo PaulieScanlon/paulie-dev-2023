@@ -1,6 +1,34 @@
 ---
 import { Image } from 'astro:assets';
 import ClickToCopyEmail from './click-to-copy-email';
+
+const locations = [
+  {
+    name: 'Medellín, Colombia',
+    flag: '🇨🇴',
+    current: true,
+  },
+  // {
+  //   name: 'Los Angeles, USA',
+  //   flag: '🇺🇲',
+  //   current: false,
+  // },
+  // {
+  //   name: 'New Orleans, USA',
+  //   flag: '🇺🇲',
+  //   current: false,
+  // },
+  // {
+  //   name: 'Montreal, Canada',
+  //   flag: '🇨🇦',
+  //   current: false,
+  // },
+  // {
+  //   name: 'Toronto, Canada',
+  //   flag: '🇨🇦',
+  //   current: false,
+  // },
+];
 ---
 
 <div class='grid gap-4 rounded border border-brand-outline bg-surface/50 px-4 sm:px-6 py-8'>
@@ -16,6 +44,24 @@ import ClickToCopyEmail from './click-to-copy-email';
     <p class='m-0 mb-6 text-sm text-center'>
       <a href='/independent-advocate/' class='text-brand-secondary'>Independent Advocate (Freelance)</a>
     </p>
+    <div class='mb-6'>
+      <strong class='block text-center text-base'>I'm currently in</strong>
+      <ul class='p-0 m-0 list-none text-sm'>
+        {
+          locations.map((location) => {
+            const { name, flag, current } = location;
+            return (
+              <li class={`p-0 m-0 block text-center ${current ? '' : 'line-through'}`}>
+                {name}{' '}
+                <span class='inline-block mt-2 line-through' aria-label='country flag'>
+                  {flag}
+                </span>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
     <ClickToCopyEmail />
   </div>
   <hr class='my-1 border-brand-outline' />
