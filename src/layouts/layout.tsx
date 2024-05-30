@@ -182,6 +182,11 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
               </article>
             </section>
           </main>
+          <footer class='relative p-8 bg-brand-background z-20'>
+            <div class='flex justify-end'>
+              <a href='web-accessability'>Accessability Statement</a>
+            </div>
+          </footer>
         </div>
       </div>
     </>
