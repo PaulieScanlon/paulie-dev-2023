@@ -175,18 +175,20 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           </div>
           <main class='lg:pl-[12.5rem]'>
             <section
-              class={`mx-auto px-0 py-6 lg:px-16 lg:py-10 max-w-none xl:ml-0 ${fullWidth ? '' : 'xl:mr-[15.5rem]'}`}
+              class={`mx-auto px-0 pt-6 lg:px-16 lg:pt-10 max-w-none xl:ml-0 ${fullWidth ? '' : 'xl:mr-[15.5rem]'}`}
             >
               <article class='max-w-none min-h-[calc(100vh-19rem)]'>
                 <Slot />
               </article>
+              <footer class='relative mt-24 py-8 bg-brand-background z-20'>
+                <div class='flex gap-8 text-xs text-brand-secondary/80'>
+                  <a href='/web-accessability/' class='font-inherit text-inherit'>
+                    Accessability Statement
+                  </a>
+                </div>
+              </footer>
             </section>
           </main>
-          <footer class='relative p-8 bg-brand-background z-20'>
-            <div class='flex justify-end'>
-              <a href='web-accessability'>Accessability Statement</a>
-            </div>
-          </footer>
         </div>
       </div>
     </>
