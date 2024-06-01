@@ -1,0 +1,58 @@
+name: Backup Neon | paulie-dev (us-east-1)
+
+on:
+  schedule:
+    # Runs at midnight ET (us-east-1)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  postgres-job:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      AWS_REGION: 'us-east-1'
+      S3_BUCKET_URL: 's3://paulie-dev-db-backup/'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install PostgreSQL Client
+        run: |
+          sudo apt install -y postgresql-common
+          yes '' | sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+          sudo apt install -y postgresql-16
+
+      - name: Get Timestamp
+        id: timestamp
+        run: echo "::set-output name=timestamp::$(date +%d-%B-%Y@%H:%M:%S)"
+
+      - name: Dump database
+        run: |
+          TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
+          /usr/lib/postgresql/16/bin/pg_dump ${{ env.DATABASE_URL }} --file="$TIMESTAMP.sql.gz"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubAction-AssumeRoleWithAction
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
+
+      - name: Empty S3 bucket
+        run: |
+          aws s3 rm ${{ env.S3_BUCKET_URL }} --recursive
+
+      - name: Upload to S3
+        run: |
+          TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
+          aws s3 cp "${TIMESTAMP}.sql.gz" ${{ env.S3_BUCKET_URL }}

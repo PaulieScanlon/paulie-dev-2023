@@ -136,3 +136,4 @@ dist
 fauna
 src/pages/test.astro
 .tmp*/
+db_backups
