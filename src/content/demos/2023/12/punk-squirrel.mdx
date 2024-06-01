@@ -1,0 +1,43 @@
+---
+base: demos
+title: 'Punk Squirrel: GitHub Statistical Analysis'
+tags: [Remix, React, PostgreSQL, GSAP, Svg, Tailwind, Supabase, ffmpeg/WASM]
+date: 2023-12-11
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1717269175/paulie.dev/2023/12/punk-squirrel-demo-image_xglwpy.jpg
+---
+
+## Project Overview
+
+This project, initially, was something I thought i could turn into a product, with subscriptions, or pay-per-use. But, before getting too deep into it, I needed to validate if it was something that was useful. Turns out it's not, but it does demonstrate how user generated videos can be generated in the browser using [ffmpeg/WASM](https://ffmpegwasm.netlify.app/) — with zero cost to me!
+
+<CtaExternal href='https://punksquirrel.app/'>Visit Punk Squirrel</CtaExternal>
+
+### What does Punk Squirrel do?
+
+It's data visualization for GitHub repositories. I've only implemented a few endpoints at the moment, but once you log in (authenticate with GitHub) you can query GitHub using Octokit, using your credentials, rather than mine, or my app's. This circumvents problem number 1, rate limiting. The output is an animated Svg chart, which you can download as a video and shared.
+
+<AstroImage
+  width='768'
+  height='480'
+  alt='Punk Squirrel'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1717269509/paulie.dev/2023/12/punk-squirrle-screen-grab_uc2vp2.png'
+/>
+
+### Problem
+
+Problem number 2 is rendering videos, It costs money to run ffmpeg in a serverless function or on a server, and i don't want to pay for what is effectively a test project. I do need video rendering capabilities so i started to investigate my options.
+
+### Solution
+
+[ffmpeg/WASM](https://ffmpegwasm.netlify.app/) was the solution. Instead of sending data to the server, waiting for a video to render and sending it back to the user, i render it all in the browser. No data gets sent anywhere, and no billable compute times occur. It all just works on the client.
+
+### Insight
+
+No real insight to be had here. This isn't something people would pay for, GitHub statistics, for me are quite cool, but i don't believe there's much business value in being able to create a data viz video from them. That said, it does demonstrate that video rendering can he achieved client-side, which would probably save someone, somewhere a few $.
+
+This approach will likely be something i'll use again as it costs absolutely nothing, and that is cool!
+
+Perhaps in future projects that do provide value, and will require user generated video rendering, i'll use this same approach. Until then, i'll just leave [Punk Squirrel](https://punksquirrel.app/) alone and see how many people actually use it. In the first wave, after launch i picked up ~100 users in the first week, but without regular marketing and promotion, people soon fogot about it.
+
+No harm no foul, it didn't take long to develop and it costs me nothing to leave it running in the background.
