@@ -9,6 +9,11 @@ author: Paul Scanlon
 logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1665235257/paulie.dev/Logos/tns-logo_miu6qk.png
 ---
 
-In this post I'm going to show you how to build a multi-region Node.js Lambda API using
-[Serverless Framework](https://www.serverless.com/) and pair it with a serverless multi-region
-[CockroachDB database](https://www.cockroachlabs.com/product/).
+In this post I’m going to show you how to build a multi-region Node.js Lambda API using [Serverless Framework](https://www.serverless.com/) and pair it with a serverless multi-region CockroachDB database (full disclosure: I work for Cockroach Labs).
+
+Both CockroachDB Serverless and AWS Lambda operate on a pay-as-you-go basis, making this pairing a cost-effective solution for serving up data to end users, fast — no matter where in the world they may be.
+
+To show you what I mean, here’s the API I built for this post.
+
+- 🚀 API Response Preview: [api.mr-paulie.net)
+- ⚙️ GitHub Repository: [https://github.com/PaulieScanlon/multi-region-node-lambda-api](https://github.com/PaulieScanlon/multi-region-node-lambda-api)

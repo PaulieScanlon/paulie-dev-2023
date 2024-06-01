@@ -9,6 +9,6 @@ author: Paul Scanlon
 logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1676626221/paulie.dev/Logos/cockroach-logo_g89u6r.png
 ---
 
-In this post Rob and Paul explain how they built [Silo](https://www.cockroachlabs.com/demos/demo-data-residency/), a
-fully functioning multi-region Next.js application combining CockroachDB multi-region serverless and a multi-region
-Node.js (Lambda) API backed by a Geographically aware Route 53 Hosted Zone.
+In this post Rob and Paul explain how they built [Silo](https://www.cockroachlabs.com/demos/demo-data-residency/), a fully functioning multi-region Next.js application combining CockroachDB multi-region serverless and a multi-region Node.js (Lambda) API backed by a Geographically aware Route 53 Hosted Zone. Both the API and CockroachDB have been deployed to AWS. The Next.js app has been deployed using Vercel.
+
+There are a number of reasons why you’d want to choose a multi-region strategy; to optimize latency, maintain high availability and, in some cases, to comply with regional regulations. But, rather than tell you about the benefits, I’d like to show you.

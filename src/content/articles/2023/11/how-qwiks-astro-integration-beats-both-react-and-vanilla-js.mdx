@@ -10,3 +10,9 @@ logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1665235257/paulie.
 ---
 
 Paul Scanlon tests Qwik with Astro, and finds it's the best of both worlds — lighter than React and less verbose than Vanilla JavaScript.
+
+In this post I’ll be talking about the new @qwikdev/astro integration. I believe it to be the solution I’ve been looking for to flatten out a bump I encountered while developing my personal website.
+
+As you’ve probably guessed, my site is built using Astro and is broadly “static”; but, as is often the case, even the most static of websites inevitably need some kind of interactivity, which is commonly enabled using JavaScript.
+
+In my case, it’s to handle the sidebar navigation. It’s only a very small amount of interactivity, but there are a number of HTML elements that need to be referenced so that CSS class names can be added or removed to achieve the desired effect when a user clicks the menu icon.

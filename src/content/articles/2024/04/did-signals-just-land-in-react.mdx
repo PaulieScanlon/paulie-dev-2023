@@ -10,3 +10,9 @@ logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1665235257/paulie.
 ---
 
 "Signals" are used to manage client-side state, and recent developments suggest they could be useful in React. Paul Scanlon investigates.
+
+## What Are Signals?
+
+Signals have been in development for around 10 years and are used by JavaScript frameworks such as Angular, Vue, SolidJS, Qwik and Preact, (amongst others), and are used to manage client-side state. Signals are variables that auto-track where they’ve been used. When a change to a Signal occurs, its value is invalidated — which causes the UI state to update / re-render.
+
+For example, here’s a Signal named counter which holds a value of 0.

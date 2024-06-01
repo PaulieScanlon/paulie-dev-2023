@@ -12,3 +12,14 @@ logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.
 A closer look at how to use Neon's serverless driver with Vercel Edge Functions.
 
 In this post, I’d like to introduce Neon’s [serverless driver](https://neon.tech/docs/serverless/serverless-driver) which is suitable for use with Vercel Edge Functions. I’ll explain how to use it with Next.js and a free [Neon serverless Postgres database](https://neon.tech/).
+
+Here’s a demo I created. I’ve called it Ping Thing.
+
+- Live Preview: [https://github.com/neondatabase/ping-thing](https://neon.tech/demos/ping-thing)
+- ⚙️ Repo: [https://github.com/neondatabase/ping-thing](https://github.com/neondatabase/ping-thing)
+
+## What does Ping Thing do?
+
+When users click Ping, the app sends a request to an Edge Function deployed on Vercel, where the geolocation data is extracted from the request and posted to a Neon database. I’ve added a 3D globe to visualise the journey and calculated some statistics about the request.
+
+Give it a Ping and see your data journey

@@ -10,3 +10,16 @@ logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1701473095/paulie.
 ---
 
 In this article, I’m going to explain how you can convert animations created using GSAP into animated GIFs using modern-gif.
+
+On the links below, you’ll find a live preview and all the code I’ll be referencing throughout this article:
+
+- 🚀 Preview:
+  - Index: [gsap-animation-to-gif.netlify.app](https://gsap-animation-to-gif.netlify.app/)
+  - Simple: [gsap-animation-to-gif.netlify.app/simple](https://gsap-animation-to-gif.netlify.app/simple/)
+- ⚙️ Repo: [github.com/PaulieScanlon/gsap-animation-to-gif](https://github.com/PaulieScanlon/gsap-animation-to-gif)
+
+There are two “pages” in the repo. index contains all the code for the GIF seen above, and simple is a starting point for the steps covered in this post.
+
+## How to convert GSAP Animations into GIFs
+
+The method I’m using to convert a GSAP animation into a GIF involves capturing SVG data on each “update” of the Tween and writing it to an HTML canvas. After the Tween completes I’m then able to convert SVG data into Rasterized image data which can be used by modern-gif to create each frame of an animated GIF

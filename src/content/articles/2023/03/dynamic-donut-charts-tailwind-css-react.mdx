@@ -12,3 +12,14 @@ logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1658077182/paulie.
 In this article, Paul Scanlon shares a super lightweight approach to creating a Donut chart using `conic-gradient()`.
 There are no additional libraries to install or maintain, and there's no heavy JavaScript that needs to be downloaded by
 the browser in order for them to work. Let's explore!
+
+CSS is amazing — I’m regularly surprised at how far it has come in the years I’ve been using it (~2005 – present). One such surprise came when I noticed this tweet by Shruti Balasa which demonstrated how to create a pie chart using conic-gradient().
+
+It’s fairly straightforward. Here’s a code snippet:
+
+```css
+div {
+  background: conic-gradient(red 36deg, orange 36deg 170deg, yellow 170deg);
+  border-radius: 50%;
+}
+```
