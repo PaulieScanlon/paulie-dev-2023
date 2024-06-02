@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  postgres-job:
+  db-backup:
     runs-on: ubuntu-latest
 
     permissions:
