@@ -1,8 +1,11 @@
 import type { APIRoute } from 'astro';
 import { sql } from '../../neon';
+import { geolocation } from '@vercel/edge';
 
 export const POST: APIRoute = async ({ request }) => {
   const { slug, reaction } = await new Response(request.body).json();
+
+  const { flag, country, city, latitude, longitude } = geolocation(request);
   const date = new Date();
 
   try {
@@ -12,7 +15,10 @@ export const POST: APIRoute = async ({ request }) => {
         status: 200,
       });
     } else {
-      await sql('INSERT INTO reactions(date, slug, reaction) VALUES($1, $2, $3)', [date, slug, reaction]);
+      await sql(
+        'INSERT INTO reactions(date, slug, reaction, flag, country, city, latitude, longitude) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
+        [date, slug, reaction, flag, country, city.replace(/[^a-zA-Z ]/g, ' '), latitude, longitude]
+      );
 
       return Response.json({
         message: 'A Ok!',
