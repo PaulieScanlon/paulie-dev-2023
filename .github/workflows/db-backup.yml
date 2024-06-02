@@ -36,7 +36,7 @@ jobs:
       - name: Dump database
         run: |
           TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
-          /usr/lib/postgresql/16/bin/pg_dump ${{ env.DATABASE_URL }} --file="$TIMESTAMP.sql.gz"
+          /usr/lib/postgresql/16/bin/pg_dump ${{ env.DATABASE_URL}} | gzip > "${TIMESTAMP}.sql.gz"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
