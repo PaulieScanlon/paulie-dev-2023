@@ -12,7 +12,6 @@ jobs:
 
     permissions:
       id-token: write
-      contents: read
 
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
