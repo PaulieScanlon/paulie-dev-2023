@@ -46,10 +46,6 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/paulie-dev-2023-github-action
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Sts GetCallerIdentity
-        run: |
-          aws sts get-caller-identity
-
       - name: Empty S3 bucket
         run: |
           aws s3 rm ${{ env.S3_BUCKET_URL }} --recursive
