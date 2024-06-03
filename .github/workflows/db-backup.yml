@@ -16,8 +16,9 @@ jobs:
 
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      PG_VERSION: '16'
       AWS_REGION: 'us-east-1'
-      S3_BUCKET_URL: 's3://paulie-dev-db-backup/'
+      S3_BUCKET_URL: ${{ secrets.S3_BUCKET_URL }}
 
     steps:
       - name: Checkout repository
@@ -27,21 +28,22 @@ jobs:
         run: |
           sudo apt install -y postgresql-common
           yes '' | sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
-          sudo apt install -y postgresql-16
+          sudo apt install -y postgresql-${{ env.PG_VERSION }}
 
       - name: Get Timestamp
         id: timestamp
-        run: echo "::set-output name=timestamp::$(date +%d-%B-%Y@%H:%M:%S)"
+        run: |
+          echo "TIMESTAMP=$(date +%d-%B-%Y@%H:%M:%S)" >> $GITHUB_ENV
 
       - name: Dump database
         run: |
-          TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
-          pg_dump ${{ env.DATABASE_URL}} | gzip > "${TIMESTAMP}.sql.gz"
+          TIMESTAMP="${{ env.TIMESTAMP }}"
+          /usr/lib/postgresql/${{ env.PG_VERSION }}/bin/pg_dump ${{ env.DATABASE_URL}} | gzip > "${TIMESTAMP}.sql.gz"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubAction-AssumeRoleWithAction
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/paulie-dev-2023-github-action
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Sts GetCallerIdentity
@@ -54,5 +56,5 @@ jobs:
 
       - name: Upload to S3
         run: |
-          TIMESTAMP="${{ steps.timestamp.outputs.timestamp }}"
+          TIMESTAMP="${{ env.TIMESTAMP }}"
           aws s3 cp "${TIMESTAMP}.sql.gz" ${{ env.S3_BUCKET_URL }}
