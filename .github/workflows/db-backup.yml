@@ -20,33 +20,33 @@ jobs:
       S3_BUCKET_URL: ${{ secrets.S3_BUCKET_URL }}
 
     steps:
-      - name: Install PostgreSQL Client
+      - name: Install PostgreSQL
         run: |
           sudo apt install -y postgresql-common
           yes '' | sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
           sudo apt install -y postgresql-${{ env.PG_VERSION }}
 
-      - name: Get Timestamp
+      - name: Get timestamp
         id: timestamp
         run: |
           echo "TIMESTAMP=$(date +%d-%B-%Y@%H:%M:%S)" >> $GITHUB_ENV
 
-      - name: Dump database
+      - name: Run pg_dump
         run: |
           TIMESTAMP="${{ env.TIMESTAMP }}"
           /usr/lib/postgresql/${{ env.PG_VERSION }}/bin/pg_dump ${{ env.DATABASE_URL}} | gzip > "${TIMESTAMP}.sql.gz"
 
-      - name: Configure AWS Credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/paulie-dev-2023-github-action
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Empty S3 bucket
+      - name: Empty Bucket
         run: |
           aws s3 rm ${{ env.S3_BUCKET_URL }} --recursive
 
-      - name: Upload to S3
+      - name: Upload to Bucket
         run: |
           TIMESTAMP="${{ env.TIMESTAMP }}"
           aws s3 cp "${TIMESTAMP}.sql.gz" ${{ env.S3_BUCKET_URL }}
