@@ -1,0 +1,23 @@
+---
+base: articles
+title: How To Schedule PostgreSQL Backups With GitHub Actions
+date: 2024-06-06
+tags: [AWS, PostgreSQL, SQL]
+url: https://thenewstack.io/how-to-schedule-postgresql-backups-with-github-actions/
+publication: The New Stack
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1665235257/paulie.dev/Logos/tns-logo_miu6qk.png
+---
+
+Learn how to schedule a GitHub Action that performs a full backup of data and schema from a Neon PostgreSQL database and uploads it to S3.
+
+In this article I’ll take you through how I created a scheduled GitHub Action that connects to my Neon PostgreSQL database, creates a backup using pg_dump, and uploads it to an AWS S3 Bucket every night at midnight (ET).
+
+There are three main components to creating this kind of scheduled backup:
+
+- **AWS**
+  - You’ll need to know your AWS Account ID and have permissions that allow you to create Roles, Identity Providers, S3 Buckets, and be able to update Bucket policies.
+- **PostgreSQL Database**
+  - You’ll need to have the connection string for your database, know which region the database is deployed, and which version of PostgreSQL your database uses.
+- **GitHub Action**
+  - To write this Action you’ll need to have access to both Actions and Settings > Secrets, along with variables for the GitHub Repository that you’d like to run the Action from.

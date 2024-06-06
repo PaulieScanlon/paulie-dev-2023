@@ -675,6 +675,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/06/how-to-schedule-postgresql-backups-with-github-actions.mdx": {
+	id: "2024/06/how-to-schedule-postgresql-backups-with-github-actions.mdx";
+  slug: "2024/06/how-to-schedule-postgresql-backups-with-github-actions";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
