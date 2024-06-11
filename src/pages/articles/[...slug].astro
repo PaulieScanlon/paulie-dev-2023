@@ -46,7 +46,7 @@ const {
 const excerpt = `${createExcerpt(article.body).substring(0, 70)}...`;
 
 const { Content, headings } = await article.render();
-console.log(Content);
+const isOped = tags.includes('Op-ed');
 
 const ogImage = `${site}/articles/${slug}/og.png`;
 ---
@@ -69,10 +69,10 @@ const ogImage = `${site}/articles/${slug}/og.png`;
   <TagsList tags={tags} link={true} />
   {audioFeedId ? <AudioFeedEmbed audioFeedId={audioFeedId} /> : null}
   <div class='relative'>
-    <div class='absolute w-full h-full bg-gradient-to-t from-brand-background to-transparent'></div>
+    {isOped ? null : <div class='absolute w-full h-full bg-gradient-to-t from-brand-background to-transparent' />}
     <Content />
   </div>
-  <CtaExternal href={url} className='mt-0'>{`Read on ${publication}`}</CtaExternal>
+  <CtaExternal href={url} className={isOped ? 'mt-24' : 'mt-0'}>{`Read on ${publication}`}</CtaExternal>
   <Reactions slug={`/articles/${slug}/`} />
   <Aside>
     {
