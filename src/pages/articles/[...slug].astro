@@ -72,7 +72,7 @@ const ogImage = `${site}/articles/${slug}/og.png`;
     {isOped ? null : <div class='absolute w-full h-full bg-gradient-to-t from-brand-background to-transparent' />}
     <Content />
   </div>
-  <CtaExternal href={url} className={isOped ? 'mt-24' : 'mt-0'}>{`Read on ${publication}`}</CtaExternal>
+  <CtaExternal href={url} className={isOped ? 'mt-24' : 'mt-12'}>{`Read on ${publication}`}</CtaExternal>
   <Reactions slug={`/articles/${slug}/`} />
   <Aside>
     {

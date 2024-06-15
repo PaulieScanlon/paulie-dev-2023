@@ -64,7 +64,7 @@ const Reactions = component$<Props>(({ slug }) => {
   });
 
   return (
-    <div class='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8 mt-32 mb-8'>
+    <div class='flex flex-col gap-8 justify-center border rounded border-brand-outline bg-brand-surface px-4 py-8 mt-24 mb-8'>
       <div class='flex flex-col gap-2'>
         <strong class='block text-center text-4xl text-brand-secondary'>Hey!</strong>
 
