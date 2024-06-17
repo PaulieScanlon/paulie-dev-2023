@@ -22,10 +22,7 @@ export default defineConfig({
   },
   redirects: {
     '/tags': '/',
-    '/articles/2022/10/how-to-use-google-sheets-as-a-database-with-react-and-serverless-funcitons':
-      '/articles/2024/06/how-to-use-google-sheets-as-a-database-with-react-via-next-js',
   },
-
   integrations: [
     tailwind(),
     qwikdev(),
