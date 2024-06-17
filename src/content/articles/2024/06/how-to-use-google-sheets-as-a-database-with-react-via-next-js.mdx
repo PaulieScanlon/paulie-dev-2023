@@ -1,0 +1,22 @@
+---
+base: articles
+title: How To Use Google Sheets as a Database With React via Next.js
+date: 2024-06-17
+tags: [Next.js, React, JavaScript]
+url: https://thenewstack.io/how-to-use-google-sheets-as-a-database-with-react-and-ssr/
+publication: The New Stack
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1665235257/paulie.dev/Logos/tns-logo_miu6qk.png
+---
+
+In this tutorial I’ll be explaining how to use Google Sheets as a database to store the results of a user poll. I’ve used this [React](https://thenewstack.io/learn-react-start-of-a-frontend-dev-journey/) Google Sheets approach for a number of marketing campaigns. I chose this method over a more traditional Database solution for one reason: Data retrieval.
+
+It does of course entirely depend on your requirements, but having the ability to simply share a Google Sheet with a technical or non-technical member of my team — so they can easily see captured data — has, on more than one occasion, proved really valuable.
+
+Data is sent from the browser to a Server Action that securely posts to a Google Sheet, which stores the data. To use [Server Actions](https://thenewstack.io/how-to-build-a-server-side-react-app-using-vite-and-express/) in React, I’ll be using [Next.js](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations).
+
+On the following links you will find a Live Preview and GitHub Repository for the completed user poll application.
+
+- [https://nextjs-google-sheets-database.vercel.app](https://nextjs-google-sheets-database.vercel.app)
+- [https://github.com/PaulieScanlon/nextjs-google-sheets-database](https://github.com/PaulieScanlon/nextjs-google-sheets-database)
+  I won’t be covering how to get started with Next.js, so please consult the [docs](https://nextjs.org/docs) if you’re not familiar with how to use Next.js.
