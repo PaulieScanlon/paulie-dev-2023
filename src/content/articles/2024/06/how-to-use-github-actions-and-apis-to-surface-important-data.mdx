@@ -1,0 +1,16 @@
+---
+base: articles
+title: How To Use GitHub Actions and APIs to Surface Important Data
+date: 2024-06-21
+tags: [GitHub Actions, Google Analytics, Slack]
+url: https://thenewstack.io/how-to-use-github-actions-and-apis-to-surface-important-data/
+publication: The New Stack
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1665235257/paulie.dev/Logos/tns-logo_miu6qk.png
+---
+
+In this article, we’ll demonstrate how to write a GitHub Action that queries a data-centric software system — in this example, Google Analytics — to generate an automated Slack notification and message. In the example below, we’ll generate a top ten list of the most frequently viewed pages on my site from the last 7 days, and post a nicely formatted message to a public Slack channel every Friday at 10 a.m.
+
+Not only does this method surface data for folks who might need it, it also provides an easy way to copy and paste a data report into a slide for a weekly company/department meeting. Why is this needed? Well, Google Analytics as a software product is great, but typically not everyone in your organization is granted access.
+
+Here’s what the posted report looks like in Slack, and below you’ll find a link to the GitHub Repository

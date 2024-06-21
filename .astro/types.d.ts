@@ -682,6 +682,20 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/06/how-to-use-github-actions-and-apis-to-surface-important-data.mdx": {
+	id: "2024/06/how-to-use-github-actions-and-apis-to-surface-important-data.mdx";
+  slug: "2024/06/how-to-use-github-actions-and-apis-to-surface-important-data";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2024/06/how-to-use-google-sheets-as-a-database-with-react-via-next-js.mdx": {
+	id: "2024/06/how-to-use-google-sheets-as-a-database-with-react-via-next-js.mdx";
+  slug: "2024/06/how-to-use-google-sheets-as-a-database-with-react-via-next-js";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
