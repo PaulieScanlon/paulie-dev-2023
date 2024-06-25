@@ -1311,6 +1311,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2024/06/how-to-use-google-application-json-credentials-in-environment-variables.mdx": {
+	id: "2024/06/how-to-use-google-application-json-credentials-in-environment-variables.mdx";
+  slug: "2024/06/how-to-use-google-application-json-credentials-in-environment-variables";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 "streams": {
 "2021/04/gatsby-deep-dives-with-queen-raae.mdx": {
