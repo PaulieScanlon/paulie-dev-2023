@@ -6,17 +6,14 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const response = await sql(`
-      WITH happy_reactions AS (
-          SELECT analytics.city, analytics.country, analytics.flag, COUNT(reactions.id) AS count
-          FROM analytics
-          INNER JOIN reactions ON analytics.slug = reactions.slug
-          WHERE reactions.reaction = 'happy' AND analytics.date >= CURRENT_DATE - INTERVAL '${period}' DAY
-          GROUP BY analytics.city, analytics.country, analytics.flag
-      )
-      SELECT city, country, flag, count
-      FROM happy_reactions
-      ORDER BY count DESC
-      LIMIT 50;
+      SELECT flag, country, city, reaction, COUNT(reaction) AS total
+      FROM reactions
+      WHERE reaction LIKE 'happy' 
+        AND date >= NOW() - INTERVAL '${period} days'
+        AND flag IS NOT NULL
+      GROUP BY flag, country, city, reaction
+      ORDER BY total DESC
+      LIMIT 10;
   `);
 
     return Response.json({

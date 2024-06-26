@@ -50,13 +50,13 @@ try {
     SELECT * 
     FROM analytics
     WHERE date >= NOW() - INTERVAL '${period} days'
-`);
+  `);
 
   reactionsData = await sql(`
-    SELECT * 
+    SELECT *
     FROM reactions
     WHERE date >= NOW() - INTERVAL '${period} days'
-`);
+  `);
 
   if (!analyticsData.length || !reactionsData.length) {
     throw new Error('Bad request');
@@ -151,7 +151,7 @@ try {
 
           <section>
             <h2 class='m-0 uppercase'>Happiest Cities</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top 50 happiest cities</p>
+            <p class='mt-0 mb-4 text-slate-300'>Top ten happiest cities</p>
             <HappyAllCities period={period} />
             <PoweredByNeon period={period} />
           </section>
