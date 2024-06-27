@@ -1,0 +1,20 @@
+---
+base: articles
+title: 'CSS-in-JS and React Server Components: A Developer Guide'
+date: 2024-06-27
+tags: [React, Next.js, styled-components]
+url: https://thenewstack.io/css-in-js-and-react-server-components-a-developer-guide/
+publication: The New Stack
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1665235257/paulie.dev/Logos/tns-logo_miu6qk.png
+---
+
+With [React’s evolving ecosystem](https://thenewstack.io/did-signals-just-land-in-react/), particularly with [Next.js shifting](https://thenewstack.io/vercels-next-js-14-introduces-partial-pre-rendering/) toward a “server-first” approach, applications using CSS-in-JS solutions like [Emotion](https://emotion.sh/docs/introduction) and [styled-components](https://styled-components.com/) are facing significant challenges. These CSS-in-JS libraries are inherently incompatible with the new React paradigm.
+
+While one could argue these libraries could be updated to align with the new server-first direction, it’s important to remember that they’re maintained by unpaid open source contributors. Expecting them to completely overhaul their libraries to accommodate changes in React is a daunting and potentially unrealistic task.
+
+Let’s look at why some CSS-in-JS solutions are unable to work in the new server-first world, then I’ll introduce you to one alternative, [Linaria](https://github.com/callstack/linaria), which uses an almost identical API as styled-components
+
+## The RSC Paradigm
+
+This is going to turn into a long-winded explanation, but it’s important to understand how React used to work (pre-React Server Components) and how it works now ([post-RSC](https://thenewstack.io/javascript-in-2023-signals-reacts-rsc-and-full-stack-js/)).
