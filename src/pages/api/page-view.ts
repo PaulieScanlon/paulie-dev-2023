@@ -3,20 +3,20 @@ import { sql } from '../../neon';
 import { geolocation } from '@vercel/edge';
 
 export const POST: APIRoute = async ({ request }) => {
-  const { slug, referrer } = await new Response(request.body).json();
+  const { title, slug, referrer } = await new Response(request.body).json();
 
   const { flag, country, city, latitude, longitude } = geolocation(request);
   const date = new Date();
 
   try {
-    if (!(flag && country && city && latitude && longitude && slug && referrer)) {
+    if (!(flag && country && city && latitude && longitude && title && slug && referrer)) {
       return Response.json({
         message: 'Missing required parameters',
       });
     } else {
       await sql(
-        'INSERT INTO analytics(date, slug, referrer, flag, country, city, latitude, longitude) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
-        [date, slug, referrer, flag, country, city.replace(/[^a-zA-Z ]/g, ' '), latitude, longitude]
+        'INSERT INTO analytics(date, title, slug, referrer, flag, country, city, latitude, longitude) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+        [date, title, slug, referrer, flag, country, city.replace(/[^a-zA-Z ]/g, ' '), latitude, longitude]
       );
 
       return Response.json({

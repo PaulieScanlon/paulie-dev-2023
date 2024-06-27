@@ -111,15 +111,15 @@ const { search } = await content.json();
           </script>
         ) : null
       }
-
+      
       <!-- Edge Analytics -->
       {
         isProduction ? (
-        <script is:inline>
+        <script is:inline define:vars={{ title }}>
           setTimeout(function () {
             navigator.sendBeacon(
               '/api/page-view',
-              JSON.stringify({ slug: window.location.pathname, referrer: document.referrer })
+              JSON.stringify({ title: title, slug: window.location.pathname, referrer: document.referrer })
             );
           }, 10000);
         </script>
