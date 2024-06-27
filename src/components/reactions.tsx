@@ -4,10 +4,11 @@ import emojis from '../utils/emojis';
 import Loading from './loading';
 
 interface Props {
+  title: String;
   slug: String;
 }
 
-const Reactions = component$<Props>(({ slug }) => {
+const Reactions = component$<Props>(({ title, slug }) => {
   const counts = useSignal(null);
   const status = useStore({ submitting: true, submitted: false, reaction: '' });
 
@@ -45,7 +46,7 @@ const Reactions = component$<Props>(({ slug }) => {
     try {
       const response = await fetch('/api/add-reaction', {
         method: 'POST',
-        body: JSON.stringify({ slug: slug, reaction: reaction }),
+        body: JSON.stringify({ title: title, slug: slug, reaction: reaction }),
       });
 
       if (!response.ok) {

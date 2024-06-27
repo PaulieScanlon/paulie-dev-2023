@@ -14,6 +14,7 @@ CREATE TABLE analytics (
 CREATE TABLE reactions (
   id            SERIAL PRIMARY KEY,          
   date          TIMESTAMP WITH TIME ZONE NOT NULL,
+  title         VARCHAR,
   slug          VARCHAR NOT NULL,
   reaction      VARCHAR NOT NULL,
   flag          VARCHAR,

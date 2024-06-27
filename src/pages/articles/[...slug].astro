@@ -73,7 +73,7 @@ const ogImage = `${site}/articles/${slug}/og.png`;
     <Content />
   </div>
   <CtaExternal href={url} className={isOped ? 'mt-24' : 'mt-12'}>{`Read on ${publication}`}</CtaExternal>
-  <Reactions slug={`/articles/${slug}/`} />
+  <Reactions title={title} slug={`/articles/${slug}/`} />
   <Aside>
     {
       featuredImage ? (
