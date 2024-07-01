@@ -7,9 +7,6 @@ import '@fontsource/inconsolata/500.css';
 import '@fontsource/inconsolata/700.css';
 import '@fontsource/inconsolata/900.css';
 
-import '../styles/global.css'
-
-
 const name = 'Paul Scanlon';
 const siteUrl = 'https://paulie.dev';
 const defaultImage = '/images/paulie-open-graph-image-2022.jpg';
@@ -36,7 +33,7 @@ const keywords = [
   'Serverless Functions',
   'Edge Functions',
   'SQL',
-  'Postgres',
+  'PostgreSQL',
 ];
 
 const { type, title, description, slug, image, tags, fullWidth = false, canonical } = Astro.props;
@@ -53,7 +50,8 @@ const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 const { search } = await content.json();
 ---
 
-<html lang='en'>
+<!-- scroll-pt is for the jumplink headings offset -->
+<html lang='en' class="scroll-pt-[100px]">
   <head>
     <meta charset='utf-8' />
 
