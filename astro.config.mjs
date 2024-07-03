@@ -8,6 +8,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
 import partytown from '@astrojs/partytown';
+import sitemap from '@astrojs/sitemap';
 const isProd = import.meta.env.PROD;
 
 // https://astro.build/config
@@ -75,6 +76,7 @@ export default defineConfig({
         forward: ['dataLayer.push'],
       },
     }),
+    sitemap(),
   ],
   vite: {
     build: {
