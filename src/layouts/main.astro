@@ -36,10 +36,10 @@ const keywords = [
   'PostgreSQL',
 ];
 
-const { type, title, description, slug, image, tags, fullWidth = false, canonical } = Astro.props;
+const { type, title, description, slug, image, tags, fullWidth = false, url } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
-const linkCanonical = canonical ? canonical : `${siteUrl}${slug}`;
+const canonical = url ? url : `${siteUrl}${slug}`;
 const ogImage = image ? image : `${siteUrl}${defaultImage}`;
 const seoKeywords = tags ? tags : keywords;
 
@@ -56,7 +56,7 @@ const { search } = await content.json();
     <meta charset='utf-8' />
 
     <title>{htmlTitle}</title>
-    <link rel='canonical' href={linkCanonical} />
+    <link rel='canonical' href={canonical} />
     <link
       rel="alternate"
       type="application/rss+xml"
