@@ -177,6 +177,7 @@ module.exports = {
                 content: '"" !important',
               },
             },
+
             blockquote: {
               background: theme('colors.brand.surface'),
               padding: '1.2em',

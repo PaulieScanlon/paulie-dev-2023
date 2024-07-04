@@ -9,7 +9,7 @@ featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v172011400
 
 If you've ever connected to a PostgreSQL database that required an SSL certificate, you'll have probably downloaded the certificate and added it to you key chain, or provided a path to the `.pem` file in the connection credentials or string.
 
-In this post i'll explain a scenario where I couldn't use either of the above methods, because my repository was public and my PostgreSQL connection was running as part of a GitHub Action.
+In this post i'll explain a scenario where I couldn't use either of the above methods, because my repository was public, I didn't want to upload the `.pem` file to reference it via an absolute URL, and my PostgreSQL connection was running as part of a GitHub Action.
 
 ## SSL Root Cert
 
