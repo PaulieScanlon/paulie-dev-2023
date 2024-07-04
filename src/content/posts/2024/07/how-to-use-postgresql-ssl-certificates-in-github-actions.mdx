@@ -1,0 +1,96 @@
+---
+base: posts
+title: How to Use PostgreSQL SSL certificates in Github Actions
+tags: [PostgreSQL, GitHub Actions]
+date: 2024-07-04
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1720114007/paulie.dev/2024/07/ssl-cert-featured-image_pbz02h.jpg
+---
+
+If you've ever connected to a PostgreSQL database that required an SSL certificate, you'll have probably downloaded the certificate and added it to you key chain, or provided a path to the `.pem` file in the connection credentials or string.
+
+In this post i'll explain a scenario where I couldn't use either of the above methods, because my repository was public and my PostgreSQL connection was running as part of a GitHub Action.
+
+## SSL Root Cert
+
+One way to use an SSL certificate is to download it and then reference the file name at the end of the connection string. E.g.
+
+```shell
+postgresql://postgres:123@abc.com:5432/postgres?sslrootcert=/my-ssl-cert.pem
+```
+
+This would work if `my-ssl-cert.pem` lived at the root of a project's directory however, as mentioned, for my requirements I couldn't upload, or store the `.pem` file anywhere because my repository was public.
+
+My solution was to convert the SSL certificate into a base64 string and store it as an environment variable / GitHub Secret.
+
+## How to covert an SSL certificate to base64 string
+
+By running the following in my terminal I'm able to convert the SSL certificate into a base64 string.
+
+```shell
+cat my-ssl-cert.pem | base64
+```
+
+Here's what my terminal output looks like.
+
+<AstroImage
+  width='720'
+  height='450'
+  alt='Screenshot of terminal base64 string'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1720100008/paulie.dev/2024/07/ssl-cert-base-64-string_zvpbna.jpg'
+/>
+
+## How to add SSL certificate to GitHub Secrets
+
+Now that I have a base64 string I can save it as a GitHub Secret by navigating to Settings > Secrets and variables > Actions, then scroll down to Repository secrets in the GitHub UI. From here I added a new environment variable named `SSL_CERT_BASE64` and pasted the output from my terminal.
+
+I can now reference the secret using `secrets.SSL_CERT_BASE64` from within the GitHub Action. In the below workflow you'll see a step named `Decode SSL Cert` which reads the value of `secrets.SSL_CERT_BASE64` and decodes the base64 string and temporarily stores the file, `my-ssl-cert.pem`, in memory. The name of this "temporary" file is what I've added on to the end my connection string (as shown above), and also saved that as a GitHub Secret named `DATABASE_URL`
+
+<AstroImage
+  width='720'
+  height='450'
+  alt='Screenshot of repository secrets'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1720115788/paulie.dev/2024/07/ssl-cert-env-vars_mm268u.jpg'
+/>
+
+Here's an example of a GitHub Action which decodes the SSL certificate, installs PostgreSQL and then logs out (using echo) the result of the following query, `SELECT VERSION();`.
+
+```yml
+// .github/workflows/test-action.yml
+
+name: Test Action
+
+on:
+  workflow_dispatch: # Trigger workflow manually
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  SSL_CERT_BASE64: ${{ secrets.SSL_CERT_BASE64 }}
+  PG_VERSION: 16
+
+jobs:
+  dump-and-restore:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Decode SSL Cert
+        run: |
+          echo "${{ secrets.SSL_CERT_BASE64 }}" | base64 --decode > my-ssl-cert.pem
+
+      - name: Install PostgreSQL
+        run: |
+          sudo apt update
+          yes '' | sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+          sudo apt install -y postgresql-${{ env.PG_VERSION }}
+
+      - name: Database Query
+        run: |
+
+          echo "database_name=$(/usr/lib/postgresql/${{ env.PG_VERSION }}/bin/psql "${{ env.DATABASE_URL }}" -t -c "SELECT VERSION();")"
+```
+
+## Finished
+
+Naturally you'll probably want to do more than simply query your database but hopefully this will demonstrates how you can use an SSL certificate stored as a base64 string using GitHub Secrets.
+
+I'm not sure if this is the best, or even the only way to solve this problem but it worked for me. If you know of any other ways to do this, please let me know: [@PaulieScanlon](https://x.com/PaulieScanlon).
