@@ -23,7 +23,7 @@ This would work if `my-ssl-cert.pem` lived at the root of a project's directory 
 
 My solution was to convert the SSL certificate into a base64 string and store it as an environment variable / GitHub Secret.
 
-## How to covert an SSL certificate to base64 string
+## Covert SSL certificate to base64 string
 
 By running the following in my terminal I'm able to convert the SSL certificate into a base64 string.
 
@@ -40,7 +40,7 @@ Here's what my terminal output looks like.
   url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1720100008/paulie.dev/2024/07/ssl-cert-base-64-string_zvpbna.jpg'
 />
 
-## How to add SSL certificate to GitHub Secrets
+## Add SSL certificate to GitHub Secrets
 
 Now that I have a base64 string I can save it as a GitHub Secret by navigating to Settings > Secrets and variables > Actions, then scroll down to Repository secrets in the GitHub UI. From here I added a new environment variable named `SSL_CERT_BASE64` and pasted the output from my terminal.
 
