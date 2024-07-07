@@ -3,8 +3,8 @@ import ghosts from '../content/ghosts/ghost-content.json';
 
 import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
-import FullSearch from '../components/full-search';
-import QuickSearch from '../components/quick-search';
+import SearchModal from '../components/search-modal';
+import QuickSearch from '../components/search-trigger';
 
 import isNewContent from '../utils/is-new-content';
 
@@ -103,7 +103,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
           </div>
         </div>
       </header>
-      <FullSearch search={search} isModalOpen={isModalOpen.value} handleModal={handleModal} />
+      <SearchModal search={search} isModalOpen={isModalOpen.value} handleModal={handleModal} />
       <div class='relative'>
         <div
           id='lightbox'

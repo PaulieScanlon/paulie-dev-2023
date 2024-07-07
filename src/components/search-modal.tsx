@@ -1,14 +1,23 @@
 import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 
+import SearchInput from './search-input';
+
 import { formatDate } from '../utils/format-date';
 
+interface searchProps {
+  date: string;
+  title: string;
+  base: string;
+  path: string;
+}
+
 interface Props {
-  search: any;
+  search: searchProps[];
   isModalOpen: Boolean;
   handleModal: () => void;
 }
 
-const FullSearch = component$<Props>(({ search, isModalOpen, handleModal }) => {
+const SearchModal = component$<Props>(({ search, isModalOpen, handleModal }) => {
   const all = useSignal(search);
   const filtered = useSignal(search);
 
@@ -70,26 +79,7 @@ const FullSearch = component$<Props>(({ search, isModalOpen, handleModal }) => {
           onClick$={handleBackdrop}
         >
           <div class='grow-0 w-full max-w-3xl bg-brand-surface p-4'>
-            <div class='flex items-center gap-2 pb-4 border-brand-outline border-b-[1px]'>
-              <svg aria-hidden='true' class='h-4 w-4 stroke-2 stroke-slate-400' fill='none' viewBox='0 0 24 24'>
-                <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
-              </svg>
-              <input
-                id='input'
-                type='search'
-                placeholder='Search'
-                class='basis-full bg-transparent text-white focus:outline-none bg-surface'
-                onInput$={handleInput}
-              />
-              <button
-                class='text-xs uppercase bg-brand-outline rounded px-2 py-1 transition-all duration-300 hover:bg-brand-muted/20'
-                aria-label='esc'
-                value='esc'
-                onClick$={handleModal}
-              >
-                esc
-              </button>
-            </div>
+            <SearchInput handleModal={handleModal} handleInput={handleInput} showEsc={true} />
             <div class='text-brand-muted text-xs pt-2 pb-4'>{`${
               filtered.value.length > 0 ? filtered.value.length : 0
             } results`}</div>
@@ -133,4 +123,4 @@ const FullSearch = component$<Props>(({ search, isModalOpen, handleModal }) => {
   );
 });
 
-export default FullSearch;
+export default SearchModal;
