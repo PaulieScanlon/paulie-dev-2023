@@ -4,7 +4,7 @@ interface Props {
   handleModal: () => void;
 }
 
-const QuickSearch = component$<Props>(({ handleModal }) => {
+const SearchTrigger = component$<Props>(({ handleModal }) => {
   return (
     <button
       onClick$={handleModal}
@@ -28,4 +28,4 @@ const QuickSearch = component$<Props>(({ handleModal }) => {
   );
 });
 
-export default QuickSearch;
+export default SearchTrigger;
