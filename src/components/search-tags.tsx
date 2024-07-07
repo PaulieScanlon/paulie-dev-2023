@@ -52,7 +52,6 @@ const SearchTags = component$<Props>(({ tags }) => {
   return (
     <>
       <SearchInput handleInput={handleInput} />
-
       <ul class='flex flex-wrap items-baseline gap-4 list-none m-0 p-0 mt-8'>
         {filtered.value.map((item) => {
           const { name, slug } = item;

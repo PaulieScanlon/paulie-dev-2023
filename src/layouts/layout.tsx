@@ -59,7 +59,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
       if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
         handleModal();
       }
-      if (event.key === 'Escape' && isModalOpen) {
+      if (event.key === 'Escape' && isModalOpen.value) {
         handleModal();
       }
     })
