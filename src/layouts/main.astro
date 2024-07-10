@@ -11,35 +11,16 @@ const name = 'Paul Scanlon';
 const siteUrl = 'https://paulie.dev';
 const defaultImage = '/images/paulie-open-graph-image-2022.jpg';
 const keywords = [
-  'React',
-  'Gatsby',
-  'Qwik',
-  'Astro',
-  'Remix',
-  'Next.js',
-  'JavaScript',
-  'TypeScript',
-  'Flow',
-  'styled-components',
-  'Theme UI',
-  'Tailwind',
-  'Jest',
-  'Enzyme',
-  'React Testing Library',
-  'Node.js',
-  'Fauna',
-  'Jamstack',
-  'Component Library',
-  'Serverless Functions',
-  'Edge Functions',
-  'SQL',
-  'PostgreSQL',
+  'Developer Advocate',
+  'Technical Writing',
+  'Product Marketing'
 ];
 
-const { type, title, description, slug, image, tags, fullWidth = false, url } = Astro.props;
+const { type, title, description, slug, image, tags, fullWidth = false, url, canonical } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
-const canonical = url ? url : `${siteUrl}${slug}`;
+const canonicalHref = canonical ? canonical : `${siteUrl}${slug}`;
+
 const ogImage = image ? image : `${siteUrl}${defaultImage}`;
 const seoKeywords = tags ? tags : keywords;
 
@@ -56,7 +37,7 @@ const { search } = await content.json();
     <meta charset='utf-8' />
 
     <title>{htmlTitle}</title>
-    <link rel='canonical' href={canonical} />
+    <link rel='canonical' href={canonicalHref} />
     <link
       rel="alternate"
       type="application/rss+xml"
