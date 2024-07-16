@@ -1,5 +1,19 @@
 [
   {
+    "body": "AWS RDS for PostgreSQL is the most widely used hosted Postgres solution there is, so naturally we hear a lot from developers that use it regularly. While it can be a solid offering, it's quite lacking when it comes to developer experience, and doesn't support modern developer workflows. We often hear of developers switching to Neon exactly for this reason, especially for their local environments. In this article, we'll dive into the specific challenges of developing on RDS and show you a solution we often recommend: using Neon for development, even when you must keep RDS as your production database.",
+    "collection": "ghosts",
+    "data": {
+      "base": "ghosts",
+      "title": "Development environments for AWS RDS using Neon Postgres",
+      "date": "2024-07-16",
+      "tags": ["AWS", "PostgreSQL", "Neon"],
+      "url": "https://neon.tech/blog/development-environments-for-aws-rds-using-neon-postgres",
+      "publication": "Neon",
+      "author": "Paul Scanlon",
+      "logo": "https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png"
+    }
+  },
+  {
     "body": "In the web development world, it's hard to go more than a few days without hearing about Vite. Its popularity has skyrocketed since its release in April 2020. At the time of writing this post, the project has blown past 64k stars on GitHub and over 12 million weekly downloads and now powers most open-source frameworks like Nuxt, SvelteKit, Astro, SolidStart and Remix (just to name a few)",
     "collection": "ghosts",
     "data": {
