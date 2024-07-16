@@ -37,7 +37,7 @@ import isNewContent from '../utils/is-new-content';
 
 const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
-const { articles, collections } = await content.json();
+const { collections } = await content.json();
 
 const mergedCollections = [...collections, ...ghosts];
 
@@ -111,7 +111,7 @@ try {
           <section>
             <h2 class='m-0 uppercase'>Totals by publisher</h2>
             <p class='mt-0 mb-4 text-slate-300'>All publishers</p>
-            <ListExternalPublishers data={groupByPublication(articles)} />
+            <ListExternalPublishers data={groupByPublication(mergedCollections)} />
           </section>
 
           <section>

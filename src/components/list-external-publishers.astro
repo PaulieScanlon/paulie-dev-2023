@@ -10,7 +10,6 @@ const listData = data.sort((a, b) => b.total - a.total);
   {
     listData.map((item, index) => {
       const { publication, logo, total } = item;
-
       const publisherPage = {
         Gatsby: 'https://www.gatsbyjs.com/contributors/paul-scanlon',
         'The New Stack': 'https://thenewstack.io/author/paulscanlon/',
@@ -25,6 +24,8 @@ const listData = data.sort((a, b) => b.total - a.total);
         Contentful: 'https://www.contentful.com/blog/author/paul-scanlon/',
         StackBlitz: 'https://blog.stackblitz.com/authors/paul-scanlon/',
       };
+
+      if (!publication) return null;
 
       return (
         <li class='m-0 p-0 flex items-center gap-4 border-b border-b-brand-outline last:border-b-transparent md:[&:nth-child(6n)]:border-b-transparent leading-[3rem]'>

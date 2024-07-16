@@ -17,7 +17,8 @@ const groupByPublication = (array) => {
     return acc;
   }, {});
 
-  return Object.keys(groupedData).map((key) => groupedData[key]);
+  const data = Object.keys(groupedData).map((key) => groupedData[key]);
+  return data;
 };
 
 export default groupByPublication;
