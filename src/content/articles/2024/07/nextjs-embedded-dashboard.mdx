@@ -1,0 +1,22 @@
+---
+base: articles
+title: Embedding A Luzmo Dashboard In Next.js Apps Using Clerk on Vercel
+date: 2024-07-22
+tags: [Next.js, Clerk]
+url: https://www.luzmo.com/blog/nextjs-embedded-dashboard
+publication: Luzmo
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1721135334/paulie.dev/Logos/luzmo-logo_ya94yx.png
+---
+
+When presenting customer data or visualizations in user-facing applications, security is super important. It's crucial to ensure that users can only access the data they are authorized to view.
+
+All authentication and authorization solutions provide ways to add users to groups, or apply roles to their profiles. By accessing these roles in your application, you can limit or restrict access to parts of your application that may contain sensitive customer data.
+
+In this article, we’ll show you how we’ve used [Clerk’s](https://clerk.com/) [user metadata](https://clerk.com/docs/users/metadata#user-metadata) to assign a role to a user's profile. From within a Next.js application, we’ve then used the role to determine which one of two different data visualization dashboards created in Luzmo to display.
+
+## Why use Next.js with Vercel for your application?
+
+We’ve chosen to use Next.js as it’s the first framework to support React’s new [Server Components](https://react.dev/reference/rsc/server-components) (RSCs). When using RSCs, pages or components are rendered on the server only. This allows developers to write code that makes server-side requests, or use environment variables without worrying about leaking sensitive information to the client (browser).
+
+This is super powerful when building applications that need to apply conditional logic based on a user’s profile information which won’t be exposed to the client.

@@ -703,6 +703,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/07/nextjs-embedded-dashboard.mdx": {
+	id: "2024/07/nextjs-embedded-dashboard.mdx";
+  slug: "2024/07/nextjs-embedded-dashboard";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2024/07/real-time-monitoring.mdx": {
 	id: "2024/07/real-time-monitoring.mdx";
   slug: "2024/07/real-time-monitoring";
