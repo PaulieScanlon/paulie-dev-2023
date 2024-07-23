@@ -4,7 +4,7 @@
     "collection": "ghosts",
     "data": {
       "base": "ghosts",
-      "title": "Development environments for AWS RDS using Neon Postgres",
+      "title": "Optimizing dev environments in AWS RDS with Neon Postgres, Part I: Fixing your RDS workflow",
       "date": "2024-07-16",
       "tags": ["AWS", "PostgreSQL", "Neon"],
       "url": "https://neon.tech/blog/development-environments-for-aws-rds-using-neon-postgres",
