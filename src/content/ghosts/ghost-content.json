@@ -1,10 +1,25 @@
 [
   {
+    "body": "As we discussed in Part I of this series, AWS RDS doesn't provide an optimal development experience, which slows down teams looking to ship fast. Transitioning your development environments to Neon can significantly reduce the management overhead required to keep your development environments in sync with RDS, enhance team collaboration, and lower your database costs. \n In this blog post, we'll guide you through the process of setting up your development environment in Neon, even while keeping your production database in RDS. We'll specifically cover how to create a Neon Twin—a synchronized copy of your RDS dataset in Neon, that updates automatically every night using pg_dump/restore and GitHub Actions.",
+    "collection": "ghosts",
+    "data": {
+      "base": "ghosts",
+      "title": "Neon Twin: Move Dev/Test/Staging to Neon, Keep Production on RDS",
+      "date": "2024-07-24",
+      "tags": ["AWS", "PostgreSQL", "Neon", "GitHub Actions"],
+      "url": "https://neon.tech/blog/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon",
+      "publication": "Neon",
+      "author": "Paul Scanlon",
+      "logo": "https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png"
+    }
+  },
+
+  {
     "body": "AWS RDS for PostgreSQL is the most widely used hosted Postgres solution there is, so naturally we hear a lot from developers that use it regularly. While it can be a solid offering, it's quite lacking when it comes to developer experience, and doesn't support modern developer workflows. We often hear of developers switching to Neon exactly for this reason, especially for their local environments. In this article, we'll dive into the specific challenges of developing on RDS and show you a solution we often recommend: using Neon for development, even when you must keep RDS as your production database.",
     "collection": "ghosts",
     "data": {
       "base": "ghosts",
-      "title": "Optimizing dev environments in AWS RDS with Neon Postgres, Part I: Fixing your RDS workflow",
+      "title": "Optimize Your AWS RDS Dev Environments With Neon Postgres",
       "date": "2024-07-16",
       "tags": ["AWS", "PostgreSQL", "Neon"],
       "url": "https://neon.tech/blog/development-environments-for-aws-rds-using-neon-postgres",
