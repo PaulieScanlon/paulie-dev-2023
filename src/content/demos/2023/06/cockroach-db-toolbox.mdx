@@ -1,0 +1,39 @@
+---
+base: demos
+title: 'CockroachDB Toolbox: A suite of tools to help you design your CockroachDB clusters'
+tags: [Next.js, React, Tailwind, CockroachDB]
+date: 2023-06-19
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1722331088/paulie.dev/2023/06/cockroach-db-toolbox_bblusv.jpg
+---
+
+## Project Overview
+
+This was a collaborative project with my "partner in crime", Technical Evangelist for [Cockroach Labs](https://www.cockroachlabs.com/), and all round good guy, [Rob Reid](https://x.com/robreid_io). Rob knows CockroachDB like the back of his hand, and working with him and learning about the various ways in which CockroachDB can be configured was a truly eye opening experience. So much so that together we wanted to bring this to the masses... and The Toolbox was born.
+
+<CtaExternal href='https://www.cockroachlabs.com/resources/resource-cockroachdb-toolbox/'>
+  Visit Toolbox Demo
+</CtaExternal>
+
+### Problem
+
+As mentioned above, CockroachDB is highly configurable, but unless you poses NASA level Database skills (like Rob) it can be hard to see the wood for the trees. Rob as spent many years reading, testing and consuming CockroachDB knowledge and like many Developer Educators (Technical Evangelists) wanted to share his knowledge with the world.
+
+### Solution
+
+Like many solutions in tech you gotta "show, don't tell". Everything seen in the Toolbox can be extracted from the CockroachDB documentation but, there are perhaps better ways to communicate complex information. We both agreed that some kind of interactive application that developers could play around with to see the resulting effects of their chosen configurations would be beneficial to both the folks who tirelessly maintain and modify databases, but also for businesses who could benefit from having more finely tuned tech.
+
+### Insight
+
+We're probably all guilty of this from time to time but, as developers we don't always read documentation, we don't always have the time and we aren't experts in everything. Luckily Rob is, and rather than help customer's on a individual basis who we knew had difficulties understanding the documentation and implementing suggested solutions, we can show them.
+
+## The Idea
+
+The app is like any other app, built with Next.js and is home to a number of different "tools". Each specifically designed to tackle an individual area of CockroachDB in greater detail.
+
+- [Survival Calculator](https://www.cockroachlabs.com/resources/resource-cockroachdb-toolbox/survival-calculator/?regions=3&availabilityZones=3&nodes=1&replicationFactor=5&vcpusPerNode=4)
+- [Size Calculator](https://www.cockroachlabs.com/resources/resource-cockroachdb-toolbox/size-calculator/?regions=1&availabilityZones=1&nodes=1)
+- [Topology Chooser](https://www.cockroachlabs.com/resources/resource-cockroachdb-toolbox/topology-chooser/?clusterScale=single_region&readLocality=global&tolerateWriteLatency=false&tolerateStaleReads=false&domicileData=false)
+- [Node Count Sizer](https://www.cockroachlabs.com/resources/resource-cockroachdb-toolbox/node-count-sizer/?dataVolume=10&maxNodeDensity=10240&headroom=33&replicationFactor=3&multiRegion=false&iopsPerVCPU=500&storagePerVCPU=320&peakTPS=1000)
+
+It's still early days for the project but as more requirements become clear, more tools can be created to help customers get the most out of CockroachDB/
