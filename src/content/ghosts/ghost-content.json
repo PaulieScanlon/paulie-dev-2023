@@ -1,5 +1,19 @@
 [
   {
+    "body": "In a previous blog post, we showed you how to create a Neon Twin using a GitHub Action that automatically runs a pg_dump of your RDS production database and restores it to Neon on a recurring nightly schedule. \n In this blog post, we'll guide you through setting up a Slack Webhook to send notifications to a public Slack channel. This will inform your team about the latest pg_dump and restore activities. \n By using Slack instead of relying on GitHub email notifications, you can avoid the need to add every developer who needs this information to the GitHub Repository where the Action runs. \n We'll also cover how to surface more detailed information about the dump and restore including the database name, size how long the job took to complete, and how to handle failures..",
+    "collection": "ghosts",
+    "data": {
+      "base": "ghosts",
+      "title": "Building Slack notifications to monitor pg_dump and restore workflows",
+      "date": "2024-08-01",
+      "tags": ["Slack", "PostgreSQL", "Neon", "GitHub Actions"],
+      "url": "https://neon.tech/blog/building-slack-notifications-to-monitor-pg_dump-and-restore-workflows",
+      "publication": "Neon",
+      "author": "Paul Scanlon",
+      "logo": "https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png"
+    }
+  },
+  {
     "body": "As we discussed in Part I of this series, AWS RDS doesn't provide an optimal development experience, which slows down teams looking to ship fast. Transitioning your development environments to Neon can significantly reduce the management overhead required to keep your development environments in sync with RDS, enhance team collaboration, and lower your database costs. \n In this blog post, we'll guide you through the process of setting up your development environment in Neon, even while keeping your production database in RDS. We'll specifically cover how to create a Neon Twin—a synchronized copy of your RDS dataset in Neon, that updates automatically every night using pg_dump/restore and GitHub Actions.",
     "collection": "ghosts",
     "data": {
@@ -13,7 +27,6 @@
       "logo": "https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png"
     }
   },
-
   {
     "body": "AWS RDS for PostgreSQL is the most widely used hosted Postgres solution there is, so naturally we hear a lot from developers that use it regularly. While it can be a solid offering, it's quite lacking when it comes to developer experience, and doesn't support modern developer workflows. We often hear of developers switching to Neon exactly for this reason, especially for their local environments. In this article, we'll dive into the specific challenges of developing on RDS and show you a solution we often recommend: using Neon for development, even when you must keep RDS as your production database.",
     "collection": "ghosts",
