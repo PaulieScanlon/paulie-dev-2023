@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import AutoImport from 'astro-auto-import';
@@ -20,6 +20,7 @@ export default defineConfig({
   }),
   image: {
     domains: ['res.cloudinary.com'],
+    service: passthroughImageService(),
   },
   integrations: [
     tailwind(),
