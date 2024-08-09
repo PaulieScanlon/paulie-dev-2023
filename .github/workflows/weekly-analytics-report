@@ -1,0 +1,31 @@
+name: 7 Day GA4 Report (Slack)
+
+on:
+  schedule:
+    - cron: '0 10 * * 5' # Runs every Friday at 10 AM UTC
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  analytics-report:
+    runs-on: ubuntu-latest
+
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+      GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
+      NODE_VERSION: '20.x'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run the JavaScript script
+        run: node src/services/weekly-analytics.js
