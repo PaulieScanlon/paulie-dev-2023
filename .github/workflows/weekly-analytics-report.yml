@@ -1,8 +1,8 @@
 name: 7 Day GA4 Report (Slack)
 
 on:
-  schedule:
-    - cron: '0 10 * * 5' # Runs every Friday at 10 AM UTC
+  # schedule:
+  #   - cron: '0 10 * * 5' # Runs every Friday at 10 AM UTC
   workflow_dispatch: # Allows manual triggering
 
 jobs:
