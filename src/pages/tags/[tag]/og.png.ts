@@ -5,15 +5,10 @@ import { ImageResponse, html } from 'og-img';
 import fs from 'fs';
 import path from 'path';
 
-import { formatSlug } from '../../../utils/format-slug';
+import { createTagsCollection } from '../../../utils/create-tags-collection';
 
 export async function GET({ props }) {
-  const { name, collections } = props;
-
-  const filteredCollection = collections.filter((collection) => {
-    const sanitizedTags = collection.data.tags.map((tag) => formatSlug(tag));
-    return sanitizedTags.includes(formatSlug(name));
-  });
+  const { name, collection } = props;
 
   return new ImageResponse(
     html`<div tw="relative flex w-full h-full items-center px-48" style="background-color: #131127">
@@ -31,8 +26,8 @@ export async function GET({ props }) {
           Tagged with ${name}
         </div>
         <div tw="flex text-3xl leading-tight mb-12" style="color: #d9dbdf; fontFamily: Roboto Regular">
-          Here you'll find <strong tw="px-3" style="color: #f056c7">${filteredCollection.length}</strong> pieces of
-          content about <strong tw="pl-3" style="color: #ffc107">${name}</strong>.
+          Here you'll find <strong tw="px-3" style="color: #f056c7">${collection.length}</strong> pieces of content
+          about <strong tw="pl-3" style="color: #ffc107">${name}</strong>.
         </div>
         <div tw="flex items-center">
           <div tw="text-3xl" style="color: #d9dbdf; fontFamily: Inconsolata Bold">Paul Scanlon</div>
@@ -76,25 +71,23 @@ export async function getStaticPaths() {
   const opensource = await getCollection('opensource');
   const posts = await getCollection('posts');
   const streams = await getCollection('streams');
+  const ghosts = await getCollection('ghosts');
 
-  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
+  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams, ...ghosts];
 
-  return collections
-    .map((collection) => {
-      const {
-        data: { tags },
-      } = collection;
+  const tags = createTagsCollection(collections);
 
-      return tags
-        .map((tag) => {
-          return {
-            params: {
-              tag: formatSlug(tag),
-            },
-            props: { name: tag, collections: collections },
-          };
-        })
-        .flat();
-    })
-    .flat();
+  return tags.map((tag: { name: string; slug: string }) => {
+    const { name, slug } = tag;
+
+    return {
+      params: {
+        tag: slug,
+      },
+      props: {
+        name: name,
+        collection: collections.filter((item) => item.data.tags.includes(name)),
+      },
+    };
+  });
 }
