@@ -31,15 +31,14 @@ export const GET = async ({ params, request }) => {
 
   const tags = collections
     .map((collection) => {
-      const {
-        data: { tags },
-      } = collection;
+      const tags = collection.data?.tags || [];
 
       return tags
         .map((tag) => {
+          const slug = formatSlug(tag) || '';
           return {
-            name: tag,
-            slug: formatSlug(tag),
+            name: tag || '',
+            slug,
           };
         })
         .flat();
@@ -47,7 +46,7 @@ export const GET = async ({ params, request }) => {
     .flat()
     .filter((item, index, self) => {
       const { name } = item;
-      return index === self.findIndex((obj) => obj.name === name);
+      return name && index === self.findIndex((obj) => obj.name === name);
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
