@@ -28,4 +28,4 @@ jobs:
         run: npm ci
 
       - name: Run the JavaScript script
-        run: node src/services/weekly-analytics.js
+        run: node src/services/weekly-analytics.mjs
