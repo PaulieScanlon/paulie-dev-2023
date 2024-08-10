@@ -15,7 +15,7 @@ const { tags } = await content.json();
 <Main title='Tags' description='Tags used on paulie.dev' slug='/tags/'>
   <strong class='flex items-center justify-between gap-2 text-sm text-brand-primary mb-8'
     >Tags
-    <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${tags.length}`}</span>
+    <!-- <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${tags.length}`}</span> -->
   </strong>
   <h1 class='mb-0'>Tags Search</h1>
   {tags ? <SearchTags tags={tags} /> : null}
