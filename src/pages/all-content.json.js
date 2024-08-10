@@ -6,8 +6,9 @@ export const GET = async ({ params, request }) => {
   const opensource = await getCollection('opensource');
   const posts = await getCollection('posts');
   const streams = await getCollection('streams');
+  const ghosts = await getCollection('ghosts');
 
-  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
+  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams, ...ghosts];
 
   const search = collections
     .filter((item) => item.data.draft !== true)
@@ -26,5 +27,5 @@ export const GET = async ({ params, request }) => {
     })
     .sort((a, b) => b.date - a.date);
 
-  return new Response(JSON.stringify({ articles, demos, opensource, posts, streams, collections, search }));
+  return new Response(JSON.stringify({ collections, search }));
 };

@@ -11,37 +11,32 @@ interface Props {
 }
 
 const SearchTags = component$<Props>(({ tags }) => {
-  const all = useSignal(tags);
+  const all = tags;
   const filtered = useSignal(tags);
 
   const handleInput = $(async (event) => {
     const FuseModule = await import('fuse.js');
     const Fuse = FuseModule.default;
-
     const {
       target: { value },
     } = event;
-
-    const fuse = new Fuse(all.value, {
+    const fuse = new Fuse(all, {
       threshold: 0.5,
       keys: ['name'],
     });
-
     const results = fuse.search(value).map((data: any) => {
       const {
         item: { name, slug },
       } = data;
-
       return {
         name,
         slug,
       };
     });
-
     if (value) {
       filtered.value = results;
     } else {
-      filtered.value = all.value;
+      filtered.value = all;
     }
   });
 
@@ -50,7 +45,7 @@ const SearchTags = component$<Props>(({ tags }) => {
   });
 
   return (
-    <>
+    <div className='mt-8'>
       <SearchInput handleInput={handleInput} />
       <ul class='flex flex-wrap items-baseline gap-4 list-none m-0 p-0 mt-8'>
         {filtered.value.map((item) => {
@@ -67,7 +62,7 @@ const SearchTags = component$<Props>(({ tags }) => {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 });
 

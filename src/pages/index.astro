@@ -1,6 +1,8 @@
 ---
 export const prerender = true;
 
+import { getCollection } from 'astro:content';
+
 import Main from '../layouts/main.astro';
 
 import Aside from '../components/aside.astro';
@@ -8,9 +10,9 @@ import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 import CtaInternal from '../components/cta-internal.astro';
 
-const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
-
-const { demos, articles, posts } = await content.json();
+const demos = await getCollection('demos');
+const articles = await getCollection('articles');
+const posts = await getCollection('posts');
 ---
 
 <Main title='Home' description="Paul Scanlon's site" slug='/'>

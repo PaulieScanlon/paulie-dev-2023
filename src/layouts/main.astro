@@ -16,7 +16,7 @@ const keywords = [
   'Product Marketing'
 ];
 
-const { type, title, description, slug, image, tags, fullWidth = false, url, canonical } = Astro.props;
+const { type, title, description, slug, image, tags, fullWidth = false, canonical } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
 const canonicalHref = canonical ? canonical : `${siteUrl}${slug}`;

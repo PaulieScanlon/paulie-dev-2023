@@ -64,4 +64,17 @@ export const collections = {
       featuredImage: z.string(),
     }),
   }),
+  ghosts: defineCollection({
+    type: 'content',
+    schema: z.object({
+      base: z.string(),
+      title: z.string(),
+      tags: z.array(z.string()).optional(),
+      date: z.date(),
+      url: z.string(),
+      publication: z.string(),
+      author: z.string(),
+      logo: z.string(),
+    }),
+  }),
 };

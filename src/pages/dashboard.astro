@@ -1,8 +1,6 @@
 ---
 export const prerender = false;
 
-import ghosts from '../content/ghosts/ghost-content.json';
-
 import { sql } from '../neon';
 
 import Main from '../layouts/main.astro';
@@ -39,7 +37,7 @@ const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
 const { collections } = await content.json();
 
-const mergedCollections = [...collections, ...ghosts];
+const mergedCollections = [...collections];
 
 let analyticsData = null;
 let reactionsData = null;

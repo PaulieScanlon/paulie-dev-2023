@@ -1,0 +1,14 @@
+---
+base: ghosts
+title: 'Neon Twin: Move Dev/Test/Staging to Neon, Keep Production on RDS'
+date: 2024-07-24
+tags: [AWS, PostgreSQL, Neon, GitHub Actions]
+url: https://neon.tech/blog/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon
+publication: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+[As we discussed in Part I of this series](https://neon.tech/blog/development-environments-for-aws-rds-using-neon-postgres), AWS RDS is great for production, but unwieldy for dev, stage, and test databases. Businesses of all kinds ship faster with their entire DB load on Neon: Instant provisioning saves time, development is smoother with branching, and scale to zero [reduces non-prod cost by 40%](https://neon.tech/blog/development-environments-for-aws-rds-using-neon-postgres#example-rds-cost-breakdown).
+
+But if you’re already in production on RDS, migrating a live database is painful. You don’t need to move everything over to get the development velocity and cost efficiency of non-production databases on Neon. There’s an automated, low-risk way using a Neon Twin—a synchronized copy of your RDS dataset in Neon, that updates automatically every night using pg_dump/restore and GitHub Actions.

@@ -2,6 +2,7 @@
 export const prerender = true;
 
 import { sql } from '../neon';
+import { getCollection } from 'astro:content';
 
 import Main from '../layouts/main.astro';
 import CollectionsList from '../components/collections-list.astro';
@@ -12,9 +13,7 @@ import PoweredByNeon from '../components/powered-by-neon.astro';
 
 import groupByReaction from '../utils/group-by-reaction';
 
-const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
-
-const { posts } = await content.json();
+const posts = await getCollection('posts');
 
 const period = 30;
 

@@ -792,6 +792,43 @@ declare module 'astro:content' {
   data: InferEntrySchema<"demos">
 } & { render(): Render[".mdx"] };
 };
+"ghosts": {
+"2024/03/enterprise-design-systems.mdx": {
+	id: "2024/03/enterprise-design-systems.mdx";
+  slug: "2024/03/enterprise-design-systems";
+  body: string;
+  collection: "ghosts";
+  data: InferEntrySchema<"ghosts">
+} & { render(): Render[".mdx"] };
+"2024/04/what-is-vite-introduction.mdx": {
+	id: "2024/04/what-is-vite-introduction.mdx";
+  slug: "2024/04/what-is-vite-introduction";
+  body: string;
+  collection: "ghosts";
+  data: InferEntrySchema<"ghosts">
+} & { render(): Render[".mdx"] };
+"2024/07/development-environments-for-aws-rds-using-neon-postgres.mdx": {
+	id: "2024/07/development-environments-for-aws-rds-using-neon-postgres.mdx";
+  slug: "2024/07/development-environments-for-aws-rds-using-neon-postgres";
+  body: string;
+  collection: "ghosts";
+  data: InferEntrySchema<"ghosts">
+} & { render(): Render[".mdx"] };
+"2024/07/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon.mdx": {
+	id: "2024/07/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon.mdx";
+  slug: "2024/07/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon";
+  body: string;
+  collection: "ghosts";
+  data: InferEntrySchema<"ghosts">
+} & { render(): Render[".mdx"] };
+"2024/08/building-slack-notifications-to-monitor-pg_dump-and-restore-workflows.mdx": {
+	id: "2024/08/building-slack-notifications-to-monitor-pg_dump-and-restore-workflows.mdx";
+  slug: "2024/08/building-slack-notifications-to-monitor-pg_dump-and-restore-workflows";
+  body: string;
+  collection: "ghosts";
+  data: InferEntrySchema<"ghosts">
+} & { render(): Render[".mdx"] };
+};
 "opensource": {
 "2020/04/mdx-embed.mdx": {
 	id: "2020/04/mdx-embed.mdx";
@@ -1390,14 +1427,7 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"ghosts": {
-"ghost-content": {
-	id: "ghost-content";
-  collection: "ghosts";
-  data: any
-};
-};
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
