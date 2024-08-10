@@ -2,12 +2,13 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 
-import { formatSlug } from '../../utils/format-slug';
 
 import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
 import ProfileCard from '../../components/profile-card.astro';
 import CollectionsList from '../../components/collections-list.astro';
+
+import { createTagsCollection } from '../../utils/create-tags-collection';
 
 interface Props {
   name: string;
@@ -24,26 +25,7 @@ export async function getStaticPaths() {
 
   const collections = [...articles, ...demos, ...opensource, ...posts, ...streams, ...ghosts];
 
-  const tags = collections
-    .map((collection) => {
-      const tags = collection.data?.tags || [];
-
-      return tags
-        .map((tag) => {
-          const slug = formatSlug(tag) || '';
-          return {
-            name: tag || '',
-            slug,
-          };
-        })
-        .flat();
-    })
-    .flat()
-    .filter((item, index, self) => {
-      const { name } = item;
-      return name && index === self.findIndex((obj) => obj.name === name);
-    })
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const tags = createTagsCollection(collections);
 
   return tags.map((tag: { name: string; slug: string }) => {
     const { name, slug } = tag;

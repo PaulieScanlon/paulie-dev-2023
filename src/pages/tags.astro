@@ -2,13 +2,12 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 
-import { formatSlug } from '../utils/format-slug';
-
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-
 import SearchTags from '../components/search-tags';
+
+import { createTagsCollection } from '../utils/create-tags-collection';
 
 const articles = await getCollection('articles');
 const demos = await getCollection('demos');
@@ -19,26 +18,7 @@ const ghosts = await getCollection('ghosts');
 
 const collections = [...articles, ...demos, ...opensource, ...posts, ...streams, ...ghosts];
 
-const tags = collections
-  .map((collection) => {
-    const tags = collection.data?.tags || [];
-
-    return tags
-      .map((tag) => {
-        const slug = formatSlug(tag) || '';
-        return {
-          name: tag || '',
-          slug,
-        };
-      })
-      .flat();
-  })
-  .flat()
-  .filter((item, index, self) => {
-    const { name } = item;
-    return name && index === self.findIndex((obj) => obj.name === name);
-  })
-  .sort((a, b) => a.name.localeCompare(b.name));
+const tags = createTagsCollection(collections);
 ---
 
 <Main title='Tags' description='Tags used on paulie.dev' slug='/tags/'>
