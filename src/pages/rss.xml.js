@@ -8,8 +8,9 @@ export const GET = async (context) => {
   const opensource = await getCollection('opensource');
   const posts = await getCollection('posts');
   const streams = await getCollection('streams');
+  const ghosts = await getCollection('ghosts');
 
-  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
+  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams, ...ghosts];
 
   return rss({
     title: 'paulie.dev',
