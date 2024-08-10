@@ -5,7 +5,7 @@ import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 
-import SearchTags from '../components/search-tags';
+// import SearchTags from '../components/search-tags';
 
 const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
 
@@ -18,7 +18,7 @@ const { tags } = await content.json();
     <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${tags.length}`}</span>
   </strong>
   <h1 class='mb-0'>Tags Search</h1>
-  <SearchTags tags={tags || []} />
+  <!-- <SearchTags tags={tags || []} /> -->
   <Aside>
     <ProfileCard />
   </Aside>
