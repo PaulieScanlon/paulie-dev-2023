@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
   const { tags, collections } = await content.json();
 
-  if (!tags) return;
+  if (!tags) return [];
 
   return tags.map((tag: { name: string; slug: string }) => {
     const { name, slug } = tag;
