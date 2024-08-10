@@ -1,3 +1,5 @@
+import { formatSlug } from '../utils/format-slug';
+
 import { getCollection } from 'astro:content';
 
 export const GET = async ({ params, request }) => {
@@ -6,8 +8,9 @@ export const GET = async ({ params, request }) => {
   const opensource = await getCollection('opensource');
   const posts = await getCollection('posts');
   const streams = await getCollection('streams');
+  const ghosts = await getCollection('ghosts');
 
-  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams];
+  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams, ...ghosts];
 
   const search = collections
     .filter((item) => item.data.draft !== true)
@@ -26,5 +29,27 @@ export const GET = async ({ params, request }) => {
     })
     .sort((a, b) => b.date - a.date);
 
-  return new Response(JSON.stringify({ articles, demos, opensource, posts, streams, collections, search }));
+  const tags = collections
+    .map((collection) => {
+      const {
+        data: { tags },
+      } = collection;
+
+      return tags
+        .map((tag) => {
+          return {
+            name: tag,
+            slug: formatSlug(tag),
+          };
+        })
+        .flat();
+    })
+    .flat()
+    .filter((item, index, self) => {
+      const { name } = item;
+      return index === self.findIndex((obj) => obj.name === name);
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return new Response(JSON.stringify({ collections, search, tags }));
 };

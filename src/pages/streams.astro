@@ -1,15 +1,15 @@
 ---
 export const prerender = true;
 
+import { getCollection } from 'astro:content';
+
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 
 import CollectionsList from '../components/collections-list.astro';
 
-const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
-
-const { streams } = await content.json();
+const streams = await getCollection('streams');
 ---
 
 <Main title='Streams' description="I don't like being on camera, but I'll do it if I have to" slug='/streams/'>

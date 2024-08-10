@@ -1,12 +1,15 @@
 ---
 export const prerender = true;
 
+import { getCollection } from 'astro:content';
+
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 
 import CollectionsList from '../components/collections-list.astro';
-import ghosts from '../content/ghosts/ghost-content.json';
+
+const ghosts = await getCollection('ghosts');
 ---
 
 <Main title='Ghosts' description="Articles I've written for clients... and the World will never know" slug='/ghosts/'>

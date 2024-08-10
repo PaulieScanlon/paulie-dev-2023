@@ -1,5 +1,4 @@
 import { Slot, component$, useSignal, $, useOnDocument } from '@builder.io/qwik';
-import ghosts from '../content/ghosts/ghost-content.json';
 
 import Logo from '../components/logo';
 import NavLink from '../components/nav-link';
@@ -20,19 +19,15 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
   const isModalOpen = useSignal(false);
   const isNavOpen = useSignal(false);
 
-  const newItems = [
-    ...search,
-    ...ghosts.map((item) => {
-      const {
-        data: { date, base },
-      } = item;
+  const newItems = search
+    .map((item) => {
+      const { date, base } = item;
 
       return {
         base: base,
         date: new Date(date),
       };
-    }),
-  ]
+    })
     .filter((item) => {
       const { date } = item;
       if (isNewContent(date)) {

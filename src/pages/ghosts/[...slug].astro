@@ -1,0 +1,68 @@
+---
+export const prerender = true;
+
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+import Main from '../../layouts/main.astro';
+import Aside from '../../components/aside.astro';
+import CtaExternal from '../../components/cta-external.astro';
+import TagsList from '../../components/tags-list.astro';
+import ProfileCard from '../../components/profile-card.astro';
+import { formatDate } from '../../utils/format-date';
+import { createExcerpt } from '../../utils/create-excerpt';
+
+export async function getStaticPaths() {
+  const ghosts = await getCollection('ghosts');
+
+  return ghosts.map((ghost) => {
+    return {
+      params: {
+        slug: ghost.slug,
+      },
+      props: {
+        ghost,
+      },
+    };
+  });
+}
+
+const {
+  ghost,
+  ghost: {
+    slug,
+    data: { title, author, logo, publication, url, tags, date },
+  },
+} = Astro.props;
+
+const excerpt = `${createExcerpt(ghost.body).substring(0, 70)}...`;
+
+const { Content } = await ghost.render();
+---
+
+<Main title={title} description={excerpt} slug={`/ghosts/${slug}/`}>
+  <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
+    <div class='flex flex-col sm:flex-row gap-2 items-start sm:items-center'>
+      <div class='flex items-center gap-2'>
+        <Image width={24} height={24} alt={publication} src={logo} class='m-0' />
+        <a class='text-xs text-brand-secondary nounderline' href={url} target='_blank' rel='noopener'>
+          {publication}
+        </a>
+      </div>
+      <span class='hidden sm:inline'>&bull;</span>
+      <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+    </div>
+    <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
+  </div>
+  <h1>{title}</h1>
+  <TagsList tags={tags} link={true} />
+  <div class='relative'>
+    <div class='absolute w-full h-full bg-gradient-to-t from-brand-background to-transparent'></div>
+    <Content />
+  </div>
+  <CtaExternal href={url} className='mt-12'>{`Read on ${publication}`}</CtaExternal>
+
+  <Aside>
+    <ProfileCard />
+  </Aside>
+</Main>

@@ -1,0 +1,18 @@
+---
+base: ghosts
+title: Building Slack notifications to monitor pg_dump and restore workflows
+date: 2024-08-01
+tags: [Slack, PostgreSQL, Neon, GitHub Actions]
+url: https://neon.tech/blog/building-slack-notifications-to-monitor-pg_dump-and-restore-workflows
+publication: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+In a [previous blog post](https://neon.tech/blog/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon), we showed you how to create a Neon Twin using a GitHub Action that automatically runs a pg_dump of your RDS production database and restores it to Neon on a recurring nightly schedule.
+
+In this blog post, we’ll guide you through setting up a Slack Webhook to send notifications to a public Slack channel. This will inform your team about the latest pg_dump and restore activities.
+
+By using Slack instead of relying on GitHub email notifications, you can avoid the need to add every developer who needs this information to the GitHub Repository where the Action runs.
+
+We’ll also cover how to surface more detailed information about the dump and restore including the database name, size how long the job took to complete, and how to handle failures.

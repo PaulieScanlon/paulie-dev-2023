@@ -1,14 +1,14 @@
 ---
 export const prerender = true;
 
+import { getCollection } from 'astro:content';
+
 import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 
-const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
-
-const { demos } = await content.json();
+const demos = await getCollection('demos');
 ---
 
 <Main title='Demos' description='Product demos and marketing proof of concepts' slug='/demos/'>
