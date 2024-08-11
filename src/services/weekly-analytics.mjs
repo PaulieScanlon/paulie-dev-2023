@@ -3,6 +3,34 @@ dotenv.config();
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
 
 const init = async () => {
+  const reportLimit = 10;
+  const HIGHER = '↑';
+  const LOWER = '↓';
+  const SAME = '-';
+  const NEW = '☆';
+
+  const formatReport = (rows) => {
+    return rows.map((row) => {
+      const { dimensionValues, metricValues } = row;
+
+      return {
+        url: `https://${dimensionValues[0].value}`,
+        title: dimensionValues[1].value.split('|')[1].trim(),
+        // title: dimensionValues[1].value,
+        count: metricValues[0].value,
+      };
+    });
+  };
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleString('en-US', {
+      day: 'numeric',
+      month: 'long',
+      weekday: 'long',
+      year: 'numeric',
+    });
+  };
+
   try {
     // Get data from Google Analytics
     const credentials = JSON.parse(
@@ -13,7 +41,7 @@ const init = async () => {
       credentials,
     });
 
-    const [response] = await analyticsDataClient.runReport({
+    const [thisWeek] = await analyticsDataClient.runReport({
       property: `properties/${process.env.GA4_PROPERTY_ID}`,
       dateRanges: [
         {
@@ -31,21 +59,92 @@ const init = async () => {
       ],
       metrics: [
         {
-          name: 'activeUsers',
+          name: 'totalUsers',
         },
       ],
-      limit: 10,
+      limit: reportLimit,
       metricAggregations: ['MAXIMUM'],
     });
 
-    // Create the report string
-    const report = response.rows
-      .map((row, index) => {
-        const { dimensionValues, metricValues } = row;
+    const [lastWeek] = await analyticsDataClient.runReport({
+      property: `properties/${process.env.GA4_PROPERTY_ID}`,
+      dateRanges: [
+        {
+          startDate: '14daysAgo',
+          endDate: '7daysAgo',
+        },
+      ],
+      dimensions: [
+        {
+          name: 'fullPageUrl',
+        },
+        {
+          name: 'pageTitle',
+        },
+      ],
+      metrics: [
+        {
+          name: 'totalUsers',
+        },
+      ],
+      limit: reportLimit,
+      metricAggregations: ['MAXIMUM'],
+    });
 
-        return `${index + 1}. <https://${dimensionValues[0].value}|${dimensionValues[1].value}> | *x${
-          metricValues[0].value
-        }*`;
+    // Format the results
+    const thisWeekResults = formatReport(thisWeek.rows);
+    const lastWeekResults = formatReport(lastWeek.rows);
+
+    const lastWeekMap = lastWeekResults.reduce((map, { url, count }) => {
+      map[url] = count;
+      return map;
+    }, {});
+
+    // Function to determine the status
+    const determineStatus = (count, lastWeekCount) => {
+      if (lastWeekCount === undefined) {
+        return NEW;
+      }
+      if (lastWeekCount === '0') {
+        return NEW;
+      }
+      const thisCount = parseInt(count, 10);
+      const previousCount = parseInt(lastWeekCount, 10);
+      if (thisCount > previousCount) {
+        return HIGHER;
+      } else if (thisCount < previousCount) {
+        return LOWER;
+      } else {
+        return SAME;
+      }
+    };
+
+    // Generate the report for this week
+    const report = thisWeekResults.map(({ url, title, count }, index) => {
+      const lastWeekCount = lastWeekMap[url];
+      const status = determineStatus(count, lastWeekCount);
+
+      return {
+        position: (index + 1).toString().padStart(2, '0'), // Format the position with leading zero if it's less than 10
+        url,
+        title,
+        count: { thisWeek: count, lastWeek: lastWeekCount || '0' }, // Ensure lastWeekCount is displayed as '0' if not found
+        status,
+      };
+    });
+
+    // Create the string
+    const slackString = report
+      .map((item, index) => {
+        const {
+          position,
+          url,
+          title,
+          count: { thisWeek, lastWeek },
+          status,
+        } = item;
+
+        return `${position}. ${status} <https://${url}|${title}> - *\`${`x${thisWeek}`}\`* / x${lastWeek}`;
       })
       .join('\\n')
       .replace(/\\n/g, '\n');
@@ -62,7 +161,7 @@ const init = async () => {
             type: 'header',
             text: {
               type: 'plain_text',
-              text: '📊 7 Days Google Analytics Report',
+              text: `📅 ${formatDate(new Date())}`,
               emoji: true,
             },
           },
@@ -72,8 +171,8 @@ const init = async () => {
           {
             type: 'section',
             text: {
-              type: 'plain_text',
-              text: 'Top ten page views.',
+              type: 'mrkdwn',
+              text: 'Top Ten Page Views for <https://www.paulie.dev|paulie.dev>',
             },
           },
           {
@@ -81,7 +180,7 @@ const init = async () => {
             elements: [
               {
                 type: 'mrkdwn',
-                text: report,
+                text: slackString,
               },
             ],
           },
