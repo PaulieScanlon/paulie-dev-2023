@@ -4,15 +4,10 @@ import { BetaAnalyticsDataClient } from '@google-analytics/data';
 
 const init = async () => {
   const reportLimit = 10;
-  const HIGHER = '🟢';
-  const LOWER = '🔻';
-  const SAME = '▫️';
-  const NEW = '⭐';
-
-  // const HIGHER = '↑';
-  // const LOWER = '↓';
-  // const SAME = '-';
-  // const NEW = '☆';
+  const HIGHER = '↑';
+  const LOWER = '↓';
+  const SAME = '-';
+  const NEW = '☆';
 
   const formatReport = (rows) => {
     return rows.map((row) => {
@@ -96,18 +91,9 @@ const init = async () => {
       metricAggregations: ['MAXIMUM'],
     });
 
-    // Calculate total count
-    const calculateTotalCount = (results) => {
-      return results.reduce((total, { count }) => total + parseInt(count, 10), 0);
-    };
-
     // Format the results
     const thisWeekResults = formatReport(thisWeek.rows);
     const lastWeekResults = formatReport(lastWeek.rows);
-
-    // console.log('thisWeek: ', JSON.stringify(thisWeekResults, null, 2));
-    // console.log('-----------------------------------------------------------------');
-    // console.log('lastWeek: ', JSON.stringify(lastWeekResults, null, 2));
 
     const lastWeekMap = lastWeekResults.reduce((map, { url, count }) => {
       map[url] = count;
@@ -135,11 +121,11 @@ const init = async () => {
 
     // Generate the report for this week
     const report = thisWeekResults.map(({ url, title, count }, index) => {
-      const lastWeekCount = lastWeekMap[url]; // No need for '|| '0' since we handle 'undefined' in the status function
+      const lastWeekCount = lastWeekMap[url];
       const status = determineStatus(count, lastWeekCount);
 
       return {
-        position: index + 1, // Array index as position value (1-based index)
+        position: (index + 1).toString().padStart(2, '0'), // Format the position with leading zero if it's less than 10
         url,
         title,
         count: { thisWeek: count, lastWeek: lastWeekCount || '0' }, // Ensure lastWeekCount is displayed as '0' if not found
@@ -147,12 +133,9 @@ const init = async () => {
       };
     });
 
-    // console.log('-----------------------------------------------------------------');
-    // console.log(report);
-
-    // Create the blocks
-    const slackBlocks = report
-      .flatMap((item, index) => {
+    // Create the string
+    const slackString = report
+      .map((item, index) => {
         const {
           position,
           url,
@@ -161,43 +144,10 @@ const init = async () => {
           status,
         } = item;
 
-        return [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: `*${position}. <${url}|${title}>*\n\n${status} *This week: \`${`x${thisWeek}`}\`* / Last week: \`${`x${lastWeek}`}\``,
-            },
-          },
-          {
-            type: 'divider',
-          },
-        ];
+        return `${position}. ${status} <https://${url}|${title}> - *\`${`x${thisWeek}`}\`* / x${lastWeek}`;
       })
-      .slice(0, -1);
-
-    const blocks = [
-      {
-        type: 'header',
-        text: {
-          type: 'plain_text',
-          text: `📅 ${formatDate(new Date())}`,
-          emoji: true,
-        },
-      },
-      {
-        type: 'divider',
-      },
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: 'Top Ten Page Views for <https://www.paulie.dev|paulie.dev>',
-        },
-      },
-    ];
-
-    blocks.push(...slackBlocks);
+      .join('\\n')
+      .replace(/\\n/g, '\n');
 
     // Post message to Slack
     fetch(process.env.SLACK_WEBHOOK_URL, {
@@ -205,7 +155,37 @@ const init = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ blocks }),
+      body: JSON.stringify({
+        blocks: [
+          {
+            type: 'header',
+            text: {
+              type: 'plain_text',
+              text: `📅 ${formatDate(new Date())}`,
+              emoji: true,
+            },
+          },
+          {
+            type: 'divider',
+          },
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: 'Top Ten Page Views for <https://www.paulie.dev|paulie.dev>',
+            },
+          },
+          {
+            type: 'context',
+            elements: [
+              {
+                type: 'mrkdwn',
+                text: slackString,
+              },
+            ],
+          },
+        ],
+      }),
     });
   } catch (error) {
     console.error(error);
