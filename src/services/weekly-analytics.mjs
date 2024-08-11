@@ -1,35 +1,25 @@
 import dotenv from 'dotenv';
-dotenv.config();
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
+dotenv.config();
+
+// Block Kit Builder
+// https://app.slack.com/block-kit-builder/T070FFUDNH3#%7B%22blocks%22:%5B%7B%22type%22:%22header%22,%22text%22:%7B%22type%22:%22plain_text%22,%22text%22:%22%F0%9F%93%8A%20Sunday,%20August%2011,%202024%22,%22emoji%22:true%7D%7D,%7B%22type%22:%22divider%22%7D,%7B%22type%22:%22section%22,%22text%22:%7B%22type%22:%22mrkdwn%22,%22text%22:%22Top%2010%20Page%20Views%20for%20%3Chttps://www.paulie.dev%7Cpaulie.dev%3E%22%7D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22mrkdwn%22,%22text%22:%2201.%20%E2%AC%87%EF%B8%8F%20%3Chttps://https://www.paulie.dev/%7CHome%3E%20-%20*%60x49%60*%20/%20x81%5Cn02.%20%E2%AC%87%EF%B8%8F%20%3Chttps://https://www.paulie.dev/posts/2023/11/a-set-of-sign-in-with-google-buttons-made-with-tailwind/%7CSign%20In%20With%20Google%20Buttons%3E%20-%20*%60x43%60*%20/%20x48%5Cn03.%20%E2%AC%86%EF%B8%8F%20%3Chttps://https://www.paulie.dev/posts/2020/08/react-hooks-and-matter-js/%7CReact%20hooks%20and%20matter.js%3E%20-%20*%60x21%60*%20/%20x20%5Cn04.%20%F0%9F%86%95%20%3Chttps://https://www.paulie.dev/posts/2024/06/how-to-use-google-application-json-credentials-in-environment-variables/%7CGoogle%20Application%20Credentials%3E%20-%20*%60x18%60*%20/%20x0%5Cn04.%20%E2%86%94%EF%B8%8F%20%3Chttps://https://www.paulie.dev/articles/%7CArticles%3E%20-%20*%60x10%60*%20/%20x10%22%7D%5D%7D%5D%7D
 
 const init = async () => {
+  // name and url for the site the report is for
+  const reportConfig = {
+    name: 'paulie.dev',
+    url: 'https://www.paulie.dev',
+  };
+
+  // The icons to use in the Slack message
+  const HIGHER = '⬆️';
+  const LOWER = '⬇️';
+  const SAME = '↔️';
+  const NEW = '🆕';
+
+  // Limit the report to this number of results
   const reportLimit = 10;
-  const HIGHER = '↑';
-  const LOWER = '↓';
-  const SAME = '-';
-  const NEW = '☆';
-
-  const formatReport = (rows) => {
-    return rows.map((row) => {
-      const { dimensionValues, metricValues } = row;
-
-      return {
-        url: `https://${dimensionValues[0].value}`,
-        title: dimensionValues[1].value.split('|')[1].trim(),
-        // title: dimensionValues[1].value,
-        count: metricValues[0].value,
-      };
-    });
-  };
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleString('en-US', {
-      day: 'numeric',
-      month: 'long',
-      weekday: 'long',
-      year: 'numeric',
-    });
-  };
 
   try {
     // Get data from Google Analytics
@@ -91,6 +81,20 @@ const init = async () => {
       metricAggregations: ['MAXIMUM'],
     });
 
+    // format the shape of the report
+    const formatReport = (rows) => {
+      return rows.map((row) => {
+        const { dimensionValues, metricValues } = row;
+
+        return {
+          url: `https://${dimensionValues[0].value}`,
+          title: dimensionValues[1].value.split('|')[1].trim(),
+          // title: dimensionValues[1].value,
+          count: metricValues[0].value,
+        };
+      });
+    };
+
     // Format the results
     const thisWeekResults = formatReport(thisWeek.rows);
     const lastWeekResults = formatReport(lastWeek.rows);
@@ -102,21 +106,22 @@ const init = async () => {
 
     // Function to determine the status
     const determineStatus = (count, lastWeekCount) => {
-      if (lastWeekCount === undefined) {
-        return NEW;
-      }
-      if (lastWeekCount === '0') {
-        return NEW;
-      }
       const thisCount = parseInt(count, 10);
       const previousCount = parseInt(lastWeekCount, 10);
+
+      if (lastWeekCount === undefined || lastWeekCount === '0') {
+        return NEW;
+      }
+
       if (thisCount > previousCount) {
         return HIGHER;
-      } else if (thisCount < previousCount) {
-        return LOWER;
-      } else {
-        return SAME;
       }
+
+      if (thisCount < previousCount) {
+        return LOWER;
+      }
+
+      return SAME;
     };
 
     // Generate the report for this week
@@ -144,10 +149,20 @@ const init = async () => {
           status,
         } = item;
 
-        return `${position}. ${status} <https://${url}|${title}> - *\`${`x${thisWeek}`}\`* / x${lastWeek}`;
+        return `${position}. ${status} <${url}|${title}> | *\`${`x${thisWeek}`}\`* / x${lastWeek}`;
       })
       .join('\\n')
       .replace(/\\n/g, '\n');
+
+    // util function to format date
+    const formatDate = (dateString) => {
+      return new Date(dateString).toLocaleString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        weekday: 'long',
+        year: 'numeric',
+      });
+    };
 
     // Post message to Slack
     fetch(process.env.SLACK_WEBHOOK_URL, {
@@ -161,7 +176,7 @@ const init = async () => {
             type: 'header',
             text: {
               type: 'plain_text',
-              text: `📅 ${formatDate(new Date())}`,
+              text: `📊 ${formatDate(new Date())}`,
               emoji: true,
             },
           },
@@ -172,7 +187,7 @@ const init = async () => {
             type: 'section',
             text: {
               type: 'mrkdwn',
-              text: 'Top Ten Page Views for <https://www.paulie.dev|paulie.dev>',
+              text: `Top ${reportLimit} Page Views for <${reportConfig.url}|${reportConfig.name}>`,
             },
           },
           {
