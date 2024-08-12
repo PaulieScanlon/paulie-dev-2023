@@ -1,5 +1,6 @@
 ---
 import Layout from './layout';
+import { search } from '../utils/all-collections';
 
 import '@fontsource/inconsolata/300.css';
 import '@fontsource/inconsolata/400.css';
@@ -25,10 +26,6 @@ const ogImage = image ? image : `${siteUrl}${defaultImage}`;
 const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
-
-const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
-
-const { search } = await content.json();
 ---
 
 <!-- scroll-pt is for the jumplink headings offset -->

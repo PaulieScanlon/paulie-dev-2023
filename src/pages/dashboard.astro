@@ -32,12 +32,7 @@ import groupBySlug from '../utils/group-by-slug';
 import groupByReaction from '../utils/group-by-reaction';
 import groupByReferrer from '../utils/group-by-referrer';
 import isNewContent from '../utils/is-new-content';
-
-const content = await fetch(`${import.meta.env.SITE}/all-content.json`);
-
-const { collections } = await content.json();
-
-const mergedCollections = [...collections];
+import { collections } from '../utils/all-collections';
 
 let analyticsData = null;
 let reactionsData = null;
@@ -79,13 +74,13 @@ try {
           <section>
             <h2 class='m-0 uppercase'>Totals by Year and Month</h2>
             <p class='mt-0 mb-4 text-slate-300'>All content</p>
-            <LineChartYears data={groupByYear(mergedCollections)} />
+            <LineChartYears data={groupByYear(collections)} />
           </section>
 
           <section>
             <h2 class='m-0 uppercase'>Totals by Year and Day</h2>
             <p class='mt-0 mb-4 text-slate-300'>All content</p>
-            <BarChartDays data={groupByDay(mergedCollections)} />
+            <BarChartDays data={groupByDay(collections)} />
           </section>
 
           <div class='grid sm:gap-x-8 sm:grid-cols-2'>
@@ -99,8 +94,8 @@ try {
               <h2 class='m-0 uppercase'>Totals by Tag</h2>
               <p class='mt-0 mb-4 text-slate-300'>Recent tags</p>
               <DonutChartTags
-                data={groupByTag(mergedCollections.filter(({ data: { date } }) => isNewContent(date)))}
-                dataLength={groupByTag(mergedCollections).length}
+                data={groupByTag(collections.filter(({ data: { date } }) => isNewContent(date)))}
+                dataLength={groupByTag(collections).length}
               />
             </section>
             <PoweredByMdx period={period} className='sm:order-4' />
@@ -109,7 +104,7 @@ try {
           <section>
             <h2 class='m-0 uppercase'>Totals by publisher</h2>
             <p class='mt-0 mb-4 text-slate-300'>All publishers</p>
-            <ListExternalPublishers data={groupByPublication(mergedCollections)} />
+            <ListExternalPublishers data={groupByPublication(collections)} />
           </section>
 
           <section>

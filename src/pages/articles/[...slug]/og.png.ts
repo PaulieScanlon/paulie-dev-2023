@@ -1,11 +1,12 @@
 export const prerender = true;
 
-import { getCollection } from 'astro:content';
 import { ImageResponse, html } from 'og-img';
 import fs from 'fs';
 import path from 'path';
 
 import { formatDate } from '../../../utils/format-date';
+
+import { articles } from '../../../utils/all-collections';
 
 export async function GET({ props }) {
   const {
@@ -59,8 +60,6 @@ export async function GET({ props }) {
 }
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles');
-
   return articles.map((article) => {
     return {
       params: {

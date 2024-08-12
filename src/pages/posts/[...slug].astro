@@ -1,8 +1,6 @@
 ---
 export const prerender = true;
 
-import { getCollection } from 'astro:content';
-
 import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
@@ -13,9 +11,9 @@ import Reactions from '../../components/reactions';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('posts');
+import { posts } from '../../utils/all-collections';
 
+export async function getStaticPaths() {
   return posts.map((post) => {
     return {
       params: {
