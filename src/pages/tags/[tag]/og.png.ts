@@ -1,10 +1,10 @@
 export const prerender = true;
 
-import { getCollection } from 'astro:content';
 import { ImageResponse, html } from 'og-img';
 import fs from 'fs';
 import path from 'path';
 
+import { collections } from '../../../utils/all-collections';
 import { createTagsCollection } from '../../../utils/create-tags-collection';
 
 export async function GET({ props }) {
@@ -66,15 +66,6 @@ export async function GET({ props }) {
 }
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles');
-  const demos = await getCollection('demos');
-  const opensource = await getCollection('opensource');
-  const posts = await getCollection('posts');
-  const streams = await getCollection('streams');
-  const ghosts = await getCollection('ghosts');
-
-  const collections = [...articles, ...demos, ...opensource, ...posts, ...streams, ...ghosts];
-
   const tags = createTagsCollection(collections);
 
   return tags.map((tag: { name: string; slug: string }) => {

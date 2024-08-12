@@ -1,8 +1,6 @@
 ---
 export const prerender = true;
 
-import { getCollection } from 'astro:content';
-
 import Main from '../../layouts/main.astro';
 import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
@@ -10,9 +8,9 @@ import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
-export async function getStaticPaths() {
-  const streams = await getCollection('streams');
+import { streams } from '../../utils/all-collections';
 
+export async function getStaticPaths() {
   return streams.map((stream) => {
     return {
       params: {

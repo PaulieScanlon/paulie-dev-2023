@@ -2,7 +2,6 @@
 export const prerender = true;
 
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
@@ -18,9 +17,9 @@ import Reactions from '../../components/reactions';
 import ProfileCard from '../../components/profile-card.astro';
 import AudioFeedEmbed from '../../components/audio-feed-embed.astro';
 
-export async function getStaticPaths() {
-  const articles = await getCollection('articles');
+import { articles } from '../../utils/all-collections';
 
+export async function getStaticPaths() {
   return articles.map((article) => {
     return {
       params: {

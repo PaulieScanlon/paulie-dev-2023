@@ -2,7 +2,6 @@
 export const prerender = true;
 
 import { sql } from '../neon';
-import { getCollection } from 'astro:content';
 
 import Main from '../layouts/main.astro';
 import CollectionsList from '../components/collections-list.astro';
@@ -13,7 +12,7 @@ import PoweredByNeon from '../components/powered-by-neon.astro';
 
 import groupByReaction from '../utils/group-by-reaction';
 
-const posts = await getCollection('posts');
+import { posts } from '../utils/all-collections';
 
 const period = 30;
 
