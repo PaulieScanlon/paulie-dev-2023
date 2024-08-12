@@ -9,10 +9,10 @@ const reportConfig = {
 };
 
 // The icons to use in the Slack message
-const HIGHER = '⬆️';
-const LOWER = '⬇️';
-const SAME = '↔️';
-const NEW = '🆕';
+const HIGHER = 'up-triangle.png';
+const LOWER = 'down-triangle.png';
+const SAME = 'same-slash-1.png';
+const NEW = 'new-plus-2.png';
 
 // Limit the report to this number of results
 const reportLimit = 10;
@@ -148,20 +148,69 @@ const init = async () => {
     });
 
     // Create the string
-    const slackString = report
-      .map((item, index) => {
-        const {
-          position,
-          url,
-          title,
-          count: { thisWeek, lastWeek },
-          status,
-        } = item;
+    // const slackString = report
+    //   .map((item, index) => {
+    //     const {
+    //       position,
+    //       url,
+    //       title,
+    //       count: { thisWeek, lastWeek },
+    //       status,
+    //     } = item;
 
-        return `${position}. ${status} <${url}|${title}> | *\`${`x${thisWeek}`}\`* / x${lastWeek}`;
-      })
-      .join('\\n')
-      .replace(/\\n/g, '\n');
+    //     return `${position}. ${status} <${url}|${title}> | *\`${`x${thisWeek}`}\`* / x${lastWeek}`;
+    //   })
+    //   .join('\\n')
+    //   .replace(/\\n/g, '\n');
+
+    // Create the list
+    const slackList = report.map((item, index) => {
+      const {
+        position,
+        url,
+        title,
+        count: { thisWeek, lastWeek },
+        status,
+      } = item;
+
+      return {
+        type: 'context',
+        elements: [
+          {
+            type: 'image',
+            image_url: `https://www.paulie.dev/images/${status}`,
+            alt_text: 'icon',
+          },
+          {
+            type: 'mrkdwn',
+            text: `${position}.  <${url}|${title}> | *\`${`x${thisWeek}`}\`* / x${lastWeek}`,
+          },
+        ],
+      };
+    });
+
+    const blocks = [
+      {
+        type: 'header',
+        text: {
+          type: 'plain_text',
+          text: `📊 ${formatDate(new Date())}`,
+          emoji: true,
+        },
+      },
+      {
+        type: 'divider',
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: `Top ${reportLimit} Page Views for <${reportConfig.url}|${reportConfig.name}>`,
+        },
+      },
+    ];
+
+    blocks.push(...slackList);
 
     // Post message to Slack
     fetch(process.env.SLACK_WEBHOOK_URL, {
@@ -170,35 +219,7 @@ const init = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        blocks: [
-          {
-            type: 'header',
-            text: {
-              type: 'plain_text',
-              text: `📊 ${formatDate(new Date())}`,
-              emoji: true,
-            },
-          },
-          {
-            type: 'divider',
-          },
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: `Top ${reportLimit} Page Views for <${reportConfig.url}|${reportConfig.name}>`,
-            },
-          },
-          {
-            type: 'context',
-            elements: [
-              {
-                type: 'mrkdwn',
-                text: slackString,
-              },
-            ],
-          },
-        ],
+        blocks,
       }),
     });
   } catch (error) {
@@ -209,6 +230,4 @@ const init = async () => {
 init();
 
 // Block Kit Builder
-// https://app.slack.com/block-kit-builder/T070FFUDNH3#%7B%22blocks%22:%5B%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/down-chevron.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2201.%20%3Chttps://https://www.paulie.dev/%7CHome%3E%20-%20*%60x49%60*%20/%20x81%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/up-chevron.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2202.%20%3Chttps://www.paulie.dev/posts/2023/11/a-set-of-sign-in-with-google-buttons-made-with-tailwind/%7CSign%20In%20With%20Google%20Buttons%3E%20-%20*%60x48%60*%20/%20x43%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://api.slack.com/img/blocks/bkb_template_images/notificationsWarningIcon.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2203.%20%3Chttps://www.paulie.dev/posts/2020/08/react-hooks-and-matter-js/%7CReact%20hooks%20and%20matter.js%3E%20-%20*%60x18%60*%20/%20x0%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://api.slack.com/img/blocks/bkb_template_images/notificationsWarningIcon.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2204.%20%3Chttps://www.paulie.dev/articles/%7CArticles%3E%20-%20*%60x15%60*%20/%20x15%22%7D%5D%7D%5D%7D
-
-// https://app.slack.com/block-kit-builder/T070FFUDNH3#%7B%22blocks%22:%5B%7B%22type%22:%22header%22,%22text%22:%7B%22type%22:%22plain_text%22,%22text%22:%22%F0%9F%93%8A%20Sunday,%20August%2011,%202024%22,%22emoji%22:true%7D%7D,%7B%22type%22:%22divider%22%7D,%7B%22type%22:%22section%22,%22text%22:%7B%22type%22:%22mrkdwn%22,%22text%22:%22Top%2010%20Page%20Views%20for%20%3Chttps://www.paulie.dev%7Cpaulie.dev%3E%22%7D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22mrkdwn%22,%22text%22:%2201.%20%E2%AC%87%EF%B8%8F%20%3Chttps://https://www.paulie.dev/%7CHome%3E%20-%20*%60x49%60*%20/%20x81%5Cn02.%20%E2%AC%87%EF%B8%8F%20%3Chttps://https://www.paulie.dev/posts/2023/11/a-set-of-sign-in-with-google-buttons-made-with-tailwind/%7CSign%20In%20With%20Google%20Buttons%3E%20-%20*%60x43%60*%20/%20x48%5Cn03.%20%E2%AC%86%EF%B8%8F%20%3Chttps://https://www.paulie.dev/posts/2020/08/react-hooks-and-matter-js/%7CReact%20hooks%20and%20matter.js%3E%20-%20*%60x21%60*%20/%20x20%5Cn04.%20%F0%9F%86%95%20%3Chttps://https://www.paulie.dev/posts/2024/06/how-to-use-google-application-json-credentials-in-environment-variables/%7CGoogle%20Application%20Credentials%3E%20-%20*%60x18%60*%20/%20x0%5Cn04.%20%E2%86%94%EF%B8%8F%20%3Chttps://https://www.paulie.dev/articles/%7CArticles%3E%20-%20*%60x10%60*%20/%20x10%22%7D%5D%7D%5D%7D
+// https://app.slack.com/block-kit-builder/T070FFUDNH3#%7B%22blocks%22:%5B%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/down-triangle.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2201.%20%3Chttps://https://www.paulie.dev/%7CHome%3E%20-%20*%60x49%60*%20/%20x81%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/up-triangle.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2202.%20%3Chttps://www.paulie.dev/posts/2023/11/a-set-of-sign-in-with-google-buttons-made-with-tailwind/%7CSign%20In%20With%20Google%20Buttons%3E%20-%20*%60x48%60*%20/%20x43%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/new-plus-2.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2203.%20%3Chttps://www.paulie.dev/posts/2020/08/react-hooks-and-matter-js/%7CReact%20hooks%20and%20matter.js%3E%20-%20*%60x18%60*%20/%20x0%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/same-slash-1.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2204.%20%3Chttps://www.paulie.dev/articles/%7CArticles%3E%20-%20*%60x15%60*%20/%20x15%22%7D%5D%7D%5D%7D
