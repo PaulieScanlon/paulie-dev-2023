@@ -1,0 +1,14 @@
+---
+base: ghosts
+title: 'Neon Twin: How to deploy a change tested in Neon to prod in RDS'
+date: 2024-08-15
+tags: [PostgreSQL, Neon, GitHub Actions]
+url: https://neon.tech/blog/neon-twin-deploy-workflow
+publication: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+In previous articles, we discussed the [advantages of using Neon as a development database](https://neon.tech/blog/development-environments-for-aws-rds-using-neon-postgres) while keeping your production workloads on AWS RDS. We covered [how to set up nightly dump/restore jobs](https://neon.tech/blog/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon) using GitHub Actions to create a synchronized Neon Twin of your production database and [how to implement Slack Webhooks](https://neon.tech/blog/building-slack-notifications-to-monitor-pg_dump-and-restore-workflows%5C) for real-time notifications when the synchronization is complete.
+
+In this article, we’ll explore the reverse workflow: **how to migrate changes from your Neon Twin (your development environment) back to your AWS RDS production database**. We will automate this process through a GitHub Action that triggers when a pull request is merged.

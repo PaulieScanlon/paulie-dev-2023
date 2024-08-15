@@ -828,6 +828,13 @@ declare module 'astro:content' {
   collection: "ghosts";
   data: InferEntrySchema<"ghosts">
 } & { render(): Render[".mdx"] };
+"2024/08/neon-twin-deploy-workflow.mdx": {
+	id: "2024/08/neon-twin-deploy-workflow.mdx";
+  slug: "2024/08/neon-twin-deploy-workflow";
+  body: string;
+  collection: "ghosts";
+  data: InferEntrySchema<"ghosts">
+} & { render(): Render[".mdx"] };
 };
 "opensource": {
 "2020/04/mdx-embed.mdx": {
