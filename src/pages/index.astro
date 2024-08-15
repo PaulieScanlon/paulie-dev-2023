@@ -8,7 +8,7 @@ import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 import CtaInternal from '../components/cta-internal.astro';
 
-import { demos, articles, posts } from '../utils/all-collections';
+import { demos, articles, posts, ghosts } from '../utils/all-collections';
 ---
 
 <Main title='Home' description="Paul Scanlon's site" slug='/'>
@@ -36,15 +36,20 @@ import { demos, articles, posts } from '../utils/all-collections';
 
   <CtaInternal href='/independent-advocate/' classNames='mt-8 mb-24 justify-start'>Hire me!</CtaInternal>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Posts</h2>
-  <p>Latest Posts published here on my site.</p>
-  <CollectionsList collections={posts} slice={3} />
-  <CtaInternal href='/posts/'>{`See All ${posts.length} Posts`}</CtaInternal>
+  <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
+  <p>Latest ghost-written articles.</p>
+  <CollectionsList collections={ghosts} slice={3} />
+  <CtaInternal href='/ghosts/'>{`See All ${ghosts.length} Ghosts`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Articles</h2>
-  <p>Latest Articles written for external publishers.</p>
+  <p>Latest articles written for external publishers.</p>
   <CollectionsList collections={articles} slice={3} />
   <CtaInternal href='/articles/'>{`See All ${articles.length} Articles`}</CtaInternal>
+
+  <h2 class='mb-0 text-brand-salmon'>Latest Posts</h2>
+  <p>Latest posts published here on my site.</p>
+  <CollectionsList collections={posts} slice={3} />
+  <CtaInternal href='/posts/'>{`See All ${posts.length} Posts`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Demos</h2>
   <p>Product demonstration projects.</p>
