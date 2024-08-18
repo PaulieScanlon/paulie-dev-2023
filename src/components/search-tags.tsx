@@ -49,23 +49,23 @@ const SearchTags = component$<Props>(({ tags }) => {
   return (
     <div class='mt-8'>
       <SearchInput handleInput={handleInput} />
-      <ul class='flex flex-wrap items-baseline gap-4 list-none m-0 p-0 mt-8'>
-        {filtered.value.map((item) => {
-          const { name, slug, count } = item;
-          return (
-            <li class='relative m-0 p-0 rounded text-sm text-brand-salmon border border-brand-outline bg-brand-surface'>
-              <a
-                href={`/tags/${slug}`}
-                class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors'
-              >
-                <span class='text-inherit'>{`${name}`}</span>
-                <span class='absolute -top-2 -right-2 flex items-center justify-center text-[0.45rem] text-brand-text text-center font-bold rounded-full border border-brand-outline w-5 h-5 bg-brand-surface'>
-                  {`x${count}`}
-                </span>
-              </a>
-            </li>
-          );
-        })}
+      <ul class='items-baseline list-none m-0 p-0 mt-8 columns-1 sm:columns-2 md:columns-3'>
+        {filtered.value
+          .sort((a: tagProps, b: tagProps) => b.count - a.count)
+          .map((item) => {
+            const { name, slug, count } = item;
+            return (
+              <li class='m-0 mb-2 p-0 rounded text-sm text-brand-salmon border border-brand-outline bg-brand-surface'>
+                <a
+                  href={`/tags/${slug}`}
+                  class='group relative flex items-center justify-between no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors'
+                >
+                  <span class='text-inherit'>{`${name}`}</span>
+                  <span class='block shrink-0 text-xs text-right text-brand-muted group-hover:text-inherit duration-100 transition-colors'>{`x${count}`}</span>
+                </a>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
