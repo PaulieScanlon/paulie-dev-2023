@@ -1,29 +1,20 @@
 const groupBySlug = (array) => {
   const groupedData = array.reduce((acc, item) => {
-    const { slug } = item;
+    const { slug, title } = item;
 
-    const parts = slug.split('/').filter((item) => item !== '');
-
-    if (parts.length > 2) {
-      // only apply a title if it's not E.g /posts/ or /articles/
-
-      const title = parts.slice(-1)[0].split('-').join(' ');
-      const key = slug;
-
-      if (!acc[key]) {
-        acc[key] = {
-          title: title,
-          slug: slug,
-          total: 0,
-        };
-      }
-
-      acc[key].total++;
+    if (acc[slug]) {
+      acc[slug].total += 1;
+    } else {
+      acc[slug] = {
+        title: title,
+        slug: slug,
+        total: 0,
+      };
     }
     return acc;
   }, {});
 
-  return Object.keys(groupedData).map((key) => groupedData[key]);
+  return Object.values(groupedData);
 };
 
 export default groupBySlug;

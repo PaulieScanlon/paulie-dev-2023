@@ -154,11 +154,7 @@ try {
             <p class='mt-0 mb-4 text-slate-300'>Top Ten Post views</p>
             <ListPopular
               data={groupBySlug(analyticsData)
-                .filter((item) => {
-                  if (item.slug.includes('/posts/')) {
-                    return item;
-                  }
-                })
+                .filter((item) => /\/posts\/.+/.test(item.slug))
                 .sort((a, b) => b.total - a.total)
                 .slice(0, 10)}
             />
@@ -170,11 +166,7 @@ try {
             <p class='mt-0 mb-4 text-slate-300'>Top Ten Article views</p>
             <ListPopular
               data={groupBySlug(analyticsData)
-                .filter((item) => {
-                  if (item.slug.includes('/articles/')) {
-                    return item;
-                  }
-                })
+                .filter((item) => /\/articles\/.+/.test(item.slug))
                 .sort((a, b) => b.total - a.total)
                 .slice(0, 10)}
             />
