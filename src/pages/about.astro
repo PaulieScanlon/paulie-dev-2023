@@ -10,7 +10,9 @@ import { Vimeo, YouTube } from 'astro-embed';
 
 <Main title='About' description='A little bit more about me' slug='/about/'>
   <strong class='text-sm text-brand-primary'>About</strong>
-  <h1 class='mb-0'>More about me</h1>
+  <h1 id='about-me' class='mb-0'>
+    <a href='/about/#about-me'>More about me</a>
+  </h1>
   <p>Hey there! 👋</p>
   <p>
     I'm Paul and a long long time ago I was a Designer, but after a few years of pixel-pushing, I realized code is just
@@ -27,9 +29,18 @@ import { Vimeo, YouTube } from 'astro-embed';
     </a>. I started the company from my kitchen and grew it to a team of 10. From 2012 to 2016 I was hands-on
     designer/developer, and Technical Director / CTO.
   </p>
+
+  <h3 id='2014-showreel'>
+    <a href='/about/#2014-showreel'>2014 Showreel</a>
+  </h3>
+
+  <p>Here's the best bits from our 2014 Showreel.</p>
+
   <Vimeo id='109836047' />
 
-  <h2>Then</h2>
+  <h2 id='then'>
+    <a href='/about/#then'>Then</a>
+  </h2>
 
   <p>
     Back in 2005 after graduating Leeds Metropolitan University with 1st Class honours in MultiMedia technology I got my
@@ -96,7 +107,9 @@ import { Vimeo, YouTube } from 'astro-embed';
     into React application development.
   </p>
 
-  <h2>Now</h2>
+  <h2 id='now'>
+    <a href='/about/#now'>Now</a>
+  </h2>
 
   <p>
     For many years I contracted as a Component Library and Design System specialist, my love of Design transferred well

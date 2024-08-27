@@ -115,6 +115,11 @@ module.exports = {
               color: theme('colors.brand.text'),
               margin: '2rem 0',
               fontWeight: 900,
+              a: {
+                fontWeight: 900,
+                textDecoration: 'none',
+                color: theme('colors.brand.salmon'),
+              },
             },
             'h2, h3, h4, h5, h6': {
               color: theme('colors.brand.salmon'),
