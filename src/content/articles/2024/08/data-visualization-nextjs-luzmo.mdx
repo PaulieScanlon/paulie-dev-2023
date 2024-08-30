@@ -1,0 +1,20 @@
+---
+base: articles
+title: 'Using Luzmo for Data Visualization in Next.js: A Set-up Guide'
+date: 2024-08-28
+tags: [Next.js]
+url: https://www.luzmo.com/blog/data-visualization-nextjs-luzmo
+publication: Luzmo
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1721135334/paulie.dev/Logos/luzmo-logo_ya94yx.png
+---
+
+Building data visualizations from scratch can be both time-consuming and cumbersome, requiring significant effort to design and implement. Developing these capabilities in-house often involves complex coding, ongoing maintenance, and a deep understanding of data management and visualization best practices.
+
+Luzmo addresses these challenges by offering an analytics platform that integrates with your application to provide powerful data visualization and insights. It supports real-time data syncing, customizable dashboards with a drag-and-drop interface, and [AI-enhanced chart creation.](https://www.luzmo.com/product/luzmo-ai)
+
+With its API-first design and advanced query engine, Luzmo offers a flexible, scalable solution for turning data into actionable insights, making it an essential tool for modern digital environments.
+
+Whether you are using Next.js, Astro, or other app frameworks, you can create and [embed low-code Luzmo dashboards](https://developer.luzmo.com/guide/dashboard-embedding--embed-into-application?_gl=1*r26myc*_gcl_au*NzMxMzc0OTUxLjE3MTc0MzQ5ODY.*_ga*NTYzMzM0NjIwLjE3MTc0MzQ5ODY.*_ga_DNMC2VH2X3*MTcyNTAwMzk1Ny40My4xLjE3MjUwMDQwMzAuMC4wLjE0OTc3NjQzNzU.), or build custom charts through code using our new Flex SDK. But whichever approach you take, you’ll need to generate an access token server-side first.
+
+For any data product you’re building on top of Luzmo, this server-side token is the stepping stone to securely access and manage data. It ensures that only authorized requests are made and protects sensitive information. In this guide, we’ll explain how you can use [Next.js App Router](https://nextjs.org/docs/app) with [Luzmo’s Node.js SDK](https://github.com/luzmo-official/luzmo-sdk-nodejs) to generate a token for use with our client-side components.
