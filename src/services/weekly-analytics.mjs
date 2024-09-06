@@ -147,22 +147,6 @@ const init = async () => {
       };
     });
 
-    // Create the string
-    // const slackString = report
-    //   .map((item, index) => {
-    //     const {
-    //       position,
-    //       url,
-    //       title,
-    //       count: { thisWeek, lastWeek },
-    //       status,
-    //     } = item;
-
-    //     return `${position}. ${status} <${url}|${title}> | *\`${`x${thisWeek}`}\`* / x${lastWeek}`;
-    //   })
-    //   .join('\\n')
-    //   .replace(/\\n/g, '\n');
-
     // Create the list
     const slackList = report.map((item, index) => {
       const {
@@ -228,6 +212,3 @@ const init = async () => {
 };
 
 init();
-
-// Block Kit Builder
-// https://app.slack.com/block-kit-builder/T070FFUDNH3#%7B%22blocks%22:%5B%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/down-triangle.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2201.%20%3Chttps://https://www.paulie.dev/%7CHome%3E%20-%20*%60x49%60*%20/%20x81%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/up-triangle.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2202.%20%3Chttps://www.paulie.dev/posts/2023/11/a-set-of-sign-in-with-google-buttons-made-with-tailwind/%7CSign%20In%20With%20Google%20Buttons%3E%20-%20*%60x48%60*%20/%20x43%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/new-plus-2.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2203.%20%3Chttps://www.paulie.dev/posts/2020/08/react-hooks-and-matter-js/%7CReact%20hooks%20and%20matter.js%3E%20-%20*%60x18%60*%20/%20x0%22%7D%5D%7D,%7B%22type%22:%22context%22,%22elements%22:%5B%7B%22type%22:%22image%22,%22image_url%22:%22https://www.paulie.dev/images/same-slash-1.png%22,%22alt_text%22:%22notifications%20warning%20icon%22%7D,%7B%22type%22:%22mrkdwn%22,%22text%22:%2204.%20%3Chttps://www.paulie.dev/articles/%7CArticles%3E%20-%20*%60x15%60*%20/%20x15%22%7D%5D%7D%5D%7D
