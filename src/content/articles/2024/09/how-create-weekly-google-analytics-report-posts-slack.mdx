@@ -1,0 +1,18 @@
+---
+base: articles
+title: How To Create A Weekly Google Analytics Report That Posts To Slack
+date: 2024-09-09
+tags: [GitHub Actions, Google Analytics, Slack]
+url: https://www.smashingmagazine.com/2024/09/how-create-weekly-google-analytics-report-posts-slack/
+publication: Smashing Magazine
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1658077182/paulie.dev/Logos/smashing-magazine-logo_rhvh4j.png
+---
+
+Google Analytics is great, but not everyone in your organization will be granted access. In many places I’ve worked, it was on a kind of “need to know” basis.
+
+In this article, I’m gonna flip that on its head and show you how I wrote a [GitHub Action](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions) that queries Google Analytics, generates a top ten list of the most frequently viewed pages on [my site](https://www.paulie.dev/) from the last seven days and compares them to the previous seven days to tell me which pages have increased in views, which pages have decreased in views, which pages have stayed the same and which pages are new to the list.
+
+The report is then nicely formatted with icon indicators and posted to a public Slack channel every Friday at 10 AM.
+
+Not only would this surfaced data be useful for folks who might need it, but it also provides an easy way to copy and paste or screenshot the report and add it to a slide for the weekly company/department meeting.
