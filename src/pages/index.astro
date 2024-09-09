@@ -37,24 +37,24 @@ import { demos, articles, posts, ghosts } from '../utils/all-collections';
 
   <CtaInternal href='/independent-advocate/' classNames='mt-8 mb-24 justify-start'>Hire me!</CtaInternal>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
-  <p>Latest ghost-written articles.</p>
-  <CollectionsList collections={ghosts} slice={3} />
-  <CtaInternal href='/ghosts/'>{`See All ${ghosts.length} Ghosts`}</CtaInternal>
-
-  <h2 class='mb-0 text-brand-salmon'>Latest Articles</h2>
-  <p>Latest articles written for external publishers.</p>
-  <CollectionsList collections={articles} slice={3} />
+  <h2 class='mb-0 text-brand-salmon'>Latest Article</h2>
+  <p>Latest articles written for external publisher.</p>
+  <CollectionsList collections={articles} slice={1} />
   <CtaInternal href='/articles/'>{`See All ${articles.length} Articles`}</CtaInternal>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Posts</h2>
-  <p>Latest posts published here on my site.</p>
-  <CollectionsList collections={posts} slice={3} />
+  <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
+  <p>Latest ghost-written article.</p>
+  <CollectionsList collections={ghosts} slice={1} />
+  <CtaInternal href='/ghosts/'>{`See All ${ghosts.length} Ghosts`}</CtaInternal>
+
+  <h2 class='mb-0 text-brand-salmon'>Latest Post</h2>
+  <p>Latest post published here on my site.</p>
+  <CollectionsList collections={posts} slice={1} />
   <CtaInternal href='/posts/'>{`See All ${posts.length} Posts`}</CtaInternal>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Demos</h2>
-  <p>Product demonstration projects.</p>
-  <CollectionsList collections={demos} slice={3} />
+  <h2 class='mb-0 text-brand-salmon'>Latest Demo</h2>
+  <p>Product demonstration project.</p>
+  <CollectionsList collections={demos} slice={1} />
   <CtaInternal href='/demos/'>{`See All ${demos.length} Demos`}</CtaInternal>
 
   <Aside>
