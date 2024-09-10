@@ -4,6 +4,10 @@ const groupByPublication = (array) => {
 
     const key = publication;
 
+    if (!key) {
+      return acc;
+    }
+
     if (!acc[key]) {
       acc[key] = {
         publication: publication,
