@@ -8,7 +8,11 @@ import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 import CtaInternal from '../components/cta-internal.astro';
 
-import { demos, articles, posts, ghosts } from '../utils/all-collections';
+import ListExternalPublishers from '../components/list-external-publishers.astro';
+
+import groupByPublication from '../utils/group-by-publication';
+
+import { collections, demos, articles, posts, ghosts } from '../utils/all-collections';
 ---
 
 <Main title='Home' description="Paul Scanlon's site" slug='/'>
@@ -37,25 +41,30 @@ import { demos, articles, posts, ghosts } from '../utils/all-collections';
 
   <CtaInternal href='/independent-advocate/' classNames='mt-8 mb-24 justify-start'>Hire me!</CtaInternal>
 
+  <h2 class='m-0 uppercase'>Publishers</h2>
+  <p class='mt-0 mb-4 text-slate-300'>All the publications I’ve contributed to.</p>
+  <ListExternalPublishers data={groupByPublication(collections)} />
+  <CtaInternal href='/dashboard/'>See more statistics</CtaInternal>
+
   <h2 class='mb-0 text-brand-salmon'>Latest Article</h2>
   <p>Latest articles written for external publisher.</p>
   <CollectionsList collections={articles} slice={1} />
-  <CtaInternal href='/articles/'>{`See All ${articles.length} Articles`}</CtaInternal>
+  <CtaInternal href='/articles/'>{`See all ${articles.length} Articles`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
   <p>Latest ghost-written article.</p>
   <CollectionsList collections={ghosts} slice={1} />
-  <CtaInternal href='/ghosts/'>{`See All ${ghosts.length} Ghosts`}</CtaInternal>
+  <CtaInternal href='/ghosts/'>{`See all ${ghosts.length} Ghosts`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Post</h2>
   <p>Latest post published here on my site.</p>
   <CollectionsList collections={posts} slice={1} />
-  <CtaInternal href='/posts/'>{`See All ${posts.length} Posts`}</CtaInternal>
+  <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Demo</h2>
   <p>Product demonstration project.</p>
   <CollectionsList collections={demos} slice={1} />
-  <CtaInternal href='/demos/'>{`See All ${demos.length} Demos`}</CtaInternal>
+  <CtaInternal href='/demos/'>{`See all ${demos.length} Demos`}</CtaInternal>
 
   <Aside>
     <ProfileCard />
