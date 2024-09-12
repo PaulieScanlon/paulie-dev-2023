@@ -733,6 +733,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/09/how-build-custom-data-visualizations-luzmo-flex.mdx": {
+	id: "2024/09/how-build-custom-data-visualizations-luzmo-flex.mdx";
+  slug: "2024/09/how-build-custom-data-visualizations-luzmo-flex";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2024/09/how-create-weekly-google-analytics-report-posts-slack.mdx": {
 	id: "2024/09/how-create-weekly-google-analytics-report-posts-slack.mdx";
   slug: "2024/09/how-create-weekly-google-analytics-report-posts-slack";
