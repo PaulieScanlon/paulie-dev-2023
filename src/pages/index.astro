@@ -51,6 +51,11 @@ import { collections, demos, articles, posts, ghosts } from '../utils/all-collec
   <CollectionsList collections={articles} slice={1} />
   <CtaInternal href='/articles/'>{`See all ${articles.length} Articles`}</CtaInternal>
 
+  <h2 class='mb-0 text-brand-salmon'>Latest Demo</h2>
+  <p>Product demonstration project.</p>
+  <CollectionsList collections={demos} slice={1} />
+  <CtaInternal href='/demos/'>{`See all ${demos.length} Demos`}</CtaInternal>
+
   <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
   <p>Latest ghost-written article.</p>
   <CollectionsList collections={ghosts} slice={1} />
@@ -60,11 +65,6 @@ import { collections, demos, articles, posts, ghosts } from '../utils/all-collec
   <p>Latest post published here on my site.</p>
   <CollectionsList collections={posts} slice={1} />
   <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
-
-  <h2 class='mb-0 text-brand-salmon'>Latest Demo</h2>
-  <p>Product demonstration project.</p>
-  <CollectionsList collections={demos} slice={1} />
-  <CtaInternal href='/demos/'>{`See all ${demos.length} Demos`}</CtaInternal>
 
   <Aside>
     <ProfileCard />
