@@ -819,6 +819,13 @@ declare module 'astro:content' {
   collection: "demos";
   data: InferEntrySchema<"demos">
 } & { render(): Render[".mdx"] };
+"2024/09/dev-for-rds.mdx": {
+	id: "2024/09/dev-for-rds.mdx";
+  slug: "2024/09/dev-for-rds";
+  body: string;
+  collection: "demos";
+  data: InferEntrySchema<"demos">
+} & { render(): Render[".mdx"] };
 };
 "ghosts": {
 "2024/03/enterprise-design-systems.mdx": {
