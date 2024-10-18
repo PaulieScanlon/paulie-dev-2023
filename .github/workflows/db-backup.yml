@@ -14,9 +14,11 @@ jobs:
       id-token: write
 
     env:
+      BACKUP_ID: 'paulie.dev'
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       PG_VERSION: '16'
       AWS_REGION: 'us-east-1'
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       S3_BUCKET_URL: ${{ secrets.S3_BUCKET_URL }}
 
     steps:
@@ -34,12 +36,14 @@ jobs:
       - name: Run pg_dump
         run: |
           TIMESTAMP="${{ env.TIMESTAMP }}"
-          /usr/lib/postgresql/${{ env.PG_VERSION }}/bin/pg_dump ${{ env.DATABASE_URL}} | gzip > "${TIMESTAMP}.sql.gz"
+          FILENAME="${{ env.BACKUP_ID }}-${TIMESTAMP}.sql.gz"
+          /usr/lib/postgresql/${{ env.PG_VERSION }}/bin/pg_dump ${{ env.DATABASE_URL}} | gzip > "${FILENAME}"
+          echo "FILENAME=${FILENAME}" >> $GITHUB_ENV
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/paulie-dev-2023-github-action
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/paulie-dev-2023-github-action
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Empty Bucket
@@ -48,5 +52,5 @@ jobs:
 
       - name: Upload to Bucket
         run: |
-          TIMESTAMP="${{ env.TIMESTAMP }}"
-          aws s3 cp "${TIMESTAMP}.sql.gz" ${{ env.S3_BUCKET_URL }}
+          FILENAME="${{ env.FILENAME }}"
+          aws s3 cp "${FILENAME}" ${{ env.S3_BUCKET_URL }}
