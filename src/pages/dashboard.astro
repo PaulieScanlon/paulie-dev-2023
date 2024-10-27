@@ -113,13 +113,6 @@ try {
             <PoweredByNeon period={period} />
           </section>
 
-          <section>
-            <h2 class='m-0 uppercase'>Totals by referrer</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top Ten referrers</p>
-            <ListPopularReferrers data={groupByReferrer(analyticsData)} />
-            <PoweredByNeon period={period} />
-          </section>
-
           <div class='flex flex-col md:flex-row gap-24 md:gap-8 overflow-hidden'>
             <section class='w-full lg:w-1/2'>
               <div class='flex flex-col'>
@@ -140,6 +133,13 @@ try {
               <PoweredByNeon period={period} />
             </section>
           </div>
+
+          <section>
+            <h2 class='m-0 uppercase'>Totals by referrer</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Top Ten referrers</p>
+            <ListPopularReferrers data={groupByReferrer(analyticsData)} />
+            <PoweredByNeon period={period} />
+          </section>
 
           <section>
             <h2 class='m-0 uppercase'>Happiest Cities</h2>
