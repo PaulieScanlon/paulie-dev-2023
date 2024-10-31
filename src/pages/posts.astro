@@ -1,36 +1,12 @@
 ---
 export const prerender = true;
 
-import { sql } from '../neon';
-
 import Main from '../layouts/main.astro';
 import CollectionsList from '../components/collections-list.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
-import RadarChartReactions from '../components/radar-chart-reactions.astro';
-import PoweredByNeon from '../components/powered-by-neon.astro';
-
-import groupByReaction from '../utils/group-by-reaction';
 
 import { posts } from '../utils/all-collections';
-
-const period = 30;
-
-let reactionsData = null;
-
-try {
-  reactionsData = await sql(`
-    SELECT * 
-    FROM reactions
-    WHERE reaction <> 'wondering' AND reaction <> 'confused' AND date >= NOW() - INTERVAL '${period} days'
-    `);
-
-  if (!reactionsData.length) {
-    throw new Error('Bad request');
-  }
-} catch (error) {
-  console.error(error);
-}
 ---
 
 <Main title='Posts' description='Posts published on paulie.dev' slug='/posts/'>
@@ -46,14 +22,5 @@ try {
   <CollectionsList collections={posts} />
   <Aside>
     <ProfileCard />
-    <div>
-      <h6 class='mb-0 text-base text-center leading-6 font-semibold uppercase text-brand-secondary'>Post Reactions</h6>
-      <p class='mt-0 mb-4 text-slate-300 text-sm text-center'>
-        Reactions are mostly
-        <span class='italic'>{groupByReaction(reactionsData)[0].reaction}</span>
-      </p>
-      <RadarChartReactions data={groupByReaction(reactionsData)} classNames='bg-transparent' showLegend={false} />
-      <PoweredByNeon period={period} />
-    </div>
   </Aside>
 </Main>
