@@ -6,13 +6,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const response = await sql(`
-      SELECT flag, country, city, reaction, COUNT(reaction) AS total
-      FROM reactions
-      WHERE reaction LIKE 'happy' 
-        AND date >= NOW() - INTERVAL '${period} days'
+      SELECT date, title, slug, reaction, flag, country, city FROM reactions
+      WHERE date >= NOW() - INTERVAL '${period} days'
         AND flag IS NOT NULL
-      GROUP BY flag, country, city, reaction
-      ORDER BY total DESC
+      ORDER BY date DESC
       LIMIT 10;
   `);
 

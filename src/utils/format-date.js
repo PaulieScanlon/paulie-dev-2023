@@ -14,3 +14,16 @@ export const formatDate = (dateString, showTime = false) => {
 
   return `${dateStamp} ${showTime ? `@${timeStamp}` : ''}`;
 };
+
+export const formatDateNumber = (dateString, showTime = false) => {
+  const date = new Date(dateString);
+
+  const dateStamp = new Date(dateString).toLocaleString('en-US', {
+    timeZone: 'UTC',
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
+
+  return dateStamp;
+};

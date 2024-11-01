@@ -19,7 +19,7 @@ import RadarChartReactions from '../components/radar-chart-reactions.astro';
 import DonutChartTags from '../components/donut-chart-tags.astro';
 import PoweredByNeon from '../components/powered-by-neon.astro';
 import PoweredByMdx from '../components/powered-by-mdx.astro';
-import HappyAllCities from '../components/happy-all-cities';
+import LatestReactionByLocation from '../components/latest-reactions-by-location';
 import GithubActivity from '../components/github-activity';
 
 import groupByYear from '../utils/group-by-year';
@@ -142,9 +142,9 @@ try {
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Happiest Cities</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top ten happiest cities</p>
-            <HappyAllCities period={period} />
+            <h2 class='m-0 uppercase'>Latest Reactions</h2>
+            <p class='mt-0 mb-4 text-slate-300'>Recent reactions by location</p>
+            <LatestReactionByLocation period={period} />
             <PoweredByNeon period={period} />
           </section>
 
