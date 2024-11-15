@@ -24,7 +24,7 @@ To help customers sync data from their RDS production database to a "Neon Develo
 
 ### Problem
 
-The problem at Enterprise is, everything takes ages and change rarely happens. I know from my time at Cockroach that some migration deals would take a year or more to complete. So rather than try and take the bull by the horns, the Neon team came up with a new approach. Encourage Enterprise teams to adopt Neon for development and testing purposes. Once they see how good it is, they can have the conversations internally about migrating production from AWS RDS to Neon.
+The problem at Enterprise is, everything takes ages and change rarely happens. I know from my time at Cockroach that some migration deals would take a year or more to complete. So rather than try to win business by pitching a complete migration, the strategy was more subtle. Encourage Enterprise businesses to adopt Neon for development and testing then, once they see how good it is, they can, if they want, have internal conversations about migrating from AWS to Neon.
 
 However, after watching a number of customer interviews the same point came up over and over again. How do we "clone" production so that we can develop against real data and schemas? This was to be the key to this whole project and luckily for me, the solution involved something that i'd recently spent a fair amount of time investigating, GitHub Actions.
 
@@ -42,7 +42,7 @@ The Twin workflow is a simple GitHub Action that runs nightly and performs a pg_
 
 The Reverse Twin Workflow helps deal with changes made to a Neon Twin that need to be applied back to the production database.
 
-If you're unfamiliar with GitHub Actions, they can be a little daunting, so along with the guides, I created **Twin Thing**, an interactive app that allows you to configure how you want the Actions to run, plus allows folks to copy the code and add it to their codebase.
+If you're unfamiliar with GitHub Actions, they can be a little daunting, so along with the guides, I created **Twin Thing**, an interactive app that allows you to configure how you want the Actions to run, plus, provides a convenient way for folks to copy the code and add it to their own codebase.
 
 <AstroImage
   width='768'
@@ -57,7 +57,7 @@ To be honest, the insight here sounds a little negative but, Enterprise folks do
 
 ## The Idea
 
-The ideas is simple. Create a source of truth that can become home to a number of helpful resources to aid in the creation of a Neon Development Twin. The page is SEO'd and looks good enough for Neon folks to share with customers. It's a one stop shop for teams ready to give Neon a try.
+The ideas is simple. Create a source of truth that can become home to a number of helpful resources to aid in the creation of a Neon Development Twin. The page is SEO'd and looks good enough for Neon to share with customers. It's a one stop shop for teams ready to give Neon a try.
 
 ## Further Reading
 
