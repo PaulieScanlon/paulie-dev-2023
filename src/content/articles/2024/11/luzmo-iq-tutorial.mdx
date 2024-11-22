@@ -1,0 +1,24 @@
+---
+base: articles
+title: How to Build an AI Powered Analytics Search With Luzmo IQ
+date: 2024-11-21
+tags: [Astro, Google Analytics, AI]
+url: https://www.luzmo.com/blog/luzmo-iq-tutorial
+publication: Luzmo
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1721135334/paulie.dev/Logos/luzmo-logo_ya94yx.png
+---
+
+In this post, I’ll show you how I added Luzmo IQ to an Astro site and hooked it up to a Postgres database to capture analytics data about visitors to [my site](https://www.paulie.dev/).
+
+You can see all the code referenced in this blog post on the link below:
+
+- [https://github.com/luzmo-official/luzmo-iq-tutorial](https://github.com/luzmo-official/luzmo-iq-tutorial)
+
+I queried Luzmo IQ using the following prompt: “Create a chart of 'US' cities where my website visitors are located from the last 30 days.” Below is a screenshot of the chart it created for me!
+
+Later in the post, I'll explain how you can use Luzmo IQ to enable natural language querying in your application, but first, I'd like to talk a little about why you’d want to use AI.
+
+Let’s just back up a bit. I’m a developer, I know SQL and have carefully optimized my queries and hand crafted the visualizations seen on my [/dashboard](https://www.paulie.dev/dashboard), because I know “ahead of time” what data is available, and how I want to display it.
+
+However, not everyone who needs access to data is a developer.

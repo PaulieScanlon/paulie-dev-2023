@@ -761,6 +761,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2024/11/luzmo-iq-tutorial.mdx": {
+	id: "2024/11/luzmo-iq-tutorial.mdx";
+  slug: "2024/11/luzmo-iq-tutorial";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2024/11/migrating-schemas.mdx": {
 	id: "2024/11/migrating-schemas.mdx";
   slug: "2024/11/migrating-schemas";
