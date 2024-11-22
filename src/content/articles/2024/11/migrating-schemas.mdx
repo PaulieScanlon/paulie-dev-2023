@@ -1,0 +1,23 @@
+---
+base: articles
+title: Migrating Schemas Across Many Neon Projects Using DrizzleORMs
+date: 2024-11-22
+tags: [PostgreSQL, GitHub Actions, DrizzleORM]
+url: https://neon.tech/blog/migrating-schemas
+publication: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+A practical guide to managing multiple databases per tenant with the same schema using DrizzleORM and Neon
+
+In this blog post, we’ll explain how you can use a combination of [DrizzleORM](https://orm.drizzle.team/), [GitHub Actions](https://github.com/features/actions), the [Neon API](https://neon.tech/home[]), and a couple of custom template scripts to manage multiple databases using the same database schema.
+
+You can find all the code referenced in this blog post on this repo:
+
+[https://github.com/neondatabase-labs/neon-database-per-tenant-drizzle](https://github.com/neondatabase-labs/neon-database-per-tenant-drizzle)
+
+But first,
+
+What is Database Per Tenant?
+A database-per-tenant model is an [architectural approach](https://neon.tech/use-cases/database-per-tenant) in which each tenant (user, client, or project) has its own dedicated database instance.
