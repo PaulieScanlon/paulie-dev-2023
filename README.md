@@ -10,4 +10,4 @@
 
 - [https://paulie.dev/](https://paulie.dev/)
 - [@PaulieScanlon](https://twitter.com/PaulieScanlon)
-- [https://console.neon.tech/](https://console.neon.tech/)
+- [https://neon.tech/](https://neon.tech/)
