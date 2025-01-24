@@ -62,7 +62,7 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
 
   return (
     <>
-      <header class='fixed top-0 w-full height-[72px] backdrop-blur border-b border-b-brand-outline flex-none bg-brand-background lg:bg-transparent z-30'>
+      <header class='fixed top-0 w-full height-[72px] backdrop-filter backdrop-blur-lg border-b border-b-brand-outline flex-none bg-brand-background lg:bg-opacity-50 z-30'>
         <div class='max-w-8xl mx-auto'>
           <div class='py-4 mx-4 lg:px-8 lg:mx-0'>
             <div class='relative flex items-center gap-8'>
