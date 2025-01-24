@@ -151,10 +151,10 @@ const ticks = months.map((month, index) => {
               {total > 0 ? (
                 <text
                   x={x}
-                  y={y - 8}
+                  y={y - 6}
                   text-anchor='middle'
-                  font-size={10}
-                  class={`years-visuals-${years[index]} fill-brand-text font-semibold select-none`}
+                  font-size={8}
+                  class={`years-visuals-${years[index]} fill-brand-text select-none`}
                 >
                   {`x${total}`}
                 </text>
@@ -183,7 +183,7 @@ const ticks = months.map((month, index) => {
     }
   </svg>
 </div>
-<ul class='flex gap-2 list-none m-0 px-0 pt-4 text-sm'>
+<ul class='flex flex-wrap gap-2 list-none m-0 px-0 pt-4 text-sm'>
   {
     years.map((year: string, index: number) => {
       const total = properties[index].total;

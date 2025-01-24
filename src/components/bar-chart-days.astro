@@ -46,7 +46,7 @@ const totalByDayAndYearOrdered = dayOrder.reduce((result, day) => {
 
 const chartWidth = 600;
 const chartHeight = 300;
-const barWidth = 10;
+const barWidth = 8;
 const barGap = 3;
 const offsetY = 40;
 const paddingX = 30;
@@ -160,15 +160,15 @@ const ticks = dayOrder.map((day, index) => {
                     height={height}
                     fill='transparent'
                     class={`days-visuals-${years[index]} stroke-brand-${colors[index]} fill-brand-surface`}
-                    stroke-width={1.2}
+                    stroke-width={1}
                   />
                   {total > 0 ? (
                     <text
                       x={x + barWidth / 2}
-                      y={_y - 8}
+                      y={_y - 6}
                       text-anchor='middle'
-                      font-size={10}
-                      class={`days-visuals-${years[index]} fill-brand-text font-semibold select-none`}
+                      font-size={8}
+                      class={`days-visuals-${years[index]} fill-brand-text select-none`}
                     >
                       {`x${total}`}
                     </text>
@@ -200,7 +200,7 @@ const ticks = dayOrder.map((day, index) => {
     }
   </svg>
 </div>
-<ul class='flex gap-2 list-none m-0 px-0 pt-4 text-sm'>
+<ul class='flex flex-wrap gap-2 list-none m-0 px-0 pt-4 text-sm'>
   {
     years.map((year: string, index: number) => {
       return (
