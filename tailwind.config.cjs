@@ -86,7 +86,7 @@ module.exports = {
           fuchsia: '#7B1FA2',
           blood: '#fc5656',
           starfleet: '#0091f7',
-          electric: '#b900f7',
+          electric: '#c35fed',
           pink: '#ee3373',
           background: '#131127',
           outline: '#232140',
