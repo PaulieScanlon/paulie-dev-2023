@@ -898,6 +898,13 @@ declare module 'astro:content' {
   collection: "ghosts";
   data: InferEntrySchema<"ghosts">
 } & { render(): Render[".mdx"] };
+"2025/02/instant-branches-schema-only-or-with-data-the-choice-is-yours.mdx": {
+	id: "2025/02/instant-branches-schema-only-or-with-data-the-choice-is-yours.mdx";
+  slug: "2025/02/instant-branches-schema-only-or-with-data-the-choice-is-yours";
+  body: string;
+  collection: "ghosts";
+  data: InferEntrySchema<"ghosts">
+} & { render(): Render[".mdx"] };
 };
 "opensource": {
 "2020/04/mdx-embed.mdx": {
