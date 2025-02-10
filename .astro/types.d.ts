@@ -775,6 +775,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2025/02/automate-partial-data-dumps-with-postgresql-and-github-actions.mdx": {
+	id: "2025/02/automate-partial-data-dumps-with-postgresql-and-github-actions.mdx";
+  slug: "2025/02/automate-partial-data-dumps-with-postgresql-and-github-actions";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {

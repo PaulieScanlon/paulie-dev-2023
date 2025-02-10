@@ -1,0 +1,17 @@
+---
+base: articles
+title: Automate Partial Data Dumps with PostgreSQL and GitHub Actions
+date: 2025-02-10
+tags: [PostgreSQL, GitHub Actions, Neon]
+url: https://neon.tech/blog/automate-partial-data-dumps-with-postgresql-and-github-actions
+publication: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+Your production database is tried and tested and likely bulletproof. Merely mentioning migrating to a new provider would likely set off multiple alarms, so don't, use a Neon Twin instead.
+
+In this post, I'll show you how to create a partial copy of your production database so you and your team can start developing on Neon while leaving production where it is.
+
+## What is a Neon Twin?
+A Neon Twin is a copy of your production database, free from the cumbersome, hard-to-manage, and expensive workflows. With a Neon Twin, you can instantly spin up a new branch, develop features, or track down bugs, all from the safety of an isolated environment using production data. Any changes made to a Twin would be migrated back to your production database using your existing workflow or pipeline.
