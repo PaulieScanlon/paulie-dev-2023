@@ -19,8 +19,12 @@ import { collections, demos, articles, posts, ghosts } from '../utils/all-collec
   <strong class='text-sm text-brand-primary'>Home</strong>
   <h1 class='text-brand-text text-3xl sm:text-5xl mb-1'>Paul Scanlon</h1>
   <h2 class='text-brand-text font-semibold mt-1'>Technical Product Marketing Manager</h2>
-  <p class="mb-16">Developer for 20 years. I'm now Marketing at <a href="https://neon.tech/" target="_blank" rel="noopener">Neon</a>.</p>
+  <p class='mb-16'>Developer for 20 years. I'm now Marketing at <a href='https://neon.tech/' target='_blank' rel='noopener'>Neon</a>.</p>
 
+  <h2 class='mb-0 text-brand-salmon'>Latest Post</h2>
+  <p>Latest post published here on my site.</p>
+  <CollectionsList collections={posts} slice={3} />
+  <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
 
   <h2 class='m-0 uppercase'>Publishers</h2>
   <p class='mt-0 mb-4 text-slate-300'>All the publications I’ve contributed to.</p>
@@ -29,23 +33,13 @@ import { collections, demos, articles, posts, ghosts } from '../utils/all-collec
 
   <h2 class='mb-0 text-brand-salmon'>Latest Article</h2>
   <p>Latest articles written for external publisher.</p>
-  <CollectionsList collections={articles} slice={1} />
+  <CollectionsList collections={articles} slice={3} />
   <CtaInternal href='/articles/'>{`See all ${articles.length} Articles`}</CtaInternal>
-
-  <h2 class='mb-0 text-brand-salmon'>Latest Demo</h2>
-  <p>Product demonstration project.</p>
-  <CollectionsList collections={demos} slice={1} />
-  <CtaInternal href='/demos/'>{`See all ${demos.length} Demos`}</CtaInternal>
 
   <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
   <p>Latest ghost-written article.</p>
-  <CollectionsList collections={ghosts} slice={1} />
+  <CollectionsList collections={ghosts} slice={3} />
   <CtaInternal href='/ghosts/'>{`See all ${ghosts.length} Ghosts`}</CtaInternal>
-
-  <h2 class='mb-0 text-brand-salmon'>Latest Post</h2>
-  <p>Latest post published here on my site.</p>
-  <CollectionsList collections={posts} slice={1} />
-  <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
 
   <Aside>
     <ProfileCard />
