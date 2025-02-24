@@ -148,17 +148,24 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
               <hr class='border border-brand-outline my-8' />
               <ul class='flex flex-col gap-2 m-0 p-0 list-none'>
                 {socialLinks.map((item, index) => {
-                  const { url, title, icon, rel } = item;
+                  const { url, title, icon,stroke, rel } = item;
                   return (
                     <li key={index} class='m-0 p-0'>
                       <a
                         href={url}
                         target='_blank'
-                        rel={`noreferrer ${rel}`}
+                        rel={rel}
                         class='not-prose inline-flex items-center gap-3 rounded-full px-3 py-2 border-transparent hover:bg-brand-surface border hover:border-brand-outline transition-colors duration-300 text-slate-400 hover:text-brand-text'
                       >
-                        <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' fill='currentColor' viewBox='0 0 24 24'>
-                          <path stroke-linecap='round' stroke-linejoin='round' d={icon} />
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          class='h-4 w-4'
+                          stroke-width='3'
+                          stroke={`${stroke ? 'currentColor' : 'none'}`}
+                          fill={`${stroke ? 'none' : 'currentColor'}`}
+                          viewBox='0 0 24 24'
+                        >
+                          <path stroke-linecap='round' stroke-linejoin='round' d={icon}></path>
                         </svg>
                         {title}
                       </a>
