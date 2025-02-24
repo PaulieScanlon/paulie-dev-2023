@@ -1,0 +1,34 @@
+---
+base: docs
+title: Set up a GitHub Action to perform nightly Postgres backups
+date: 2025-02-24
+tags: [PostgreSQL, GitHub Actions, Neon, AWS]
+url: https://neon.tech/docs/use-cases/dev-test
+source: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+In this guide, you'll learn how to configure nightly Postgres backups using a scheduled GitHub Action and `pg_dump`.
+
+> This is part two of a two-part guide. Go back to part one here.
+
+
+## Prerequisites
+Setting up a scheduled backup involves three key components:
+
+### 1. AWS Requirements
+- You'll need your AWS Account ID and permissions to:
+ - Create IAM Roles and Identity Providers
+ - Create and manage S3 buckets
+ - Update S3 bucket policies
+
+### 2. Postgres Database
+- Ensure you have:
+ - The connection string for your database
+ - The AWS region where your database is deployed
+ - The Postgres version your database is running
+
+### 3. GitHub Action
+- You'll need repository access with permission to manage:
+ - Actions and Settings > Secrets and variables

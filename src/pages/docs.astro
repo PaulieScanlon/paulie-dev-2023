@@ -1,0 +1,23 @@
+---
+export const prerender = true;
+
+import Main from '../layouts/main.astro';
+import Aside from '../components/aside.astro';
+import ProfileCard from '../components/profile-card.astro';
+import CollectionsList from '../components/collections-list.astro';
+
+import { docs } from '../utils/all-collections';
+---
+
+<Main title='docs' description='Documentation' slug='/docs/'>
+  <strong class='flex items-center justify-between gap-2 text-sm text-brand-primary'
+    >docs
+    <span class='text-inherit text-xs border border-brand-outline bg-surface px-2 py-1'>{`x${docs.length}`}</span>
+  </strong>
+  <h1 class='mb-0'>Documentation</h1>
+  <p>A collection of documentation I've written.</p>
+  <CollectionsList collections={docs} />
+  <Aside>
+    <ProfileCard />
+  </Aside>
+</Main>

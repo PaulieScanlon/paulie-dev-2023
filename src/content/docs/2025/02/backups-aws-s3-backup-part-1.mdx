@@ -1,0 +1,28 @@
+---
+base: docs
+title: Create an S3 bucket to store Postgres backups
+date: 2025-02-24
+tags: [PostgreSQL, GitHub Actions, Neon, AWS]
+url: https://neon.tech/docs/use-cases/dev-test
+source: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+This guide will walk you through setting up an AWS S3 bucket to store your Postgres backups.
+
+> This is part one of a two-part guide. Continue to part two here.
+
+## Prerequisites
+To complete this guide, you'll need an AWS user with the appropriate permissions to:
+
+- Manage IAM resources: Create an OpenID Connect (OIDC) identity provider and IAM roles.
+- Manage S3: Create an S3 bucket and update its bucket policy.
+These actions typically require AdministratorAccess or a custom IAM policy granting the necessary permissions. If you're not an administrator, ensure your user has IAM management privileges and S3 permissions.
+
+## Setup AWS Providers and Roles
+There are three parts to the AWS setup, they are:
+
+1. Creating an OIDC Identity Provider
+2. Creating a Role
+3. Creating an S3 bucket and updating the S3 bucket policy

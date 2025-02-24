@@ -77,4 +77,17 @@ export const collections = {
       logo: z.string(),
     }),
   }),
+  docs: defineCollection({
+    type: 'content',
+    schema: z.object({
+      base: z.string(),
+      title: z.string(),
+      author: z.string(),
+      tags: z.array(z.string()).optional(),
+      date: z.date(),
+      url: z.string(),
+      source: z.string(),
+      logo: z.string(),
+    }),
+  }),
 };

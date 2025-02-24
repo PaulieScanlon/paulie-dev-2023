@@ -20,7 +20,7 @@ const { collections, slice, highlighted } = Astro.props;
       .map((collection) => {
         const {
           slug,
-          data: { base, featuredImage, logo, publication, title, date, tags },
+          data: { base, featuredImage, logo, publication, source, title, date, tags },
         } = collection;
 
         const excerpt = collection.body ? createExcerpt(collection.body) : '';
@@ -37,29 +37,21 @@ const { collections, slice, highlighted } = Astro.props;
                 class={`flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline ${isGhost ? 'select-none pointer-events-none' : ''}`}
               >
                 {featuredImage ? (
-                  <AstroImage
-                    width={570}
-                    height={321}
-                    alt={title}
-                    url={featuredImage}
-                    className='!my-0 w-full md:w-1/2'
-                  />
+                  <AstroImage width={570} height={321} alt={title} url={featuredImage} className='!my-0 w-full md:w-1/2' />
                 ) : null}
                 <div class='flex flex-col gap-2'>
                   <span class='flex flex-col sm:flex-row gap-2 sm:items-center'>
-                    {publication ? (
+                    {publication || source ? (
                       <>
                         <div class='flex items-center gap-2'>
                           <Image
                             width={24}
                             height={24}
-                            alt={publication}
+                            alt={publication || source}
                             src={logo}
                             class={`m-0 ${isGhost ? 'blur-[3px]' : ''}`}
                           />
-                          <small class={`text-xs text-brand-secondary ${isGhost ? 'blur-[2px]' : ''}`}>
-                            {publication}
-                          </small>
+                          <small class={`text-xs text-brand-secondary ${isGhost ? 'blur-[2px]' : ''}`}>{publication || source}</small>
                         </div>
                         <span class='hidden sm:inline-block'>&bull;</span>
                       </>

@@ -1,0 +1,29 @@
+---
+base: docs
+title: Full Twin
+date: 2025-02-12
+tags: [PostgreSQL, GitHub Actions, Neon]
+url: https://neon.tech/docs/use-cases/dev-test
+source: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+Create a full Twin of your production database
+
+This workflow will create a full Neon Twin using `pg_dump` and `pg_restore`.
+
+> To use this workflow, you'll need the Postgres connection string for your Neon database. Follow our Getting Started Guide to learn how.
+
+## Create the workflow
+To create the Twin workflow in any GitHub-hosted repository:
+
+1. Create a new directory named `.github` at the root of your project.
+2. Inside this directory, create another directory named `workflows`.
+3. Within the workflows directory, create a new file named `create-neon-twin.yml`.
+
+```shell
+.github
+  |-- workflows
+      |-- create-neon-twin.yml
+```

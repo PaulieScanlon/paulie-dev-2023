@@ -1,0 +1,76 @@
+---
+export const prerender = true;
+
+import { Image } from 'astro:assets';
+
+import { formatDate } from '../../utils/format-date';
+import { createExcerpt } from '../../utils/create-excerpt';
+
+import Main from '../../layouts/main.astro';
+
+import Aside from '../../components/aside.astro';
+import CtaExternal from '../../components/cta-external.astro';
+import TagsList from '../../components/tags-list.astro';
+import TableOfContents from '../../components/table-of-contents.astro';
+import Reactions from '../../components/reactions';
+import ProfileCard from '../../components/profile-card.astro';
+
+import { docs } from '../../utils/all-collections';
+
+export async function getStaticPaths() {
+  return docs.map((doc) => {
+    return {
+      params: {
+        slug: doc.slug,
+      },
+      props: {
+        doc,
+      },
+    };
+  });
+}
+
+const site = Astro.site.href;
+
+const {
+  doc,
+  doc: {
+    slug,
+    data: { title, author, logo, source, url, tags, date },
+  },
+} = Astro.props;
+
+const excerpt = `${createExcerpt(doc.body).substring(0, 70)}...`;
+
+const { Content, headings } = await doc.render();
+
+const ogImage = `${site}/docs/${slug}/og.png`;
+---
+
+<Main title={title} description={excerpt} slug={`/docs/${slug}/`} canonical={url} image={ogImage}>
+  <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
+    <div class='flex flex-col sm:flex-row gap-2 items-start sm:items-center'>
+      <div class='flex items-center gap-2'>
+        <Image width={24} height={24} alt={url} src={logo} class='m-0' />
+        <a class='text-xs text-brand-secondary nounderline' href={url} target='_blank' rel='noopener'>
+          {url}
+        </a>
+      </div>
+      <span class='hidden sm:inline'>&bull;</span>
+      <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+    </div>
+    <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
+  </div>
+  <h1>{title}</h1>
+  <TagsList tags={tags} link={true} />
+  <div class='relative'>
+    <div class='absolute w-full h-full bg-gradient-to-t from-brand-background to-transparent'></div>
+    <Content />
+  </div>
+  <CtaExternal href={url} className='mt-12'>{`Read on ${source}`}</CtaExternal>
+  <Reactions title={title} slug={`/docs/${slug}/`} />
+  <Aside>
+    <ProfileCard />
+    <TableOfContents headings={headings} />
+  </Aside>
+</Main>

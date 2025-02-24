@@ -1,6 +1,9 @@
 User-agent: *
+Disallow: /ghosts
 Disallow: /ghosts/
-Allow: /ghosts$
-Allow: /
+Disallow: /*ghosts*
+Disallow: /docs
+Disallow: /docs/
+Disallow: /*docs*
 
 Sitemap: https://paulie.dev/sitemap-index.xml
