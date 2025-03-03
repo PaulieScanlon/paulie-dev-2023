@@ -1,0 +1,20 @@
+---
+base: articles
+title: How to use self-hosted runners with GitHub Actions
+date: 2025-03-01
+tags: [PostgreSQL, GitHub Actions, Linux]
+url: https://neon.tech/guides/gihub-actions-self-hosted-runners
+publication: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+Take full control of your GitHub Action's runner environment with DigitalOcean
+
+In this guide, I'll walk you through setting up a Linux server on a DigitalOcean Droplet with Ubuntu installed, which you can use as a self-hosted runner for GitHub Actions.
+
+## What is a self-hosted runner?
+
+[Self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners#about-self-hosted-runners) work similarly to GitHub's default runners, but with the key difference that you manage the server yourself. While the default runners are convenient, they come with some limitations—most notably, they timeout after six hours.
+
+This can be a challenge for long-running jobs, particularly for users of our Neon Twin workflow who may encounter issues with large databases. In these scenarios, setting up your own self-hosted runner is a more reliable solution.

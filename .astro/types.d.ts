@@ -789,6 +789,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2025/03/gihub-actions-self-hosted-runners.mdx": {
+	id: "2025/03/gihub-actions-self-hosted-runners.mdx";
+  slug: "2025/03/gihub-actions-self-hosted-runners";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
