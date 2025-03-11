@@ -789,6 +789,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2025/03/from-shared-chaos-to-isolated-control-with-neon.mdx": {
+	id: "2025/03/from-shared-chaos-to-isolated-control-with-neon.mdx";
+  slug: "2025/03/from-shared-chaos-to-isolated-control-with-neon";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2025/03/gihub-actions-self-hosted-runners.mdx": {
 	id: "2025/03/gihub-actions-self-hosted-runners.mdx";
   slug: "2025/03/gihub-actions-self-hosted-runners";
