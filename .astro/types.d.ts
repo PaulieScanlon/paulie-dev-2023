@@ -803,6 +803,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2025/03/vibe-coding-with-ai-to-generate-synthetic-data-part-1.mdx": {
+	id: "2025/03/vibe-coding-with-ai-to-generate-synthetic-data-part-1.mdx";
+  slug: "2025/03/vibe-coding-with-ai-to-generate-synthetic-data-part-1";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
