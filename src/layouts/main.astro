@@ -101,10 +101,66 @@ const isProduction = import.meta.env.PROD;
         </script>
         ) : null
       }
+      <!-- Image Zoom -->
+      <script>
+        const images = document.querySelectorAll('.portal-img-src');
+        const portal = document.getElementById('portal')
+        const portalImg = document.getElementById('portal-img')
+        const portalLightbox = document.getElementById('portal-lightbox')
+        const portalX = document.getElementById('portal-x')
+        portal.setAttribute('style', 'display: none;');
+        document.body.style.overflow = '';
+
+        const handlePortal = (event) => {
+          const src = event.target.getAttribute('src'); 
+    
+          document.body.style.overflow = 'hidden';
+          portal.setAttribute('style', 'display: flex;');
+          portalImg.setAttribute('src', src)
+
+        };
+
+        images.forEach((image) => {
+          image.addEventListener('click', handlePortal);
+        });
+
+        const closePortal = () => {
+          portal.setAttribute('style', 'display: none;');
+          document.body.style.overflow = '';
+        }
+        portalX.addEventListener('click', closePortal)
+        portalLightbox.addEventListener('click', closePortal)
+      </script>
+      
   </head>
   <body class='prose max-w-none bg-brand-background'>
     <Layout fullWidth={fullWidth} slug={slug} search={search}>
       <slot />
     </Layout>
+    <div id="portal" class="fixed items-center justify-center top-0 left-0 w-screen h-screen z-50 p-32">
+      <div id='portal-x' class="absolute top-4 right-8 z-40 cursor-pointer">
+        <span class='sr-only'>Close</span>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke="currentColor"
+          class="h-8 w-8 stroke-brand-text hover:stroke-brand-primary transition-colors duration-300"
+        >
+          <path
+            id='menuPath'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='2'
+            d='M6 18L18 6M6 6l12 12'
+          ></path>
+        </svg>
+      </div>
+      <div class="relative z-40">
+        <img id="portal-img" class="m-0 mx-auto w-full h-auto shadow-lg" src=""/>
+      </div>
+      <div id="portal-lightbox" class="fixed top-0 left-0 w-screen h-screen bg-brand-background opacity-90 cursor-pointer z-30"/>
+    </div>
   </body>
 </html>
