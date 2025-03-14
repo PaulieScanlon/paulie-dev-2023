@@ -108,10 +108,8 @@ const isProduction = import.meta.env.PROD;
         const portalImg = document.getElementById('portal-img')
         const portalLightbox = document.getElementById('portal-lightbox')
         const portalX = document.getElementById('portal-x')
-        portal.setAttribute('style', 'display: none;');
-        document.body.style.overflow = '';
 
-        const handlePortal = (event) => {
+        const openPortal = (event) => {
           const src = event.target.getAttribute('src'); 
     
           document.body.style.overflow = 'hidden';
@@ -120,14 +118,16 @@ const isProduction = import.meta.env.PROD;
 
         };
 
+        const closePortal = () => {
+          document.body.style.overflow = '';
+          portal.setAttribute('style', 'display: none;');
+          portalImg.setAttribute('src', '')
+        }
+
         images.forEach((image) => {
-          image.addEventListener('click', handlePortal);
+          image.addEventListener('click', openPortal);
         });
 
-        const closePortal = () => {
-          portal.setAttribute('style', 'display: none;');
-          document.body.style.overflow = '';
-        }
         portalX.addEventListener('click', closePortal)
         portalLightbox.addEventListener('click', closePortal)
       </script>
