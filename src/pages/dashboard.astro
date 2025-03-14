@@ -32,6 +32,7 @@ import groupBySlug from '../utils/group-by-slug';
 import groupByReaction from '../utils/group-by-reaction';
 import groupByReferrer from '../utils/group-by-referrer';
 import isNewContent from '../utils/is-new-content';
+
 import { collections } from '../utils/all-collections';
 
 let analyticsData = null;
@@ -125,8 +126,8 @@ try {
             <section class='w-full lg:w-1/2'>
               <h2 class='m-0 uppercase'>Location visualization</h2>
               <p class='mt-0 mb-4 text-slate-300'>Recent geolocation visits</p>
-              <div class='relative rounded border border-brand-outline bg-brand-surface/40 cursor-move'>
-                <div class='flex justify-center overflow-hidden'>
+              <div class='relative rounded border border-brand-outline bg-brand-surface/40'>
+                <div class='flex justify-center overflow-hidden cursor-move'>
                   <GlobeAllCities data={groupByCity(analyticsData)} />
                 </div>
               </div>
