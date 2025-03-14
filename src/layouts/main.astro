@@ -109,6 +109,9 @@ const isProduction = import.meta.env.PROD;
         const portalLightbox = document.getElementById('portal-lightbox')
         const portalX = document.getElementById('portal-x')
 
+        portal.setAttribute('style', 'display: none;');
+        portalImg.setAttribute('src', '')
+
         const openPortal = (event) => {
           const src = event.target.getAttribute('src'); 
     
