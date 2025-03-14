@@ -1,0 +1,170 @@
+---
+base: posts
+title: How to Use Hugging Face Inference Endpoints with JavaScript
+tags: [JavaScript, Node.js, AI]
+date: 2025-03-14
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1741961872/paulie.dev/2025/03/hugging-face-javascript-featured-image_pok1mw.jpg
+---
+
+In this post, I'll give you a quick guide on getting started with Hugging Face [Inference Endpoints](https://huggingface.co/inference-endpoints/dedicated) and their JavaScript SDK: [@huggingface/inference](https://www.npmjs.com/package/@huggingface/inference). I'll walk you through using the `textGeneration` method with a "dedicated inference endpoint."
+
+To explore the models available for this method, visit: [https://huggingface.co/tasks/text-generation](https://huggingface.co/tasks/text-generation). Please note that not all models listed will work, and some might show an **Error: Forbidden:** message.
+
+During the writing of this post, I tested three models from that page that do work. Each model provides a unique response to the same question. I've categorized them as **good**, **bad**, and **ugly**:
+
+- **Good:** [mistralai/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1)
+- **Bad:** [deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B)
+- **Ugly:** [microsoft/phi-4](https://huggingface.co/microsoft/phi-4)
+
+Before diving in, make sure to complete the following prerequisites.
+
+## Prerequisites
+
+1. Create a [Hugging Face Account](https://huggingface.co/join).
+2. Add credits to your account, or sign up for a [Pro account](https://huggingface.co/pricing).
+
+## Create an Inference Endpoint
+
+By creating an Inference Endpoint you'll be able to test various models via HTTP requests.
+
+### Deploy Model
+
+Visit any of the model links above, then click the **Deploy** button and select **HR Inference Endpoints**.
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of model page'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741957473/paulie.dev/2025/03/hugging-face-javascript-deploy-model_aw2lbr.jpg'
+/>
+
+### Endpoint Configuration
+
+On the next screen, give your endpoint a name (or leave the default), and configure the hardware. Once ready, click **Create Endpoint**.
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of endpoint config'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741957858/paulie.dev/2025/03/hugging-face-javascript-endpoint-config_iopaxj.jpg'
+/>
+
+### Endpoint URL
+
+It might take a few minutes for your endpoint to provision, but once it's **ready**, you'll be able to copy the Endpoint URL, which you'll need in a later step.
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of endpoint ready'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958141/paulie.dev/2025/03/hugging-face-javascript-endpoint-ready_yki0ti.jpg'
+/>
+
+When initializing is complete your endpoint will be ready for use, but you'll need to create an Access Token to make requests.
+
+## Create a Hugging Face Access Token
+
+Head over to your Hugging Face account and click your profile picture in the top right-hand corner. From the dropdown menu, select **Access Tokens**.
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of access token navigation'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958903/paulie.dev/2025/03/hugging-face-javascript-access-token-1_yd6d0o.jpg'
+/>
+
+On the Access Tokens page, click **Create new token**. On the next screen, select **Read** permissions, give your token a name, and then click **Create token**.
+
+> Make sure to note down your token, as you'll only be able to view it once. You'll need it in a later step.
+
+<AstroImage
+  width='1440'
+  height='900'
+  alt='Screenshot of access token create'
+  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958903/paulie.dev/2025/03/hugging-face-javascript-access-token-2_khb21q.jpg'
+/>
+
+## Create a Test Application
+
+Run the following command to initialize a new project:
+
+```shell
+npm init -y
+```
+
+### Install Dependencies
+
+Install the Hugging Face [Inference](https://www.npmjs.com/package/@huggingface/inference) SDK and [dotenv](https://www.npmjs.com/package/dotenv):
+
+```shell
+npm install @huggingface/inference dotenv
+```
+
+### Update package.json
+
+In your `package.jso`n, find the `type` key and change it from `commonjs` to `module`. This allows you to use ESM JavaScript syntax.
+
+```diff
+- "type": "commonjs",
++ "type": "module",
+```
+
+### Create files
+
+Create two new files at the root of your project:
+
+1. `index.js`
+2. `.env`
+
+### Example self-invoking function
+
+Add the following code to `index.js`, making sure to replace `"Add your Endpoint URL here"` with your actual Endpoint URL.
+
+```javascript
+import 'dotenv/config';
+import { InferenceClient } from '@huggingface/inference';
+
+const client = new InferenceClient(process.env.HF_ACCESS_TOKEN).endpoint('Add your Endpoint URL here');
+
+(async () => {
+  try {
+    const { generated_text } = await client.textGeneration({
+      max_tokens: 150,
+      inputs: 'Explain Hugging Face Inference Endpoints.',
+    });
+
+    console.log(generated_text);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+})();
+```
+
+### Environment variables
+
+In the `.env` file, add the following line and paste in the **Access Token** you created earlier.
+
+```shell
+HF_ACCESS_TOKEN=
+```
+
+### Test the application
+
+Run the following command in your terminal to test the application:
+
+```shell
+node index.js
+```
+
+## Result
+
+Depending on which model you used will determine the output. Below is the response from using the [mistralai/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1) model.
+
+_"Explain Hugging Face Inference Endpoints. Hugging Face Inference Endpoints are cloud-based services offered by Hugging Face that allow users to run large-scale natural language processing (NLP) and computer vision (CV) models in a highly scalable way. The endpoints allow developers to easily deploy, config, and scale a model API, enabling access through HTTP requests from their own applications. With Hugging Face Inference Endpoints, common use cases include language translation, text classification, text generation, and image classification. The endpoints are built using Hugging Face's Transformers library, which provides access to thousands of pre-trained models, and they are designed to be easy to use, allowing users to get started quickly with minimal setup and configuration."_
+
+## Finished
+
+There are tons of models to test, but figuring out which ones will actually work before provisioning an endpoint has been a real challenge for me. It can be time-consuming and frustrating. I'm still new to this, so maybe I'm missing something, or perhaps best practices are still evolving. Either way, this post should help you get up and running.
+
+If you're working in this space and want to connect, feel free to reach out to me on X: [@PaulieScanlon](https://x.com/PaulieScanlon).

@@ -1555,6 +1555,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2025/03/how-to-use-hugging-face-models-in-javascript.mdx": {
+	id: "2025/03/how-to-use-hugging-face-models-in-javascript.mdx";
+  slug: "2025/03/how-to-use-hugging-face-models-in-javascript";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 "streams": {
 "2021/04/gatsby-deep-dives-with-queen-raae.mdx": {
