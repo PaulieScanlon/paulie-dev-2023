@@ -1555,9 +1555,9 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
-"2025/03/how-to-use-hugging-face-models-in-javascript.mdx": {
-	id: "2025/03/how-to-use-hugging-face-models-in-javascript.mdx";
-  slug: "2025/03/how-to-use-hugging-face-models-in-javascript";
+"2025/03/how-to-use-hugging-face-inference-endpoints-with-javascript.mdx": {
+	id: "2025/03/how-to-use-hugging-face-inference-endpoints-with-javascript.mdx";
+  slug: "2025/03/how-to-use-hugging-face-inference-endpoints-with-javascript";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
