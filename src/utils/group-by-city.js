@@ -1,6 +1,12 @@
 const groupByCity = (array) => {
   const groupedData = array.reduce((acc, item) => {
     const { flag, country, city, latitude, longitude } = item;
+
+    // Filter out the city if it's "Worthing"
+    if (city.toLowerCase() === 'worthing') {
+      return acc;
+    }
+
     const key = `${flag}-${city}`;
 
     if (!acc[key]) {
@@ -19,7 +25,7 @@ const groupByCity = (array) => {
     return acc;
   }, {});
 
-  return Object.keys(groupedData).map((key) => groupedData[key]);
+  return Object.values(groupedData);
 };
 
 export default groupByCity;
