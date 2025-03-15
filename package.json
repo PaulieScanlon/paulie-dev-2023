@@ -32,7 +32,7 @@
     "@fontsource/inconsolata": "^5.0.8",
     "@google-analytics/data": "^4.7.0",
     "@neondatabase/serverless": "^0.6.0",
-    "@qwikdev/astro": "^0.5.2",
+    "@qwikdev/astro": "^0.6.0",
     "@stackblitz/sdk": "^1.9.0",
     "@vercel/edge": "^1.1.0",
     "astro": "^4.13.2",

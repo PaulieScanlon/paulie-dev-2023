@@ -1071,10 +1071,10 @@
   dependencies:
     dotenv "^16.4.7"
 
-"@qwikdev/astro@^0.5.2":
-  version "0.5.16"
-  resolved "https://registry.yarnpkg.com/@qwikdev/astro/-/astro-0.5.16.tgz#abdf58dce22a8f3414f9c85af2aea42c423d66af"
-  integrity sha512-eGpieVOLdO9H96+d/OY684GPYPjhyuSupsPeM829EA/Giwtbb1zXoLC+sUNYhqlyA/bSFjdUv/fwryOPpPfChw==
+"@qwikdev/astro@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@qwikdev/astro/-/astro-0.6.0.tgz#53f4252f5f44f96e7a945eccb79f3bec034df49d"
+  integrity sha512-nV+hlkjpOM55T/a3AyFFMFLYHR8kGiez+CNLkEuch4v1NA6P1Rw9D3Nv6662zwrP/bY0w7UQv2g5W10GD8g84w==
   dependencies:
     astro-integration-kit "^0.2"
     fs-extra "^11.1.1"
