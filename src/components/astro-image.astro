@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { resizeImage } from '../services/resize-image';
 
-const { width, height, alt, url, className = 'w-full' } = Astro.props;
+const { width, height, alt, url, className = 'w-full', isFeatured = false } = Astro.props;
 ---
 
 <Image
@@ -10,5 +10,5 @@ const { width, height, alt, url, className = 'w-full' } = Astro.props;
   height={height}
   alt={alt}
   src={resizeImage(url, width, height)}
-  class={`portal-img-src my-10 overflow-hidden rounded border border-brand-outline ${className} cursor-zoom-in`}
+  class={`${isFeatured ? '' : 'portal-img-src cursor-zoom-in'} my-10 overflow-hidden rounded border border-brand-outline ${className}`}
 />
