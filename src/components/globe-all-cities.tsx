@@ -87,14 +87,12 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
     orbitControls.enableZoom = false;
 
     const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        world.controls().autoRotate = true;
-      } else {
-        world.controls().autoRotate = false;
-      }
+      orbitControls.autoRotate = document.visibilityState === 'visible';
     };
 
     document.addEventListener('visibilitychange', handleVisibility);
+
+    handleVisibility();
   });
 
   return (
