@@ -1,5 +1,4 @@
 import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
-
 import Loading from './loading';
 
 interface Props {
@@ -13,7 +12,6 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
 
   const points = data.map((data) => {
     const { latitude, longitude, total } = data;
-
     return {
       lat: latitude,
       lng: longitude,
@@ -24,22 +22,18 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
   });
 
   useVisibleTask$(async () => {
-    const goeJson = await import('../utils/ne_110m_admin_0_countries.geojson.json');
-
-    const GlobeModule = await import('globe.gl');
-    const Globe = GlobeModule.default;
+    const geoJson = await import('../utils/ne_110m_admin_0_countries.geojson.json');
+    const GlobeGL = await import('globe.gl');
     const THREE = await import('three');
 
-    const world = Globe({ animateIn: true, rendererConfig: { antialias: true, alpha: true } })
+    const Globe = GlobeGL.default;
+    const world = new Globe(document.getElementById('globe'), {
+      animateIn: true,
+      rendererConfig: { antialias: true, alpha: true },
+    })
       .onGlobeReady(() => {
         isLoaded.value = true;
       })
-      .pointOfView({
-        lat: 19.054339351561637,
-        lng: -50.421161072148465,
-        altitude: 1.8,
-      })
-      .pointsMerge(true)
       .width(width)
       .height(height)
       .backgroundColor('rgba(255, 255, 255, 0)')
@@ -50,6 +44,18 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
           transparent: true,
         })
       )
+      .atmosphereColor('#655ea0')
+      .showGraticules(true)
+      .hexPolygonsData(geoJson.features)
+      .hexPolygonResolution(3)
+      .hexPolygonMargin(0.4)
+      .hexPolygonColor((geometry: { properties: { abbrev_len: number } }) => {
+        return ['#2a2469', '#322a7a', '#3d338e', '#423b8f'][geometry.properties.abbrev_len % 4];
+      })
+      .pointsData(points)
+      .pointAltitude('altitude')
+      .pointColor('color')
+      .pointsMerge(true)
       .customLayerData(
         [...Array(500).keys()].map(() => ({
           lat: (Math.random() - 0.5) * 180,
@@ -67,20 +73,14 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
           })
         );
       })
-      .customThreeObjectUpdate((obj, d: any) => {
+      .customThreeObjectUpdate((obj, d: { lat: number; lng: number; alt: number }) => {
         Object.assign(obj.position, world.getCoords(d.lat, d.lng, d.alt));
       })
-      .atmosphereColor('#655ea0')
-      .hexPolygonsData(goeJson.features)
-      .hexPolygonResolution(3)
-      .hexPolygonMargin(0.4)
-      .hexPolygonColor((geometry: any) => {
-        return ['#2a2469', '#322a7a', '#3d338e', '#423b8f'][geometry.properties.abbrev_len % 4];
-      })
-      .showGraticules(true)
-      .pointsData(points)
-      .pointAltitude('altitude')
-      .pointColor('color')(document.getElementById('globe'));
+      .pointOfView({
+        lat: 19.054339351561637,
+        lng: -50.421161072148465,
+        altitude: 1.8,
+      });
 
     const orbitControls = world.controls();
     orbitControls.autoRotate = true;
@@ -91,8 +91,11 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
     };
 
     document.addEventListener('visibilitychange', handleVisibility);
-
     handleVisibility();
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
   });
 
   return (
