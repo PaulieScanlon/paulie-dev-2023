@@ -39,21 +39,21 @@ try {
   <div class='relative flex items-center md:min-h-80'>
     <div class='relative w-full md:w-auto lg:z-10'>
       <strong class='text-sm text-brand-primary block'>Home</strong>
-      <h1 class='text-brand-salmon uppercase text-5xl mb-1'>Paul Scanlon</h1>
+      <h1 class='uppercase text-5xl mb-1'>Paul Scanlon</h1>
       <h2 class='text-brand-text font-normal mt-1'>Technical Product Marketing Manager</h2>
       <p class=''>
         Developer for 20 years. I'm now Marketing at <a
           href='https://neon.tech/'
           target='_blank'
           rel='noopener'
-          class='text-brand-tertiary'>Neon</a
+          class='text-brand-secondary'>Neon</a
         >.
       </p>
     </div>
     <div
       class='absolute -top-10 sm:-top-6 left-0 md:left-auto right-0 flex justify-center overflow-hidden pointer-events-none invisible xl:visible'
     >
-      <GlobeAllCities data={groupByCity(analyticsData)} />
+      <GlobeAllCities data={groupByCity(analyticsData)} altitude={2.4} />
     </div>
   </div>
 

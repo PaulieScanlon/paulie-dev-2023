@@ -5,9 +5,10 @@ interface Props {
   data: any;
   width?: number;
   height?: number;
+  altitude?: number;
 }
 
-const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) => {
+const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458, altitude = 1.8 }) => {
   const isLoaded = useSignal(false);
 
   const points = data.map((data) => {
@@ -79,7 +80,7 @@ const GlobeAllCities = component$<Props>(({ data, width = 390, height = 458 }) =
       .pointOfView({
         lat: 19.054339351561637,
         lng: -50.421161072148465,
-        altitude: 1.8,
+        altitude: altitude,
       });
 
     const orbitControls = world.controls();
