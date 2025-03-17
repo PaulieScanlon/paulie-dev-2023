@@ -11,7 +11,26 @@ In this post, I'll walk you through using Hugging Face [Inference Endpoints](htt
 
 To explore available models, check out: [https://huggingface.co/tasks/text-generation](https://huggingface.co/tasks/text-generation). However, not all models will work—some may return an **Error: Forbidden:** message.
 
-Before we dive in, let me explain what led me to explore Inference Endpoints in the first place. At [Neon](https://neon.tech), I’ve been focused on improving our [Dev/Test workflows](https://neon.tech/docs/use-cases/dev-test), specifically automating synthetic data generation to support new guides in the [Neon Twin](https://neon.tech/docs/guides/neon-twin-intro) section of our docs. I previously experimented with Anthropic’s Claude Sonnet models, which I detailed in this post: [Vibe Coding With AI to Generate Synthetic Data: Part 1](https://neon.tech/blog/vibe-coding-with-ai-to-generate-synthetic-data-part-1). That experiment got me thinking—what other options are out there?
+## What are Inference Endpoints?
+
+Hugging Face Inference Endpoints are API endpoints that allow you to deploy machine learning models accessible over HTTP. With fully managed infrastructure, you don't have to worry about setup or maintenance. You simply choose the model and hardware, and Hugging Face takes care of the rest, creating an API endpoint for you to use.
+
+For example:
+
+```javascript
+import 'dotenv/config';
+import { InferenceClient } from '@huggingface/inference';
+
+const client = new InferenceClient(process.env.HF_ACCESS_TOKEN).endpoint(
+  'https://g7u9q9gquz2wxrjn.us-east-1.aws.endpoints.huggingface.cloud'
+);
+```
+
+## The Back story
+
+But, before we dive in, let me explain what led me to explore Inference Endpoints in the first place.
+
+At [Neon](https://neon.tech), I’ve been focused on improving our [Dev/Test workflows](https://neon.tech/docs/use-cases/dev-test), specifically automating synthetic data generation to support new guides in the [Neon Twin](https://neon.tech/docs/guides/neon-twin-intro) section of our docs. I previously experimented with Anthropic’s Claude Sonnet models, which I detailed in this post: [Vibe Coding With AI to Generate Synthetic Data: Part 1](https://neon.tech/blog/vibe-coding-with-ai-to-generate-synthetic-data-part-1). That experiment got me thinking—what other options are out there?
 
 So, I tested three models to see how they handled the task. Each one produced a unique response to the same prompt, which I’ve categorized as **good**, **bad**, and **ugly**:
 
