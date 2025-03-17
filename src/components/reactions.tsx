@@ -124,7 +124,7 @@ const Reactions = component$<Props>(({ title, slug }) => {
       </ul>
       <div class='flex gap-1 justify-center'>
         <small class='text-brand-secondary text-xs'>Powered by</small>
-        <a href='https://bit.ly/paulie-neon' target='_blank' rel='noopener' class='text-xs'>
+        <a href='https://neon.tech' target='_blank' rel='noopener' class='text-xs'>
           Neon
         </a>
       </div>

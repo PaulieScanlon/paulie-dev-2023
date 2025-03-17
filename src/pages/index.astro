@@ -50,10 +50,22 @@ try {
         >.
       </p>
     </div>
-    <div
-      class='absolute -top-10 sm:-top-6 left-0 md:left-auto right-0 flex justify-center overflow-hidden pointer-events-none invisible lg:visible'
-    >
-      <GlobeAllCities data={groupByCity(analyticsData)} altitude={2.4} isDashboard={false} />
+    <div class='absolute -top-10 sm:-top-6 left-0 md:left-auto right-0 flex justify-center invisible lg:visible'>
+      <GlobeAllCities
+        data={groupByCity(analyticsData)}
+        altitude={2.4}
+        isDashboard={false}
+        classNames='pointer-events-none'
+      />
+      <div class='absolute top-4 right-0'>
+        <div class='leading-3'>
+          <time class='block text-brand-muted text-xs text-right'>{`Site visits from last ${period} Days`}</time>
+          <small class='block text-brand-secondary text-xs text-right'
+            >Powered by
+            <a href='https://neon.tech' target='_blank' rel='noopener' class='text-xs text-right'>Neon</a>
+          </small>
+        </div>
+      </div>
     </div>
   </div>
 
