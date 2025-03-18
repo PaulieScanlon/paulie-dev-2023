@@ -11,7 +11,7 @@ interface Props {
 }
 
 const GlobeAllCities = component$<Props>(
-  ({ data, width = 390, height = 458, altitude = 1.8, isDashboard = true, classNames }) => {
+  ({ data, width = 390, height = 458, altitude = 2, isDashboard = true, classNames }) => {
     const isLoaded = useSignal(false);
     const shouldRenderGlobe = useSignal(true);
 
