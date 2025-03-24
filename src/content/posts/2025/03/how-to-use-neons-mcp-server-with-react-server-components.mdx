@@ -1,0 +1,258 @@
+---
+base: posts
+title: How to Use Neon’s MCP Server With React Server Components
+tags: [JavaScript, React, Neon, AI]
+date: 2025-03-24
+author: Paul Scanlon
+featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1742823196/paulie.dev/2025/03/neon-mcp-server-featured-image_sqfppe.jpg
+---
+
+There's been a lot of talk about MCP Servers in the last few weeks, and if you're not sure what an MCP Server is, here's a very short explanation.
+
+## What is an MCP Server?
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) standardizes communication between LLMs and external tools. It defines a client-server architecture, enabling LLMs (Hosts) to connect to specialized servers that provide context and tools for interacting with external systems.
+
+## How to use Neon's MCP Server
+
+The typical way to use the [Neon MCP Server](https://neon.tech/docs/ai/neon-mcp-server) is with a desktop AI client, such as [Claude Desktop](https://claude.ai/download). The [Neon documentation](https://neon.tech/docs/ai/neon-mcp-server#installation) provides a thorough guide on this, so I won't go into further detail here.
+
+However, if you're looking to integrate Neon's MCP Server into an environment beyond a desktop AI app (like I am), you may be wondering how to install and set it up for use in your own application.
+
+<VideoPlayer
+  src='https://res.cloudinary.com/www-paulie-dev/video/upload/v1742817827/paulie.dev/2025/03/neon-mcp-server_tdfpea.mp4'
+  autoplay
+  loop
+/>
+
+All the code i'll be explaining in this post can also be found in the below GitHub Repository:
+
+- [test-neon-mcp-server-waku](https://github.com/PaulieScanlon/test-neon-mcp-server-waku)
+
+## React Server Components (Waku)
+
+In this post I'll explain how to use Neon's MCP Server with React Server Components (RSCs) and the Anthropic API. I'm using [Waku](https://waku.gg/) as the framework but this approach should work in any environments that support WebSockets.
+
+For the record, this approach won't work if you're planning on running this from a default runner-image with GitHub Actions: Here's a previous failed experiment: [test-neon-mcp-github-actions](https://github.com/PaulieScanlon/test-neon-mcp-github-actions)
+
+## Getting started
+
+You'll need two API keys to use Neon's MCP Server with Anthropic.
+
+```shell
+NEON_API_KEY=
+ANTHROPIC_API_KEY=
+```
+
+### Neon API key
+
+You can create by navigating to **Settings** > **API Keys** in the Neon Console.
+
+### Anthropic API key
+
+You can create by navigating to **Settings** > **API Keys** in the Anthropic Console.
+
+### Install dependencies
+
+Install the following dependencies.
+
+```shell
+npm install @modelcontextprotocol/sdk @smithery/sdk @anthropic-ai/sdk ws
+```
+
+### Chat (React Server Component)
+
+The [chat](https://github.com/PaulieScanlon/test-neon-mcp-server-waku/blob/main/src/components/chat.tsx) component includes an asynchronous function called `sendMessage`, which takes a `message` input from the [chat-form](https://github.com/PaulieScanlon/test-neon-mcp-server-waku/blob/main/src/components/chat-form.tsx) component (we'll dive into that next). Inside the function, it sets up the required transport object from `@smithery`, initializes the `@modelcontextprotocol` client, and incorporates the `@anthropic` adapter. It then uses these to send the provided message, and Neon MCP tools list to Anthropic API for processing.
+
+If the request is successful the response is passed back to the [chat-form](https://github.com/PaulieScanlon/test-neon-mcp-server-waku/blob/main/src/components/chat-form.tsx) component to render in the browser.
+
+At the time of writing this, the @smithery [typescript-sdk](https://github.com/smithery-ai/typescript-sdk) docs do outline these same steps but don't mention the config for the WebSocket, or clearly explain how to create the adapter.
+
+It's also worth calling out the warning from the repository:
+
+> ⚠️ This repository is work in progress and in alpha. Not recommended for production use yet. ⚠️
+
+```javascript
+// src/components/chat.tsx
+
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { createTransport, AnthropicChatAdapter } from '@smithery/sdk';
+import Anthropic from '@anthropic-ai/sdk';
+import WebSocket from 'ws';
+
+global.WebSocket = WebSocket;
+
+import { ChatForm } from '../components/chat-form';
+
+export const Chat = () => {
+  const sendMessage = async (message: string) => {
+    'use server';
+
+    try {
+      const transport = createTransport('https://server.smithery.ai/neon', {
+        neonApiKey: process.env.NEON_API_KEY,
+      });
+
+      const client = new Client({
+        name: 'Test client',
+        version: '1.0.0',
+      });
+
+      console.log('Connecting to transport...');
+      await client.connect(transport);
+
+      const anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY,
+      });
+
+      const anthropicAdapter = new AnthropicChatAdapter(client);
+
+      console.log('Calling Anthropic API...');
+      const anthropicResponse = await anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 8192,
+        messages: [{ role: 'user', content: message }],
+        tools: await anthropicAdapter.listTools(),
+      });
+
+      const anthropicToolMessages = await anthropicAdapter.callTool(anthropicResponse);
+
+      console.log('Anthropic response ok');
+
+      return anthropicToolMessages?.[0]?.content?.[0]?.content?.[0]?.text;
+    } catch (err) {
+      console.error('An error occurred:', err);
+    }
+  };
+
+  return <ChatForm sendMessage={sendMessage} />;
+};
+```
+
+### Chat Form (React Component)
+
+The [chat-form](https://github.com/PaulieScanlon/test-neon-mcp-server-waku/blob/main/src/components/chat-form.tsx) component only runs on the client, and is used to capture the text input, and send it on to the chat component using a stand form `onSubmit`. When the response comes back from the chat component, it's rendered in an HTML `pre` element. You can change this to suit your requirements.
+
+```javascript
+// src/components/chat-form.tsx
+
+'use client';
+
+import { useState } from 'react';
+
+interface Props {
+  sendMessage: (message: string) => Promise<string>;
+}
+
+export const ChatForm: React.FC<Props> = ({ sendMessage }) => {
+  const [status, setStatus] = useState('idle');
+  const [message, setMessage] = useState('');
+  const [response, setResponse] = useState('');
+
+  const handleSend = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('handleSend');
+
+    setResponse('');
+    setStatus('sending');
+    if (!message.trim()) return;
+    const reply = await sendMessage(message);
+
+    setResponse(reply);
+    setMessage('');
+    setStatus('complete');
+  };
+
+  return (
+    <div className='flex-grow flex flex-col gap-8 justify-between'>
+      <div className='flex-grow border border-gray-300 bg-gray-100 rounded p-4'>
+        {response && (
+          <pre className='text-gray-700 overflow-auto' style={{ maxHeight: 'calc(100vh - 420px)' }}>
+            {response}
+          </pre>
+        )}
+      </div>
+
+      <form onSubmit={handleSend} className='flex flex-col gap-4 mt-auto'>
+        <textarea
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          rows={4}
+          className='block border border-gray-300 rounded p-4'
+          placeholder='Type your message...'
+        />
+        <button
+          type='submit'
+          className='flex justify-center gap-2 px-4 py-2 bg-gray-500 text-white rounded self-end min-w-24'
+        >
+          {status === 'sending' ? (
+            <svg
+              className='size-5 animate-spin text-white'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+            >
+              <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
+              <path
+                className='opacity-75'
+                fill='currentColor'
+                d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+              ></path>
+            </svg>
+          ) : (
+            <span>Send</span>
+          )}
+        </button>
+      </form>
+    </div>
+  );
+};
+```
+
+## MCP Server Tools
+
+If you add a console log for `anthropicAdapter.listTools()` you'll something similar to the below. These are some of the actions available via the Neon MCP Server, you can see the full list in the Neon docs: [Supported Actions (Tools)](https://neon.tech/docs/ai/neon-mcp-server#supported-actions-tools).
+
+```javascript
+[
+  {
+    name: 'list_projects',
+    description: 'List all Neon projects in your account.',
+    ...
+  },
+  {
+    name: 'create_project',
+    description: 'Create a new Neon project. If someone is trying to create a database, use this tool.',
+    ...
+  },
+  {
+    name: 'delete_project',
+    description: 'Delete a Neon project',
+    ...
+  },
+  {
+    name: 'describe_project',
+    description: 'Describes a Neon project',
+    ...
+  },
+];
+```
+
+In my example, I'm providing the full list of tools to the Anthropic request using the `tools` object, for example:
+
+```javascript
+console.log('Calling Anthropic API...');
+
+const anthropicResponse = await anthropic.messages.create({
+  model: 'claude-3-5-sonnet-20241022',
+  max_tokens: 8192,
+  messages: [{ role: 'user', content: message }],
+  tools: await anthropicAdapter.listTools(),
+});
+```
+
+But if you did want to limit functionality, you could cherry pick the `tools` to suit your requirements.
+
+## ⚠️ Warning
+
+Integrating [Neon's MCP Server](https://neon.tech/docs/ai/neon-mcp-server) into your application grants significant access to your database, so it's important to take security seriously. Any requests to the MCP Server should be protected by a robust authentication workflow to safeguard against potential attacks. However, if you need more control over the requests and responses, or if you're looking to incorporate [Neon's MCP Server](https://neon.tech/docs/ai/neon-mcp-server) into an existing application, this approach provides greater flexibility than AI desktop apps can offer.

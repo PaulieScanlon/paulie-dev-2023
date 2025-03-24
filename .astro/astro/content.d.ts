@@ -1576,6 +1576,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"2025/03/how-to-use-neons-mcp-server-with-react-server-components.mdx": {
+	id: "2025/03/how-to-use-neons-mcp-server-with-react-server-components.mdx";
+  slug: "2025/03/how-to-use-neons-mcp-server-with-react-server-components";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 "streams": {
 "2021/04/gatsby-deep-dives-with-queen-raae.mdx": {
