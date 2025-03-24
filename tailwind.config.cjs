@@ -68,6 +68,10 @@ module.exports = {
 
     // These are for the Ghosts collections cards
     'cursor-not-allowed',
+
+    // These are for the rehypeExternalLinks svgs
+    'w-4',
+    'h-4',
   ],
   theme: {
     extend: {
@@ -141,6 +145,9 @@ module.exports = {
               fontWeight: 700,
             },
             a: {
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '3px',
               color: theme('colors.brand.secondary'),
               cursor: 'pointer',
               wordBreak: 'break-word',
@@ -150,6 +157,12 @@ module.exports = {
               p: {
                 margin: 0,
                 color: 'inherit',
+              },
+              span: {
+                color: 'inherit',
+                svg: {
+                  stroke: 'currentColor',
+                },
               },
             },
             ol: {
