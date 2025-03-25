@@ -238,7 +238,7 @@ If you add a console log for `anthropicAdapter.listTools()` you'll something sim
 ];
 ```
 
-In my example, I'm providing the full list of tools to the Anthropic request using the `tools` object, for example:
+In my example, I'm providing the full list of actions to the Anthropic API using the `tools` object, for example:
 
 ```javascript
 console.log('Calling Anthropic API...');
@@ -251,7 +251,21 @@ const anthropicResponse = await anthropic.messages.create({
 });
 ```
 
-But if you did want to limit functionality, you could cherry pick the `tools` to suit your requirements.
+However, if you need to restrict functionality, you can selectively enable only the actions that fit your requirements. For instance, in the example below, I’m filtering out the `delete_project` and `delete_branch` actions before passing the `anthropicAdapter.listTools()` response to the Anthropic API.
+
+```diff
++ const tools = await anthropicAdapter.listTools();
++ const filteredTools = tools.filter((tool) => !['delete_project', 'delete_branch'].includes(tool.name));
+
+console.log('Calling Anthropic API...');
+const anthropicResponse = await anthropic.messages.create({
+  model: 'claude-3-5-sonnet-20241022',
+  max_tokens: 8192,
+  messages: [{ role: 'user', content: message }],
+- tools: await anthropicAdapter.listTools()
++  tools: filteredTools,
+});
+```
 
 ## ⚠️ Warning
 
