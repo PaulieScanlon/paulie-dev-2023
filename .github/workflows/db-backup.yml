@@ -2,8 +2,7 @@ name: Backup Neon | paulie-dev (us-east-1)
 
 on:
   schedule:
-    # Runs at midnight ET (us-east-1)
-    - cron: '0 0 * * *'
+    - cron: '0 5 * * *' # Runs at midnight EST (us-east-1)
   workflow_dispatch:
 
 jobs:
@@ -14,43 +13,57 @@ jobs:
       id-token: write
 
     env:
-      BACKUP_ID: 'paulie.dev'
+      RETENTION: 1
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      PG_VERSION: '16'
-      AWS_REGION: 'us-east-1'
+      IAM_ROLE: ${{ secrets.IAM_ROLE }}
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      S3_BUCKET_URL: ${{ secrets.S3_BUCKET_URL }}
+      S3_BUCKET_NAME: 'paulie-dev-db-backup'
+      AWS_REGION: 'us-east-1'
+      PG_VERSION: '16'
 
     steps:
       - name: Install PostgreSQL
         run: |
-          sudo apt install -y postgresql-common
+          sudo apt update
           yes '' | sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
           sudo apt install -y postgresql-${{ env.PG_VERSION }}
 
-      - name: Get timestamp
-        id: timestamp
-        run: |
-          echo "TIMESTAMP=$(date +%d-%B-%Y@%H:%M:%S)" >> $GITHUB_ENV
-
-      - name: Run pg_dump
-        run: |
-          TIMESTAMP="${{ env.TIMESTAMP }}"
-          FILENAME="${{ env.BACKUP_ID }}-${TIMESTAMP}.sql.gz"
-          /usr/lib/postgresql/${{ env.PG_VERSION }}/bin/pg_dump ${{ env.DATABASE_URL}} | gzip > "${FILENAME}"
-          echo "FILENAME=${FILENAME}" >> $GITHUB_ENV
+      - name: Set PostgreSQL binary path
+        run: echo "POSTGRES=/usr/lib/postgresql/${{ env.PG_VERSION }}/bin" >> $GITHUB_ENV
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/paulie-dev-2023-github-action
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.IAM_ROLE }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Empty Bucket
+      - name: Set file, folder and path variables
         run: |
-          aws s3 rm ${{ env.S3_BUCKET_URL }} --recursive
+          GZIP_NAME="$(date +'%B-%d-%Y@%H:%M:%S').gz"
+          FOLDER_NAME="${{ github.workflow }}"
+          UPLOAD_PATH="s3://${{ env.S3_BUCKET_NAME }}/${FOLDER_NAME}/${GZIP_NAME}"
 
-      - name: Upload to Bucket
+          echo "GZIP_NAME=${GZIP_NAME}" >> $GITHUB_ENV
+          echo "FOLDER_NAME=${FOLDER_NAME}" >> $GITHUB_ENV
+          echo "UPLOAD_PATH=${UPLOAD_PATH}" >> $GITHUB_ENV
+
+      - name: Create folder if it doesn't exist
         run: |
-          FILENAME="${{ env.FILENAME }}"
-          aws s3 cp "${FILENAME}" ${{ env.S3_BUCKET_URL }}
+          if ! aws s3api head-object --bucket ${{ env.S3_BUCKET_NAME }} --key "${{ env.FOLDER_NAME }}/" 2>/dev/null; then
+            aws s3api put-object --bucket ${{ env.S3_BUCKET_NAME }} --key "${{ env.FOLDER_NAME }}/"
+          fi
+
+      - name: Run pg_dump
+        run: |
+          $POSTGRES/pg_dump ${{ env.DATABASE_URL }} | gzip > "${{ env.GZIP_NAME }}"
+
+      - name: Empty bucket of old files
+        run: |
+          THRESHOLD_DATE=$(date -d "-${{ env.RETENTION }} days" +%Y-%m-%dT%H:%M:%SZ)
+          aws s3api list-objects --bucket ${{ env.S3_BUCKET_NAME }} --prefix "${{ env.FOLDER_NAME }}/" --query "Contents[?LastModified<'${THRESHOLD_DATE}'] | [?ends_with(Key, '.gz')].{Key: Key}" --output text | while read -r file; do
+            aws s3 rm "s3://${{ env.S3_BUCKET_NAME }}/${file}"
+          done
+
+      - name: Upload to bucket
+        run: |
+          aws s3 cp "${{ env.GZIP_NAME }}" "${{ env.UPLOAD_PATH }}" --region ${{ env.AWS_REGION }}
