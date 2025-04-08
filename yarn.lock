@@ -495,9 +495,9 @@
   integrity sha512-OvzkZY5qYghv/jEV6cfGZzFhdFTvSnU+ExPC7WcZ7w8PdRhtiu/SpcBWOBt+3LXgS0n9qyepgq4zZmxlDTlGGQ==
 
 "@google-analytics/data@^4.7.0":
-  version "4.12.1"
-  resolved "https://registry.yarnpkg.com/@google-analytics/data/-/data-4.12.1.tgz#f1c1108b7b0737970ed4021ecc9ca408ce339629"
-  integrity sha512-LzyrkVrnVUTYTmdmHayOZoroc+YA9GHEUrkSSuiXSmMSNbesuWy/MoTXugC1V7+8PCGqb2eQ1UtVVv/2BCAQYA==
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@google-analytics/data/-/data-4.7.0.tgz#934c2204126e415dae7137334ee496f03fe448d8"
+  integrity sha512-ObTEfzGlih2+7UV282tjSp7UbXhG5viKpUmUvRRDtm5Be6xqBqYVR3rTjekmMHrXKxIDDjwI0WVOmvF+KlLE1g==
   dependencies:
     google-gax "^4.0.3"
 
