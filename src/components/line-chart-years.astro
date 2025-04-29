@@ -4,6 +4,9 @@ import colors from '../utils/colors';
 import months from '../utils/months';
 import years from '../utils/years';
 
+const d = new Date();
+const currentYear = d.getFullYear();
+
 const totalByYearAndMonth = Object.keys(data).reduce((acc, year) => {
   const groupedByYear = data[year];
   Object.keys(groupedByYear).forEach((month) => {
@@ -128,6 +131,7 @@ const ticks = months.map((month, index) => {
           <polyline
             fill='none'
             class={`years-visuals-${years[index]} stroke-brand-${colors[index]}`}
+            style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
             stroke-width={1}
             points={point}
           />
@@ -146,7 +150,7 @@ const ticks = months.map((month, index) => {
                 cx={x}
                 cy={y}
                 r={3}
-                stroke-width={1}
+                style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
               />
               {total > 0 ? (
                 <text
@@ -155,6 +159,7 @@ const ticks = months.map((month, index) => {
                   text-anchor='middle'
                   font-size={8}
                   class={`years-visuals-${years[index]} fill-brand-text select-none`}
+                  style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
                 >
                   {`x${total}`}
                 </text>
@@ -187,11 +192,13 @@ const ticks = months.map((month, index) => {
   {
     years.map((year: string, index: number) => {
       const total = properties[index].total;
+
       return (
         <li class='relative m-0 p-0'>
           <button
             data-total={total}
             id={year}
+            style={currentYear - Number(year) > 1 ? { opacity: 0.5 } : { opacity: 1 }}
             class={`years-btn years-btn-${year} text-brand-${colors[index]} px-2 py-1 bg-brand-surface rounded border border-brand-outline transition-colors duration-300 hover:bg-brand-text/10 font-normal text-[0.75rem]`}
           >
             {year}
@@ -201,9 +208,3 @@ const ticks = months.map((month, index) => {
     })
   }
 </ul>
-
-<!-- <span
-class={`not-prose absolute -top-3 -right-3 rounded-full w-6 h-6 flex items-center justify-center border border-brand-outline bg-brand-surface text-brand-${colors[index]} text-[0.65rem] z-10`}
->
-{`x${properties[index].total}`}
-</span> -->
