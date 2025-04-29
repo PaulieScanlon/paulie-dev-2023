@@ -824,6 +824,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: any
 } & { render(): Render[".mdx"] };
+"2025/04/oops-proof-your-vibe-code-with-neon-because-mistakes-happen.mdx": {
+	id: "2025/04/oops-proof-your-vibe-code-with-neon-because-mistakes-happen.mdx";
+  slug: "2025/04/oops-proof-your-vibe-code-with-neon-because-mistakes-happen";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
