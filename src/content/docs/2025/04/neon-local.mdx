@@ -1,0 +1,31 @@
+---
+base: docs
+title: Neon Local
+date: 2025-04-28
+tags: [Neon, Docker]
+url: https://neon.tech/docs/local/neon-local
+source: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+Use Docker environments to connect to Neon and manage branches automatically
+
+[Neon Local](https://github.com/neondatabase-labs/neon_local) is a proxy service that creates a local interface to your Neon cloud database. By default, it automatically creates a new database branch when the container starts and deletes it when the container stops.
+
+Your application connects to a local Postgres endpoint, while Neon Local handles routing and authentication to the correct project and branch. This removes the need to update connection strings when working across database branches.
+
+## Docker compose instructions
+
+You can add the Neon Local by adding the following to your `docker-compose.yml` file.
+
+```yml
+db:
+  image: neondatabase/neon_local:latest
+  ports:
+    - '5432:5432'
+  environment:
+    NEON_API_KEY: ${NEON_API_KEY}
+    NEON_PROJECT_ID: ${NEON_PROJECT_ID}
+    DRIVER: serverless
+```
