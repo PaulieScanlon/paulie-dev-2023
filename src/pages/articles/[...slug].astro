@@ -15,7 +15,6 @@ import FeaturedImageCard from '../../components/featured-image-card.astro';
 import TableOfContents from '../../components/table-of-contents.astro';
 import Reactions from '../../components/reactions';
 import ProfileCard from '../../components/profile-card.astro';
-import AudioFeedEmbed from '../../components/audio-feed-embed.astro';
 
 import { articles } from '../../utils/all-collections';
 
@@ -38,7 +37,7 @@ const {
   article,
   article: {
     slug,
-    data: { title, author, logo, publication, url, tags, date, featuredImage, audioFeedId },
+    data: { title, author, logo, publication, url, tags, date, featuredImage },
   },
 } = Astro.props;
 
@@ -66,7 +65,6 @@ const ogImage = `${site}/articles/${slug}/og.png`;
   </div>
   <h1>{title}</h1>
   <TagsList tags={tags} link={true} />
-  {audioFeedId ? <AudioFeedEmbed audioFeedId={audioFeedId} /> : null}
   <div class='relative'>
     {isOped ? null : <div class='absolute w-full h-full bg-gradient-to-t from-brand-background to-transparent' />}
     <Content />

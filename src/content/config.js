@@ -5,7 +5,6 @@ export const collections = {
     type: 'content',
     schema: z.object({
       draft: z.boolean().optional(),
-      audioFeedId: z.string().optional(),
       base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
@@ -17,7 +16,6 @@ export const collections = {
   articles: defineCollection({
     type: 'content',
     schema: z.object({
-      audioFeedId: z.string().optional(),
       base: z.string(),
       title: z.string(),
       tags: z.array(z.string()).optional(),
