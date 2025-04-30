@@ -1,0 +1,20 @@
+---
+base: ghosts
+title: Make Yourself at Home with Neon Local
+date: 2025-04-30
+tags: [PostgreSQL, Neon, Docker]
+url: https://neon.tech/blog/make-yourself-at-home-with-neon-local
+publication: Neon
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1695653167/paulie.dev/Logos/neon-logo_ymrzrs.png
+---
+
+A simpler way to create ephemeral environments with Neon and Docker.
+
+The term ephemeral gets thrown around a lot in the database world, but what does it actually mean?
+
+In the context of database [branches](https://neon.tech/docs/introduction/branching), it refers to something temporary, short-lived, and not meant to persist. That might sound odd because databases are usually the most permanent part of your stack. So why go ephemeral?
+
+Because not every environment needs to last.
+
+Branches are perfect when you need a fresh, isolated copy of your database for previews, CI test runs, or local development. With Neon Local, you can now spin up and shut down branches automatically from Docker with very little setup.
