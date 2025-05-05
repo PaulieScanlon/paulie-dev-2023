@@ -1,7 +1,7 @@
 const groupByReferrer = (array) => {
   const groupedData = array.reduce((acc, item) => {
     const { referrer } = item;
-    const url = referrer !== null && referrer.includes('paulie.dev') ? 'https://www.paulie.dev/' : referrer;
+    const url = referrer;
     const key = url;
 
     if (!acc[key]) {
@@ -16,9 +16,15 @@ const groupByReferrer = (array) => {
     return acc;
   }, {});
 
-  return Object.keys(groupedData)
+  const group = Object.keys(groupedData)
     .map((key) => groupedData[key])
     .filter((item) => item.referrer !== null);
+  // .filter((item) => {
+  //   const domain = new URL(item.referrer).hostname.toLowerCase();
+  //   return !['paulie.dev', 'google.com'].some((excluded) => domain.includes(excluded));
+  // });
+
+  return group;
 };
 
 export default groupByReferrer;
