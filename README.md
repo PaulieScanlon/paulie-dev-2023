@@ -10,4 +10,3 @@
 
 - [https://paulie.dev/](https://paulie.dev/)
 - [@PaulieScanlon](https://twitter.com/PaulieScanlon)
-- [https://neon.tech/](https://neon.tech/)
