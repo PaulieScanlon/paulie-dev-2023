@@ -35,29 +35,41 @@ import isNewContent from '../utils/is-new-content';
 
 import { collections } from '../utils/all-collections';
 
-let analyticsData = null;
-let reactionsData = null;
+let analyticsData = [];
+let reactionsData = [];
 const period = 30;
 
-try {
-  analyticsData = await sql(`
-    SELECT * 
-    FROM analytics
-    WHERE date >= NOW() - INTERVAL '${period} days'
-  `);
+// async function fetchData(query: string) {
+//   try {
+//     const data = await sql(query);
 
-  reactionsData = await sql(`
-    SELECT *
-    FROM reactions
-    WHERE date >= NOW() - INTERVAL '${period} days'
-  `);
+//     if (!data.length) {
+//       throw new Error('No data found.');
+//     }
 
-  if (!analyticsData.length || !reactionsData.length) {
-    throw new Error('Bad request');
-  }
-} catch (error) {
-  console.error(error);
-}
+//     return data;
+//   } catch (err) {
+//     console.error('Failed to fetch data:', err);
+//     throw new Error('Could not load data.');
+//   }
+// }
+
+// try {
+//   analyticsData = await fetchData(`
+//     SELECT *
+//     FROM analytics
+//     WHERE date >= NOW() - INTERVAL '${period} days'
+//   `);
+
+//   reactionsData = await fetchData(`
+//     SELECT *
+//     FROM reactions
+//     WHERE date >= NOW() - INTERVAL '${period} days'
+//   `);
+// } catch (error) {
+//   analyticsData = [];
+//   reactionsData = [];
+// }
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>

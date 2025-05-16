@@ -17,21 +17,32 @@ import groupByPublication from '../utils/group-by-publication';
 
 import { collections, articles, posts, ghosts } from '../utils/all-collections';
 
-let analyticsData = null;
+let analyticsData = [];
 const period = 30;
 
+async function fetchData(query: string) {
+  try {
+    const data = await sql(query);
+
+    if (!data.length) {
+      throw new Error('No data found.');
+    }
+
+    return data;
+  } catch (err) {
+    console.error('Failed to fetch data:', err);
+    throw new Error('Could not load data.');
+  }
+}
+
 try {
-  analyticsData = await sql(`
-    SELECT * 
+  analyticsData = await fetchData(`
+    SELECT *
     FROM analytics
     WHERE date >= NOW() - INTERVAL '${period} days'
   `);
-
-  if (!analyticsData.length) {
-    throw new Error('Bad request');
-  }
 } catch (error) {
-  console.error(error);
+  analyticsData = [];
 }
 ---
 
