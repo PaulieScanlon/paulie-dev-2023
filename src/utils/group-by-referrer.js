@@ -18,11 +18,11 @@ const groupByReferrer = (array) => {
 
   const group = Object.keys(groupedData)
     .map((key) => groupedData[key])
-    .filter((item) => item.referrer !== null);
-  // .filter((item) => {
-  //   const domain = new URL(item.referrer).hostname.toLowerCase();
-  //   return !['paulie.dev', 'google.com'].some((excluded) => domain.includes(excluded));
-  // });
+    // .filter((item) => item.referrer !== null)
+    .filter((item) => {
+      const domain = new URL(item.referrer).hostname.toLowerCase();
+      return !['paulie.dev'].some((excluded) => domain.includes(excluded));
+    });
 
   return group;
 };
