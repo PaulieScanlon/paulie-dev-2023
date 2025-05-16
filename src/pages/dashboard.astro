@@ -39,37 +39,37 @@ let analyticsData = [];
 let reactionsData = [];
 const period = 30;
 
-// async function fetchData(query: string) {
-//   try {
-//     const data = await sql(query);
+async function fetchData(query: string) {
+  try {
+    const data = await sql(query);
 
-//     if (!data.length) {
-//       throw new Error('No data found.');
-//     }
+    if (!data.length) {
+      throw new Error('No data found.');
+    }
 
-//     return data;
-//   } catch (err) {
-//     console.error('Failed to fetch data:', err);
-//     throw new Error('Could not load data.');
-//   }
-// }
+    return data;
+  } catch (err) {
+    console.error('Failed to fetch data:', err);
+    throw new Error('Could not load data.');
+  }
+}
 
-// try {
-//   analyticsData = await fetchData(`
-//     SELECT *
-//     FROM analytics
-//     WHERE date >= NOW() - INTERVAL '${period} days'
-//   `);
+try {
+  analyticsData = await fetchData(`
+    SELECT *
+    FROM analytics
+    WHERE date >= NOW() - INTERVAL '${period} days'
+  `);
 
-//   reactionsData = await fetchData(`
-//     SELECT *
-//     FROM reactions
-//     WHERE date >= NOW() - INTERVAL '${period} days'
-//   `);
-// } catch (error) {
-//   analyticsData = [];
-//   reactionsData = [];
-// }
+  reactionsData = await fetchData(`
+    SELECT *
+    FROM reactions
+    WHERE date >= NOW() - INTERVAL '${period} days'
+  `);
+} catch (error) {
+  analyticsData = [];
+  reactionsData = [];
+}
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
