@@ -1,8 +1,8 @@
 name: Backup Neon | paulie-dev (us-east-1)
 
 on:
-  schedule:
-    - cron: '0 5 * * *' # Runs at midnight EST (us-east-1)
+  # schedule:
+  # - cron: '0 5 * * *' # Runs at midnight EST (us-east-1)
   workflow_dispatch:
 
 jobs:
@@ -17,9 +17,9 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       IAM_ROLE: ${{ secrets.IAM_ROLE }}
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      S3_BUCKET_NAME: 'paulie-dev-db-backup'
-      AWS_REGION: 'us-east-1'
-      PG_VERSION: '16'
+      S3_BUCKET_NAME: "paulie-dev-db-backup"
+      AWS_REGION: "us-east-1"
+      PG_VERSION: "16"
 
     steps:
       - name: Install PostgreSQL
