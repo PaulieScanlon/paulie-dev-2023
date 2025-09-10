@@ -58,5 +58,8 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/markdown-it": "^13.0.1"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
