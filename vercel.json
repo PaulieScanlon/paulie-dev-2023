@@ -4,11 +4,8 @@
   "outputDirectory": "dist",
   "framework": "astro",
   "functions": {
-    "src/pages/api/edge/**.ts": {
-      "runtime": "edge"
-    },
     "src/pages/api/**.ts": {
-      "runtime": "nodejs18.x"
+      "runtime": "edge"
     }
   },
   "regions": ["iad1"]
