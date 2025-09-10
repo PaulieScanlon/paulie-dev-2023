@@ -4,7 +4,7 @@
   "outputDirectory": "dist",
   "framework": "astro",
   "functions": {
-    "src/pages/api/*": {
+    "src/pages/api/**/*.ts": {
       "maxDuration": 30
     }
   },
