@@ -1,8 +1,8 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 
-import Loading from './loading';
-import emojis from '../utils/emojis';
-import { formatDateNumber } from '../utils/format-date';
+import Loading from "./loading";
+import emojis from "../utils/emojis";
+import { formatDateNumber } from "../utils/format-date";
 
 interface Props {
   period: number;
@@ -13,9 +13,9 @@ const HappyAllCities = component$<Props>(({ period }) => {
 
   useVisibleTask$(async () => {
     try {
-      const response = await fetch('/api/latest-reactions-by-location', {
-        method: 'POST',
-        body: JSON.stringify({ period: period }),
+      const response = await fetch("/api/latest-reactions-by-location", {
+        method: "POST",
+        body: JSON.stringify({ period: period })
       });
 
       if (response.status !== 200) {
@@ -30,22 +30,20 @@ const HappyAllCities = component$<Props>(({ period }) => {
     }
   });
 
-  console.log(data.value);
-
   return (
-    <div class='m-0 p-0 border rounded border-brand-outline bg-brand-surface'>
-      <div class='p-4'>
-        <div class='rounded border border-brand-outline p-4 bg-brand-background h-[415px] overflow-y-hidden'>
-          {data.value ? (
-            <div class='overflow-y-auto overflow-x-auto shadow-inner h-full'>
-              <table class='m-0 table-auto text-base'>
-                <thead class='font-medium border-b-2 border-b-brand-outline'>
+    <div class="m-0 p-0 border rounded border-brand-outline bg-brand-surface">
+      <div class="p-4">
+        <div class="rounded border border-brand-outline p-4 bg-brand-background h-[415px] overflow-y-hidden">
+          {data.value && data.value.length > 0 ? (
+            <div class="overflow-y-auto overflow-x-auto shadow-inner h-full">
+              <table class="m-0 table-auto text-base">
+                <thead class="font-medium border-b-2 border-b-brand-outline">
                   <tr>
-                    <th class='p-4'>Reaction</th>
-                    <th class='p-4'>Date</th>
-                    <th class='p-4'>Country</th>
-                    <th class='p-4'>City</th>
-                    <th class='p-4'>Title</th>
+                    <th class="p-4">Reaction</th>
+                    <th class="p-4">Date</th>
+                    <th class="p-4">Country</th>
+                    <th class="p-4">City</th>
+                    <th class="p-4">Title</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -55,27 +53,27 @@ const HappyAllCities = component$<Props>(({ period }) => {
                     const svg = emojis.find((emoji) => emoji.name === reaction);
 
                     return (
-                      <tr key={index} class='border-b-0 even:bg-brand-surface odd:bg-brand-background'>
-                        <td class='align-middle flex p-4 justify-center whitespace-nowrap'>
+                      <tr key={index} class="border-b-0 even:bg-brand-surface odd:bg-brand-background">
+                        <td class="align-middle flex p-4 justify-center whitespace-nowrap">
                           <svg
-                            role='img'
-                            aria-label='reaction-happy'
-                            xmlns='http://www.w3.org/2000/svg'
+                            role="img"
+                            aria-label="reaction-happy"
+                            xmlns="http://www.w3.org/2000/svg"
                             class={`not-prose mt-2 inline-block rounded-full w-5 h-5 fill-brand-${svg.color}`}
-                            viewBox='0 0 32 32'
-                            fill='currentColor'
+                            viewBox="0 0 32 32"
+                            fill="currentColor"
                           >
                             <path d={svg.d} />
                           </svg>
                         </td>
-                        <td class='align-middle p-4'>{formatDateNumber(date)}</td>
-                        <td class='align-middle flex items-center gap-2 p-4'>
-                          <span class='mt-1'>{flag}</span>
+                        <td class="align-middle p-4">{formatDateNumber(date)}</td>
+                        <td class="align-middle flex items-center gap-2 p-4">
+                          <span class="mt-1">{flag}</span>
                           {country}
                         </td>
-                        <td class='align-middle p-4 whitespace-nowrap'>{city}</td>
-                        <td class='align-middle whitespace-nowrap p-4'>
-                          <a href={slug} class='text-sm'>
+                        <td class="align-middle p-4 whitespace-nowrap">{city}</td>
+                        <td class="align-middle whitespace-nowrap p-4">
+                          <a href={slug} class="text-sm">
                             {title}
                           </a>
                         </td>
@@ -85,69 +83,11 @@ const HappyAllCities = component$<Props>(({ period }) => {
                 </tbody>
               </table>
             </div>
-          ) : null}
-          {/* {data.value ? (
-            <>
-              {data.value.length ? (
-                <div class='overflow-y-auto overflow-x-auto shadow-inner h-full'>
-                  <table class='m-0 table-auto text-base'>
-                    <thead class='font-medium border-b-2 border-b-brand-outline'>
-                      <tr>
-                        <th class='p-4'>Reaction</th>
-                        <th class='p-4'>Date</th>
-                        <th class='p-4'>Country</th>
-                        <th class='p-4'>City</th>
-                        <th class='p-4'>Title</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.value.map((row, index) => {
-                        const { date, reaction, city, country, flag, title, slug } = row;
-
-                        const svg = emojis.find((emoji) => emoji.name === reaction);
-
-                        return (
-                          <tr key={index} class='border-b-0 even:bg-brand-surface odd:bg-brand-background'>
-                            <td class='align-middle flex p-4 justify-center whitespace-nowrap'>
-                              <svg
-                                role='img'
-                                aria-label='reaction-happy'
-                                xmlns='http://www.w3.org/2000/svg'
-                                class={`not-prose mt-2 inline-block rounded-full w-5 h-5 fill-brand-${svg.color}`}
-                                viewBox='0 0 32 32'
-                                fill='currentColor'
-                              >
-                                <path d={svg.d} />
-                              </svg>
-                            </td>
-                            <td class='align-middle p-4'>{formatDateNumber(date)}</td>
-                            <td class='align-middle flex items-center gap-2 p-4'>
-                              <span class='mt-1'>{flag}</span>
-                              {country}
-                            </td>
-                            <td class='align-middle p-4 whitespace-nowrap'>{city}</td>
-                            <td class='align-middle whitespace-nowrap p-4'>
-                              <a href={slug} class='text-sm'>
-                                {title}
-                              </a>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <div class='flex items-center justify-center h-full'>
-                  <strong>No data to display</strong>
-                </div>
-              )}
-            </>
           ) : (
-            <div class='flex items-center justify-center h-full'>
-              <Loading />
+            <div class="flex items-center justify-center text-center h-full">
+              <div class="font-semibold text-lg text-center text-slate-500">No data</div>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>

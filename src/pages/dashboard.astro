@@ -40,16 +40,11 @@ let reactionsData = [];
 const period = 30;
 
 async function fetchData(query: string) {
+
   try {
     const data = await sql(query);
-
-    if (!data.length) {
-      throw new Error('No data found.');
-    }
-
-    return data;
-  } catch (err) {
-    console.error('Failed to fetch data:', err);
+    return data || [];
+  } catch (error) {
     throw new Error('Could not load data.');
   }
 }
@@ -66,6 +61,7 @@ try {
     FROM reactions
     WHERE date >= NOW() - INTERVAL '${period} days'
   `);
+
 } catch (error) {
   analyticsData = [];
   reactionsData = [];
