@@ -27,7 +27,7 @@
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/vercel": "^7.7.2",
+    "@astrojs/vercel": "^8.2.7",
     "@builder.io/qwik": "^1.4.2",
     "@fontsource/inconsolata": "^5.0.8",
     "@google-analytics/data": "4.7.0",
@@ -58,8 +58,5 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/markdown-it": "^13.0.1"
-  },
-  "engines": {
-    "node": "22.x"
   }
 }

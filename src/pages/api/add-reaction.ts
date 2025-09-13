@@ -1,6 +1,6 @@
-import type { APIRoute } from 'astro';
-import { sql } from '../../neon';
-import { geolocation } from '@vercel/edge';
+import type { APIRoute } from "astro";
+import { sql } from "../../neon";
+import { geolocation } from "@vercel/edge";
 
 export const POST: APIRoute = async ({ request }) => {
   const { title, slug, reaction } = await new Response(request.body).json();
@@ -11,28 +11,35 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     if (!slug || !reaction || !title) {
       return Response.json({
-        message: 'Missing required parameters',
-        status: 200,
+        message: "Missing required parameters",
+        status: 200
       });
     } else {
-      await sql(
-        'INSERT INTO reactions(date, title, slug, reaction, flag, country, city, latitude, longitude) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)',
-        [date, title, slug, reaction, flag, country, city.replace(/[^a-zA-Z ]/g, ' '), latitude, longitude]
-      );
+      await sql("INSERT INTO reactions(date, title, slug, reaction, flag, country, city, latitude, longitude) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)", [
+        date,
+        title,
+        slug,
+        reaction,
+        flag,
+        country,
+        city.replace(/[^a-zA-Z ]/g, " "),
+        latitude,
+        longitude
+      ]);
 
       return Response.json({
-        message: 'A Ok!',
-        status: 200,
+        message: "A Ok!",
+        status: 200
       });
     }
   } catch (error) {
     return Response.json({
-      message: 'Error',
-      status: 500,
+      message: "Error",
+      status: 500
     });
   }
 };
 
 export const config = {
-  runtime: 'edge',
+  runtime: "edge"
 };
