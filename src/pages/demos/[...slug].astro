@@ -9,9 +9,11 @@ import TableOfContents from '../../components/table-of-contents.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
-import { demos } from '../../utils/all-collections';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
+  const demos = await getCollection('demos');
+
   return demos.map((demo) => {
     return {
       params: {

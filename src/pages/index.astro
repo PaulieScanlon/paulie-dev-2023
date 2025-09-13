@@ -15,7 +15,9 @@ import GlobeAllCities from '../components/globe-all-cities';
 import groupByCity from '../utils/group-by-city';
 import groupByPublication from '../utils/group-by-publication';
 
-import { collections, articles, posts, ghosts } from '../utils/all-collections';
+import { getAllCollections } from '../utils/all-collections';
+
+const { collections, articles, posts, ghosts } = await getAllCollections();
 
 let analyticsData = [];
 const period = 30;

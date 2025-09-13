@@ -6,7 +6,9 @@ import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 
-import { docs } from '../utils/all-collections';
+import { getCollection } from 'astro:content';
+
+const docs = await getCollection('docs');
 ---
 
 <Main title='docs' description='Documentation' slug='/docs/'>

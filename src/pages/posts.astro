@@ -6,7 +6,9 @@ import CollectionsList from '../components/collections-list.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 
-import { posts } from '../utils/all-collections';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
 ---
 
 <Main title='Posts' description='Posts published on paulie.dev' slug='/posts/'>

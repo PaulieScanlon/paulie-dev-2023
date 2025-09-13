@@ -15,9 +15,11 @@ import TableOfContents from '../../components/table-of-contents.astro';
 import Reactions from '../../components/reactions';
 import ProfileCard from '../../components/profile-card.astro';
 
-import { docs } from '../../utils/all-collections';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+
   return docs.map((doc) => {
     return {
       params: {

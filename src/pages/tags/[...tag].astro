@@ -6,7 +6,7 @@ import Aside from '../../components/aside.astro';
 import ProfileCard from '../../components/profile-card.astro';
 import CollectionsList from '../../components/collections-list.astro';
 
-import { collections } from '../../utils/all-collections';
+import { getAllCollections } from '../../utils/all-collections';
 import { createTagsCollection } from '../../utils/create-tags-collection';
 
 interface Props {
@@ -15,6 +15,7 @@ interface Props {
 }
 
 export async function getStaticPaths() {
+  const { collections } = await getAllCollections();
   const tags = createTagsCollection(collections);
 
   return tags.map((tag: { name: string; slug: string }) => {

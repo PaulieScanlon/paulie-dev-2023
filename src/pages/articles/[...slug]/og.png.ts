@@ -1,27 +1,26 @@
 export const prerender = true;
 
-import { ImageResponse, html } from 'og-img';
-import fs from 'fs';
-import path from 'path';
+import { ImageResponse, html } from "og-img";
+import fs from "fs";
+import path from "path";
 
-import { formatDate } from '../../../utils/format-date';
+import { formatDate } from "../../../utils/format-date";
 
-import { articles } from '../../../utils/all-collections';
+import { getCollection } from "astro:content";
+
+const articles = await getCollection("articles");
 
 export async function GET({ props }) {
   const {
     article: {
-      data: { title, logo, date, publication, base, author },
-    },
+      data: { title, logo, date, publication, base, author }
+    }
   } = props;
 
   return new ImageResponse(
     html`<div tw="relative flex w-full h-full items-center px-48" style="background-color: #131127">
       <div tw="absolute flex items-center top-12 left-16">
-        <img
-          tw="w-14 h-14"
-          src="https://res.cloudinary.com/www-paulie-dev/image/upload/v1716149515/paulie.dev/Images/icon-logo_v1_x4nt1i.png"
-        />
+        <img tw="w-14 h-14" src="https://res.cloudinary.com/www-paulie-dev/image/upload/v1716149515/paulie.dev/Images/icon-logo_v1_x4nt1i.png" />
       </div>
       <div tw="relative flex flex-col">
         <div tw="flex items-center mb-6">
@@ -43,18 +42,18 @@ export async function GET({ props }) {
       height: 600,
       fonts: [
         {
-          name: 'Inconsolata Bold',
-          data: fs.readFileSync(path.resolve('./public/fonts/Inconsolata-Bold.ttf')),
+          name: "Inconsolata Bold",
+          data: fs.readFileSync(path.resolve("./public/fonts/Inconsolata-Bold.ttf")),
           weight: 600,
-          style: 'normal',
+          style: "normal"
         },
         {
-          name: 'Inconsolata Black',
-          data: fs.readFileSync(path.resolve('./public/fonts/Inconsolata-Black.ttf')),
+          name: "Inconsolata Black",
+          data: fs.readFileSync(path.resolve("./public/fonts/Inconsolata-Black.ttf")),
           weight: 900,
-          style: 'normal',
-        },
-      ],
+          style: "normal"
+        }
+      ]
     }
   );
 }
@@ -63,11 +62,11 @@ export async function getStaticPaths() {
   return articles.map((article) => {
     return {
       params: {
-        slug: article.slug,
+        slug: article.slug
       },
       props: {
-        article,
-      },
+        article
+      }
     };
   });
 }

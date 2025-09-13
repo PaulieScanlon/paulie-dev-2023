@@ -11,9 +11,11 @@ import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
-import { ghosts } from '../../utils/all-collections';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
+  const ghosts = await getCollection('ghosts');
+
   return ghosts.map((ghost) => {
     return {
       params: {

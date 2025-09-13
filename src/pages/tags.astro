@@ -8,7 +8,9 @@ import SearchTags from '../components/search-tags';
 
 import { createTagsCollection } from '../utils/create-tags-collection';
 
-import { collections } from '../utils/all-collections';
+import { getAllCollections } from '../utils/all-collections';
+
+const { collections } = await getAllCollections();
 
 const tags = createTagsCollection(collections);
 ---

@@ -11,9 +11,11 @@ import Reactions from '../../components/reactions';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
-import { posts } from '../../utils/all-collections';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
   return posts.map((post) => {
     return {
       params: {

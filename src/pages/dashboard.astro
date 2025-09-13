@@ -33,7 +33,9 @@ import groupByReaction from '../utils/group-by-reaction';
 import groupByReferrer from '../utils/group-by-referrer';
 import isNewContent from '../utils/is-new-content';
 
-import { collections } from '../utils/all-collections';
+import { getAllCollections } from '../utils/all-collections';
+
+const { collections } = await getAllCollections();
 
 let analyticsData = [];
 let reactionsData = [];

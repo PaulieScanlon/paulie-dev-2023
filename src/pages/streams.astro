@@ -7,7 +7,9 @@ import ProfileCard from '../components/profile-card.astro';
 
 import CollectionsList from '../components/collections-list.astro';
 
-import { streams } from '../utils/all-collections';
+import { getCollection } from 'astro:content';
+
+const streams = await getCollection('streams');
 ---
 
 <Main title='Streams' description="I don't like being on camera, but I'll do it if I have to" slug='/streams/'>

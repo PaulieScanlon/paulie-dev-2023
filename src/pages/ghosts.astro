@@ -7,7 +7,9 @@ import ProfileCard from '../components/profile-card.astro';
 
 import CollectionsList from '../components/collections-list.astro';
 
-import { ghosts } from '../utils/all-collections';
+import { getCollection } from 'astro:content';
+
+const ghosts = await getCollection('ghosts');
 ---
 
 <Main title='Ghosts' description="Articles I've written for clients... and the World will never know" slug='/ghosts/'>

@@ -1,6 +1,8 @@
 ---
 import Layout from './layout';
-import { search } from '../utils/all-collections';
+import { getAllCollections } from '../utils/all-collections';
+
+const { search } = await getAllCollections();
 
 import '@fontsource/inconsolata/300.css';
 import '@fontsource/inconsolata/400.css';
@@ -82,12 +84,12 @@ const isProduction = import.meta.env.PROD;
             dataLayer.push(arguments);
           }
           gtag('js', new Date());
-  
+
           gtag('config', 'G-K1DEFTPEC4');
           </script>
         ) : null
       }
-      
+
       <!-- Edge Analytics -->
       {
         isProduction ? (
@@ -113,8 +115,8 @@ const isProduction = import.meta.env.PROD;
         portalImg.setAttribute('src', '')
 
         const openPortal = (event) => {
-          const src = event.target.getAttribute('src'); 
-    
+          const src = event.target.getAttribute('src');
+
           document.body.style.overflow = 'hidden';
           portal.setAttribute('style', 'display: flex;');
           portalImg.setAttribute('src', src)
@@ -134,7 +136,7 @@ const isProduction = import.meta.env.PROD;
         portalX.addEventListener('click', closePortal)
         portalLightbox.addEventListener('click', closePortal)
       </script>
-      
+
   </head>
   <body class='prose max-w-none bg-brand-background'>
     <Layout fullWidth={fullWidth} slug={slug} search={search}>
