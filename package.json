@@ -21,9 +21,6 @@
     "url": "https://github.com/PaulieScanlon/paulie-dev-2023/issues"
   },
   "homepage": "https://github.com/PaulieScanlon/paulie-dev-2023#readme",
-  "engines": {
-    "node": "22.x"
-  },
   "dependencies": {
     "@astrojs/mdx": "^3.1.3",
     "@astrojs/partytown": "^2.1.0",
