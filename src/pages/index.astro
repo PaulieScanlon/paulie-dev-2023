@@ -49,12 +49,35 @@ try {
 ---
 
 <Main title='Home' description="Paul Scanlon's site" slug='/'>
-  <div class='relative flex items-center md:min-h-80'>
-    <div class='relative w-full md:w-auto lg:z-10'>
-      <strong class='text-sm text-brand-primary block'>Home</strong>
-      <h1 class='uppercase text-5xl mb-1'>Paul Scanlon</h1>
-      <h2 class='text-brand-text font-normal mt-1'>Technical Product Marketing Manager</h2>
-      <p class=''>Developer for 20 years. Time for a change.</p>
+  <div class='relative flex items-center md:min-h-96'>
+    <div class='relative w-full md:w-auto lg:z-10 max-w-none  lg:max-w-md'>
+      <strong class='text-sm text-brand-primary block mb-2'>Home</strong>
+      <h1 class='uppercase text-5xl mb-2'>Paul Scanlon</h1>
+      <div class='mb-4'>
+        <h2 class='text-brand-text font-normal text-xl mb-2'>Technical Product Marketing Manager</h2>
+        <p class='text-white text-sm mb-3'>
+          Currently at <a href="https://mastra.ai/" class='text-brand-primary hover:text-white transition-colors font-medium'>Mastra</a>
+        </p>
+      </div>
+      <div class='max-w-2xl'>
+        <p class='text-slate-300 leading-relaxed mb-4'>
+          Developer for <strong>20 years</strong>, now helping shape the next generation of AI-powered development tools.
+        </p>
+        <ul class='flex flex-wrap items-baseline gap-2 list-none m-0 p-0'>
+          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
+            <a href='/tags/ai/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>AI</a>
+          </li>
+          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
+            <a href='/tags/typescript/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>TypeScript</a>
+          </li>
+          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
+            <a href='/tags/react/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>React</a>
+          </li>
+          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
+            <a href='/tags/postgres/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>PostgreSQL</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class='absolute -top-10 sm:-top-6 left-0 md:left-auto right-0 flex justify-center invisible lg:visible'>
       <GlobeAllCities
