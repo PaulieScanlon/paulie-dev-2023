@@ -1,0 +1,16 @@
+---
+base: articles
+title: "Composite Storage: Optimize for Performance, Scale, and Cost with MastraCompositeStore"
+date: 2026-01-14
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/composite-storage-with-mastra-storage
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Mastra organizes storage into five specialized domains, each responsible for one type of data: memory, workflows, scores, observability, and agents. Mastra now supports configuring different storage providers per domain directly on the main Mastra instance using MastraCompositeStore. We call this approach Composite Storage.
+
+With composite storage, each domain can now use a different storage provider, giving you flexibility to match the storage to the type of data. For example, you might use Redis for fast access to conversational memory, PostgreSQL for workflow state and structured scores, and a specialized analytics engine like ClickHouse for observability data.
+
+The following example configures memory, workflows, scores, and observability to use different storage providers using the latest Mastra 1.0 packages.

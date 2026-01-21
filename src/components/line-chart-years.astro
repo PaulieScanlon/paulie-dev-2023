@@ -131,7 +131,7 @@ const ticks = months.map((month, index) => {
           <polyline
             fill='none'
             class={`years-visuals-${years[index]} stroke-brand-${colors[index]}`}
-            style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
+            style={{ opacity: 1 }}
             stroke-width={1}
             points={point}
           />
@@ -150,7 +150,7 @@ const ticks = months.map((month, index) => {
                 cx={x}
                 cy={y}
                 r={3}
-                style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
+                style={{ opacity: 1 }}
               />
               {total > 0 ? (
                 <text
@@ -159,7 +159,7 @@ const ticks = months.map((month, index) => {
                   text-anchor='middle'
                   font-size={8}
                   class={`years-visuals-${years[index]} fill-brand-text select-none`}
-                  style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
+                  style={{ opacity: 1 }}
                 >
                   {`x${total}`}
                 </text>
@@ -198,7 +198,7 @@ const ticks = months.map((month, index) => {
           <button
             data-total={total}
             id={year}
-            style={currentYear - Number(year) > 1 ? { opacity: 0.5 } : { opacity: 1 }}
+            style={{opacity: 1}}
             class={`years-btn years-btn-${year} text-brand-${colors[index]} px-2 py-1 bg-brand-surface rounded border border-brand-outline transition-colors duration-300 hover:bg-brand-text/10 font-normal text-[0.75rem]`}
           >
             {year}

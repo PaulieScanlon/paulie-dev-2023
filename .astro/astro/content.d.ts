@@ -845,6 +845,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/01/composite-storage-with-mastra-storage.mdx": {
+	id: "2026/01/composite-storage-with-mastra-storage.mdx";
+  slug: "2026/01/composite-storage-with-mastra-storage";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {

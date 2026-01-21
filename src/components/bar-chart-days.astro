@@ -163,7 +163,7 @@ const ticks = dayOrder.map((day, index) => {
                     height={height}
                     fill='transparent'
                     class={`days-visuals-${years[index]} stroke-brand-${colors[index]} fill-brand-surface`}
-                    style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
+                    style={{ opacity: 1 }}
                     stroke-width={1}
                   />
                   {total > 0 ? (
@@ -173,7 +173,7 @@ const ticks = dayOrder.map((day, index) => {
                       text-anchor='middle'
                       font-size={8}
                       class={`days-visuals-${years[index]} fill-brand-text select-none`}
-                      style={currentYear - Number(years[index]) > 1 ? { opacity: 0 } : { opacity: 1 }}
+                      style={{ opacity: 1 }}
                     >
                       {`x${total}`}
                     </text>
@@ -212,7 +212,7 @@ const ticks = dayOrder.map((day, index) => {
         <li class='m-0 p-0'>
           <button
             id={year}
-            style={currentYear - Number(year) > 1 ? { opacity: 0.5 } : { opacity: 1 }}
+            style={{ opacity: 1 }}
             class={`days-btn days-btn-${year} text-brand-${colors[index]} px-2 py-1 bg-brand-surface rounded border border-brand-outline transition-colors duration-300 hover:bg-brand-text/10 font-normal text-xs`}
           >
             {year}
