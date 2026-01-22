@@ -34,10 +34,10 @@ cat my-ssl-cert.pem | base64
 Here's what my terminal output looks like.
 
 <AstroImage
-  width='720'
-  height='450'
-  alt='Screenshot of terminal base64 string'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1720100008/paulie.dev/2024/07/ssl-cert-base-64-string_zvpbna.jpg'
+  width="720"
+  height="450"
+  alt="Screenshot of terminal base64 string"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1720100008/paulie.dev/2024/07/ssl-cert-base-64-string_zvpbna.jpg"
 />
 
 ## Add SSL certificate to GitHub Secrets
@@ -47,10 +47,10 @@ Now that I have a base64 string I can save it as a GitHub Secret by navigating t
 I can now reference the secret using `secrets.SSL_CERT_BASE64` from within the GitHub Action. In the below workflow you'll see a step named `Decode SSL Cert` which reads the value of `secrets.SSL_CERT_BASE64` and decodes the base64 string and temporarily stores the file, `my-ssl-cert.pem`, in memory. The name of this "temporary" file is what I've added on to the end my connection string (as shown above), and also saved that as a GitHub Secret named `DATABASE_URL`
 
 <AstroImage
-  width='720'
-  height='450'
-  alt='Screenshot of repository secrets'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1720115788/paulie.dev/2024/07/ssl-cert-env-vars_mm268u.jpg'
+  width="720"
+  height="450"
+  alt="Screenshot of repository secrets"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1720115788/paulie.dev/2024/07/ssl-cert-env-vars_mm268u.jpg"
 />
 
 Here's an example of a GitHub Action which decodes the SSL certificate, installs PostgreSQL and then logs out (using echo) the result of the following query, `SELECT VERSION();`.
@@ -93,4 +93,4 @@ jobs:
 
 Naturally you'll probably want to do more than simply query your database but hopefully this will demonstrates how you can use an SSL certificate stored as a base64 string using GitHub Secrets.
 
-I'm not sure if this is the best, or even the only way to solve this problem but it worked for me. If you know of any other ways to do this, please let me know: [@P121129E](https://x.com/P121129E).
+I'm not sure if this is the best, or even the only way to solve this problem but it worked for me. If you know of any other ways to do this, please let me know: [@PaulieScanlon](https://x.com/P121129E).

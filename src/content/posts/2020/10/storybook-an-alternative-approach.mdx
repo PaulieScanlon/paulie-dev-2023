@@ -1,7 +1,7 @@
 ---
 base: posts
 title: Storybook - An alternative approach
-tags: ['Storybook', 'JavaScript', 'React']
+tags: ["Storybook", "JavaScript", "React"]
 date: 2020-10-27
 author: Paul Scanlon
 featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1603822721/paulie.dev/2020/10/storybook-an-alternative-approach_fjcass.jpg
@@ -101,7 +101,7 @@ _Your exact config will differ if your directory structure is different from the
 // .storybook/main.js
 
 module.exports = {
-  stories: ['../src/components/**/*.stories.@(js|mdx|tsx)'],
+  stories: ["../src/components/**/*.stories.@(js|mdx|tsx)"]
 };
 ```
 
@@ -192,23 +192,23 @@ Here's a snippet for some example components that I've _amusingly_ named `<MrBut
 ```javascript
 // components/mr-button/mr-button.js
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 export const MrButton = ({ children, isBoogyTime, ...props }) => (
-  <button {...props} style={{ width: '100%' }}>
-    {isBoogyTime ? <span role='img'>🕺 </span> : null}
+  <button {...props} style={{ width: "100%" }}>
+    {isBoogyTime ? <span role="img">🕺 </span> : null}
     {children}
   </button>
 );
 
 MrButton.propTypes = {
   /** Displays man dancing emoji */
-  isBoogyTime: PropTypes.bool,
+  isBoogyTime: PropTypes.bool
 };
 
 MrButton.defaultProps = {
-  isBoogyTime: false,
+  isBoogyTime: false
 };
 ```
 
@@ -238,15 +238,15 @@ Ok, brills, now we have a component we can begin to document it's usage. The `.s
 ```javascript
 // components/mr-button/mr-button.stories.js
 
-import React from 'react';
-import { MrButton } from './mr-button';
+import React from "react";
+import { MrButton } from "./mr-button";
 
 export default {
-  title: 'components/MrButton',
+  title: "components/MrButton",
   parameters: {
     component: MrButton,
-    componentSubtitle: 'The MrButton component is of html type button',
-  },
+    componentSubtitle: "The MrButton component is of html type button"
+  }
 };
 
 export const Usage = () => <MrButton>Mr Button</MrButton>;
@@ -591,18 +591,18 @@ Using the same approach as above with `decorators` you can also apply `args` on 
 If, as mentioned above you've already applied `args` using the default approach the story-by-story approach will win out
 
 ```javascript
-export const ArgsStory = (args) => <MrButton onClick={() => args.handleClick('🕺')}>Click Me</MrButton>;
+export const ArgsStory = (args) => <MrButton onClick={() => args.handleClick("🕺")}>Click Me</MrButton>;
 
 ArgsStory.parameters = {
   docs: {
     description: {
-      story: '...',
-    },
-  },
+      story: "..."
+    }
+  }
 };
 
 ArgsStory.args = {
-  handleClick: (emoji) => action('handleClick')(emoji),
+  handleClick: (emoji) => action("handleClick")(emoji)
 };
 ```
 
@@ -622,20 +622,20 @@ export const TemplateStory = Template.bind({});
 TemplateStory.parameters = {
   docs: {
     description: {
-      story: '...',
-    },
-  },
+      story: "..."
+    }
+  }
 };
 
 TemplateStory.decorators = [
   (Story) => (
-    <div style={{ margin: '3em' }}>
+    <div style={{ margin: "3em" }}>
       <Story />
     </div>
-  ),
+  )
 ];
 
-TemplateStory.args = { ['aria-label']: 'A button that mostly does nothing' };
+TemplateStory.args = { ["aria-label"]: "A button that mostly does nothing" };
 ```
 
 ... which results in a "Show code" snippet that looks like this 👇
@@ -645,7 +645,7 @@ TemplateStory.args = { ['aria-label']: 'A button that mostly does nothing' };
 
 <div
   style={{
-    margin: '3em',
+    margin: "3em"
   }}
 >
   <No Display Name />
@@ -682,7 +682,7 @@ approaches you _could_ take when writing `.stories`
 Storybook, and prior to `v6.0.0` writing `.stories` could at times be a little more "edgy"
 
 Come find me on Twitter if you'd like to discuss this more, i'm fully open and up for discussing this further 😊
-[@P121129E](https://x.com/P121129E)
+[@PaulieScanlon](https://x.com/P121129E)
 
 Thanks for reading!
 

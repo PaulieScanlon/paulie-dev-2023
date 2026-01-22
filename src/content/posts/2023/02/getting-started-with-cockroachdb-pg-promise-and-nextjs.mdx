@@ -11,7 +11,7 @@ In this guide you should find everything you need to get started with
 [CockroachDB](https://www.cockroachlabs.com/product/), [pg-promise](https://github.com/vitaly-t/pg-promise) and
 [Next.js](https://nextjs.org/) (API Routes). But, before I dive in I'd like to explain my "why".
 
-<Tweet id='https://twitter.com/ErfanEbrahimnia/status/1654843780162371584' />
+<Tweet id="https://twitter.com/ErfanEbrahimnia/status/1654843780162371584" />
 
 ## Getting Started Resources
 
@@ -77,10 +77,10 @@ continuing.
 You should be looking at a page similar to the below. Click the **Create Cluster** button.
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Create a New Cluster'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231525/paulie.dev/2023/02/1-empty-cluster_yk1xuq.jpg'
+  width="768"
+  height="480"
+  alt="Create a New Cluster"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231525/paulie.dev/2023/02/1-empty-cluster_yk1xuq.jpg"
 />
 
 ### Setup a CockroachDB Cluster - 1
@@ -88,10 +88,10 @@ You should be looking at a page similar to the below. Click the **Create Cluster
 For the purposes of this guide I'll be using CockroachDB Serverless, select **Severless** and scroll down.
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Select Serverless Database'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231525/paulie.dev/2023/02/2-choose-serverless_soccaf.jpg'
+  width="768"
+  height="480"
+  alt="Select Serverless Database"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231525/paulie.dev/2023/02/2-choose-serverless_soccaf.jpg"
 />
 
 ### Setup a CockroachDB Cluster - 2
@@ -116,10 +116,10 @@ discussing
 When you're done, click the **Create your free cluster** button.
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Selected Cloud Provider and give the database a name'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231525/paulie.dev/2023/02/3-choose-provider-add-name_bdv9ij.jpg'
+  width="768"
+  height="480"
+  alt="Selected Cloud Provider and give the database a name"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231525/paulie.dev/2023/02/3-choose-provider-add-name_bdv9ij.jpg"
 />
 
 ### Create SQL User - name
@@ -128,10 +128,10 @@ My name is Paul so I created a user called Paul 🤷. When you've entered an SQL
 password** button, and then click the **Next** button.
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Create or select an SQL user'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231526/paulie.dev/2023/02/4-create-user-1_ndxl94.jpg'
+  width="768"
+  height="480"
+  alt="Create or select an SQL user"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231526/paulie.dev/2023/02/4-create-user-1_ndxl94.jpg"
 />
 
 ### Create SQL User - password
@@ -140,10 +140,10 @@ This step isn't entirely required as the password can be revealed in the next st
 the password and save it somewhere, then click the **Next** button when you're ready.
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Copy and save the password'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231526/paulie.dev/2023/02/5-create-user-2_pcq4pd.jpg'
+  width="768"
+  height="480"
+  alt="Copy and save the password"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231526/paulie.dev/2023/02/5-create-user-2_pcq4pd.jpg"
 />
 
 ### Create SQL User - DATABASE_URL
@@ -174,10 +174,10 @@ Delete the word `export` and save the connection string somewhere safe. Here's a
 ```
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Copy and save the connection string'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231526/paulie.dev/2023/02/6-connect_n8px0y.jpg'
+  width="768"
+  height="480"
+  alt="Copy and save the connection string"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231526/paulie.dev/2023/02/6-connect_n8px0y.jpg"
 />
 
 ### Repeat For Production
@@ -191,10 +191,10 @@ You should now be looking at a page similar to the below. You probably won't nee
 Console but maybe bookmark the page just in case.
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Finished configured Cluster'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231527/paulie.dev/2023/02/7-done_dgpsyv.jpg'
+  width="768"
+  height="480"
+  alt="Finished configured Cluster"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677231527/paulie.dev/2023/02/7-done_dgpsyv.jpg"
 />
 
 ### Connecting to a Cluster with cockroach sql
@@ -317,10 +317,10 @@ race 🐢.
 This is usually the first thing I'll do when starting a new Next.js project.
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Create GitHub Repository'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677239295/paulie.dev/2023/02/8-create-github-repo-1_bcyjbo.jpg'
+  width="768"
+  height="480"
+  alt="Create GitHub Repository"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677239295/paulie.dev/2023/02/8-create-github-repo-1_bcyjbo.jpg"
 />
 
 I also like to select the `.gitignore` and `license` before cloning the repository to my local development environment,
@@ -330,10 +330,10 @@ these are.
 - License: `MIT License`
 
 <AstroImage
-  width='768'
-  height='480'
-  alt='Create GitHub Repository'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1677239295/paulie.dev/2023/02/8-create-github-repo-2_q0p9gp.jpg'
+  width="768"
+  height="480"
+  alt="Create GitHub Repository"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1677239295/paulie.dev/2023/02/8-create-github-repo-2_q0p9gp.jpg"
 />
 
 If you're following along, you're now ready to clone the repo to you local development environment, E.g.
@@ -436,7 +436,7 @@ the following code snippet.
 ```javascript
 // ./db
 
-import pgPromise from 'pg-promise';
+import pgPromise from "pg-promise";
 
 const pgp = pgPromise();
 
@@ -450,7 +450,7 @@ const createSingleton = (name, create) => {
   return scope;
 };
 
-export const client = () => createSingleton('my-app-db-space', () => pgp(process.env.DATABASE_URL));
+export const client = () => createSingleton("my-app-db-space", () => pgp(process.env.DATABASE_URL));
 ```
 
 ### Create A Page
@@ -472,12 +472,12 @@ client side `fetch` request.
 
 ```javascript
 // pages/index.js
-import React from 'react';
+import React from "react";
 
 const Page = ({ data, error }) => {
   if (error) {
     return (
-      <main style={{ fontFamily: 'system-ui' }}>
+      <main style={{ fontFamily: "system-ui" }}>
         <h1>Error</h1>
         <pre>{JSON.stringify(error, null, 2)}</pre>
       </main>
@@ -485,7 +485,7 @@ const Page = ({ data, error }) => {
   }
 
   return (
-    <main style={{ fontFamily: 'system-ui' }}>
+    <main style={{ fontFamily: "system-ui" }}>
       <h1>Getting Started With CockroachDB, pg-promise and Next.js</h1>
       <h2>Insert</h2>
       <p>Click submit to insert a new location</p>
@@ -497,11 +497,11 @@ const Page = ({ data, error }) => {
 };
 
 export const getServerSideProps = async () => {
-  const { client } = require('../db');
+  const { client } = require("../db");
   const db = client();
 
   try {
-    const response = await db.any('SELECT * from locations');
+    const response = await db.any("SELECT * from locations");
 
     return {
       props: {
@@ -514,17 +514,17 @@ export const getServerSideProps = async () => {
               city,
               lat,
               lng,
-              runtime,
+              runtime
             };
-          }),
-        },
-      },
+          })
+        }
+      }
     };
   } catch (error) {
     return {
       props: {
-        error: error.message,
-      },
+        error: error.message
+      }
     };
   }
 };
@@ -569,9 +569,9 @@ new file called `insert-location.js` and add the following code snippet.
 ```javascript
 // pages/api/insert-location.js
 
-const { client } = require('../../db');
-const requestIp = require('request-ip');
-const geoip = require('fast-geoip');
+const { client } = require("../../db");
+const requestIp = require("request-ip");
+const geoip = require("fast-geoip");
 
 export default async function handler(req, res) {
   const db = client();
@@ -581,30 +581,30 @@ export default async function handler(req, res) {
     const ip = await requestIp.getClientIp(req);
     const geo = await geoip.lookup(ip);
 
-    const city = geo ? geo.city : 'Greenland';
+    const city = geo ? geo.city : "Greenland";
     const lat = geo ? geo.ll[0] : 65.95346100241352;
     const lng = geo ? geo.ll[1] : -44.96798528799432;
 
     const response = await db.one(
-      'INSERT INTO locations (date, city, lat, lng, runtime) VALUES(${date}, ${city}, ${lat}, ${lng}, ${serverless}) RETURNING id',
+      "INSERT INTO locations (date, city, lat, lng, runtime) VALUES(${date}, ${city}, ${lat}, ${lng}, ${serverless}) RETURNING id",
       {
         date: date,
         city: city,
         lat: lat,
         lng: lng,
-        serverless: 'serverless',
+        serverless: "serverless"
       }
     );
 
     res.status(200).json({
-      message: 'A-OK!',
+      message: "A-OK!",
       data: {
         id: response.id,
         city: city,
         date: date,
         lat: lat,
-        lng: lng,
-      },
+        lng: lng
+      }
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -706,20 +706,20 @@ following code snippet.
 ```javascript
 // pages/api/delete-location.js
 
-const { client } = require('../../db');
+const { client } = require("../../db");
 
 export default async function handler(req, res) {
   const db = client();
   const { id } = JSON.parse(req.body);
 
   try {
-    await db.none('DELETE FROM locations WHERE id = $1', id);
+    await db.none("DELETE FROM locations WHERE id = $1", id);
 
     res.status(200).json({
-      message: 'A-OK!',
+      message: "A-OK!",
       data: {
-        id,
-      },
+        id
+      }
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -912,4 +912,4 @@ string when adding the environment variable to you Vercel Project.
 
 This has been quite a journey and I hope you've ended up with something not to dissimilar to my sample app. If you spot
 any mistakes, or think there are areas that could be expanded on, please feel free to leave a comment or come and find
-me on Twitter: [@P121129E](https://x.com/P121129E).
+me on Twitter: [@PaulieScanlon](https://x.com/P121129E).

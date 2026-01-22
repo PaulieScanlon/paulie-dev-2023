@@ -18,11 +18,11 @@ Hugging Face Inference Endpoints are API endpoints that allow you to deploy mach
 For example:
 
 ```javascript
-import 'dotenv/config';
-import { InferenceClient } from '@huggingface/inference';
+import "dotenv/config";
+import { InferenceClient } from "@huggingface/inference";
 
 const client = new InferenceClient(process.env.HF_ACCESS_TOKEN).endpoint(
-  'https://g7u9q9gquz2wxrjn.us-east-1.aws.endpoints.huggingface.cloud'
+  "https://g7u9q9gquz2wxrjn.us-east-1.aws.endpoints.huggingface.cloud"
 );
 ```
 
@@ -54,10 +54,10 @@ By creating an Inference Endpoint you'll be able to test various models via HTTP
 Visit any of the model links above, then click the **Deploy** button and select **HR Inference Endpoints**.
 
 <AstroImage
-  width='1440'
-  height='900'
-  alt='Screenshot of model page'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741957473/paulie.dev/2025/03/hugging-face-javascript-deploy-model_aw2lbr.jpg'
+  width="1440"
+  height="900"
+  alt="Screenshot of model page"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1741957473/paulie.dev/2025/03/hugging-face-javascript-deploy-model_aw2lbr.jpg"
 />
 
 ### Endpoint Configuration
@@ -65,10 +65,10 @@ Visit any of the model links above, then click the **Deploy** button and select 
 On the next screen, give your endpoint a name (or leave the default), and configure the hardware. Once ready, click **Create Endpoint**.
 
 <AstroImage
-  width='1440'
-  height='900'
-  alt='Screenshot of endpoint config'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741957858/paulie.dev/2025/03/hugging-face-javascript-endpoint-config_iopaxj.jpg'
+  width="1440"
+  height="900"
+  alt="Screenshot of endpoint config"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1741957858/paulie.dev/2025/03/hugging-face-javascript-endpoint-config_iopaxj.jpg"
 />
 
 ### Endpoint URL
@@ -76,10 +76,10 @@ On the next screen, give your endpoint a name (or leave the default), and config
 It might take a few minutes for your endpoint to provision, but once it's **ready**, you'll be able to copy the Endpoint URL, which you'll need in a later step.
 
 <AstroImage
-  width='1440'
-  height='900'
-  alt='Screenshot of endpoint ready'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958141/paulie.dev/2025/03/hugging-face-javascript-endpoint-ready_yki0ti.jpg'
+  width="1440"
+  height="900"
+  alt="Screenshot of endpoint ready"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958141/paulie.dev/2025/03/hugging-face-javascript-endpoint-ready_yki0ti.jpg"
 />
 
 When initializing is complete your endpoint will be ready for use, but you'll need to create an Access Token to make requests.
@@ -89,10 +89,10 @@ When initializing is complete your endpoint will be ready for use, but you'll ne
 Head over to your Hugging Face account and click your profile picture in the top right-hand corner. From the dropdown menu, select **Access Tokens**.
 
 <AstroImage
-  width='1440'
-  height='900'
-  alt='Screenshot of access token navigation'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958903/paulie.dev/2025/03/hugging-face-javascript-access-token-1_yd6d0o.jpg'
+  width="1440"
+  height="900"
+  alt="Screenshot of access token navigation"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958903/paulie.dev/2025/03/hugging-face-javascript-access-token-1_yd6d0o.jpg"
 />
 
 On the Access Tokens page, click **Create new token**. On the next screen, select **Read** permissions, give your token a name, and then click **Create token**.
@@ -100,10 +100,10 @@ On the Access Tokens page, click **Create new token**. On the next screen, selec
 > Make sure to note down your token, as you'll only be able to view it once. You'll need it in a later step.
 
 <AstroImage
-  width='1440'
-  height='900'
-  alt='Screenshot of access token create'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958903/paulie.dev/2025/03/hugging-face-javascript-access-token-2_khb21q.jpg'
+  width="1440"
+  height="900"
+  alt="Screenshot of access token create"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1741958903/paulie.dev/2025/03/hugging-face-javascript-access-token-2_khb21q.jpg"
 />
 
 ## Create a Test Application
@@ -143,21 +143,21 @@ Create two new files at the root of your project:
 Add the following code to `index.js`, making sure to replace `"Add your Endpoint URL here"` with your actual Endpoint URL.
 
 ```javascript
-import 'dotenv/config';
-import { InferenceClient } from '@huggingface/inference';
+import "dotenv/config";
+import { InferenceClient } from "@huggingface/inference";
 
-const client = new InferenceClient(process.env.HF_ACCESS_TOKEN).endpoint('Add your Endpoint URL here');
+const client = new InferenceClient(process.env.HF_ACCESS_TOKEN).endpoint("Add your Endpoint URL here");
 
 (async () => {
   try {
     const { generated_text } = await client.textGeneration({
       max_tokens: 150,
-      inputs: 'Explain Hugging Face Inference Endpoints.',
+      inputs: "Explain Hugging Face Inference Endpoints."
     });
 
     console.log(generated_text);
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 })();
 ```
@@ -188,4 +188,4 @@ _"Explain Hugging Face Inference Endpoints. Hugging Face Inference Endpoints are
 
 There are tons of models to test, but figuring out which ones will actually work before provisioning an endpoint has been a real challenge for me. It can be time-consuming and frustrating. I'm still new to this, so maybe I'm missing something, or perhaps best practices are still evolving. Either way, this post should help you get up and running.
 
-If you're working in this space and want to connect, feel free to reach out to me on X: [@P121129E](https://x.com/P121129E).
+If you're working in this space and want to connect, feel free to reach out to me on X: [@PaulieScanlon](https://x.com/P121129E).

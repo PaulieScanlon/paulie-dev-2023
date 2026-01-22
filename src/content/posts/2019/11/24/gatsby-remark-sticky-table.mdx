@@ -33,11 +33,11 @@ I then stumbled upon this great little tutorial
 what it shows is how to grab references to nodes from markdown and then modify them before passing them back as HTML
 
 ```javascript
-const visit = require('unist-util-visit');
-const toString = require('mdast-util-to-string');
+const visit = require("unist-util-visit");
+const toString = require("mdast-util-to-string");
 
 module.exports = ({ markdownAST }, pluginOptions) => {
-  visit(markdownAST, 'heading', (node) => {
+  visit(markdownAST, "heading", (node) => {
     let { depth } = node;
     if (depth !== 1) return;
     let text = toString(node);
@@ -46,7 +46,7 @@ module.exports = ({ markdownAST }, pluginOptions) => {
           ${text}
         </h1>
       `;
-    node.type = 'HTML';
+    node.type = "HTML";
     node.children = undefined;
     node.value = HTML;
   });
@@ -88,4 +88,4 @@ way they wish.
 
 I'd really appreciate issues, comments or stars on [Github](https://github.com/PaulieScanlon/gatsby-remark-sticky-table)
 so if you are using this plugin in your project please do let me know what you think
-[@P121129E](https://x.com/P121129E)
+[@PaulieScanlon](https://x.com/P121129E)

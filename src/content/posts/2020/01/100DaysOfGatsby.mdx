@@ -41,7 +41,7 @@ blog posts but since they are exposed by a data component i can render whatever 
 
 I've also been planning what life might look like after this challenge and stumbled upon this tweet from Fauna
 
-<Tweet id='https://twitter.com/fauna/status/1247796436277719041' />
+<Tweet id="https://twitter.com/fauna/status/1247796436277719041" />
 
 Maybe _Write With Fauna_ will be my new jam and i've submitted a proposal for a **Full Stack Gatsby App**
 
@@ -90,7 +90,7 @@ data related stuff and leave the home page to just display some intro text and t
 
 I noticed this tweet today from [@AskGatsbyJS](https://twitter.com/AskGatsbyJS)
 
-<Tweet id='https://twitter.com/AskGatsbyJS/status/1247540635575267347' />
+<Tweet id="https://twitter.com/AskGatsbyJS/status/1247540635575267347" />
 
 ...and whilst _Component Shadowing_ is an important concept with Gatsby themes i feel my theme
 [gatsby-theme-terminal](https://github.com/PaulieScanlon/gatsby-theme-terminal) side steps the whole requirement to
@@ -169,8 +169,7 @@ component right here in the `.mdx`
 ```javascript
 <SourceWords>
   {(source) => {
-    const { wordCountTotal, wordCountAverage, wordCountHighest, wordCountLowest, timeToReadTotal, timeToReadAverage } =
-      source;
+    const { wordCountTotal, wordCountAverage, wordCountHighest, wordCountLowest, timeToReadTotal, timeToReadAverage } = source;
     return (
       <ul>
         <li>{`wordCountTotal: ${wordCountTotal}`}</li>
@@ -519,7 +518,7 @@ FEAR**.
 Users can now sign up and save their themes which means i now have data... what do i do with data, what do i do if
 there's a security issue and what happens if i need to delete data or change data that's already been stored in Fauna?
 
-If you're reading this and have any advice please do get in touch. [@P121129E](https://x.com/P121129E)
+If you're reading this and have any advice please do get in touch. [@PaulieScanlon](https://x.com/P121129E)
 
 ## Day 88
 
@@ -576,7 +575,7 @@ format that is helpful, do you find theres a performance impact when doing this?
 
 My preference is A, i think it's more prudent to think ahead rather than re-factor after.
 
-Have your say... tweet me [@P121129E](https://x.com/P121129E)
+Have your say... tweet me [@PaulieScanlon](https://x.com/P121129E)
 
 ## Day 86
 
@@ -603,7 +602,7 @@ directory: `components/SomeComponent`
 
 ```javascript
 // components/SomeComponent/SomeComponent.js
-import { React } from 'react';
+import { React } from "react";
 
 export const SomeComponent = () => <div>SomeComponent</div>;
 ```
@@ -622,7 +621,7 @@ The usage then becomes;
 
 ```javascript
 // some other file
-import { SomeComponent } from '../components/SomeComponent';
+import { SomeComponent } from "../components/SomeComponent";
 ```
 
 Then at some point you might have Storybook so you'll probably want `SomeComponent.stories.js` and really there should
@@ -727,11 +726,11 @@ The below is how you set up Theme UI in Storybook 5.3
 
 ```javascript
 // .storybook/preview.js
-import React from 'react';
-import { addDecorator } from '@storybook/react';
-import { ThemeProvider } from 'theme-ui';
+import React from "react";
+import { addDecorator } from "@storybook/react";
+import { ThemeProvider } from "theme-ui";
 
-import yourTheme from '../src/gatsby-plugin-theme-ui';
+import yourTheme from "../src/gatsby-plugin-theme-ui";
 
 addDecorator((storyFn) => <ThemeProvider theme={yourTheme}>{storyFn()}</ThemeProvider>);
 ```
@@ -1238,7 +1237,7 @@ If all goes to plan what i'd really like to do is create a gallery where users c
 this in turn will provide yet more options for good starting points... but for that i need to go Full Stack and, well, i
 like the Front End of the Front End too much so i might hold off tackling that until i know if Nude UI is of use or not.
 
-Stay nude guys and do let me know what you think [@P121129E](https://x.com/P121129E)
+Stay nude guys and do let me know what you think [@PaulieScanlon](https://x.com/P121129E)
 
 ## Day 68
 
@@ -1253,7 +1252,7 @@ I did have a bit of a ball ache with parsing the mdx directly onto CodeMirror bu
 [chrisbiscardi](https://twitter.com/chrisbiscardi) came to my aid with a sweet little webpack trick.
 
 ```javascript
-import mdxString from '!!raw-loader!./thing.mdx';
+import mdxString from "!!raw-loader!./thing.mdx";
 ```
 
 This allows me to bypass the webpack loader for `.mdx` file types and import it as "raw" then finally pass it on to
@@ -1340,7 +1339,7 @@ So we need to strip out the `""` marks... but only on keys not on values and onl
 `string` ... regex to the rescue!
 
 ```javascript
-JSON.stringify(themeObject, null, 2).replace(/"(\w+)"\s*:/g, '$1:');
+JSON.stringify(themeObject, null, 2).replace(/"(\w+)"\s*:/g, "$1:");
 ```
 
 but...
@@ -1353,10 +1352,7 @@ I know what you're thinking.... `JSON.parse()` to the rescue!
 ... wrong!
 
 ```javascript
-<CodeMirror
-  value={JSON.stringify(themeObject, null, 2).replace(/"(\w+)"\s*:/g, '$1:')}
-  onChange={(event) => JSON.parse(event)}
-/>
+<CodeMirror value={JSON.stringify(themeObject, null, 2).replace(/"(\w+)"\s*:/g, "$1:")} onChange={(event) => JSON.parse(event)} />
 ```
 
 The above **won't** work because `JSON.parse()` can't parse this as JSON because we've removed the quote marks and these
@@ -1366,7 +1362,7 @@ Ahh!! so now we need to put the quotes back in ... regex to the rescue again!
 
 ```javascript
 <CodeMirror
-  value={JSON.stringify(themeObject, null, 2).replace(/"(\w+)"\s*:/g, '$1:')}
+  value={JSON.stringify(themeObject, null, 2).replace(/"(\w+)"\s*:/g, "$1:")}
   onChange={(event) => JSON.parse(event.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2": '))}
 />
 ```
@@ -1427,7 +1423,7 @@ bit of a ball ache for me.
 ... and here's my proposed "solution" I've decided to create a kind of object editor with live preview split screen so
 you can play around with the values for theme-ui and see the markdown and or components update right before your eyes.
 
-<Tweet id='https://x.com/P121129E/status/1234434804885655554' />
+<Tweet id="https://x.com/P121129E/status/1234434804885655554" />
 
 The plan is to use local storage to "save" your work as you go and to provide a "copy" button so when you're finished
 you can just copy the code and drop it straight into you project. Other ideas i've had are to be able to save your theme
@@ -1675,7 +1671,7 @@ Today has been spent mainly thinking about stuff. I did some code and have now s
 having with my new theme.
 
 The things i've been thinking about today may only apply to very specific circumstances but perhaps if you're reading
-this and have had similar thoughts, lets talk; [@P121129E](https://x.com/P121129E)
+this and have had similar thoughts, lets talk; [@PaulieScanlon](https://x.com/P121129E)
 
 To give some context what i'm attempting to do with my new theme is provide everything that
 [theme-ui/components](https://theme-ui.com/components) offers via the use of the `components` prop on the `MDXProvider`
@@ -1914,7 +1910,7 @@ One way round this is to use the heading component like this `<Heading as='h1' v
 a faff when what you really want from a writing experience is to quickly style your content.
 
 If i'm barking up the wrong tree on this, my apologies or if you know where i've gone wrong please do tweet me
-[@P121129E](https://x.com/P121129E)
+[@PaulieScanlon](https://x.com/P121129E)
 
 ## Day 50
 
@@ -2057,20 +2053,20 @@ exports.onCreateNode = ({ node, actions, getNode }, themeOptions) => {
 
   const { createNodeField } = actions;
 
-  if (node.internal.type === 'Mdx' && !node.internal.fieldOwners) {
+  if (node.internal.type === "Mdx" && !node.internal.fieldOwners) {
     let path = source;
     const value = createFilePath({ node, getNode });
 
     if (Array.isArray(source)) {
       path = node.fileAbsolutePath
-        .split('/')
+        .split("/")
         .filter((str) => source.includes(str))
         .toString();
     }
     createNodeField({
       node,
       name: `slug`,
-      value: `/${path}${value}`,
+      value: `/${path}${value}`
     });
   }
 };
@@ -2146,31 +2142,31 @@ but the difference will be the user can decide what goes where and how it's laid
 eg:
 
 ```javascript
-<Flex sx={{ flexWrap: 'wrap' }}>
+<Flex sx={{ flexWrap: "wrap" }}>
   <Box
     sx={{
-      width: ['100%', '50%', '33%'],
+      width: ["100%", "50%", "33%"]
     }}
   >
-    <Heading variant='styles.h1'>contact</Heading>
+    <Heading variant="styles.h1">contact</Heading>
 
-    <Heading variant='styles.h2'>Email</Heading>
-    <Link href='mailto:pauliescanlon@gmail.com' variant='styles.a'>
+    <Heading variant="styles.h2">Email</Heading>
+    <Link href="mailto:pauliescanlon@gmail.com" variant="styles.a">
       pauliescanlon@gmail.com
     </Link>
 
-    <Heading variant='styles.h2'>Twitter</Heading>
-    <Link href='https://x.com/P121129E/' variant='styles.a'>
+    <Heading variant="styles.h2">Twitter</Heading>
+    <Link href="https://x.com/P121129E/" variant="styles.a">
       https://x.com/P121129E/
     </Link>
 
-    <Heading variant='styles.h2'>GitHub</Heading>
-    <Link href='https://github.com/PaulieScanlon/' variant='styles.a'>
+    <Heading variant="styles.h2">GitHub</Heading>
+    <Link href="https://github.com/PaulieScanlon/" variant="styles.a">
       https://github.com/PaulieScanlon/
     </Link>
 
-    <Heading variant='styles.h2'>GitHub</Heading>
-    <Link href='https://www.linkedin.com/in/pauliescanlon/' variant='styles.a'>
+    <Heading variant="styles.h2">GitHub</Heading>
+    <Link href="https://www.linkedin.com/in/pauliescanlon/" variant="styles.a">
       https://www.linkedin.com/in/pauliescanlon/
     </Link>
   </Box>
@@ -2276,7 +2272,7 @@ I've also written a blog post about PropShop, which if you're interested you can
 
 I'm still very much in the alpha phases of development and i now have x4 PR's open and am looking for feedback before
 i'm ready to release a first version of the plugin so if you're reading this and want to help, tweet me
-[@P121129E](https://x.com/P121129E)
+[@PaulieScanlon](https://x.com/P121129E)
 
 ## Day 45
 
@@ -2606,12 +2602,12 @@ see below
 
 ```javascript
 // gatsby-browser.js
-export { wrapRootElement } from './wrapRootElement';
+export { wrapRootElement } from "./wrapRootElement";
 ```
 
 ```javascript
 // gatsby-ssr.js
-export { wrapRootElement } from './wrapRootElement';
+export { wrapRootElement } from "./wrapRootElement";
 ```
 
 and wrapRootElement looks like this
@@ -2894,7 +2890,6 @@ This his how i did it.
 
 4. import and use the `useDbQuery` hook 🎣
 
-
 5. Filter the `useDbQuery` by the new `name` prop
 
 6. Pass the result on to the `Prop` component
@@ -2935,7 +2930,7 @@ export const Props = ({ name, getPropType, isToggle }) => {
 ...and to use it i now do this,
 
 ```javascript
-<Props name='Gist' />
+<Props name="Gist" />
 ```
 
 instead of this
@@ -3063,7 +3058,7 @@ to this lib directory but for some reason `gatsby-browser.js` and `gatsby-ssr.js
 
 I've put the word out so hopefully i'll get this resolved soon!
 
-<Tweet id='https://x.com/P121129E/status/1220394346593296384' />
+<Tweet id="https://x.com/P121129E/status/1220394346593296384" />
 
 ## Day 22
 
@@ -3157,15 +3152,15 @@ it was a real challenge for me.
 My approach was to split the `slug` using `slug.split("/")`
 
 ```javascript
-['', ''];
+["", ""];
 ```
 
 ```javascript
-['', 'services', ''];
+["", "services", ""];
 ```
 
 ```javascript
-['', 'services', 'web-design', ''];
+["", "services", "web-design", ""];
 ```
 
 Then i remove the empty strings so i'm just left with what is effectively an array of parents and children.
@@ -3211,13 +3206,13 @@ reference array option.
 Suppose you had a graphQL response that looked a little bit like this 👇
 
 ```javascript
-graphQlData = ['About', 'Contact', 'Home'];
+graphQlData = ["About", "Contact", "Home"];
 ```
 
 By providing a `navigationOrder` you can sort like this 👇
 
 ```javascript
-const navigationOrder = ['Home', 'About', 'Contact'];
+const navigationOrder = ["Home", "About", "Contact"];
 
 graphQlData.sort((a, b) => navigationOrder.indexOf(a.navigationLabel) - navigationOrder.indexOf(b.navigationLabel));
 ```
@@ -3427,7 +3422,7 @@ I had some interesting Tweets back and forth with [@AskGatsbyJS](https://twitter
 and it doesn't matter that names or prop names are long. I think there's a post or Tweet out there by Dan Abramov about
 how the function names at Facebook are really long, but the upside is it's clear what they do.
 
-<Tweet id='https://twitter.com/4lpine/status/1216821698600681472' />
+<Tweet id="https://twitter.com/4lpine/status/1216821698600681472" />
 
 I've tried to keep some consistency and the `id` paradigm is still in use but now it's more explicit `youTubeId`.
 
@@ -3453,7 +3448,7 @@ which should help you fix any issues, and of course the [docz](https://gatsby-md
 reflect the actual state of the library.
 
 I hope this change hasn't or won't cause anyone any serious headaches but if you are having problems feel free to Tweet
-me [@P121129E](https://x.com/P121129E)
+me [@PaulieScanlon](https://x.com/P121129E)
 
 This morning and this evening will mostly be taken up by combing over the docs and i'll be thinking hard about sensible
 names for both components and props.
@@ -3515,7 +3510,7 @@ I've never really understood regex but i did spend some time reading, watching a
 Here's the final regex pattern `/<a href="\/w/g` which when used in the response looks like this
 
 ```javascript
-text['*'].replace(/<a href="\/w/g, '<a target="_blank" href="//en.wikipedia.org/w');
+text["*"].replace(/<a href="\/w/g, '<a target="_blank" href="//en.wikipedia.org/w');
 ```
 
 I added the `target="_blank"` as it feels like a better option for users, perhaps i'll turn this into a prop but it
@@ -3676,7 +3671,7 @@ Yesterday was a pretty good day, i was relieved to finally get `docz` setup the 
 early version of [gatsby-mdx-embed](https://github.com/PaulieScanlon/gatsby-mdx-embed). A fellow Gatsby enthusiast who i
 met at Gatsby Days London [Scott Spence](https://twitter.com/spences10) was keen to try it out... so, here ya go Scott!
 
-<Tweet id='https://x.com/P121129E/status/1214241819397103618' />
+<Tweet id="https://x.com/P121129E/status/1214241819397103618" />
 
 This evening i'll mostly be focussing on documenting and testing the props for each component and perhaps if there's
 time i'll investigate what other providers i can include. [dev.to](https://dev.to/) would be sweet but i had a quick
@@ -3706,15 +3701,15 @@ props. You won't find this in their docs but i did find it amongst the
 // doczrc.js
 export default {
   docgenConfig: {
-    searchPath: directoryPath,
-  },
+    searchPath: directoryPath
+  }
 };
 ```
 
 and `directoryPath` is as follows;
 
 ```javascript
-const directoryPath = path.join(process.cwd(), '../@pauliescanlon/gatsby-mdx-embed/src/components');
+const directoryPath = path.join(process.cwd(), "../@pauliescanlon/gatsby-mdx-embed/src/components");
 ```
 
 First i'm using `path.join` to make sure i don't end up with un-wanted `/`'s, then i'm using `process.cwd` which is the
@@ -3866,7 +3861,7 @@ const anchorScroll = (location) => {
     setTimeout(() => {
       window.scrollTo({
         top: item - mainNavHeight,
-        behavior: 'smooth',
+        behavior: "smooth"
       });
     }, 50);
   }

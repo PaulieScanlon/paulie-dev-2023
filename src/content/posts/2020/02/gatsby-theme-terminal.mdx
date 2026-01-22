@@ -88,7 +88,7 @@ Let's start with data and by looking at the
     <ul>
       {source.map((edge, index) => {
         const {
-          frontmatter: { title },
+          frontmatter: { title }
         } = edge.node;
         return <li key={index}>{title}</li>;
       })}
@@ -140,7 +140,7 @@ To do this we can de-structure a bit more of the data returned from the `<Source
 const {
   frontmatter: { title, featuredImage, tags, date },
   fields: { slug },
-  excerpt,
+  excerpt
 } = edge.node;
 ```
 
@@ -150,12 +150,12 @@ create something a bit more eye catching, like one of `<Card />`components used 
 ... and here's the source code
 
 ```javascript
-<SourceList filter='posts'>
+<SourceList filter="posts">
   {(posts) => {
     const {
       frontmatter: { title, featuredImage, tags, date },
       excerpt,
-      fields: { slug },
+      fields: { slug }
     } = posts[3].node;
     return <Card title={title} featuredImage={featuredImage} tags={tags} date={date} excerpt={excerpt} slug={slug} />;
   }}
@@ -237,7 +237,7 @@ In order to use the `<Card />` component in `.mdx` you would either have to impo
 like this
 
 ```javascript
-import { Card } from '@theme-ui/components';
+import { Card } from "@theme-ui/components";
 ```
 
 Or continue on with the "power" approach and provide all of these components via the `MDXProvider`
@@ -246,7 +246,7 @@ like this
 
 ```javascript
 // some-layout.js
-import * as themeUiComponents from '@theme-ui/components';
+import * as themeUiComponents from "@theme-ui/components";
 <MDXProvider components={themeUiComponents}>{children}</MDXProvider>;
 ```
 
@@ -254,6 +254,6 @@ I'm pretty confident in this approach and have just used this theme to update my
 [pauliescanlon.io](https://www.pauliescanlon.io/) and found it to be as flexible as i'd intended.
 
 I'm always looking to improve my work so if you're using this theme and have any questions or problems please do let me
-know, i'd honestly love to hear from you [@P121129E](https://x.com/P121129E)
+know, i'd honestly love to hear from you [@PaulieScanlon](https://x.com/P121129E)
 
-<Tweet id='https://x.com/P121129E/status/1232982448310497286' />
+<Tweet id="https://x.com/P121129E/status/1232982448310497286" />

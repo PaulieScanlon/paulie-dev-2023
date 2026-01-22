@@ -83,29 +83,29 @@ input(s), label(s), button etc.
 ### Finished Marketo Form
 
 ```javascript
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
+import React, { memo } from "react";
+import PropTypes from "prop-types";
 
-import useMarketo from '../hooks/use-marketo';
+import useMarketo from "../hooks/use-marketo";
 
 const MarketoForm = memo(({ debug, formId }) => {
   useMarketo({
     formId: formId,
-    callback: () => {},
+    callback: () => {}
   });
 
-  return <form id={`mktoForm_${formId}`} className={debug ? 'block' : 'hidden'} aria-hidden='true' />;
+  return <form id={`mktoForm_${formId}`} className={debug ? "block" : "hidden"} aria-hidden="true" />;
 });
 
 MarketoForm.defaultProps = {
-  debug: false,
+  debug: false
 };
 
 MarketoForm.propTypes = {
   /** Show the real Marketo form */
   debug: PropTypes.bool,
   /** The Marketo Form Id */
-  formId: PropTypes.string.isRequired,
+  formId: PropTypes.string.isRequired
 };
 
 export default MarketoForm;
@@ -159,7 +159,7 @@ For example the Email `for` and `id` attributes have been changed from `"Email"`
 ... and here's the finished hook!
 
 ```javascript
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useMarketo = ({ formId, callback }) => {
   const [scriptAdded, setScriptAdded] = useState(false);
@@ -168,38 +168,33 @@ const useMarketo = ({ formId, callback }) => {
   useEffect(() => {
     if (scriptAdded) {
       if (!formLoaded) {
-        MktoForms2.loadForm(
-          `//${process.env.NEXT_PUBLIC_BASE_URL}`,
-          process.env.NEXT_PUBLIC_MUNCHKIN_ID,
-          formId,
-          callback
-        );
+        MktoForms2.loadForm(`//${process.env.NEXT_PUBLIC_BASE_URL}`, process.env.NEXT_PUBLIC_MUNCHKIN_ID, formId, callback);
         MktoForms2.whenRendered((form) => {
           const formElement = form.getFormElem()[0];
-          const formElementId = form.getFormElem()[0].id.split('_')[1];
+          const formElementId = form.getFormElem()[0].id.split("_")[1];
 
           /** Remove the style attribute and make for, and id attributes unique */
-          Array.from(formElement.querySelectorAll('[style]'))
+          Array.from(formElement.querySelectorAll("[style]"))
             .concat(formElement)
             .forEach((element) => {
-              element.removeAttribute('style');
-              if (element.hasAttribute('id') && element.tagName !== 'FORM') {
-                element.setAttribute('id', `${element.getAttribute('id')}_${formElementId}`);
+              element.removeAttribute("style");
+              if (element.hasAttribute("id") && element.tagName !== "FORM") {
+                element.setAttribute("id", `${element.getAttribute("id")}_${formElementId}`);
               }
 
-              if (element.tagName === 'LABEL') {
-                element.setAttribute('for', `${element.getAttribute('for')}_${formElementId}`);
+              if (element.tagName === "LABEL") {
+                element.setAttribute("for", `${element.getAttribute("for")}_${formElementId}`);
               }
             });
 
           /** Remove <span /> from DOM */
-          Array.from(formElement.querySelectorAll('.mktoInstruction')).forEach((element) => {
+          Array.from(formElement.querySelectorAll(".mktoInstruction")).forEach((element) => {
             element.remove();
           });
 
           /** Remove <style /> from DOM */
           Array.from(formElement.children).forEach((element) => {
-            if (element.type && element.type === 'text/css') {
+            if (element.type && element.type === "text/css") {
               element.remove();
             }
           });
@@ -210,7 +205,7 @@ const useMarketo = ({ formId, callback }) => {
       if (window.MktoForms2) {
         setScriptAdded(true);
       } else {
-        const script = document.createElement('script');
+        const script = document.createElement("script");
         script.defer = true;
         script.onload = () => (window?.MktoForms2 ? setScriptAdded(true) : null);
         script.src = `//${process.env.NEXT_PUBLIC_BASE_URL}/js/forms2/js/forms2.min.js`;
@@ -248,31 +243,31 @@ This component, among other things contains the following:
 ... and here's the finished form!
 
 ```javascript
-import React, { useState, useReducer, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useReducer, Fragment } from "react";
+import PropTypes from "prop-types";
 
-import { initialState, reducer } from '../hooks/use-reducer';
+import { initialState, reducer } from "../hooks/use-reducer";
 
-import MarketoForm from './marketo-form';
+import MarketoForm from "./marketo-form";
 
 const NewsletterForm = ({ formId }) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     dispatch({
-      type: 'isSubmitting',
+      type: "isSubmitting"
     });
 
     window.MktoForms2.getForm(formId)
       .vals({ Email: email })
       .onSuccess(() => {
         dispatch({
-          type: 'success',
+          type: "success"
         });
-        setEmail('');
+        setEmail("");
         return false;
       })
       .submit();
@@ -280,42 +275,42 @@ const NewsletterForm = ({ formId }) => {
 
   return (
     <Fragment>
-      <h3 className='m-0'>Newsletter Form</h3>
+      <h3 className="m-0">Newsletter Form</h3>
       <p>Example form used to capture email addresses only.</p>
-      <div className='bg-white rounded border border-brand-gray-b p-8 sm:px-16 pt-16'>
-        <h3 className='m-0 font-bold text-brand-deep-purple'>Signup to Our Newsletter</h3>
-        <small className='block mb-8 text-brand-gray'>* Required fields</small>
-        <form onSubmit={handleSubmit} className='form'>
-          <label className='form--label'>
-            <span className='form--label-text'>
-              Email<span className='form--label-required'>*</span>
+      <div className="bg-white rounded border border-brand-gray-b p-8 sm:px-16 pt-16">
+        <h3 className="m-0 font-bold text-brand-deep-purple">Signup to Our Newsletter</h3>
+        <small className="block mb-8 text-brand-gray">* Required fields</small>
+        <form onSubmit={handleSubmit} className="form">
+          <label className="form--label">
+            <span className="form--label-text">
+              Email<span className="form--label-required">*</span>
             </span>
             <input
-              className='form--input'
-              type='email'
+              className="form--input"
+              type="email"
               required
-              placeholder='you@example.xyz'
+              placeholder="you@example.xyz"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
             />
           </label>
-          <span className='form--announce-container'>
-            {state.isSubmitting ? <span className='text-brand-orange'>Submitting...</span> : null}
-            {state.success ? <span className='form--announce-success'>Thanks for signing up.</span> : null}
+          <span className="form--announce-container">
+            {state.isSubmitting ? <span className="text-brand-orange">Submitting...</span> : null}
+            {state.success ? <span className="form--announce-success">Thanks for signing up.</span> : null}
           </span>
-          <button type='submit' className='transition-all form--button-submit' disabled={state.isSubmitting}>
-            {state.isSubmitting ? 'Please wait...' : 'Subscribe'}
+          <button type="submit" className="transition-all form--button-submit" disabled={state.isSubmitting}>
+            {state.isSubmitting ? "Please wait..." : "Subscribe"}
           </button>
         </form>
-        <small className='preferences--cta'>
-          To update your email preferences visit{' '}
+        <small className="preferences--cta">
+          To update your email preferences visit{" "}
           <a
-            href='https://www.cockroachlabs.com/email-preferences/'
-            target='_blank'
-            rel='noreferrer'
-            className='text-brand-deep-purple hover:!text-brand-primary'
+            href="https://www.cockroachlabs.com/email-preferences/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-brand-deep-purple hover:!text-brand-primary"
           >
             cockroachlabs.com
           </a>
@@ -328,7 +323,7 @@ const NewsletterForm = ({ formId }) => {
 
 NewsletterForm.propTypes = {
   /** The Marketo Form Id */
-  formId: PropTypes.string.isRequired,
+  formId: PropTypes.string.isRequired
 };
 
 export default NewsletterForm;
@@ -339,7 +334,7 @@ like to hear about all the latest news from [Cockroach Labs](https://www.cockroa
 
 If you have any issues, comments or improvements please feel free to open an issue or PR on the repo and I'll be happy
 to take a look or, if you'd prefer, please come find me on Twitter:
-[@P121129E](https://x.com/P121129E).
+[@PaulieScanlon](https://x.com/P121129E).
 
 See you around the internet!
 

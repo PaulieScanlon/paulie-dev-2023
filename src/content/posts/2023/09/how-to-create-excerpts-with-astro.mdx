@@ -216,19 +216,19 @@ Here's the final code.
 ```javascript
 // src/utils/create-excerpt
 
-import MarkdownIt from 'markdown-it';
+import MarkdownIt from "markdown-it";
 const parser = new MarkdownIt();
 
 export const createExcerpt = (body) => {
   return parser
     .render(body)
-    .split('\n')
+    .split("\n")
     .slice(0, 6)
     .map((str) => {
-      return str.replace(/<\/?[^>]+(>|$)/g, '').split('\n');
+      return str.replace(/<\/?[^>]+(>|$)/g, "").split("\n");
     })
     .flat()
-    .join(' ');
+    .join(" ");
 };
 ```
 
@@ -262,6 +262,6 @@ const posts = await getCollection('posts');
 
 I'm pretty new to Astro. I used it a long time ago, `^0.20.7` I think, and have been waiting for collections because I knew I needed them. I knew I also needed excerpts, but after spending 5 mins Google-ing around and coming up with nothing, I rolled my own solution.
 
-If you know of a better way, lemme know: [@P121129E](https://x.com/P121129E).
+If you know of a better way, lemme know: [@PaulieScanlon](https://x.com/P121129E).
 
 TTFN.

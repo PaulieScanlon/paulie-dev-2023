@@ -1,7 +1,7 @@
 ---
 base: posts
 title: styled-components Responsive Array Syntax
-tags: ['React', 'JavaScript', 'styled-components']
+tags: ["React", "JavaScript", "styled-components"]
 date: 2020-08-19
 author: Paul Scanlon
 featuredImage: https://res.cloudinary.com/www-paulie-dev/image/upload/v1597837942/paulie.dev/2020/08/styled-components-responsive-array-syntax_iy5o8k.jpg
@@ -11,7 +11,7 @@ In this post I'm going to discuss a new approach I've adopted when using [styled
 Components.com/), initially I wasn't sure what this approach was called but I do really like this suggestion from
 [Pedro Duarte](https://twitter.com/peduarte) at [Modulz](https://twitter.com/modulz)
 
-<Tweet id='https://twitter.com/peduarte/status/1295998559117074432' />
+<Tweet id="https://twitter.com/peduarte/status/1295998559117074432" />
 
 From the _outside_ when you use the Box component you can provide a `width` prop but instead of it simply being a string
 value it's an array of values. Reading from left to right this will translate to the following:
@@ -23,7 +23,7 @@ value it's an array of values. Reading from left to right this will translate to
 NB: This is assuming in your application you have a set of breakpoints defined, for example:
 
 ```javascript
-const breakpoints = ['576px', '768px', '992px'];
+const breakpoints = ["576px", "768px", "992px"];
 ```
 
 As my Tweet mentions both [Chakra UI](https://chakra-ui.com/responsive-styles) and
@@ -67,14 +67,14 @@ Create a test component, I've called mine `<MrButton />` because I'm a laugh.
 
 ```javascript
 // mr-button.js
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const MrButton = styled.button({
-  backgroundColor: 'hotpink',
-  border: 'none',
-  color: 'white',
+  backgroundColor: "hotpink",
+  border: "none",
+  color: "white",
   padding: 8,
-  width: '100%',
+  width: "100%"
 });
 
 export default MrButton;
@@ -87,7 +87,7 @@ Make sure you've implemented `<MrButton />` somewhere in your app and are passin
 
 ```javascript
 // app.js
-<MrButton backgroundColor={['hotpink', 'mouve', 'purple']} width={['100%', '50%', 'auto']}>
+<MrButton backgroundColor={["hotpink", "mouve", "purple"]} width={["100%", "50%", "auto"]}>
   Click Me
 </MrButton>
 ```
@@ -144,13 +144,13 @@ If you've followed the steps above you should see a `console.log` like this: ðŸ‘
 ```javascript
 [
   {
-    property: 'background-color',
-    values: ['hotpink', 'mouve', 'purple'],
+    property: "background-color",
+    values: ["hotpink", "mouve", "purple"]
   },
   {
-    property: 'width',
-    values: ['100%', '50%', 'auto'],
-  },
+    property: "width",
+    values: ["100%", "50%", "auto"]
+  }
 ];
 ```
 
@@ -202,26 +202,26 @@ Which should give you a `console.log` that looks like this: ðŸ‘‡
 [
   [
     {
-      'background-color': 'hotpink',
+      "background-color": "hotpink"
     },
     {
-      'background-color': 'mouve',
+      "background-color": "mouve"
     },
     {
-      'background-color': 'purple',
-    },
+      "background-color": "purple"
+    }
   ],
   [
     {
-      width: '100%',
+      width: "100%"
     },
     {
-      width: '50%',
+      width: "50%"
     },
     {
-      width: 'auto',
-    },
-  ],
+      width: "auto"
+    }
+  ]
 ];
 ```
 
@@ -411,9 +411,9 @@ number and return a formed media query with the correct `css` values _injected_
 I'm sure there's a million other ways to solve this problem but in my case it worked a treat. If you have any feedback
 or suggestions please feel free to find me on Twitter:
 
-[@P121129E](https://x.com/P121129E)
+[@PaulieScanlon](https://x.com/P121129E)
 
 Oh and if you'd like to dig a little deep here's a [CodeSandbox](https://codesandbox.io/s/Styled
 Components-responsive-array-syntax-3qxu3)
 
-<CodeSandbox id='/styled-components-responsive-array-syntax-3qxu3' />
+<CodeSandbox id="/styled-components-responsive-array-syntax-3qxu3" />

@@ -9,4 +9,4 @@
 # Paul Scanlon
 
 - [https://paulie.dev/](https://paulie.dev/)
-- [@P121129E](https://x.com/P121129E)
+- [@PaulieScanlon](https://x.com/P121129E)

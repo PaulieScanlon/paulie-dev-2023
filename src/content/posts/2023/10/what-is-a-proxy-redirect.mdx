@@ -100,11 +100,11 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/demos/ping-thing',
-        destination: 'https://ping-thing.vercel.app/demos/ping-thing',
-      },
+        source: "/demos/ping-thing",
+        destination: "https://ping-thing.vercel.app/demos/ping-thing"
+      }
     ];
-  },
+  }
 };
 ```
 
@@ -119,7 +119,7 @@ To configure the demo, I add the following to `next.config.js`.
 
 module.exports = {
   assetPrefix: process.env.NEXT_PUBLIC_REWRITE_PREFIX,
-  basePath: process.env.NEXT_PUBLIC_REWRITE_PREFIX,
+  basePath: process.env.NEXT_PUBLIC_REWRITE_PREFIX
 };
 ```
 
@@ -151,12 +151,7 @@ NEXT_PUBLIC_REWRITE_PREFIX=
 This is a tricky one. For the most part the `assetPrefix` deals with where static assets are located. If you're using `next/image` however, you'll need prefix the `src` with the same environment variable used above to ensure the path to the static directory is correct.
 
 ```javascript
-<Image
-  src={`${process.env.NEXT_PUBLIC_REWRITE_PREFIX}/static/cta-elephant.avif`}
-  width={1684}
-  height={964}
-  alt='Neon Elephant'
-/>
+<Image src={`${process.env.NEXT_PUBLIC_REWRITE_PREFIX}/static/cta-elephant.avif`} width={1684} height={964} alt="Neon Elephant" />
 ```
 
 ### basePath
@@ -174,17 +169,17 @@ This one was super easy for me. I used the same setup as [neon.tech](https://neo
 ```javascript
 // pages/_document.js
 
-import Script from 'next/script';
-import { Html, Head, Main, NextScript } from 'next/document';
+import Script from "next/script";
+import { Html, Head, Main, NextScript } from "next/document";
 
 const Document = () => {
-  const isProd = process.env.NODE_ENV === 'production';
+  const isProd = process.env.NODE_ENV === "production";
 
   return (
-    <Html lang='en'>
+    <Html lang="en">
       <Head>
         {isProd ? (
-          <Script id='google-analytics' strategy='afterInteractive'>
+          <Script id="google-analytics" strategy="afterInteractive">
             {`
               (function (w, d, s, l, i) {
                 w[l] = w[l] || []
@@ -204,10 +199,7 @@ const Document = () => {
         <Main />
         <NextScript />
         {isProd ? (
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM}`}
-            strategy='afterInteractive'
-          />
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM}`} strategy="afterInteractive" />
         ) : null}
       </body>
     </Html>
@@ -222,10 +214,10 @@ export default Document;
 If you're deploying to Vercel you might notice after adding the `basePath` that you see the site's preview image displays the 404 error page. Vercel's site previews also need a helping hand to find the site.
 
 <AstroImage
-  width='1536'
-  height='864'
-  alt='Vercel Site Preview - Error'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1697383091/paulie.dev/2023/10/vercel-json-proxy-redirects_anfrgk.jpg'
+  width="1536"
+  height="864"
+  alt="Vercel Site Preview - Error"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1697383091/paulie.dev/2023/10/vercel-json-proxy-redirects_anfrgk.jpg"
 />
 
 You can add the following to `./vercel.json` to fix that.
@@ -235,10 +227,10 @@ You can add the following to `./vercel.json` to fix that.
 ```
 
 <AstroImage
-  width='1536'
-  height='864'
-  alt='Vercel Site Preview - Fixed'
-  url='https://res.cloudinary.com/www-paulie-dev/image/upload/v1697383418/paulie.dev/2023/10/preivew-proxy-redirects_t5txcy.jpg'
+  width="1536"
+  height="864"
+  alt="Vercel Site Preview - Fixed"
+  url="https://res.cloudinary.com/www-paulie-dev/image/upload/v1697383418/paulie.dev/2023/10/preivew-proxy-redirects_t5txcy.jpg"
 />
 
 ## Final Thoughts
@@ -292,6 +284,6 @@ The proxy config here was:
 - 🚀 Demo: [https://neon.tech/demos/ping-thing](https://neon.tech/demos/ping-thing)
 - ⚙️ Repo: [https://github.com/neondatabase/ping-thing](https://github.com/neondatabase/ping-thing)
 
-If you get stuck, feel free to find me out on Twitter/X, I might be able to help: [@P121129E](https://x.com/P121129E).
+If you get stuck, feel free to find me out on Twitter/X, I might be able to help: [@PaulieScanlon](https://x.com/P121129E).
 
 [TTFN](https://en.wikipedia.org/wiki/TTFN)
