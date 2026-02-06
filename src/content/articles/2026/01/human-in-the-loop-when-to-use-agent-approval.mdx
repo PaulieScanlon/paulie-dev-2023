@@ -1,0 +1,18 @@
+---
+base: articles
+title: "Human-in-the-Loop: When to Use Agent Approval"
+date: 2026-01-28
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/human-in-the-loop-when-to-use-agent-approval
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Agents are useful because they can act autonomously. But autonomy without oversight can be a risky business. Agent approval lets you decide where to draw the line between actions an agent can take on its own and those where a human should be part of the decision.
+
+This post covers how to think about approval in your agent design and how to choose between the different patterns Mastra provides.
+
+## The trust spectrum
+
+Not every tool call is risky. A search is harmless. A delete is not. When designing an agent, it helps to think about where each action falls on a trust spectrum:

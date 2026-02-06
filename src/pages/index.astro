@@ -98,20 +98,22 @@ try {
     </div>
   </div>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Post</h2>
-  <p>Latest post published here on my site.</p>
-  <CollectionsList collections={posts} slice={3} />
-  <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
+  <h2 class='mb-0 text-brand-salmon'>Latest Article</h2>
+  <p>Latest articles written for external publisher.</p>
+  <CollectionsList collections={articles} slice={3} />
 
   <h2 class='m-0 uppercase'>Publishers</h2>
   <p class='mt-0 mb-4 text-slate-300'>All the publications I’ve contributed to.</p>
   <ListExternalPublishers data={groupByPublication(collections)} />
   <CtaInternal href='/dashboard/'>See more statistics</CtaInternal>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Article</h2>
-  <p>Latest articles written for external publisher.</p>
-  <CollectionsList collections={articles} slice={3} />
   <CtaInternal href='/articles/'>{`See all ${articles.length} Articles`}</CtaInternal>
+  <h2 class='mb-0 text-brand-salmon'>Latest Post</h2>
+  <p>Latest post published here on my site.</p>
+  <CollectionsList collections={posts} slice={3} />
+  <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
+
+
 
   <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
   <p>Latest ghost-written article.</p>

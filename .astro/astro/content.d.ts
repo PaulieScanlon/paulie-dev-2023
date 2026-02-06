@@ -852,6 +852,27 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/01/human-in-the-loop-when-to-use-agent-approval.mdx": {
+	id: "2026/01/human-in-the-loop-when-to-use-agent-approval.mdx";
+  slug: "2026/01/human-in-the-loop-when-to-use-agent-approval";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/02/announcing-mastra-workspaces.mdx": {
+	id: "2026/02/announcing-mastra-workspaces.mdx";
+  slug: "2026/02/announcing-mastra-workspaces";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/02/hitl-where-to-put-approval-in-agents-and-workflows.mdx": {
+	id: "2026/02/hitl-where-to-put-approval-in-agents-and-workflows.mdx";
+  slug: "2026/02/hitl-where-to-put-approval-in-agents-and-workflows";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {

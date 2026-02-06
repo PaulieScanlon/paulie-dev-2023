@@ -1,0 +1,16 @@
+---
+base: articles
+title: "Human-in-the-Loop: Where to Put Approval in Agents and Workflows"
+date: 2026-02-04
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/hitl-where-to-put-approval-in-agents-and-workflows
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+When you’re building an agentic application, there are often multiple ways to structure it. Agents and workflows can be composed in different ways, and those choices usually feel natural long before you think about human approval. The question comes later, when a tool call feels unsafe or a workflow feels risky: where should a human step in?
+
+Mastra supports approval in different ways. [Agents](https://mastra.ai/docs/agents/agent-approval) can require approval before tool calls. [Workflows](https://mastra.ai/docs/workflows/suspend-and-resume) can suspend and wait to be resumed. The challenge isn’t picking a “correct” pattern, but choosing the approval pattern that best fits how your application is structured.
+
+In a [previous post](https://mastra.ai/blog/human-in-the-loop-when-to-use-agent-approval), I introduced the trust pattern as a way to decide when to use human-in-the-loop approval. This post builds on the idea and focuses on the most common patterns for deciding where to implement human-in-the-loop approval.
