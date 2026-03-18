@@ -1,0 +1,14 @@
+---
+base: articles
+title: "Safely Execute Untrusted Code with Remote Sandboxes"
+date: 2026-03-11
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/announcing-remote-sandboxes
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+[Workspaces](https://mastra.ai/blog/announcing-mastra-workspaces) now support remote sandboxes. We're launching with three providers: [Daytona](https://mastra.ai/reference/workspace/daytona-sandbox), [E2B](https://mastra.ai/reference/workspace/e2b-sandbox), and [Blaxel](https://mastra.ai/reference/workspace/blaxel-sandbox), with more to follow.
+
+With remote sandboxes, agents can install packages, run untrusted code, or spawn long-lived processes in their own isolated environment instead of on your application server. Each sandbox has its own filesystem, network, and process space. Agent workloads don't compete for CPU or memory. And if an agent does something destructive, the blast radius is contained.

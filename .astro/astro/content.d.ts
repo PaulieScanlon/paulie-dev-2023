@@ -873,6 +873,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: any
 } & { render(): Render[".mdx"] };
+"2026/03/announcing-remote-sandboxes.mdx": {
+	id: "2026/03/announcing-remote-sandboxes.mdx";
+  slug: "2026/03/announcing-remote-sandboxes";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
@@ -1092,6 +1099,13 @@ declare module 'astro:content' {
 "2026/02/announcing-observational-memory.mdx": {
 	id: "2026/02/announcing-observational-memory.mdx";
   slug: "2026/02/announcing-observational-memory";
+  body: string;
+  collection: "ghosts";
+  data: any
+} & { render(): Render[".mdx"] };
+"2026/03/announcing-studio-auth.mdx": {
+	id: "2026/03/announcing-studio-auth.mdx";
+  slug: "2026/03/announcing-studio-auth";
   body: string;
   collection: "ghosts";
   data: any
