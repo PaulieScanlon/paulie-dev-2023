@@ -1,3 +1,3 @@
-const colors = ['yellow', 'fuchsia', 'royal', 'blood', 'verdant', 'teal', 'salmon ', 'lime', 'pink', 'azure'];
+const colors = ['fuchsia', 'teal', 'royal', 'blood', 'verdant', 'lime', 'pink', 'azure', 'fuchsia', 'teal'];
 
 export default colors;

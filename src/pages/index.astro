@@ -8,6 +8,7 @@ import Main from '../layouts/main.astro';
 import Aside from '../components/aside.astro';
 import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
+import SectionHeading from '../components/section-heading.astro';
 import CtaInternal from '../components/cta-internal.astro';
 import ListExternalPublishers from '../components/list-external-publishers.astro';
 import GlobeAllCities from '../components/globe-all-cities';
@@ -51,31 +52,32 @@ try {
 <Main title='Home' description="Paul Scanlon's site" slug='/'>
   <div class='relative flex items-center md:min-h-96'>
     <div class='relative w-full md:w-auto lg:z-10 max-w-none  lg:max-w-md'>
-      <strong class='text-sm text-brand-primary block mb-2'>Home</strong>
-      <h1 class='uppercase text-5xl mb-2'>Paul Scanlon</h1>
-      <div class='mb-4'>
-        <h2 class='text-brand-text font-normal text-xl mb-2'>Technical Product Marketing Manager</h2>
-        <p class='text-white text-sm mb-3'>
-          Currently at <a href="https://mastra.ai/" class='text-brand-primary hover:text-white transition-colors font-medium'>Mastra</a>
-        </p>
-      </div>
+      <h1 class='text-5xl lg:text-6xl tracking-tight !mt-0 mb-3'>Paul Scanlon</h1>
+      <h2 class='!mt-0 mb-2 text-xl font-normal text-brand-muted'>Technical Product Marketing Manager</h2>
+      <p class='not-prose mb-5 text-sm text-brand-muted'>
+        Currently at
+        <a href='https://mastra.ai/' class='font-medium text-brand-secondary transition-colors hover:text-brand-text'>Mastra</a>
+      </p>
       <div class='max-w-2xl'>
-        <p class='text-slate-300 leading-relaxed mb-4'>
-          Developer for <strong>20 years</strong>, now helping shape the next generation of AI-powered development tools.
+        <p class='text-sm leading-relaxed text-brand-text mb-5'>
+          Developer for <strong class='text-brand-text'>20 years</strong>, now helping shape the next generation of AI-powered development tools.
         </p>
-        <ul class='flex flex-wrap items-baseline gap-2 list-none m-0 p-0'>
-          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
-            <a href='/tags/ai/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>AI</a>
-          </li>
-          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
-            <a href='/tags/typescript/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>TypeScript</a>
-          </li>
-          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
-            <a href='/tags/react/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>React</a>
-          </li>
-          <li class='m-0 p-0 rounded text-xs text-brand-salmon border border-brand-outline bg-brand-surface'>
-            <a href='/tags/postgres/' class='block no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors hover:text-white'>PostgreSQL</a>
-          </li>
+        <ul class='flex flex-wrap items-center gap-2 list-none m-0 p-0'>
+          {[
+            { label: 'AI', href: '/tags/ai/' },
+            { label: 'TypeScript', href: '/tags/typescript/' },
+            { label: 'React', href: '/tags/react/' },
+            { label: 'PostgreSQL', href: '/tags/postgres/' },
+          ].map(({ label, href }) => (
+            <li class='m-0 p-0'>
+              <a
+                href={href}
+                class='block rounded border border-brand-outline bg-brand-surface px-3 py-1 text-xs font-medium text-brand-muted no-underline transition-colors duration-300 hover:border-brand-muted hover:text-brand-text'
+              >
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -98,25 +100,31 @@ try {
     </div>
   </div>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Article</h2>
-  <p>Latest articles written for external publisher.</p>
+  <SectionHeading
+    title='Latest Articles'
+    description='Latest articles written for external publishers.'
+  />
   <CollectionsList collections={articles} slice={3} />
   <CtaInternal href='/articles/'>{`See all ${articles.length} Articles`}</CtaInternal>
 
-  <h2 class='m-0 uppercase'>Publishers</h2>
-  <p class='mt-0 mb-4 text-slate-300'>All the publications I’ve contributed to.</p>
+  <SectionHeading
+    title='Publishers'
+    description='All the publications I’ve contributed to.'
+  />
   <ListExternalPublishers data={groupByPublication(collections)} />
   <CtaInternal href='/dashboard/'>See more statistics</CtaInternal>
 
-  <h2 class='mb-0 text-brand-salmon'>Latest Post</h2>
-  <p>Latest post published here on my site.</p>
+  <SectionHeading
+    title='Latest Posts'
+    description='Latest posts published here on my site.'
+  />
   <CollectionsList collections={posts} slice={3} />
   <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
 
-
-
-  <h2 class='mb-0 text-brand-salmon'>Latest Ghostwriting</h2>
-  <p>Latest ghost-written article.</p>
+  <SectionHeading
+    title='Latest Ghostwriting'
+    description='Latest articles written for clients… and the World will never know.'
+  />
   <CollectionsList collections={ghosts} slice={3} />
   <CtaInternal href='/ghosts/'>{`See all ${ghosts.length} Ghosts`}</CtaInternal>
 

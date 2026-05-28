@@ -75,7 +75,7 @@ const SearchModal = component$<Props>(({ search, isModalOpen, handleModal }) => 
     <>
       {isModalOpen ? (
         <dialog class="fixed inset-0 top-0 left-0 flex items-center justify-center bg-black/50 backdrop-blur w-screen h-screen p-4 z-40" onClick$={handleBackdrop}>
-          <div class="grow-0 w-full max-w-3xl bg-brand-surface p-4">
+          <div class="grow-0 w-full max-w-3xl rounded border border-brand-outline bg-brand-surface p-4">
             <SearchInput handleModal={handleModal} handleInput={handleInput} showEsc={true} />
             <div class="text-brand-muted text-xs pt-2 pb-4">{`${filtered.value.length > 0 ? filtered.value.length : 0} results`}</div>
             <div class="h-[300px] overflow-y-auto">
@@ -84,12 +84,12 @@ const SearchModal = component$<Props>(({ search, isModalOpen, handleModal }) => 
                   filtered.value.map((data, index) => {
                     const { path, title, date, base } = data;
                     return (
-                      <li key={index} class="cursor-pointer m-0 p-0 border-b-[1px] border-brand-outline hover:bg-brand-fuchsia">
+                      <li key={index} class="cursor-pointer m-0 p-0 border-b-[1px] border-brand-outline transition-colors hover:bg-brand-muted/10">
                         <a href={path} class="block group no-underline">
-                          <div class=" px-4 py-3 text-slate-300 hover:text-white font-medium">
+                          <div class="px-4 py-3 text-brand-muted group-hover:text-brand-text font-medium">
                             <div class="flex items-end pb-4 justify-between">
-                              <time class="text-brand-primary group-hover:text-white text-[0.6rem]">{formatDate(date)}</time>
-                              <span class="text-[0.65rem] uppercase bg-brand-outline rounded px-1 py-0.5 -mt-2">{base}</span>
+                              <time class="text-brand-muted text-[0.6rem]">{formatDate(date)}</time>
+                              <span class="text-[0.65rem] uppercase text-brand-muted bg-brand-outline rounded px-1 py-0.5 -mt-2">{base}</span>
                             </div>
                             {title}
                           </div>
@@ -99,7 +99,7 @@ const SearchModal = component$<Props>(({ search, isModalOpen, handleModal }) => 
                   })
                 ) : (
                   <div class="flex items-center justify-center text-center h-full">
-                    <div class="font-semibold text-lg text-center text-slate-500 -mt-8">No results found.</div>
+                    <div class="font-semibold text-lg text-center text-brand-muted -mt-8">No results found.</div>
                   </div>
                 )}
               </ul>

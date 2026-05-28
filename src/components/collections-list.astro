@@ -28,13 +28,13 @@ const { collections, slice, highlighted } = Astro.props;
 
         return (
           <li
-            class={`m-0 p-0 rounded border border-brand-outline bg-brand-surface transition-all shadow-lg ${isGhost ? 'cursor-not-allowed' : 'hover:shadow-black/30 hover:-translate-y-2 ease-in-out duration-500 cursor-pointer'}`}
+            class={`group m-0 p-0 rounded border border-brand-outline bg-brand-surface shadow-lg transition-all duration-500 ease-in-out ${isGhost ? 'cursor-not-allowed' : 'cursor-pointer hover:-translate-y-1 hover:shadow-black/30'}`}
           >
-            <div class='relative overflow-hidden'>
+            <div class='relative overflow-hidden rounded'>
               <NewLabel date={date} />
               <a
                 href={`/${base}/${slug}/`}
-                class={`flex flex-col md:flex-row gap-3 md:gap-6 items-center bg-brand-surface border border-brand-outline rounded p-4 no-underline ${isGhost ? 'select-none pointer-events-none' : ''}`}
+                class={`flex flex-col md:flex-row gap-3 md:gap-6 items-center p-4 no-underline ${isGhost ? 'select-none pointer-events-none' : ''}`}
               >
                 {featuredImage ? (
                   <AstroImage
@@ -58,7 +58,7 @@ const { collections, slice, highlighted } = Astro.props;
                             src={logo}
                             class={`m-0 ${isGhost ? 'blur-[3px]' : ''}`}
                           />
-                          <small class={`text-xs text-brand-secondary ${isGhost ? 'blur-[2px]' : ''}`}>
+                          <small class={`text-xs text-brand-muted ${isGhost ? 'blur-[2px]' : ''}`}>
                             {publication || source}
                           </small>
                         </div>
@@ -66,10 +66,10 @@ const { collections, slice, highlighted } = Astro.props;
                       </>
                     ) : null}
 
-                    <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+                    <time class='text-xs font-bold text-brand-muted'>{formatDate(date)}</time>
                   </span>
-                  <strong class={`block text-brand-text text-xl ${isGhost ? 'blur-[3px]' : ''}`}>{title}</strong>
-                  <p class={`font-light text-sm ${isGhost ? 'blur-[3px]' : ''}`}>{`${excerpt.substring(0, 220)}...`}</p>
+                  <h3 class={`m-0 text-brand-text text-2xl ${isGhost ? 'blur-[3px]' : ''}`}>{title}</h3>
+                  <p class={`font-light text-sm ${isGhost ? 'blur-[3px]' : ''}`}>{`${excerpt.substring(0, 120)}...`}</p>
                   <TagsList tags={tags} className='mt-2 mb-0' highlighted={highlighted} />
                 </div>
               </a>

@@ -55,7 +55,7 @@ const SearchTags = component$<Props>(({ tags }) => {
           .map((item) => {
             const { name, slug, count } = item;
             return (
-              <li class='m-0 mb-2 p-0 rounded text-sm text-brand-salmon border border-brand-outline bg-brand-surface'>
+              <li class='m-0 mb-2 p-0 rounded text-sm text-brand-muted border border-brand-outline bg-brand-surface'>
                 <a
                   href={`/tags/${slug}`}
                   class='group relative flex items-center justify-between no-underline px-2 py-1 text-inherit font-medium duration-300 transition-colors'

@@ -367,10 +367,20 @@
   resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.21.5.tgz"
   integrity sha512-DwqXqZyuk5AiWWf3UfLiRDJ5EDd49zg6O9wclZ7kUMv2WRFr4HKjXp/5t8JZ11QbQfUS6/cRCKGwYhtNAY88kQ==
 
+"@fontsource/dm-sans@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.npmjs.org/@fontsource/dm-sans/-/dm-sans-5.2.8.tgz"
+  integrity sha512-tlovG42m9ESG28WiHpLq3F5umAlm64rv0RkqTbYowRn70e9OlRr5a3yTJhrhrY+k5lftR/OFJjPzOLQzk8EfCA==
+
 "@fontsource/inconsolata@^5.0.8":
   version "5.2.5"
   resolved "https://registry.npmjs.org/@fontsource/inconsolata/-/inconsolata-5.2.5.tgz"
   integrity sha512-OvzkZY5qYghv/jEV6cfGZzFhdFTvSnU+ExPC7WcZ7w8PdRhtiu/SpcBWOBt+3LXgS0n9qyepgq4zZmxlDTlGGQ==
+
+"@fontsource/playfair-display@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.npmjs.org/@fontsource/playfair-display/-/playfair-display-5.2.8.tgz"
+  integrity sha512-fUEhib70SszNhQVsGbUMSsWJhr7Je0rdeuZdtGpDNu0GKF1xJM8QhpI/y0pckU25GcChXm9TLOmeZupkvvZo2g==
 
 "@google-analytics/data@4.7.0":
   version "4.7.0"

@@ -39,7 +39,7 @@ const { Content } = await stream.render();
 ---
 
 <Main title={title} description={excerpt} slug={`/streams/${slug}/`}>
-  <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+  <time class='text-xs font-bold text-brand-muted'>{formatDate(date)}</time>
   <h1>{title}</h1>
   <TagsList tags={tags} link={true} />
   <Content />

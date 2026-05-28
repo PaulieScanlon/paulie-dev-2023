@@ -17,16 +17,16 @@ export async function GET({ props }) {
       </div>
       <div tw="relative flex flex-col">
         <div tw="flex items-center mb-6">
-          <div tw="text-4xl" style="color: #a4a0fb; fontFamily: Inconsolata Bold">${name}</div>
+          <div tw="text-4xl" style="color: #5b8cff; fontFamily: Inconsolata Bold">${name}</div>
         </div>
         <div tw="flex text-6xl leading-tight mb-1" style="color: #d9dbdf; fontFamily: Inconsolata Black">Tagged with ${name}</div>
         <div tw="flex text-3xl leading-tight mb-12" style="color: #d9dbdf; fontFamily: Roboto Regular">
-          Here you'll find <strong tw="px-3" style="color: #f056c7">${collection.length}</strong> pieces of content about <strong tw="pl-3" style="color: #ffc107">${name}</strong>.
+          Here you'll find <strong tw="px-3" style="color: #ff7a66">${collection.length}</strong> pieces of content about <strong tw="pl-3" style="color: #ffc107">${name}</strong>.
         </div>
         <div tw="flex items-center">
           <div tw="text-3xl" style="color: #d9dbdf; fontFamily: Inconsolata Bold">Paul Scanlon</div>
           <div tw="pl-4 text-3xl" style="color: #d9dbdf; fontFamily: Inconsolata Bold">|</div>
-          <div tw="pl-4 text-3xl lowercase" style="color: #58e6d9; fontFamily: Inconsolata Bold">${`paulie.dev/tags/${name}`}</div>
+          <div tw="pl-4 text-3xl lowercase" style="color: #1ff1a5; fontFamily: Inconsolata Bold">${`paulie.dev/tags/${name}`}</div>
         </div>
       </div>
     </div>`,

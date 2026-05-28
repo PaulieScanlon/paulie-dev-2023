@@ -52,14 +52,14 @@ const points = properties
       })
     }
 
-    <polyline fill='none' class='stroke-brand-salmon' stroke-width={1} points={points}></polyline>
+    <polyline fill='none' class='stroke-brand-primary' stroke-width={1} points={points}></polyline>
 
     {
       properties.map((property) => {
         const { total, date, x, y } = property;
         return (
           <g>
-            <circle cx={x} cy={y} r={4} class='stroke-brand-salmon fill-brand-surface' stroke-width={1} />
+            <circle cx={x} cy={y} r={4} class='stroke-brand-primary fill-brand-surface' stroke-width={1} />
             <text x={x} y={y - 8} text-anchor='middle' font-size={10} class='fill-brand-text font-semibold select-none'>
               {`x${total}`}
             </text>

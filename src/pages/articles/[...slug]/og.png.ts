@@ -25,15 +25,15 @@ export async function GET({ props }) {
       <div tw="relative flex flex-col">
         <div tw="flex items-center mb-6">
           <img tw="w-12 h-12 flex mb-1" src=${logo} />
-          <div tw="pl-4 text-4xl" style="color: #a4a0fb; fontFamily: Inconsolata Bold">${publication}</div>
+          <div tw="pl-4 text-4xl" style="color: #5b8cff; fontFamily: Inconsolata Bold">${publication}</div>
           <div tw="pl-4 text-4xl" style="color: #d9dbdf; fontFamily: Inconsolata Bold">•</div>
-          <div tw="pl-4 text-4xl" style="color: #f056c7; fontFamily: Inconsolata Bold">${formatDate(date)}</div>
+          <div tw="pl-4 text-4xl" style="color: #ff7a66; fontFamily: Inconsolata Bold">${formatDate(date)}</div>
         </div>
         <div tw="flex text-6xl leading-tight mb-12" style="color: #d9dbdf; fontFamily: Inconsolata Black">${title}</div>
         <div tw="flex items-center">
           <div tw="text-3xl" style="color: #d9dbdf; fontFamily: Inconsolata Bold">${author}</div>
           <div tw="pl-4 text-3xl" style="color: #d9dbdf; fontFamily: Inconsolata Bold">|</div>
-          <div tw="pl-4 text-3xl" style="color: #58e6d9; fontFamily: Inconsolata Bold">${`paulie.dev/${base}`}</div>
+          <div tw="pl-4 text-3xl" style="color: #1ff1a5; fontFamily: Inconsolata Bold">${`paulie.dev/${base}`}</div>
         </div>
       </div>
     </div>`,

@@ -9,7 +9,7 @@ const Loading = component$<Props>(({ classNames }) => {
     <div id='loading' role='status' class={`h-[40px] text-brand-outline ${classNames}`}>
       <svg
         aria-hidden='true'
-        class='not-prose text-inherit animate-spin w-9 h-9 fill-brand-salmon'
+        class='not-prose text-inherit animate-spin w-9 h-9 fill-brand-text'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
