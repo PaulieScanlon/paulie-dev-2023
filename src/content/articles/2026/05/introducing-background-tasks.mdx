@@ -1,0 +1,20 @@
+---
+base: articles
+title: Introducing Background Tasks for Mastra Agents
+date: 2026-05-07
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-background-tasks
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Your agents can now respond before, during, and after long-running tool calls without blocking the agentic loop.
+
+[Background tasks](https://mastra.ai/docs/agents/background-tasks) are a new configuration option that allows tools to run asynchronously, letting you stream progress back to the user while the tool works in the background.
+
+Background tasks also support parallel tool calling. When an agent calls multiple background-enabled tools, each one runs concurrently.
+
+Enable background tasks on your Mastra instance. Requires `@mastra/core@1.29.0` or later, added in [PR #12557](https://github.com/mastra-ai/mastra/pull/12557). A [storage](https://mastra.ai/docs/memory/storage) provider is required to persist state, allowing tasks to resume and survive server restarts.
+
+Configure a tool with `backgroundTasks: { enabled: true }` to run it in the background.

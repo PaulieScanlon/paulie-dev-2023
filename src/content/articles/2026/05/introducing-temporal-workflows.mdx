@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Temporal Support for Mastra Workflows
+date: 2026-05-12
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-temporal-workflows
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Your Mastra workflows can now run on Temporal. The new [Temporal integration](https://mastra.ai/guides/deployment/temporal) gives you retries, scheduling, durable state, and execution that survives worker restarts.
+
+Workflow code stays identical. Under the hood, `createWorkflow()` becomes a Temporal workflow and `createStep()` becomes a Temporal activity.
+
+Reach for [Temporal](https://temporal.io) when your workflows call external APIs, stretch over hours or days, or have to outlive a worker restart. You can self-host it or use the hosted version.
+
+Running Mastra workflows on Temporal consists of three parts: create a [Temporal client instance](https://mastra.ai/guides/deployment/temporal#temporal-initialization) that binds Mastra's `createWorkflow` and `createStep` to a Temporal task queue, then create a [worker process](https://mastra.ai/guides/deployment/temporal#running-the-worker) that polls the Temporal task queue and runs your workflows.

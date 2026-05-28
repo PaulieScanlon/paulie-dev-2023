@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Agent-to-Agent support for Mastra
+date: 2026-05-19
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-agent-to-agent-support
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Mastra agents and the Client SDK now support the [Agent-to-Agent (A2A) protocol](https://mastra.ai/docs/agents/a2a) by default. Run A2A agents as Mastra subagents, or invoke them via the Client SDK.
+
+[A2A](https://a2a-protocol.org/latest/) is an open standard for delegating work to other A2A-enabled agents, regardless of framework, deployment vendor, or programming language.
+
+Every A2A-enabled agent has an [agent card](https://a2a-protocol.org/latest/specification/#441-agentcard), served at a `.well-known` URL, that describes the agent's capabilities and includes its execution endpoint.
+
+There are two ways to interact with A2A-enabled agents using Mastra: consuming A2A-enabled agents as subagents, or sending requests to A2A-enabled agents using the Client SDK. Set up a remote agent with `A2AAgent`, passing in the `.well-known` card URL and any auth headers, then attach it following Mastra's [subagent](https://mastra.ai/docs/agents/a2a#use-remote-agents-as-subagents) pattern.

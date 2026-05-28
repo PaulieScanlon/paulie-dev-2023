@@ -1,0 +1,16 @@
+---
+base: articles
+title: Introducing Response Caching for Mastra Agents
+date: 2026-05-15
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-response-caching
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+When an agent receives a request, its default behavior is to pass it to the LLM. Each round trip incurs a cost and takes time to resolve. With [response caching](https://mastra.ai/docs/agents/response-caching), agents can handle identical requests and pull responses from cache, skipping the LLM call entirely.
+
+When ResponseCache is configured on your agent, the first response is cached for a `ttl` (time-to-live) you set in seconds. Any identical requests within that window are pulled directly from cache. This is particularly useful for prompt templates, suggested-prompt buttons, repeated agentic searches, or guardrail agents classifying the same input.
+
+Wire `ResponseCache` into your agent's `inputProcessors` array with a cache backend (`InMemoryServerCache` for local dev, or a [custom cache backend](https://mastra.ai/docs/agents/response-caching#custom-cache-backend) for production).
