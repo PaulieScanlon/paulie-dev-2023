@@ -3,6 +3,6 @@ const { title, description, divider = true } = Astro.props;
 ---
 
 <div class={`not-prose ${divider ? 'mt-16 border-t border-brand-outline pt-10' : ''}`}>
-  <h2 class='m-0 text-2xl font-display font-semibold text-brand-text'>{title}</h2>
+  <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>{title}</h2>
   {description ? <p class='mt-1 mb-4 text-sm text-brand-muted'>{description}</p> : null}
 </div>

@@ -86,7 +86,7 @@ const SearchModal = component$<Props>(({ search, isModalOpen, handleModal }) => 
                     return (
                       <li key={index} class="cursor-pointer m-0 p-0 border-b-[1px] border-brand-outline transition-colors hover:bg-brand-muted/10">
                         <a href={path} class="block group no-underline">
-                          <div class="px-4 py-3 text-brand-muted group-hover:text-brand-text font-medium">
+                          <div class="px-4 py-3 text-brand-muted group-hover:text-brand-text font-light">
                             <div class="flex items-end pb-4 justify-between">
                               <time class="text-brand-muted text-[0.6rem]">{formatDate(date)}</time>
                               <span class="text-[0.65rem] uppercase text-brand-muted bg-brand-outline rounded px-1 py-0.5 -mt-2">{base}</span>
@@ -99,7 +99,7 @@ const SearchModal = component$<Props>(({ search, isModalOpen, handleModal }) => 
                   })
                 ) : (
                   <div class="flex items-center justify-center text-center h-full">
-                    <div class="font-semibold text-lg text-center text-brand-muted -mt-8">No results found.</div>
+                    <div class="font-light text-lg text-center text-brand-muted -mt-8">No results found.</div>
                   </div>
                 )}
               </ul>

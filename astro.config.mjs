@@ -18,7 +18,9 @@ export default defineConfig({
   site: isProd ? "https://paulie.dev" : "http://localhost:4321",
   output: "server",
   adapter: vercel({
-    edgeMiddleware: true
+    edgeMiddleware: true,
+    // Bundle the OG fonts so the dynamic /og.png serverless function can read them at runtime
+    includeFiles: ["./public/fonts/PlayfairDisplay-Regular.woff", "./public/fonts/DMSans-Regular.woff"]
   }),
   image: {
     domains: ["res.cloudinary.com"]

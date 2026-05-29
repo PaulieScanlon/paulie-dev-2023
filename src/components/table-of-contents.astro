@@ -5,7 +5,7 @@ const { headings } = Astro.props;
 {
   headings.length > 0 ? (
     <div class='px-2'>
-      <h5 class='font-semibold uppercase text-brand-secondary'>on this page</h5>
+      <h5 class='font-light uppercase text-brand-secondary'>on this page</h5>
       <ul class='list-none m-0 p-0'>
         {headings.map((heading) => {
           const { depth, slug, text } = heading;

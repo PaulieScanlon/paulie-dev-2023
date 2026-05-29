@@ -66,9 +66,9 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
         <div class="max-w-8xl mx-auto">
           <div class="py-2 mx-4 lg:px-8 lg:mx-0">
             <div class="relative flex items-center gap-8">
-              <a class="flex items-center" href="/" aria-current="page">
-                <span class="sr-only">Paul Scanlon's Site</span>
+              <a class="not-prose flex items-center gap-2 no-underline text-brand-text" href="/" aria-current="page">
                 <Logo />
+                <span class="font-sans text-base font-light tracking-tight">Paul Scanlon</span>
               </a>
               <div class="relative flex lg:hidden items-center ml-auto">
                 <button id="menu" class="not-prose ml-auto flex items-center justify-center text-brand-text" onClick$={handleNav}>
@@ -136,12 +136,12 @@ const Layout = component$<Props>(({ fullWidth, slug, search }) => {
                         href={url}
                         target="_blank"
                         rel={rel}
-                        class="not-prose inline-flex items-center gap-3 rounded-full px-3 py-2 border-transparent hover:bg-brand-surface border hover:border-brand-outline transition-colors duration-300 text-slate-400 hover:text-brand-text"
+                        class="not-prose inline-flex items-center gap-3 rounded-full px-3 py-2 font-light border-transparent hover:bg-brand-surface border hover:border-brand-outline transition-colors duration-300 text-slate-400 hover:text-brand-text"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           class="h-4 w-4"
-                          stroke-width="3"
+                          stroke-width="2"
                           stroke={`${stroke ? "currentColor" : "none"}`}
                           fill={`${stroke ? "none" : "currentColor"}`}
                           viewBox="0 0 24 24"

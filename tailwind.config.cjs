@@ -12,90 +12,42 @@ module.exports = {
     "pl-6",
     "pl-7",
     "pl-8",
-    // These are for the charts
-    "stroke-brand-teal",
-    "stroke-brand-royal",
-    "stroke-brand-primary",
-    "stroke-brand-yellow",
-    "stroke-brand-lime",
-    "stroke-brand-blood",
-    "stroke-brand-azure",
-    "stroke-brand-verdant",
-    "stroke-brand-pink",
-    "stroke-brand-fuchsia",
-    "stroke-brand-secondary",
-
-    "fill-brand-teal",
-    "fill-brand-royal",
-    "fill-brand-primary",
-    "fill-brand-yellow",
-    "fill-brand-lime",
-    "fill-brand-blood",
-    "fill-brand-azure",
-    "fill-brand-verdant",
-    "fill-brand-pink",
-    "fill-brand-fuchsia",
-    "fill-brand-secondary",
-
-    "bg-brand-teal",
-    "bg-brand-royal",
-    "bg-brand-primary",
-    "bg-brand-yellow",
-    "bg-brand-lime",
-    "bg-brand-blood",
-    "bg-brand-azure",
-    "bg-brand-verdant",
-    "bg-brand-pink",
-    "bg-brand-fuchsia",
-    "bg-brand-secondary",
-
-    "text-brand-teal",
-    "text-brand-royal",
-    "text-brand-primary",
-    "text-brand-yellow",
-    "text-brand-lime",
-    "text-brand-blood",
-    "text-brand-azure",
-    "text-brand-verdant",
-    "text-brand-pink",
-    "text-brand-fuchsia",
-    "text-brand-secondary",
-
-    // This is for the GitHub Activity
-    "bg-brand-azure",
-    "bg-brand-verdant",
-    "bg-red-500",
-
     // These are for the Ghosts collections cards
     "cursor-not-allowed",
 
     // These are for the rehypeExternalLinks svgs
     "w-4",
-    "h-4"
+    "h-4",
+
+    // Chart gradient palette (chart1..chart10) used via src/utils/colors.js
+    { pattern: /(bg|text|fill|stroke)-brand-chart(10|[1-9])/ }
   ],
   theme: {
     extend: {
       colors: {
         brand: {
           text: "#d9dbdf",
-          primary: "#ffadfe",
+          primary: "#1ff1a5",
           secondary: "#5b8cff",
-          tertiary: "#1ff1a5",
+          tertiary: "#ffadfe",
           muted: "#8fa2d1",
-          royal: "#5b8cff",
-          teal: "#1ff1a5",
-          lime: "#c3ff62",
-          yellow: "#ffc107",
-          fuchsia: "#a075ff",
-          blood: "#ff5555",
-          azure: "#2ee6e6",
-          verdant: "#ffb84d",
-          pink: "#ff6bff",
           background: "#131127",
           outline: "#232140",
           surface: "#16142c",
           guide: "#2d2a58",
-          radar: "#57538c"
+          radar: "#57538c",
+          // Chart palette: a 10-stop gradient, primary -> secondary -> tertiary.
+          // Dealt out interleaved by src/utils/colors.js so few-series charts get spread hues.
+          chart1: "#1ff1a5", // primary
+          chart2: "#2ed8bc",
+          chart3: "#3dbed2",
+          chart4: "#4ca5e8",
+          chart5: "#5b8cff", // secondary
+          chart6: "#7c93ff",
+          chart7: "#9d99ff",
+          chart8: "#bda0fe",
+          chart9: "#dea6fe",
+          chart10: "#ffadfe" // tertiary
         }
       },
       fontFamily: {
@@ -119,9 +71,9 @@ module.exports = {
               fontFamily: "Playfair Display, serif",
               color: theme("colors.brand.text"),
               margin: "2rem 0",
-              fontWeight: 600,
+              fontWeight: 400,
               a: {
-                fontWeight: 600,
+                fontWeight: 400,
                 textDecoration: "none",
                 color: theme("colors.brand.text")
               }
@@ -129,20 +81,20 @@ module.exports = {
             "h2, h3, h4, h5, h6": {
               fontFamily: "Playfair Display, serif",
               color: theme("colors.brand.text"),
-              fontWeight: 600,
+              fontWeight: 400,
               a: {
-                fontWeight: 600,
+                fontWeight: 400,
                 textDecoration: "none",
                 color: theme("colors.brand.text")
               }
             },
             p: {
               strong: {
-                fontWeight: 700
+                fontWeight: 400
               }
             },
             button: {
-              fontWeight: 700
+              fontWeight: 400
             },
             a: {
               display: "inline-flex",
@@ -240,34 +192,69 @@ module.exports = {
               borderRadius: "4px",
               color: theme("colors.brand.text")
             },
+            // Fallback for any GitHub event type without an explicit color below
+            // (keeps the dot visible if GitHub adds/returns a type we haven't mapped).
+            ".event-color": {
+              backgroundColor: theme("colors.brand.muted")
+            },
+
+            // Repo lifecycle
             ".event-color-PushEvent": {
-              backgroundColor: theme("colors.brand.azure")
+              backgroundColor: theme("colors.brand.chart1")
             },
             ".event-color-CreateEvent": {
-              backgroundColor: theme("colors.brand.lime")
-            },
-            ".event-color-ForkEvent": {
-              backgroundColor: theme("colors.brand.royal")
-            },
-            ".event-color-WatchEvent": {
-              backgroundColor: theme("colors.brand.verdant")
+              backgroundColor: theme("colors.brand.chart6")
             },
             ".event-color-DeleteEvent": {
-              backgroundColor: theme("colors.red.500")
+              backgroundColor: theme("colors.brand.chart10")
+            },
+            ".event-color-ForkEvent": {
+              backgroundColor: theme("colors.brand.chart3")
+            },
+            ".event-color-WatchEvent": {
+              backgroundColor: theme("colors.brand.chart8")
+            },
+            ".event-color-PublicEvent": {
+              backgroundColor: theme("colors.brand.chart2")
+            },
+            ".event-color-MemberEvent": {
+              backgroundColor: theme("colors.brand.chart2")
+            },
+            ".event-color-ReleaseEvent": {
+              backgroundColor: theme("colors.brand.chart9")
+            },
+            ".event-color-SponsorshipEvent": {
+              backgroundColor: theme("colors.brand.chart9")
+            },
+            ".event-color-GollumEvent": {
+              backgroundColor: theme("colors.brand.chart4")
             },
 
+            // Issues
+            ".event-color-IssuesEvent": {
+              backgroundColor: theme("colors.brand.chart4")
+            },
+
+            // Comments
             ".event-color-IssueCommentEvent": {
-              backgroundColor: theme("colors.brand.yellow")
+              backgroundColor: theme("colors.brand.chart5")
+            },
+            ".event-color-CommitCommentEvent": {
+              backgroundColor: theme("colors.brand.chart5")
             },
             ".event-color-PullRequestReviewCommentEvent": {
-              backgroundColor: theme("colors.brand.yellow")
+              backgroundColor: theme("colors.brand.chart5")
             },
 
+            // Pull requests
             ".event-color-PullRequestEvent": {
-              backgroundColor: theme("colors.brand.teal")
+              backgroundColor: theme("colors.brand.chart7")
             },
             ".event-color-PullRequestReviewEvent": {
-              backgroundColor: theme("colors.brand.teal")
+              backgroundColor: theme("colors.brand.chart7")
+            },
+            ".event-color-PullRequestReviewThreadEvent": {
+              backgroundColor: theme("colors.brand.chart7")
             }
           }
         }

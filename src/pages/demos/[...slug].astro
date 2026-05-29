@@ -39,10 +39,10 @@ const excerpt = `${createExcerpt(demo.body).substring(0, 70)}...`;
 const { Content, headings } = await demo.render();
 ---
 
-<Main title={title} description={excerpt} slug={`/demos/${slug}/`} image={featuredImage}>
+<Main title={title} description={excerpt} slug={`/demos/${slug}/`}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
-    <time class='text-xs font-bold text-brand-muted'>{formatDate(date)}</time>
-    <span class='text-xs font-bold text-brand-muted'>{`By ${author}`}</span>
+    <time class='text-xs font-light text-brand-muted'>{formatDate(date)}</time>
+    <span class='text-xs font-light text-brand-muted'>{`By ${author}`}</span>
   </div>
   <h1>{title}</h1>
   <TagsList tags={tags} link={true} />

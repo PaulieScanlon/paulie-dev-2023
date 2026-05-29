@@ -66,9 +66,9 @@ const { collections, slice, highlighted } = Astro.props;
                       </>
                     ) : null}
 
-                    <time class='text-xs font-bold text-brand-muted'>{formatDate(date)}</time>
+                    <time class='text-xs font-light text-brand-muted'>{formatDate(date)}</time>
                   </span>
-                  <h3 class={`m-0 text-brand-text text-2xl ${isGhost ? 'blur-[3px]' : ''}`}>{title}</h3>
+                  <h3 class={`m-0 text-brand-text text-xl ${isGhost ? 'blur-[3px]' : ''}`}>{title}</h3>
                   <p class={`font-light text-sm ${isGhost ? 'blur-[3px]' : ''}`}>{`${excerpt.substring(0, 120)}...`}</p>
                   <TagsList tags={tags} className='mt-2 mb-0' highlighted={highlighted} />
                 </div>

@@ -5,7 +5,7 @@ const { href, classNames = 'my-12 justify-center' } = Astro.props;
 <div class=`flex items-center ${classNames}`>
   <a
     href={href}
-    class='not-prose group inline-flex items-center gap-2 border border-brand-outline rounded bg-brand-surface text-brand-secondary font-medium text-sm no-underline px-5 py-2.5 transition-all duration-300 hover:text-brand-text hover:bg-brand-muted/10'
+    class='not-prose group inline-flex items-center gap-2 border border-brand-outline rounded bg-brand-surface text-brand-secondary font-light text-sm no-underline px-5 py-2.5 transition-all duration-300 hover:text-brand-text hover:bg-brand-muted/10'
   >
     <slot />
     <span aria-hidden='true' class='transition-transform duration-300 group-hover:translate-x-1'>&rarr;</span>

@@ -4,16 +4,13 @@ import { getAllCollections } from '../utils/all-collections';
 
 const { search } = await getAllCollections();
 
+import '@fontsource/dm-sans/300.css';
 import '@fontsource/dm-sans/400.css';
-import '@fontsource/dm-sans/500.css';
 import '@fontsource/dm-sans/700.css';
 import '@fontsource/playfair-display/400.css';
-import '@fontsource/playfair-display/500.css';
-import '@fontsource/playfair-display/600.css';
 
 const name = 'Paul Scanlon';
 const siteUrl = 'https://paulie.dev';
-const defaultImage = '/images/paulie-open-graph-image.jpg';
 const keywords = [
   'Developer Advocate',
   'Technical Writing',
@@ -25,7 +22,9 @@ const { type, title, description, slug, image, tags, fullWidth = false, canonica
 const htmlTitle = `${name} | ${title}`;
 const canonicalHref = canonical ? canonical : `${siteUrl}${slug}`;
 
-const ogImage = image ? image : `${siteUrl}${defaultImage}`;
+const ogImage = image
+  ? image
+  : `${siteUrl}/og.png?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&path=${encodeURIComponent(slug)}`;
 const seoKeywords = tags ? tags : keywords;
 
 const isProduction = import.meta.env.PROD;
@@ -69,8 +68,10 @@ const isProduction = import.meta.env.PROD;
 
     <!-- Favicons -->
     <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' data-react-helmet='true' />
     <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' data-react-helmet='true' />
+    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
 
     <!-- Custom CSS -->
     <link href='/prism-dracula.css' rel='stylesheet' />
