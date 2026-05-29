@@ -114,7 +114,7 @@ const Reactions = component$<Props>(({ title, slug }) => {
                     {name}
                   </span>
                 )}
-                <small class='block font-bold text-center text-brand-muted h-6'>
+                <small class='block font-light text-center text-brand-muted h-6'>
                   {counts.value && counts.value[name] ? counts.value[name] : 0}
                 </small>
               </div>

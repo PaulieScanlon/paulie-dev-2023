@@ -5,11 +5,11 @@ import { getCollection } from "astro:content";
 import { renderOgImage } from "../../../services/og-image";
 import { formatDate } from "../../../utils/format-date";
 
-const articles = await getCollection("articles");
+const ghosts = await getCollection("ghosts");
 
 export async function GET({ props }) {
   const {
-    article: {
+    ghost: {
       data: { title, logo, date, publication, base, author }
     }
   } = props;
@@ -23,13 +23,13 @@ export async function GET({ props }) {
 }
 
 export async function getStaticPaths() {
-  return articles.map((article) => {
+  return ghosts.map((ghost) => {
     return {
       params: {
-        slug: article.slug
+        slug: ghost.slug
       },
       props: {
-        article
+        ghost
       }
     };
   });

@@ -22,7 +22,7 @@ const GlobeAllCities = component$<Props>(
         lng: longitude,
         altitude: Math.min(0.8, Math.max(0.01, total / 50)),
         radius: 0.3,
-        color: '#ff6090',
+        color: '#1ff1a5',
       };
     });
 

@@ -51,10 +51,10 @@ const GitHubActivity = component$(() => {
                     <li key={index} class="flex flex-col gap-4 m-0 p-4 rounded border border-brand-outline bg-brand-surface">
                       <div>
                         <strong class="text-lg flex items-center gap-2 leading-tight">
-                          <span class={`block event-color-${type} rounded-full w-3 h-3`} />
+                          <span class={`block event-color event-color-${type} rounded-full w-3 h-3`} />
                           Event: <small>{type}</small>
                         </strong>
-                        <time class="text-sm font-medium text-brand-secondary">{formatDate(created_at, true)}</time>
+                        <time class="text-sm font-light text-brand-secondary">{formatDate(created_at, true)}</time>
                       </div>
 
                       <div>
@@ -72,7 +72,7 @@ const GitHubActivity = component$(() => {
                       {commits ? (
                         <div class="flex flex-col gap-1">
                           <div class="flex gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-brand-salmon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-brand-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"

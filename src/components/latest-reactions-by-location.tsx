@@ -37,7 +37,7 @@ const HappyAllCities = component$<Props>(({ period }) => {
           {data.value && data.value.length > 0 ? (
             <div class="overflow-y-auto overflow-x-auto shadow-inner h-full">
               <table class="m-0 table-auto text-base">
-                <thead class="font-medium border-b-2 border-b-brand-outline">
+                <thead class="font-light border-b-2 border-b-brand-outline">
                   <tr>
                     <th class="p-4">Reaction</th>
                     <th class="p-4">Date</th>
@@ -85,7 +85,7 @@ const HappyAllCities = component$<Props>(({ period }) => {
             </div>
           ) : (
             <div class="flex items-center justify-center text-center h-full">
-              <div class="font-semibold text-lg text-center text-slate-500">No data</div>
+              <div class="font-light text-lg text-center text-slate-500">No data</div>
             </div>
           )}
         </div>

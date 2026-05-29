@@ -71,7 +71,7 @@ try {
 ---
 
 <Main title='Dashboard' description='Statistics and analytics about my work' slug='/dashboard/'>
-  <strong class='text-sm text-brand-primary'>Dashboard</strong>
+  <strong class='text-sm text-brand-muted'>Dashboard</strong>
   <h1 class='mb-0'>Built-in Analytics</h1>
   <p class='mb-16'>
     The data visualizations on this page provide an overview of how frequently and where I publish my content, as well
@@ -82,27 +82,27 @@ try {
       analyticsData && reactionsData ? (
         <>
           <section>
-            <h2 class='m-0 uppercase'>Totals by Year and Month</h2>
-            <p class='mt-0 mb-4 text-slate-300'>All content</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by Year and Month</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>All content</p>
             <LineChartYears data={groupByYear(collections)} />
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Totals by Year and Day</h2>
-            <p class='mt-0 mb-4 text-slate-300'>All content</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by Year and Day</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>All content</p>
             <BarChartDays data={groupByDay(collections)} />
           </section>
 
           <div class='grid sm:gap-x-8 sm:grid-cols-2'>
             <section class='flex flex-col'>
-              <h2 class='m-0 uppercase'>Totals by reaction</h2>
-              <p class='mt-0 mb-4 text-slate-300'>Recent reactions</p>
+              <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by reaction</h2>
+              <p class='mt-0 mb-4 text-sm text-brand-muted'>Recent reactions</p>
               <RadarChartReactions data={groupByReaction(reactionsData)} />
             </section>
             <PoweredByNeon period={period} className='mb-24 sm:mb-0 sm:order-3' />
             <section>
-              <h2 class='m-0 uppercase'>Totals by Tag</h2>
-              <p class='mt-0 mb-4 text-slate-300'>Recent tags</p>
+              <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by Tag</h2>
+              <p class='mt-0 mb-4 text-sm text-brand-muted'>Recent tags</p>
               <DonutChartTags
                 data={groupByTag(collections.filter(({ data: { date } }) => isNewContent(date)))}
                 dataLength={groupByTag(collections).length}
@@ -112,14 +112,14 @@ try {
           </div>
 
           <section>
-            <h2 class='m-0 uppercase'>Totals by publisher</h2>
-            <p class='mt-0 mb-4 text-slate-300'>All publishers</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by publisher</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>All publishers</p>
             <ListExternalPublishers data={groupByPublication(collections)} />
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Totals by site visits</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Recent site visits</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by site visits</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>Recent site visits</p>
             <LineChartVisits data={groupByDate(analyticsData)} />
             <PoweredByNeon period={period} />
           </section>
@@ -127,15 +127,15 @@ try {
           <div class='flex flex-col md:flex-row gap-24 md:gap-8 overflow-hidden'>
             <section class='w-full lg:w-1/2'>
               <div class='flex flex-col'>
-                <h2 class='m-0 uppercase'>Totals by city</h2>
-                <p class='mt-0 mb-4 text-slate-300'>Recent city visits</p>
+                <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by city</h2>
+                <p class='mt-0 mb-4 text-sm text-brand-muted'>Recent city visits</p>
                 <ListTopTenCities data={groupByCity(analyticsData)} />
               </div>
               <PoweredByNeon period={period} />
             </section>
             <section class='w-full lg:w-1/2'>
-              <h2 class='m-0 uppercase'>Location visualization</h2>
-              <p class='mt-0 mb-4 text-slate-300'>Recent geolocation visits</p>
+              <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Location visualization</h2>
+              <p class='mt-0 mb-4 text-sm text-brand-muted'>Recent geolocation visits</p>
               <div class='relative rounded border border-brand-outline bg-brand-surface/40'>
                 <div class='flex justify-center overflow-hidden cursor-move'>
                   <GlobeAllCities data={groupByCity(analyticsData)} />
@@ -146,22 +146,22 @@ try {
           </div>
 
           <section>
-            <h2 class='m-0 uppercase'>Totals by referrer</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top Ten referrers</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Totals by referrer</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>Top Ten referrers</p>
             <ListPopularReferrers data={groupByReferrer(analyticsData)} />
             <PoweredByNeon period={period} />
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Latest Reactions</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Recent reactions by location</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Latest Reactions</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>Recent reactions by location</p>
             <LatestReactionByLocation period={period} />
             <PoweredByNeon period={period} />
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Popular Posts</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top Ten Post views</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Popular Posts</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>Top Ten Post views</p>
             <ListPopular
               data={groupBySlug(analyticsData)
                 .filter((item) => /\/posts\/.+/.test(item.slug))
@@ -172,8 +172,8 @@ try {
           </section>
 
           <section>
-            <h2 class='m-0 uppercase'>Popular Articles</h2>
-            <p class='mt-0 mb-4 text-slate-300'>Top Ten Article views</p>
+            <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>Popular Articles</h2>
+            <p class='mt-0 mb-4 text-sm text-brand-muted'>Top Ten Article views</p>
             <ListPopular
               data={groupBySlug(analyticsData)
                 .filter((item) => /\/articles\/.+/.test(item.slug))
@@ -187,8 +187,8 @@ try {
     }
 
     <section>
-      <h2 class='m-0 uppercase'>GtiHub Activity</h2>
-      <p class='mt-0 mb-4 text-slate-300'>Recent GitHub events</p>
+      <h2 class='m-0 text-2xl font-display font-normal text-brand-text'>GitHub Activity</h2>
+      <p class='mt-0 mb-4 text-sm text-brand-muted'>Recent GitHub events</p>
       <GithubActivity />
     </section>
 

@@ -367,10 +367,20 @@
   resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.21.5.tgz"
   integrity sha512-DwqXqZyuk5AiWWf3UfLiRDJ5EDd49zg6O9wclZ7kUMv2WRFr4HKjXp/5t8JZ11QbQfUS6/cRCKGwYhtNAY88kQ==
 
+"@fontsource/dm-sans@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.npmjs.org/@fontsource/dm-sans/-/dm-sans-5.2.8.tgz"
+  integrity sha512-tlovG42m9ESG28WiHpLq3F5umAlm64rv0RkqTbYowRn70e9OlRr5a3yTJhrhrY+k5lftR/OFJjPzOLQzk8EfCA==
+
 "@fontsource/inconsolata@^5.0.8":
   version "5.2.5"
   resolved "https://registry.npmjs.org/@fontsource/inconsolata/-/inconsolata-5.2.5.tgz"
   integrity sha512-OvzkZY5qYghv/jEV6cfGZzFhdFTvSnU+ExPC7WcZ7w8PdRhtiu/SpcBWOBt+3LXgS0n9qyepgq4zZmxlDTlGGQ==
+
+"@fontsource/playfair-display@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.npmjs.org/@fontsource/playfair-display/-/playfair-display-5.2.8.tgz"
+  integrity sha512-fUEhib70SszNhQVsGbUMSsWJhr7Je0rdeuZdtGpDNu0GKF1xJM8QhpI/y0pckU25GcChXm9TLOmeZupkvvZo2g==
 
 "@google-analytics/data@4.7.0":
   version "4.7.0"
@@ -2519,6 +2529,15 @@ frame-ticker@1:
   dependencies:
     simplesignal "^2.1.6"
 
+framer-motion@^12.40.0:
+  version "12.40.0"
+  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-12.40.0.tgz"
+  integrity sha512-uaBd3qC1v3KQqBEjwTUd183K6PbS+j0yR9w9VmEOLWA/tnUcSn8Xa3uck7t4dgpDoUss8xQTcj8W2L07lrnLFg==
+  dependencies:
+    motion-dom "^12.40.0"
+    motion-utils "^12.39.0"
+    tslib "^2.4.0"
+
 fs-extra@^11.1.1:
   version "11.3.0"
   resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-11.3.0.tgz"
@@ -4212,6 +4231,26 @@ mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.6"
 
+motion-dom@^12.40.0:
+  version "12.40.0"
+  resolved "https://registry.npmjs.org/motion-dom/-/motion-dom-12.40.0.tgz"
+  integrity sha512-HxU3ZaBwNPVQUBQf1xxgq+7JrPNZvjLVxgbpEZL7RrWJnsxOf0/OM+yrHG9ogLQ31Do/r57Oz2gQWPK+6q62mg==
+  dependencies:
+    motion-utils "^12.39.0"
+
+motion-utils@^12.39.0:
+  version "12.39.0"
+  resolved "https://registry.npmjs.org/motion-utils/-/motion-utils-12.39.0.tgz"
+  integrity sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ==
+
+motion@^12.40.0:
+  version "12.40.0"
+  resolved "https://registry.npmjs.org/motion/-/motion-12.40.0.tgz"
+  integrity sha512-yjrHUrBFW6kQvjJwRsoiPSAhC5tRwRqNGJWmiJ4CrGnbKp0V88AdzkhBmDoqIsIPfarOe0Uddd37Xq43/gIocA==
+  dependencies:
+    framer-motion "^12.40.0"
+    tslib "^2.4.0"
+
 mrmime@^2.0.0, mrmime@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/mrmime/-/mrmime-2.0.1.tgz"
@@ -5746,7 +5785,7 @@ tsconfck@^3.0.3, tsconfck@^3.1.4:
   resolved "https://registry.npmjs.org/tsconfck/-/tsconfck-3.1.5.tgz"
   integrity sha512-CLDfGgUp7XPswWnezWwsCRxNmgQjhYq3VXHM0/XIRxhVrKw0M1if9agzryh1QS3nxjCROvV+xWxoJO1YctzzWg==
 
-tslib@^2.8.1:
+tslib@^2.4.0, tslib@^2.8.1:
   version "2.8.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==

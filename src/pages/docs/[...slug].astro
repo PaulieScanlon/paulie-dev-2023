@@ -32,8 +32,6 @@ export async function getStaticPaths() {
   });
 }
 
-const site = Astro.site.href;
-
 const {
   doc,
   doc: {
@@ -45,11 +43,9 @@ const {
 const excerpt = `${createExcerpt(doc.body).substring(0, 70)}...`;
 
 const { Content, headings } = await doc.render();
-
-const ogImage = `${site}/docs/${slug}/og.png`;
 ---
 
-<Main title={title} description={excerpt} slug={`/docs/${slug}/`} canonical={url} image={ogImage}>
+<Main title={title} description={excerpt} slug={`/docs/${slug}/`} canonical={url}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
     <div class='flex flex-col sm:flex-row gap-2 items-start sm:items-center'>
       <div class='flex items-center gap-2'>
@@ -59,9 +55,9 @@ const ogImage = `${site}/docs/${slug}/og.png`;
         </a>
       </div>
       <span class='hidden sm:inline'>&bull;</span>
-      <time class='text-xs font-bold text-brand-primary'>{formatDate(date)}</time>
+      <time class='text-xs font-light text-brand-muted'>{formatDate(date)}</time>
     </div>
-    <span class='text-xs font-bold text-brand-primary'>{`By ${author}`}</span>
+    <span class='text-xs font-light text-brand-muted'>{`By ${author}`}</span>
   </div>
   <h1>{title}</h1>
   <TagsList tags={tags} link={true} />
