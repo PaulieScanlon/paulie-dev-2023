@@ -3,8 +3,6 @@ export const prerender = true;
 
 import Main from '../layouts/main.astro';
 import CollectionsList from '../components/collections-list.astro';
-import Aside from '../components/aside.astro';
-import ProfileCard from '../components/profile-card.astro';
 
 import { getCollection } from 'astro:content';
 
@@ -22,7 +20,4 @@ const posts = await getCollection('posts');
     a curve ball.
   </p>
   <CollectionsList collections={posts} />
-  <Aside>
-    <ProfileCard />
-  </Aside>
 </Main>

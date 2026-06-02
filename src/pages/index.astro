@@ -5,8 +5,6 @@ import { sql } from '../neon';
 
 import Main from '../layouts/main.astro';
 
-import Aside from '../components/aside.astro';
-import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 import SectionHeading from '../components/section-heading.astro';
 import CtaInternal from '../components/cta-internal.astro';
@@ -60,75 +58,56 @@ try {
       </p>
       <div class='max-w-2xl'>
         <p class='text-sm leading-relaxed text-brand-text mb-5'>
-          Developer for <strong class='text-brand-text'>20 years</strong>, now helping shape the next generation of AI-powered development tools.
+          Developer for <strong class='text-brand-text'>20 years</strong>, now mostly working with, exploring, and writing about AI.
         </p>
-        <ul class='flex flex-wrap items-center gap-2 list-none m-0 p-0'>
-          {[
-            { label: 'AI', href: '/tags/ai/' },
-            { label: 'TypeScript', href: '/tags/typescript/' },
-            { label: 'React', href: '/tags/react/' },
-            { label: 'PostgreSQL', href: '/tags/postgres/' },
-          ].map(({ label, href }) => (
-            <li class='m-0 p-0'>
-              <a
-                href={href}
-                class='block rounded border border-brand-outline bg-brand-surface px-3 py-1 text-xs font-light text-brand-muted no-underline transition-colors duration-300 hover:border-brand-muted hover:text-brand-text'
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
-    <div class='absolute -top-10 sm:-top-6 left-0 md:left-auto right-0 flex justify-center invisible lg:visible'>
-      <GlobeAllCities
-        data={groupByCity(analyticsData)}
-        altitude={2.4}
-        isDashboard={false}
-        classNames='pointer-events-none'
-      />
-      <div class='absolute top-4 right-0'>
-        <div class='leading-3'>
-          <time class='block text-brand-muted text-xs text-right'>{`Site visits from last ${period} Days`}</time>
-          <small class='block text-brand-secondary text-xs text-right'
-            >Powered by
-            <a href='https://neon.tech' target='_blank' rel='noopener' class='text-xs text-right'>Neon</a>
-          </small>
+    <div class='absolute inset-y-0 left-0 md:left-auto right-0 flex items-center justify-center invisible lg:visible'>
+      <div class='relative'>
+        <GlobeAllCities
+          data={groupByCity(analyticsData)}
+          altitude={2.4}
+          isDashboard={false}
+          classNames='pointer-events-none'
+        />
+        <div class='absolute top-4 right-0'>
+          <div class='leading-3'>
+            <time class='block text-brand-muted text-xs text-right'>{`Site visits from last ${period} Days`}</time>
+            <small class='block text-brand-secondary text-xs text-right'
+              >Powered by
+              <a href='https://neon.tech' target='_blank' rel='noopener' class='text-xs text-right'>Neon</a>
+            </small>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <SectionHeading
-    title='Latest Articles'
-    description='Latest articles written for external publishers.'
-  />
-  <CollectionsList collections={articles} slice={3} />
-  <CtaInternal href='/articles/'>{`See all ${articles.length} Articles`}</CtaInternal>
-
-  <SectionHeading
     title='Publishers'
-    description='All the publications I’ve contributed to.'
+    description="Companies and publications I've written for."
   />
   <ListExternalPublishers data={groupByPublication(collections)} />
   <CtaInternal href='/dashboard/'>See more statistics</CtaInternal>
 
   <SectionHeading
-    title='Latest Posts'
-    description='Latest posts published here on my site.'
+    title='Latest Articles'
+    description="Technical articles written for other companies' blogs."
   />
-  <CollectionsList collections={posts} slice={3} />
-  <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
+  <CollectionsList collections={articles} slice={3} />
+  <CtaInternal href='/articles/'>{`See all ${articles.length} Articles`}</CtaInternal>
 
   <SectionHeading
     title='Latest Ghostwriting'
-    description='Latest articles written for clients… and the World will never know.'
+    description="Articles ghostwritten on behalf of others."
   />
   <CollectionsList collections={ghosts} slice={3} />
   <CtaInternal href='/ghosts/'>{`See all ${ghosts.length} Ghosts`}</CtaInternal>
 
-  <Aside>
-    <ProfileCard />
-  </Aside>
+  <SectionHeading
+    title='Latest Posts'
+    description='Self-published on paulie.dev.'
+  />
+  <CollectionsList collections={posts} slice={3} />
+  <CtaInternal href='/posts/'>{`See all ${posts.length} Posts`}</CtaInternal>
 </Main>

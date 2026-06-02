@@ -15,7 +15,7 @@ const listData = data.sort((a, b) => b.total - a.total).slice(0, 10);
             <span class='mt-1'>{flag}</span>
             <span>{city}</span>
           </div>
-          <strong>{`x${total}`}</strong>
+          <strong class='text-sm font-light text-brand-muted'>{`x${total}`}</strong>
         </li>
       );
     })

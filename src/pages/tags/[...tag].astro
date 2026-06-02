@@ -2,8 +2,6 @@
 export const prerender = true;
 
 import Main from '../../layouts/main.astro';
-import Aside from '../../components/aside.astro';
-import ProfileCard from '../../components/profile-card.astro';
 import CollectionsList from '../../components/collections-list.astro';
 
 import { getAllCollections } from '../../utils/all-collections';
@@ -56,7 +54,4 @@ const ogImage = `${site}/tags/${tag}/og.png`;
     >.
   </p>
   <CollectionsList collections={collection} highlighted={tag} />
-  <Aside>
-    <ProfileCard />
-  </Aside>
 </Main>

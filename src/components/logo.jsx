@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 
 const Logo = component$(() => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" height="44" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" height="32" aria-hidden="true">
       <defs>
         <linearGradient id="logo-gradient" x1="12" y1="8" x2="36" y2="40" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stop-color="#1ff1a5" />

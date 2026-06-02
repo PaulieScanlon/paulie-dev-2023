@@ -2,10 +2,7 @@
 export const prerender = true;
 
 import Main from '../../layouts/main.astro';
-import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
-import FeaturedImageCard from '../../components/featured-image-card.astro';
-import TableOfContents from '../../components/table-of-contents.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
@@ -47,12 +44,4 @@ const { Content, headings } = await open.render();
   <h1>{title}</h1>
   <TagsList tags={tags} link={true} />
   <Content />
-  <Aside>
-    <FeaturedImageCard
-      alt={title}
-      thumbnail={featuredImage}
-      text={`${title}\n https://paulie.dev/opensource/${slug}/`}
-    />
-    <TableOfContents headings={headings} />
-  </Aside>
 </Main>

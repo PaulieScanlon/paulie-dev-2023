@@ -2,8 +2,6 @@
 export const prerender = true;
 
 import Main from '../layouts/main.astro';
-import Aside from '../components/aside.astro';
-import ProfileCard from '../components/profile-card.astro';
 import SearchTags from '../components/search-tags';
 
 import { createTagsCollection } from '../utils/create-tags-collection';
@@ -22,7 +20,4 @@ const tags = createTagsCollection(collections);
   </strong>
   <h1 class='mb-0'>Tags Search</h1>
   {tags ? <SearchTags tags={tags} /> : null}
-  <Aside>
-    <ProfileCard />
-  </Aside>
 </Main>

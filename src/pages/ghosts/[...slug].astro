@@ -4,10 +4,8 @@ export const prerender = true;
 import { Image } from 'astro:assets';
 
 import Main from '../../layouts/main.astro';
-import Aside from '../../components/aside.astro';
 import CtaExternal from '../../components/cta-external.astro';
 import TagsList from '../../components/tags-list.astro';
-import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
@@ -65,7 +63,4 @@ const ogImage = `${Astro.site}ghosts/${slug}/og.png`;
   </div>
   <CtaExternal href={url} className='mt-12'>{`Read on ${publication}`}</CtaExternal>
 
-  <Aside>
-    <ProfileCard />
-  </Aside>
 </Main>

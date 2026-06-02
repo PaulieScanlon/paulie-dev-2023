@@ -8,12 +8,9 @@ import { createExcerpt } from '../../utils/create-excerpt';
 
 import Main from '../../layouts/main.astro';
 
-import Aside from '../../components/aside.astro';
 import CtaExternal from '../../components/cta-external.astro';
 import TagsList from '../../components/tags-list.astro';
-import TableOfContents from '../../components/table-of-contents.astro';
 import Reactions from '../../components/reactions';
-import ProfileCard from '../../components/profile-card.astro';
 
 import { getCollection } from 'astro:content';
 
@@ -67,8 +64,4 @@ const { Content, headings } = await doc.render();
   </div>
   <CtaExternal href={url} className='mt-12'>{`Read on ${source}`}</CtaExternal>
   <Reactions title={title} slug={`/docs/${slug}/`} />
-  <Aside>
-    <ProfileCard />
-    <TableOfContents headings={headings} />
-  </Aside>
 </Main>
