@@ -53,13 +53,23 @@ const Reactions = component$<Props>(({ title, slug }) => {
         throw new Error('Bad response');
       }
 
-      setTimeout(() => {
-        getReactions();
-        status.submitted = true;
-        status.submitting = false;
-        status.reaction = '';
-      }, 500);
+      // Brief, deliberate delay so the loading state is visible before the count flips.
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      // Optimistically reflect the new reaction. Re-fetching here would race
+      // read-after-write on the DB and could return a stale (pre-insert) count,
+      // so we bump the last-known counts locally instead. Assigning a new object
+      // (not mutating) is what makes Qwik re-render.
+      const next = counts.value ? { ...counts.value } : {};
+      next[reaction] = (next[reaction] || 0) + 1;
+      counts.value = next;
+
+      status.submitted = true;
+      status.submitting = false;
+      status.reaction = '';
     } catch (error) {
+      status.submitting = false;
+      status.reaction = '';
       console.error(error);
     }
   });

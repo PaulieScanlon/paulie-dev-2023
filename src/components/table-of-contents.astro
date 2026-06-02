@@ -1,38 +1,75 @@
 ---
-const { headings } = Astro.props;
+import type { MarkdownHeading } from 'astro';
+
+// Sticky "On this page" rail for long-form posts.
+// Shows h2/h3 headings only — deeper levels make the rail noisy.
+// A small client script highlights the section currently in view (scroll-spy).
+const { headings = [] } = Astro.props as { headings?: MarkdownHeading[] };
+const items = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 ---
 
 {
-  headings.length > 0 ? (
-    <div class='px-2'>
-      <h5 class='font-light uppercase text-brand-secondary'>on this page</h5>
-      <ul class='list-none m-0 p-0'>
-        {headings.map((heading) => {
-          const { depth, slug, text } = heading;
-
-          const getPaddingDepth = {
-            [2]: '4',
-            [3]: '6',
-            [4]: '8',
-            [5]: '10',
-            [6]: '12',
-          };
-
-          return (
-            <li
-              data-depth={depth}
-              class={`m-0 py-0.5 leading-none pl-${getPaddingDepth[depth]}`}
+  items.length > 0 ? (
+    <nav aria-label='Table of contents' class='not-prose'>
+      <p class='m-0 mb-4 flex items-center gap-2 font-sans text-sm font-medium text-brand-text'>
+        <svg class='h-4 w-4 text-brand-primary' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2' aria-hidden='true'>
+          <path stroke-linecap='round' stroke-linejoin='round' d='M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm0 5.25h.007v.008H3.75V12Zm0 5.25h.007v.008H3.75v-.008Z' />
+        </svg>
+        On this page
+      </p>
+      <ul class='m-0 list-none border-l border-brand-outline p-0'>
+        {items.map((heading) => (
+          <li class='m-0'>
+            <a
+              href={`#${heading.slug}`}
+              data-toc-link={heading.slug}
+              class={`toc-link -ml-px block border-l-2 border-transparent py-1.5 text-sm font-light leading-snug text-slate-400 no-underline transition-colors duration-200 hover:text-brand-text ${heading.depth === 3 ? 'pl-7' : 'pl-4'}`}
             >
-              <a
-                href={`#${slug}`}
-                class='text-[0.65rem] p-1 no-underline text-violet-300'
-              >
-                {text}
-              </a>
-            </li>
-          );
-        })}
+              {heading.text}
+            </a>
+          </li>
+        ))}
       </ul>
-    </div>
+    </nav>
   ) : null
 }
+
+<script>
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+
+  if (links.length) {
+    const headings = links
+      .map((link) => document.getElementById(link.dataset.tocLink ?? ''))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    const setActive = (id: string) => {
+      links.forEach((link) => link.classList.toggle('toc-active', link.dataset.tocLink === id));
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visible.length) {
+          setActive(visible[0].target.id);
+        }
+      },
+      // Trigger zone sits just below the fixed header, in the upper third of the viewport.
+      { rootMargin: '-88px 0px -70% 0px', threshold: 0 }
+    );
+
+    headings.forEach((heading) => observer.observe(heading));
+
+    // Seed an initial active item so the rail isn't blank above the first heading.
+    if (links[0]?.dataset.tocLink) setActive(links[0].dataset.tocLink);
+  }
+</script>
+
+<style>
+  .toc-link.toc-active {
+    color: var(--color-brand-text);
+    border-color: var(--color-brand-primary);
+  }
+</style>

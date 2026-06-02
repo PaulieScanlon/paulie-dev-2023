@@ -25,6 +25,8 @@ const { collections, slice, highlighted } = Astro.props;
 
         const excerpt = collection.body ? createExcerpt(collection.body) : '';
         const isGhost = base === 'ghosts';
+        // Blog posts use dynamic OG images, not featured images — don't show a thumbnail in the list.
+        const isPost = base === 'posts';
 
         return (
           <li
@@ -36,7 +38,7 @@ const { collections, slice, highlighted } = Astro.props;
                 href={`/${base}/${slug}/`}
                 class={`flex flex-col md:flex-row gap-3 md:gap-6 items-center p-4 no-underline ${isGhost ? 'select-none pointer-events-none' : ''}`}
               >
-                {featuredImage ? (
+                {featuredImage && !isPost ? (
                   <AstroImage
                     width={570}
                     height={321}
@@ -46,7 +48,7 @@ const { collections, slice, highlighted } = Astro.props;
                     isEmbedded={false}
                   />
                 ) : null}
-                <div class='flex flex-col gap-2'>
+                <div class='flex flex-1 min-w-0 flex-col gap-2'>
                   <span class='flex flex-col sm:flex-row gap-2 sm:items-center'>
                     {publication || source ? (
                       <>
@@ -61,6 +63,14 @@ const { collections, slice, highlighted } = Astro.props;
                           <small class={`text-xs text-brand-muted ${isGhost ? 'blur-[2px]' : ''}`}>
                             {publication || source}
                           </small>
+                        </div>
+                        <span class='hidden sm:inline-block'>&bull;</span>
+                      </>
+                    ) : isPost ? (
+                      <>
+                        <div class='flex items-center gap-2'>
+                          <img src='/favicon.svg' width='24' height='24' alt='paulie.dev' class='m-0' />
+                          <small class='text-xs text-brand-muted'>paulie.dev</small>
                         </div>
                         <span class='hidden sm:inline-block'>&bull;</span>
                       </>

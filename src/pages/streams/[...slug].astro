@@ -2,9 +2,7 @@
 export const prerender = true;
 
 import Main from '../../layouts/main.astro';
-import Aside from '../../components/aside.astro';
 import TagsList from '../../components/tags-list.astro';
-import ProfileCard from '../../components/profile-card.astro';
 import { formatDate } from '../../utils/format-date';
 import { createExcerpt } from '../../utils/create-excerpt';
 
@@ -43,7 +41,4 @@ const { Content } = await stream.render();
   <h1>{title}</h1>
   <TagsList tags={tags} link={true} />
   <Content />
-  <Aside>
-    <ProfileCard />
-  </Aside>
 </Main>

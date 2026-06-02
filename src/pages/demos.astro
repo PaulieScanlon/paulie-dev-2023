@@ -2,8 +2,6 @@
 export const prerender = true;
 
 import Main from '../layouts/main.astro';
-import Aside from '../components/aside.astro';
-import ProfileCard from '../components/profile-card.astro';
 import CollectionsList from '../components/collections-list.astro';
 
 import { getCollection } from 'astro:content';
@@ -22,7 +20,4 @@ const demos = await getCollection('demos');
     sites to demonstrate what's possible when you pop your thinking cap on.
   </p>
   <CollectionsList collections={demos} />
-  <Aside>
-    <ProfileCard />
-  </Aside>
 </Main>

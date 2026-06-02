@@ -8,13 +8,9 @@ import { createExcerpt } from '../../utils/create-excerpt';
 
 import Main from '../../layouts/main.astro';
 
-import Aside from '../../components/aside.astro';
 import CtaExternal from '../../components/cta-external.astro';
 import TagsList from '../../components/tags-list.astro';
-import FeaturedImageCard from '../../components/featured-image-card.astro';
-import TableOfContents from '../../components/table-of-contents.astro';
 import Reactions from '../../components/reactions';
-import ProfileCard from '../../components/profile-card.astro';
 
 import { getCollection } from 'astro:content';
 
@@ -73,18 +69,4 @@ const ogImage = `${site}articles/${slug}/og.png`;
   </div>
   <CtaExternal href={url} className={isOped ? 'mt-24' : 'mt-12'}>{`Read on ${publication}`}</CtaExternal>
   <Reactions title={title} slug={`/articles/${slug}/`} />
-  <Aside>
-    {
-      featuredImage ? (
-        <FeaturedImageCard
-          alt={title}
-          thumbnail={featuredImage}
-          text={`${title}\n https://paulie.dev/articles/${slug}/`}
-        />
-      ) : (
-        <ProfileCard />
-      )
-    }
-    <TableOfContents headings={headings} />
-  </Aside>
 </Main>

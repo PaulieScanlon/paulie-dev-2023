@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Agent Client Protocol Support for Mastra Agents
+date: 2026-06-02
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-agent-client-protocol
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Mastra agents now support the [Agent Client Protocol (ACP)](https://mastra.ai/docs/agents/acp). Run Claude Agent, Codex CLI, Cursor, Gemini CLI, or any other compatible harness directly from your Mastra agents.
+
+Delegate coding tasks to a harness with specialized tools you'd otherwise have to build yourself: codebase reasoning, file editing, shell execution, self-correcting test loops, and Git operations.
+
+The Mastra agent is the supervisor that orchestrates the run, providing skills and context before handing off to a subagent and harness to complete the task.
+
+To get started, install the ACP package (it requires `@mastra/core@1.34.0` or later), then create an `AcpAgent` with an [ACP](https://agentclientprotocol.com/get-started/introduction)-compatible harness and a workspace filesystem where the work can be completed safely. Attach it to your Mastra agent following the subagent pattern, and add skills to the supervisor's workspace with instructions explaining how to delegate coding tasks.

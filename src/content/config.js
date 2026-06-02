@@ -10,7 +10,8 @@ export const collections = {
       tags: z.array(z.string()).optional(),
       date: z.date(),
       author: z.string(),
-      featuredImage: z.string(),
+      // Optional — posts now use dynamic OG images and no list thumbnail.
+      featuredImage: z.string().optional(),
     }),
   }),
   articles: defineCollection({

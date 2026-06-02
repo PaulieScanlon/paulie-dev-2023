@@ -2,8 +2,6 @@
 export const prerender = true;
 
 import Main from '../layouts/main.astro';
-import Aside from '../components/aside.astro';
-import ProfileCard from '../components/profile-card.astro';
 
 import { Vimeo, YouTube } from 'astro-embed';
 ---
@@ -168,7 +166,4 @@ import { Vimeo, YouTube } from 'astro-embed';
   <span> =</span>
   <span class='text-brand-muted'> fun</span>
 
-  <Aside>
-    <ProfileCard />
-  </Aside>
 </Main>

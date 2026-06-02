@@ -32,7 +32,9 @@ const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   </g>
 </svg>`;
 
-const logoDataUri = `data:image/svg+xml;base64,${Buffer.from(logoSvg).toString("base64")}`;
+// Exported so collections without an external publication logo (e.g. posts) can use
+// the site's own spiral logo as their meta logo.
+export const logoDataUri = `data:image/svg+xml;base64,${Buffer.from(logoSvg).toString("base64")}`;
 
 // ultrahtml (under og-img) escapes interpolated strings but never decodes them on
 // render, so `&` would show as `&amp;`. Decode known entities, strip angle brackets
