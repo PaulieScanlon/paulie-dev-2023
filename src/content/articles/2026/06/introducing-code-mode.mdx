@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Code Mode for Mastra Agents
+date: 2026-06-09
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-code-mode
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Use [code mode](https://mastra.ai/docs/agents/code-mode) when your agents touch multiple tools to perform complex computations. Code mode lets the model orchestrate your existing tools in an isolated sandbox and return their results as a single, more accurate response.
+
+Before code mode, multi-tool queries run the agentic loop several times: the model decides what tool to call, reads the results, decides again and repeats. Each turn drops the full tool response into the agent's context window.
+
+With code mode, the model writes a tailored function per user query that reduces or aggregates the results, and returns the answer in a single tool call. This reduces tokens in the context window and improves reasoning and accuracy.
+
+You don't have to predict every analytical question your users will ask. A handful of focused tools like `getOrders`, `getCustomer`, or `getProduct` give code mode the raw data it needs to handle a wide range of analytical questions.
