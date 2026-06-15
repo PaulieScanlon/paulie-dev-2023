@@ -1,0 +1,23 @@
+---
+// A single resume-style entry (experience, education, etc.) with clear hierarchy:
+//   Company   ........  Dates   (prominent / muted)
+//   Title                       (accent)
+//   <description slot>
+interface Props {
+  company: string;
+  title?: string;
+  dates?: string;
+}
+
+const { company, title, dates } = Astro.props;
+const hasBody = Astro.slots.has('default');
+---
+
+<div class='mb-6'>
+  <div class='flex flex-col gap-x-4 sm:flex-row sm:items-baseline sm:justify-between'>
+    <span class='text-lg font-medium text-brand-text'>{company}</span>
+    {dates ? <span class='shrink-0 text-sm font-light text-brand-muted'>{dates}</span> : null}
+  </div>
+  {title ? <span class='block text-sm font-light text-brand-muted'>{title}</span> : null}
+  {hasBody ? <p class='!mt-2 !mb-0'><slot /></p> : null}
+</div>
