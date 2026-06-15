@@ -1,7 +1,4 @@
 User-agent: *
-Disallow: /ghosts
-Disallow: /ghosts/
-Disallow: /*ghosts*
 Disallow: /docs
 Disallow: /docs/
 Disallow: /*docs*

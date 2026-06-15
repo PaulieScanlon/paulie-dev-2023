@@ -96,7 +96,10 @@ export default defineConfig({
         forward: ["dataLayer.push"]
       }
     }),
-    sitemap()
+    sitemap({
+      // Keep ghostwritten work out of the sitemap (it's noindex'd too).
+      filter: (page) => !page.includes("/ghosts")
+    })
   ],
   vite: {
     build: {

@@ -41,7 +41,7 @@ const { Content } = await ghost.render();
 const ogImage = `${Astro.site}ghosts/${slug}/og.png`;
 ---
 
-<Main title={title} description={excerpt} slug={`/ghosts/${slug}/`} image={ogImage}>
+<Main title={title} description={excerpt} slug={`/ghosts/${slug}/`} image={ogImage} noindex={true}>
   <div class='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2'>
     <div class='flex flex-col sm:flex-row gap-2 items-start sm:items-center'>
       <div class='flex items-center gap-2'>

@@ -17,7 +17,7 @@ const keywords = [
   'Product Marketing'
 ];
 
-const { type, title, description, slug, image, tags, fullWidth = false, wide = false, canonical } = Astro.props;
+const { type, title, description, slug, image, tags, fullWidth = false, wide = false, canonical, noindex = false } = Astro.props;
 
 const htmlTitle = `${name} | ${title}`;
 const canonicalHref = canonical ? canonical : `${siteUrl}${slug}`;
@@ -36,6 +36,7 @@ const isProduction = import.meta.env.PROD;
     <meta charset='utf-8' />
 
     <title>{htmlTitle}</title>
+    {noindex ? <meta name='robots' content='noindex, follow' /> : null}
     <link rel='canonical' href={canonicalHref} />
     <link
       rel="alternate"
