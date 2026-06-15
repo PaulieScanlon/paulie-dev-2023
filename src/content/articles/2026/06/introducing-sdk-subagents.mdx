@@ -1,0 +1,23 @@
+---
+base: articles
+title: Introducing Claude Code, Cursor, and Codex agents in Mastra
+date: 2026-06-15
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-sdk-subagents
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Mastra is now an agent meta-harness. Starting today, you can run Claude Code, Cursor, and Codex subagents from within Mastra.
+
+Subagents inherit Mastra's stream composition APIs — hand off to a workflow, or vice versa. You can write evals for them, chat with them in Studio, and swap one for another without changing your code.
+
+Mastra has always been model-agnostic. Today with so many harnesses, we're taking a step towards being harness agnostic as well.
+
+Harnesses maintain their existing feature set — file handling, codebase reasoning, multi-agent handoffs, permission controls — and inherit Mastra's agent surface:
+
+- Calls: `.generate()`, `.stream()`, `.resumeGenerate()`, `.resumeStream()`
+- Per-run options: `requestContext`, `abortSignal`, `instructions`, `structuredOutput`, `runId`, `tracingContext`
+- Composition: workflow steps, subagent delegation, attached tools
+- Observability: logs, traces, token usage, model cost in Studio

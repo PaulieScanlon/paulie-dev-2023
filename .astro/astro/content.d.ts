@@ -964,6 +964,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: any
 } & { render(): Render[".mdx"] };
+"2026/06/introducing-sdk-subagents.mdx": {
+	id: "2026/06/introducing-sdk-subagents.mdx";
+  slug: "2026/06/introducing-sdk-subagents";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {
