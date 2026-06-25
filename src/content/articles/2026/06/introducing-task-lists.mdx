@@ -1,0 +1,16 @@
+---
+base: articles
+title: Introducing Task Lists for Mastra Agents
+date: 2026-06-23
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-task-lists
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+A [TaskSignalProvider](https://mastra.ai/reference/signals/task-signal-provider) gives your agent a plan to follow. It creates a list and provides tools for marking items as `pending`, `in_progress`, or `completed` — keeping the agent on track through long-running, complex work.
+
+A task list breaks the work into structured steps the agent can check off one by one. The agent surfaces the plan up front and outputs updates — so you can follow along while it works.
+
+Task list updates use prompt-cacheable [state signals](https://mastra.ai/docs/agents/signals#state-signals) persisted by your agent's `Memory`. `TaskSignalProvider` works with [message history](https://mastra.ai/docs/memory/message-history), [working memory](https://mastra.ai/docs/memory/working-memory), or [observational memory](https://mastra.ai/docs/memory/observational-memory).

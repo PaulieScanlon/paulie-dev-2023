@@ -1,0 +1,18 @@
+---
+base: articles
+title: Your Mastra Agent Now Has an Inbox With Priority Notifications
+date: 2026-06-24
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-notification-inbox
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can connect external sources like GitHub, Slack, Sentry, Datadog, and have your agent act on emitted events using Mastra's [signal system](https://mastra.ai/docs/agents/signals#notification-signals). These events are durable and they have priority.
+
+Agent notification inboxes and priority signals let you build more _attentive_ agents. An AI SRE agent could wake up and try to auto-remediate a 5XX error from Datadog. A personal assistant agent could text you when it receives urgent email in your inbox.
+
+This is **not** an email inbox though stay tuned.
+
+Before this, you could inject context into an agent's memory thread using [sendSignal()](https://mastra.ai/reference/agents/agent#sendsignalsignal-options), but there wasn't a standard shape for durable records, priority-aware delivery, or a tool agents could use to read notifications and action high priority items.

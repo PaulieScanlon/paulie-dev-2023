@@ -1,0 +1,16 @@
+---
+base: ghosts
+title: Announcing Mastra Harness
+date: 2026-06-18
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/announcing-agent-harness
+publication: Mastra
+author: Sam Bhagwat
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Today we're incredibly excited to announce [Mastra Harness](https://mastra.ai/docs/harness/overview). We've been working on this for almost six months. The team built MastraCode, a TUI based coding agent we drive every day. Then, we extracted out the best parts into the `Harness` class for you to build your own harness.
+
+Think about the `Harness` as the layer around the agent loop. It gives you a conversation you can watch, interrupt, and steer; memory suitable for long runs; storage that persists sessions; control over tool calls; task delegation to subagents; and modes you switch between with specialized agents.
+
+The most fundamental concept of Mastra's `Harness` is the `Session` that persists state across turns. You can switch between plan and build mode, with per-mode tools, models, and instructions, plus a plan-approval workflow.
