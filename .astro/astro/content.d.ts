@@ -964,6 +964,20 @@ declare module 'astro:content' {
   collection: "articles";
   data: any
 } & { render(): Render[".mdx"] };
+"2026/06/introducing-durable-agents.mdx": {
+	id: "2026/06/introducing-durable-agents.mdx";
+  slug: "2026/06/introducing-durable-agents";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
+"2026/06/introducing-mastras-event-system.mdx": {
+	id: "2026/06/introducing-mastras-event-system.mdx";
+  slug: "2026/06/introducing-mastras-event-system";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
 "2026/06/introducing-notification-inbox.mdx": {
 	id: "2026/06/introducing-notification-inbox.mdx";
   slug: "2026/06/introducing-notification-inbox";

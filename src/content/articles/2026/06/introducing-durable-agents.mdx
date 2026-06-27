@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Durable Agents
+date: 2026-06-26
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-durable-agents
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+We're excited to ship [Durable Agents](https://mastra.ai/docs/agents/durable-agents). Durable Agents can survive client disconnects, browser refreshes, or network blips.
+
+Run multiple requests in parallel, watch them or leave them in flight and come back later. Or connect from a different client and observe in-progress or completed streams from the start.
+
+Before Durable Agents, an agent stream was tied to the HTTP connection that started it. And Mastra's storage layer persisted on a per-turn (agents) or per-step (workflow) layer. But if the connection dropped, there was no way of resuming from the point it disconnected. You had to go back to the beginning of the turn or step.
+
+The default implementation, [`createDurableAgent()`](https://mastra.ai/reference/agents/durable-agent#createdurableagent), uses a server cache to persist the stream and routes events through [Mastra's event system](https://mastra.ai/blog/introducing-mastras-event-system) letting you observe a stream by subscribing using the `runId`. Durable agents wrap the agentic loop in a [workflow](https://mastra.ai/docs/workflows/overview).

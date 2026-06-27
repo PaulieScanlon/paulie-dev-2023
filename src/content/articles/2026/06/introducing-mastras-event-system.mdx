@@ -1,0 +1,18 @@
+---
+base: articles
+title: Publish and Subscribe with Mastra's Built-In Event System
+date: 2026-06-25
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-mastras-event-system
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Mastra apps now have a [built-in event system](https://mastra.ai/docs/server/pubsub) to publish and subscribe to messages. You can listen for events like workflow step completion, pause, or completion. Clients that disconnect can replay what they missed.
+
+Non-Mastra apps can also publish their own events through the system. That means you can subscribe external systems to Mastra events, or subscribe Mastra agents and workflows to external events.
+
+The default implementation works on a single machine, but distributed pub/sub is supported through [Redis Streams](https://mastra.ai/reference/pubsub/redis-streams) or [Google Cloud Pub/Sub](https://mastra.ai/reference/pubsub/google-cloud-pubsub), with other services coming soon.
+
+Because Mastra events operate over common pub/sub transports, you can enable interoperable communications with a wide range of external systems or processes.
