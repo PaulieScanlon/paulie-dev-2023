@@ -1006,6 +1006,48 @@ declare module 'astro:content' {
   collection: "articles";
   data: any
 } & { render(): Render[".mdx"] };
+"2026/07/introducing-browser-recording.mdx": {
+	id: "2026/07/introducing-browser-recording.mdx";
+  slug: "2026/07/introducing-browser-recording";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-custom-signal-providers.mdx": {
+	id: "2026/07/introducing-custom-signal-providers.mdx";
+  slug: "2026/07/introducing-custom-signal-providers";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-file-based-agents.mdx": {
+	id: "2026/07/introducing-file-based-agents.mdx";
+  slug: "2026/07/introducing-file-based-agents";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-first-class-skills.mdx": {
+	id: "2026/07/introducing-first-class-skills.mdx";
+  slug: "2026/07/introducing-first-class-skills";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-schedules-for-agents-and-workflows.mdx": {
+	id: "2026/07/introducing-schedules-for-agents-and-workflows.mdx";
+  slug: "2026/07/introducing-schedules-for-agents-and-workflows";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-webhook-signal-provider.mdx": {
+	id: "2026/07/introducing-webhook-signal-provider.mdx";
+  slug: "2026/07/introducing-webhook-signal-provider";
+  body: string;
+  collection: "articles";
+  data: any
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {

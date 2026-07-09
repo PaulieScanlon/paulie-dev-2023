@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing First-Class Skills for Mastra Agents
+date: 2026-07-07
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-first-class-skills
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now add skills directly to your Mastra agents. Download packaged ones or write your own. Use them with both [code-registered](https://mastra.ai/docs/agents/skills) or [file-based agents](https://mastra.ai/docs/agents/file-based-agents#add-skills).
+
+We first shipped agent skills in February, but scoped them to a [workspace](https://mastra.ai/docs/workspace/skills). We still recommend workspace scoping when your skill needs to run scripts or work with a filesystem. But for most skills, you can now use a more streamlined approach.
+
+You can add skills either in code or in a markdown file (with file-based agents).
+
+For a single agent, you can add both workspace-level and agent-level skills – they're merged at runtime. Agent-level skills take precedence, which lets you overwrite workspace-based skills.

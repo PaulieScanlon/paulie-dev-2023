@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Custom Signal Providers for Mastra Agents
+date: 2026-07-09
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-custom-signal-providers
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Your agents can now react to real-time events using a custom [signal provider](https://mastra.ai/docs/long-running-agents/signal-providers). Connect to any external source — GitHub, Slack, CI pipelines, or your own APIs and databases — and wake idle agents so they can take action.
+
+Third-party systems emit events in different ways. With a custom signal provider you can build a notification system suitable for the source. Listen for events, poll for updates, or handle webhook requests to capture event payloads.
+
+Before custom signal providers, integrating with external event systems meant manually managing incoming events and thread subscriptions. With a custom signal provider, Mastra tracks the subscriptions and sends matched events as notification signals to subscribed agent threads.
+
+A custom signal provider could expose `.start()` and `.stop()` for setup and teardown, `.poll()` or `.handleWebhook()` for ingestion, and `.watch()` and `.unwatch()` for subscription management.

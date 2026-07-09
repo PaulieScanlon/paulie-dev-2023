@@ -1,0 +1,20 @@
+---
+base: articles
+title: Introducing File-Based Agents for Mastra
+date: 2026-07-03
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-file-based-agents
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now build [file-based](https://mastra.ai/docs/agents/file-based-agents) agents in Mastra. Each agent is defined by a folder with model config, instructions, tools, skills, memory, and workspace as separate files.
+
+We shipped file-based agents to give you a convention to follow and a faster path toward creating your first agent. Existing Mastra code-registered agents will continue to work and can be used alongside file-based agents.
+
+File-based agents follow a defined file and folder structure.
+
+**Files** are for one-of-a-kind pieces. The [config.ts and instructions.md](https://mastra.ai/docs/agents/file-based-agents#quickstart) follow a new convention, while [memory.ts](https://mastra.ai/docs/agents/file-based-agents#add-memory) and [workspace.ts](https://mastra.ai/docs/agents/file-based-agents#add-a-workspace) use existing Mastra classes.
+
+**Folders** are for the many. [tools/](https://mastra.ai/docs/agents/file-based-agents#quickstart) remain the same, but [subagents/](https://mastra.ai/docs/agents/file-based-agents#add-subagents) now follow the same convention as top-level file-based agents.

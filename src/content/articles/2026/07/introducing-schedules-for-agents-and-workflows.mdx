@@ -1,0 +1,21 @@
+---
+base: articles
+title: Introducing Schedules for Mastra Agents and Workflows
+date: 2026-07-08
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-schedules-for-agents-and-workflows
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now run your agents and workflows on [schedules](https://mastra.ai/docs/long-running-agents/schedules). Configure them using `cron` syntax and a default `prompt` for agents or `inputData` for workflows — letting you more easily set a cadence for recurring tasks.
+
+Agent schedules have two modes:
+
+1. [Threadless](https://mastra.ai/docs/long-running-agents/schedules#threadless) for simple, one-shot runs
+2. [Threaded](https://mastra.ai/docs/long-running-agents/schedules#threaded) for when conversation context is required
+
+Both run types can be traced, but only threaded runs show up in an agent's conversation history.
+
+[Workflow schedules](https://mastra.ai/docs/long-running-agents/schedules#workflow-schedules) have no thread mode — each run behaves like a standard invocation.
