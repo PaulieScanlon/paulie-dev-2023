@@ -7,6 +7,11 @@ import years from '../utils/years';
 const d = new Date();
 const currentYear = d.getFullYear();
 
+// Rolling window: only the most recent N years are visible on the chart by
+// default. All year buttons stay functional so any year can be toggled back on.
+const rollingWindow = 3;
+const isYearVisible = (year: string) => Number(year) > currentYear - rollingWindow;
+
 const totalByDayAndYear = Object.keys(data).reduce((acc, day) => {
   const groupedByDay = data[day];
 
@@ -163,7 +168,7 @@ const ticks = dayOrder.map((day, index) => {
                     height={height}
                     fill='transparent'
                     class={`days-visuals-${years[index]} stroke-brand-${colors[index]} fill-brand-surface`}
-                    style={{ opacity: 1 }}
+                    style={{ opacity: isYearVisible(years[index]) ? 1 : 0 }}
                     stroke-width={1}
                   />
                   {total > 0 ? (
@@ -173,7 +178,7 @@ const ticks = dayOrder.map((day, index) => {
                       text-anchor='middle'
                       font-size={8}
                       class={`days-visuals-${years[index]} fill-brand-text select-none`}
-                      style={{ opacity: 1 }}
+                      style={{ opacity: isYearVisible(years[index]) ? 1 : 0 }}
                     >
                       {`x${total}`}
                     </text>
@@ -212,7 +217,7 @@ const ticks = dayOrder.map((day, index) => {
         <li class='m-0 p-0'>
           <button
             id={year}
-            style={{ opacity: 1 }}
+            style={{ opacity: isYearVisible(year) ? 1 : 0.5 }}
             class={`days-btn days-btn-${year} text-brand-${colors[index]} px-2 py-1 bg-brand-surface rounded border border-brand-outline transition-colors duration-300 hover:bg-brand-text/10 font-normal text-xs`}
           >
             {year}

@@ -7,6 +7,11 @@ import years from '../utils/years';
 const d = new Date();
 const currentYear = d.getFullYear();
 
+// Rolling window: only the most recent N years are visible on the chart by
+// default. All year buttons stay functional so any year can be toggled back on.
+const rollingWindow = 3;
+const isYearVisible = (year: string) => Number(year) > currentYear - rollingWindow;
+
 const totalByYearAndMonth = Object.keys(data).reduce((acc, year) => {
   const groupedByYear = data[year];
   Object.keys(groupedByYear).forEach((month) => {
@@ -131,7 +136,7 @@ const ticks = months.map((month, index) => {
           <polyline
             fill='none'
             class={`years-visuals-${years[index]} stroke-brand-${colors[index]}`}
-            style={{ opacity: 1 }}
+            style={{ opacity: isYearVisible(years[index]) ? 1 : 0 }}
             stroke-width={1}
             points={point}
           />
@@ -150,7 +155,7 @@ const ticks = months.map((month, index) => {
                 cx={x}
                 cy={y}
                 r={3}
-                style={{ opacity: 1 }}
+                style={{ opacity: isYearVisible(years[index]) ? 1 : 0 }}
               />
               {total > 0 ? (
                 <text
@@ -159,7 +164,7 @@ const ticks = months.map((month, index) => {
                   text-anchor='middle'
                   font-size={8}
                   class={`years-visuals-${years[index]} fill-brand-text select-none`}
-                  style={{ opacity: 1 }}
+                  style={{ opacity: isYearVisible(years[index]) ? 1 : 0 }}
                 >
                   {`x${total}`}
                 </text>
@@ -198,7 +203,7 @@ const ticks = months.map((month, index) => {
           <button
             data-total={total}
             id={year}
-            style={{opacity: 1}}
+            style={{ opacity: isYearVisible(year) ? 1 : 0.5 }}
             class={`years-btn years-btn-${year} text-brand-${colors[index]} px-2 py-1 bg-brand-surface rounded border border-brand-outline transition-colors duration-300 hover:bg-brand-text/10 font-normal text-[0.75rem]`}
           >
             {year}
