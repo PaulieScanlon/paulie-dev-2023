@@ -1,0 +1,21 @@
+---
+base: articles
+title: Introducing Gates and Verdicts for Mastra Evals
+date: 2026-07-13
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-gates-and-verdicts
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now test your Mastra agents using [gates and verdicts](https://mastra.ai/docs/evals/gates-and-verdicts). Integrate with your existing test suite — vitest, jest, or mocha — and any CI pipeline to catch regressions before they're merged.
+
+Testing agents requires covering both deterministic and non-deterministic behavior. Mastra's eval primitives can be used for both:
+
+1. `gates` for deterministic checks — was a tool called, did it error, returns a score of `0` or `1`
+2. `scorers` for non-deterministic checks — how complete is the response, how appropriate is its tone, returns `averageScore` and `threshold` values
+
+Evals return a `verdict` letting you more easily assert tests for both behavior types.
+
+Before gates and verdicts, you had to write custom assertions for every scorer and stitch them together to determine whether tests passed or failed. Now, tests can pass or fail with a single assertion.

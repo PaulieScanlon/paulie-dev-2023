@@ -1,0 +1,26 @@
+---
+base: articles
+title: Introducing Tool Hooks for Mastra Agents
+date: 2026-07-14
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-tool-hooks
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now add [tool hooks](https://mastra.ai/docs/agents/using-tools#run-logic-around-tool-calls) to your Mastra agents, letting you log, audit, and validate tool calls before, during, and after they run — or block them entirely.
+
+Agent-level hooks fire at two points during a tool call:
+
+1. `beforeToolCall`: Just before the tool is called — can block the call or return a pre-defined result
+2. `afterToolCall`: After the tool has run and returned its output, or thrown an error (skipped when the call is blocked)
+
+[Tool-level hooks](https://mastra.ai/docs/agents/using-tools#streaming) fire at four separate points during tool calls:
+
+1. `onInputStart`: When the model has picked a tool and is about to start writing its arguments
+2. `onInputDelta`: On each chunk of the arguments as they stream in
+3. `onInputAvailable`: When the full arguments are parsed and validated, ready to be passed to the tool
+4. `onOutput`: After the tool has run and returned its output (only when execution succeeded)
+
+When using `.stream()`, tool-level hooks fire in real time, letting you monitor different stages of the execution. With `.generate()`, the same hooks fire in the same order, but won't be surfaced until the agent's run is complete.

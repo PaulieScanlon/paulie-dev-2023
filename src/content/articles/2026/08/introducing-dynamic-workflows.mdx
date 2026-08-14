@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Dynamic Workflows for Mastra
+date: 2026-08-12
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-dynamic-workflows
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now add dynamic workflows to your live Mastra server without changing or redeploying code. Users, external systems, or agents can build workflows on the fly as structured JSON objects, then add them to a running Mastra server.
+
+Before dynamic workflows, every workflow had to be authored in TypeScript, registered with the Mastra instance, and deployed as part of the server bundle. Now, creating workflows isn't limited to engineers who can write and deploy code — agents or other team members can create them too.
+
+A dynamic workflow is a graph of agents, tools, and control-flow steps, persisted in storage as JSON that references registered primitives by `id`. Once added to a live server, a dynamic workflow is available to run from any HTTP client.
+
+Workflow steps still need to receive expected inputs and pass expected outputs. You can use mapConfig to read from `${initData._}` (the workflow input) or `${stepResults.<id>._}` (a prior step's output), so any agent or tool can be used at any step.

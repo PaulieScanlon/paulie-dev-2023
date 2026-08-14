@@ -1,0 +1,16 @@
+---
+base: articles
+title: Introducing Goals for Mastra Agents
+date: 2026-07-15
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-goals
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now give your agents a durable, thread-scoped [goal](https://mastra.ai/docs/long-running-agents/goals) to work towards. Set an objective using `setObjective`, and an LLM judge scores each loop until the goal is met or a run budget is exhausted.
+
+On each completed loop, the judge scores the conversation against the objective and returns `1` or `0` — a pass ends the loop, a fail injects feedback prompting the agent to try again. Evaluations are emitted as goal chunks containing the `objective`, `status`, and `results` array with a `score`, and `reason`.
+
+Before goals, keeping an agent focused on one objective across multiple messages meant re-supplying the success criteria on every `.generate()` or `.stream()` call, or using an isTaskComplete check. With goals, the objective is set once on the thread and the judge runs inside the loop where it decides to pass or fail on each iteration.

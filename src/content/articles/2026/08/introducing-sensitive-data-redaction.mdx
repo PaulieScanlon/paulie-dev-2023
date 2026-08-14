@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Sensitive Data Redaction for Mastra Observability
+date: 2026-08-10
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-sensitive-data-redaction
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+With Mastra's new [SensitiveDataFilter](https://mastra.ai/reference/observability/tracing/processors/sensitive-data-filter), you can automatically redact customer information from agent observability traces, or configure rules per-environment for application-specific fields.
+
+The `SensitiveDataFilter` is enabled by default and ships with 15 default value fields — including `password`, `ssn`, and `auth`.
+
+You can customize which fields to redact with the `sensitiveFields` array. Field matching normalizes case and separators, for example; `api-key`, `api_key`, and `ApiKey` would all match. You can also configure redaction styles, change the replacement token, and set different rules per-environment. E.g. `partial` for development, and `full` for production.
+
+Before the `SensitiveDataFilter`, keeping secrets and PII out of your agent traces meant writing a custom span processor to sanitize tool inputs. Now the `SensitiveDataFilter` is enabled by default, catching and redacting sensitive field names automatically.

@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Ephemeral Sandbox Deployments for Mastra Server and Studio
+date: 2026-08-05
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-ephemeral-sandbox-deploys
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now deploy your Mastra project (Server and Studio) to an [ephemeral sandbox](https://mastra.ai/docs/deployment/sandbox) — manually or programmatically, with configurable runtime limits. Share previews with teammates, let agents deploy autonomously to verify results, or run per-user instances isolated from your infrastructure.
+
+A sandbox deploy gives you two public URLs to test your application. Open Studio to chat with your agents, or hit `/api` to test the endpoints directly.
+
+We're starting today with [E2B](https://mastra.ai/reference/workspace/e2b-sandbox), [Daytona](https://mastra.ai/reference/workspace/daytona-sandbox), and [Vercel Sandbox](https://mastra.ai/reference/workspace/vercel-sandbox), with more providers to follow.
+
+Before sandbox deployments, hosting a Mastra project meant working through the full development lifecycle — create a PR, push a deploy, share a link. Now you can skip the pipeline and deploy straight to a sandbox. Subsequent deployments reconnect to the existing sandbox without reinstalling dependencies.

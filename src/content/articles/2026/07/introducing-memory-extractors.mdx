@@ -1,0 +1,22 @@
+---
+base: articles
+title: Introducing Memory Extractors for Mastra Agents
+date: 2026-07-21
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-memory-extractors
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now extract data from your agent's conversations using a [memory extractor](https://mastra.ai/docs/memory/observational-memory#extractors). Give an `Extractor` instructions and persist defined information to send to downstream services, or surface in your app's UI.
+
+Extractors work as part of [Observational Memory](https://mastra.ai/docs/memory/observational-memory)'s observer and reflector background agents. You can access extracted values from a [stream chunk](https://mastra.ai/docs/memory/observational-memory#read-extracted-values-from-a-stream) and can configure the output in two ways:
+
+1. **Structured**: Zod schema for typed output. Looser instructions — model infers what to capture from schema field names.
+2. **Text**: No schema, plain-text output. Explicit instructions — spell out what to capture.
+
+Before extractors, pulling structured data from conversations meant either:
+
+- Using a [working-memory template](https://mastra.ai/docs/memory/working-memory#custom-templates) and a tool to write a JSON output.
+- A [supervisor agent](https://mastra.ai/docs/agents/supervisor-agents) with a subagent.

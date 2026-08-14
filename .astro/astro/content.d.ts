@@ -1034,6 +1034,34 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/07/introducing-gates-and-verdicts.mdx": {
+	id: "2026/07/introducing-gates-and-verdicts.mdx";
+  slug: "2026/07/introducing-gates-and-verdicts";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-goals.mdx": {
+	id: "2026/07/introducing-goals.mdx";
+  slug: "2026/07/introducing-goals";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-memory-extractors.mdx": {
+	id: "2026/07/introducing-memory-extractors.mdx";
+  slug: "2026/07/introducing-memory-extractors";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/07/introducing-rubric-scorers-for-mastra-agents.mdx": {
+	id: "2026/07/introducing-rubric-scorers-for-mastra-agents.mdx";
+  slug: "2026/07/introducing-rubric-scorers-for-mastra-agents";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2026/07/introducing-schedules-for-agents-and-workflows.mdx": {
 	id: "2026/07/introducing-schedules-for-agents-and-workflows.mdx";
   slug: "2026/07/introducing-schedules-for-agents-and-workflows";
@@ -1041,9 +1069,58 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/07/introducing-tool-hooks.mdx": {
+	id: "2026/07/introducing-tool-hooks.mdx";
+  slug: "2026/07/introducing-tool-hooks";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2026/07/introducing-webhook-signal-provider.mdx": {
 	id: "2026/07/introducing-webhook-signal-provider.mdx";
   slug: "2026/07/introducing-webhook-signal-provider";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-built-in-tools.mdx": {
+	id: "2026/08/introducing-built-in-tools.mdx";
+  slug: "2026/08/introducing-built-in-tools";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-dynamic-workflows.mdx": {
+	id: "2026/08/introducing-dynamic-workflows.mdx";
+  slug: "2026/08/introducing-dynamic-workflows";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-ephemeral-sandbox-deploys.mdx": {
+	id: "2026/08/introducing-ephemeral-sandbox-deploys.mdx";
+  slug: "2026/08/introducing-ephemeral-sandbox-deploys";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-feedback-and-feedback-analytics.mdx": {
+	id: "2026/08/introducing-feedback-and-feedback-analytics.mdx";
+  slug: "2026/08/introducing-feedback-and-feedback-analytics";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-imessage-support.mdx": {
+	id: "2026/08/introducing-imessage-support.mdx";
+  slug: "2026/08/introducing-imessage-support";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-sensitive-data-redaction.mdx": {
+	id: "2026/08/introducing-sensitive-data-redaction.mdx";
+  slug: "2026/08/introducing-sensitive-data-redaction";
   body: string;
   collection: "articles";
   data: InferEntrySchema<"articles">

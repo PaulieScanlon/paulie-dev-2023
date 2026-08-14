@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Agent Feedback and Feedback Analytics
+date: 2026-08-04
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-feedback-and-feedback-analytics
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now capture human [feedback](https://mastra.ai/docs/observability/feedback) — thumbs, ratings, comments, or corrections — on any agent response. Tag each record by source (`user`, `SME`, or `qa`) so you can visualize, filter and compare later.
+
+Every feedback record can be anchored to a `threadId`, `traceId`, or `spanId`. Reviewers can see agent responses in the context of a conversation and grade each one accordingly — human feedback is the most direct signal for improving agent behavior and can be used as a source to power agent learning.
+
+Feedback records can be queried per agent — average rating, thumb split, or comment volume. Compare user ratings versus QA ratings, and open the trace in Studio to inspect the model calls, tool calls, and outputs behind any feedback record.
+
+Before feedback, ratings and reviewer comments lived in external storage with no link back to the trace that produced them. Now they sit alongside spans, metrics, and logs in the same observability store, and can be forwarded to [PostHog](https://mastra.ai/reference/observability/tracing/exporters/posthog), [Braintrust](https://mastra.ai/reference/observability/tracing/exporters/braintrust), [Arize](https://mastra.ai/reference/observability/tracing/exporters/arize), and other supported exporters.

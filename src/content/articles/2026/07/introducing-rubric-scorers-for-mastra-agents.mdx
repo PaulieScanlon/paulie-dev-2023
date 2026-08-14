@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Rubric Scorers for Mastra Agents
+date: 2026-07-28
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-rubric-scorers-for-mastra-agents
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now evaluate your agent's output with a [rubric scorer](https://mastra.ai/reference/evals/rubric). Define an array of criteria and an LLM-as-judge grades responses against each one.
+
+A rubric scorer returns a pass/fail `score` (1 or 0) and a `reason` summarizing each criterion's outcome. Failed checks are fed back to the agent so it can re-run — set `strategy: 'all'` if every criteria should pass, or `'any'` if one is enough.
+
+Before rubric scorers, checking an agent's output against a checklist meant using a post-run eval or hand-rolling a retry loop that fired on failure. With a rubric scorer, the judge validates against the checklist as part of the agentic loop.
+
+Attach it declaratively to your agent's config, or imperatively at runtime when you call `.stream()` or `.generate()`.
