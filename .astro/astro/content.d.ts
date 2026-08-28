@@ -1083,9 +1083,23 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/08/ai-sdk-v7-support.mdx": {
+	id: "2026/08/ai-sdk-v7-support.mdx";
+  slug: "2026/08/ai-sdk-v7-support";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2026/08/introducing-built-in-tools.mdx": {
 	id: "2026/08/introducing-built-in-tools.mdx";
   slug: "2026/08/introducing-built-in-tools";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-create-coding-agent-helper.mdx": {
+	id: "2026/08/introducing-create-coding-agent-helper.mdx";
+  slug: "2026/08/introducing-create-coding-agent-helper";
   body: string;
   collection: "articles";
   data: InferEntrySchema<"articles">
@@ -1111,6 +1125,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/08/introducing-fine-grained-authorization.mdx": {
+	id: "2026/08/introducing-fine-grained-authorization.mdx";
+  slug: "2026/08/introducing-fine-grained-authorization";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2026/08/introducing-imessage-support.mdx": {
 	id: "2026/08/introducing-imessage-support.mdx";
   slug: "2026/08/introducing-imessage-support";
@@ -1118,9 +1139,51 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/08/introducing-mastra-helm-chart.mdx": {
+	id: "2026/08/introducing-mastra-helm-chart.mdx";
+  slug: "2026/08/introducing-mastra-helm-chart";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-multi-turn-evals.mdx": {
+	id: "2026/08/introducing-multi-turn-evals.mdx";
+  slug: "2026/08/introducing-multi-turn-evals";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 "2026/08/introducing-sensitive-data-redaction.mdx": {
 	id: "2026/08/introducing-sensitive-data-redaction.mdx";
   slug: "2026/08/introducing-sensitive-data-redaction";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-skill-search-processor.mdx": {
+	id: "2026/08/introducing-skill-search-processor.mdx";
+  slug: "2026/08/introducing-skill-search-processor";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-token-cost-control.mdx": {
+	id: "2026/08/introducing-token-cost-control.mdx";
+  slug: "2026/08/introducing-token-cost-control";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-token-limiting.mdx": {
+	id: "2026/08/introducing-token-limiting.mdx";
+  slug: "2026/08/introducing-token-limiting";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/08/introducing-tool-search-processor.mdx": {
+	id: "2026/08/introducing-tool-search-processor.mdx";
+  slug: "2026/08/introducing-tool-search-processor";
   body: string;
   collection: "articles";
   data: InferEntrySchema<"articles">

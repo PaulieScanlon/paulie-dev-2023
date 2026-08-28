@@ -1,0 +1,16 @@
+---
+base: articles
+title: Introducing Token Limiting for Mastra Agents
+date: 2026-08-28
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-token-limiting
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now cap token usage with [TokenLimiterProcessor](https://mastra.ai/reference/processors/token-limiter-processor) — a processor that enforces a limit on inputs and generated responses. Configure it as an `inputProcessor` to trim message history when it exceeds the cap, or as an `outputProcessor` to abort or truncate the response mid-stream.
+
+Strategies range from a silent `truncate` to a hard `abort`. Additional configuration lets you pick between `best-fit` and `contiguous` trimming for inputs, and whole-response or per-stream-part for outputs.
+
+Without a token limiter, a growing message history can bloat the model's context window and get rejected mid-turn. Similarly, a long response can exceed the length expected by a UI or downstream service. With `TokenLimiterProcessor` you can catch both — trim the history before it hits the LLM, or stop the response the moment it crosses the threshold.

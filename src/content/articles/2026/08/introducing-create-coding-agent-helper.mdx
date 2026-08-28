@@ -1,0 +1,16 @@
+---
+base: articles
+title: Introducing Coding Agent Helper for Mastra
+date: 2026-08-17
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-create-coding-agent-helper
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now use [createCodingAgent](https://mastra.ai/reference/coding-agent/create-coding-agent) to develop your own coding agent with all the essentials it needs. Configure it with a model, instructions, and memory. It can read files, run commands, fix bugs, and track its own progress.
+
+If you're building a coding agent, the `createCodingAgent` helper starts you off with the right primitives: a sandbox for reading and writing files, a task list the agent can work through and complete, and a goal-judge prompt to validate the changes. Agents created with `createCodingAgent` are like any other Mastra agent, they work with [AgentController](https://mastra.ai/docs/harness/agent-controller), and use the same primitives [Mastra Code](https://code.mastra.ai/) runs on.
+
+Use the [buildBasePrompt](https://mastra.ai/reference/coding-agent/build-base-prompt) to define your agent's behavior. Point it at your repo with `projectPath`, and set a branch using `gitBranch`. Use a mode to plan and propose changes, or build when it should implement them. Pass instructions as a function that accesses `requestContext` to modify behavior per request.

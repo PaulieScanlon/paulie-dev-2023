@@ -1,0 +1,21 @@
+---
+base: articles
+title: Introducing Fine-Grained Authorization for Mastra
+date: 2026-08-19
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-fine-grained-authorization
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Mastra now supports [Fine-Grained Authorization](https://mastra.ai/docs/auth/fga) (FGA) to precisely manage permissions for authenticated users and the resources they can access. Configure FGA on your Mastra instance to gate every part of the runtime: HTTP routes, agent `.stream()` and `.generate()`, workflow runs, tool calls, memory reads and writes, and Mastra-hosted MCP servers.
+
+Mastra had role-based access control (RBAC) since March 2026 ([PR #13163](https://github.com/mastra-ai/mastra/pull/13163)) for applying coarse permission patterns to agent calls or memory reads. But restrictions applied by role often aren't enough. Whilst RBAC handles user vs admin cleanly, it's not granular enough to fine-tune what specific users can do with specific resources.
+
+FGA lets you refine permissions per-user and per-resource, giving you much more control over what each user can see and do.
+
+You can enable FGA in one of two ways:
+
+- **WorkOS**: Configure roles in the WorkOS dashboard and use the [MastraFGAWorkos](https://mastra.ai/reference/auth/workos) provider to apply them to your Mastra server.
+- **Other auth providers**: Implement the [IFGAProvider](https://mastra.ai/reference/auth/fga) interface — a small vendor-agnostic surface you can point at any authorization backend.

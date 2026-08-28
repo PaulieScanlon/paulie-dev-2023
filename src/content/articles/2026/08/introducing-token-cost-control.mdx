@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Token Cost Control for Mastra Agents
+date: 2026-08-27
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-token-cost-control
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now enforce spending limits with `TokenCostControl` — a processor that reads cumulative costs from observability data. Configure a hard `maxCost` cap that blocks the run when exceeded, or a soft `warnAtPercent` threshold that fires as usage approaches the limit.
+
+Scopes range from a single agent run to an entire organization's usage. Additional configuration lets you `block` or `warn` on violations, and set a lookback window that resets cost tracking after a configurable period.
+
+Before cost control, runaway spending almost always shows up after the fact — a spike in metrics, or a bigger-than-expected bill. With `TokenCostControl` you can catch it in real time. The processor reads observability data before each LLM call and stops (or warns) an agent once its cumulative cost crosses a threshold.
+
+Studio surfaces tripwires as expandable errors during development, letting you inspect the violation payload and cost breakdown in development. For production, use the `onViolation` callback to surface the same details.

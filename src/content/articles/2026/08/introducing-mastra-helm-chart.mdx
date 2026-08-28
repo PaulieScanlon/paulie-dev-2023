@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing the Mastra Helm Chart for Self-Hosted Deployments
+date: 2026-08-26
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-mastra-helm-chart
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Today we're announcing the [Mastra Helm chart](https://mastra.ai/integrations/deploy/kubernetes-helm) for self-hosting Mastra on Kubernetes clusters.
+
+The Helm chart deploys the same topology we use in the [Mastra platform](https://projects.mastra.ai) to run customer projects at scale. Shaped by everything we've learned since the [platform launched](https://mastra.ai/blog/announcing-mastra-platform) earlier this year, we're now shipping our playbook so you can run Mastra projects the way we do.
+
+You've always been able to deploy Mastra on your own infrastructure. Our docs cover [self-hosting](https://mastra.ai/docs/deployment/mastra-server) Mastra server, and [cloud provider deploys](https://mastra.ai/docs/deployment/cloud-providers) for popular services. Plus, Mastra also ships an [extendable deployer class](https://mastra.ai/reference/deployer) and pre-built deployers for Vercel, Cloudflare, and Netlify.
+
+Customers self-hosting Mastra regularly asked for our recommended way to deploy. We put the Helm chart together to give them a solid base to build on. The templates offer a faster path from 0 to 1, while remaining flexible with overrides.

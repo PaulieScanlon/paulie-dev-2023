@@ -1,0 +1,19 @@
+---
+base: articles
+title: AI SDK v7 support in Mastra
+date: 2026-08-18
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/ai-sdk-v7-support
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Mastra supported AI SDK v7 from the day it was released, June 25, 2026. Since then we've continued to support and improve the overall end-to-end developer experience.
+
+AI SDK v7 introduced a new provider spec (`LanguageModelV4`), a top-level `reasoning` parameter, and a number of API renames. `@mastra/core` hides the spec differences behind the `Agent` API and detects the spec to maintain support for v5, v6, and v7. Upgrading your model providers from `@ai-sdk/openai@2.x.x` (v6) to `@ai-sdk/openai@4.x.x` (v7) won't require any Mastra code changes.
+
+Changes have been made to the following Mastra packages:
+
+- `@mastra/core`: Handles the runtime, agent definitions, `.stream()` / `.generate()` calls, and `modelSettings`.
+- `@mastra/ai-sdk`: Handles route handlers, stream handlers, and converters that adapt a Mastra agent to `useChat`, `useCompletion`, or `useObject` on the frontend.

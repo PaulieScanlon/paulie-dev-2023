@@ -1,0 +1,21 @@
+---
+base: articles
+title: Introducing Tool Search for Mastra Agents
+date: 2026-08-25
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-tool-search-processor
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Your Mastra agents can now load tools on demand with [ToolSearchProcessor](https://mastra.ai/reference/processors/tool-search-processor) for sharper tool selection and reduced token usage and cost.
+
+The processor exposes two built-in tools:
+
+- `search_tools`: Finds matching tools by keyword against tool `id` and `description`.
+- `load_tool`: Loads a tool into the agent's active tool set.
+
+By default, agents load tools eagerly, exposing every registered tool to the model on every turn. As tool sets grow, token usage increases and tool selection accuracy drops. Now with a `ToolSearchProcessor`, tools load on demand: the agent searches for tools and only loads what it needs, keeping tool selection sharp and token usage low.
+
+When the agent needs a tool, it calls `search_tools`, finds matches, then uses `load_tool` to load it. Subsequent turns can call the loaded tool directly. Loaded tools stay in thread state for a configurable TTL (default 1 hour) before they're cleaned up. There's a small latency cost for the first lookup of each tool, but following turns run with reduced token usage.

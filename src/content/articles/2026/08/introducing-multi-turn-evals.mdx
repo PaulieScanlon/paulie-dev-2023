@@ -1,0 +1,21 @@
+---
+base: articles
+title: Introducing Multi-turn Evals for Mastra Agents
+date: 2026-08-24
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-multi-turn-evals
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now assert a whole conversation with multi-turn evals. Gates assert deterministic actions like tool calls, and scorers can use an LLM-as-judge to grade the conversational context for accuracy.
+
+`runEvals` accepts both gates and scorers:
+
+- `gates`: can use quick checks like `calledTool`, `includes`, or `excludes` to return a `0` or `1` result.
+- `scorers`: can use a multi-turn compatible built-in scorer like the multi-turn judge to grade the conversation and return a `score` and `reason`.
+
+You can also use quick checks with scorers, to test if a message includes a certain word. `runEvals` can be used for per-turn, and multi-turn evaluation simultaneously.
+
+Before multi-turn evals, grading a conversation meant setting up gates and scorers per-turn and stitching the results together to reason about the whole exchange. With multi-turn, the judge uses a criterion to score the whole conversation, and gates can be used to bulk-assert deterministic actions, e.g. `checks.calledTool("get_weather", { times: 3 })`.
