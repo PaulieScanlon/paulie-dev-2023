@@ -1,0 +1,21 @@
+---
+base: articles
+title: Introducing Sandbox Computer Use for Mastra Agents
+date: 2026-09-02
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-sandbox-computer-use
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Your Mastra agents can now control a real Linux desktop with [computer tools](https://mastra.ai/docs/sandbox/computer). Browse the web, fill in forms, download files, take screenshots, and run programs from a terminal — all from the safety of a sandbox.
+
+We're launching today with two providers: [E2B Desktop](https://mastra.ai/integrations/sandboxes/e2b-desktop) and [Daytona](https://mastra.ai/integrations/sandboxes/daytona). Both expose 11 `computer_*` tools your agents can use:
+
+- **Screenshot**: `computer_screenshot`
+- **Mouse**: `computer_click`, `computer_double_click`, `computer_right_click`, `computer_move_mouse`, `computer_drag`, `computer_scroll`
+- **Keyboard**: `computer_type`, `computer_press_key`
+- **Environment**: `computer_get_screen_info`, `computer_wait`
+
+An alternative is to use Mastra's [browser capabilities](https://mastra.ai/docs/browser/overview) so your agents navigate the web, extract data, and pass it back for processing. But with computer tools, you can extend an agent's capabilities by giving it access to the whole sandbox operating system.

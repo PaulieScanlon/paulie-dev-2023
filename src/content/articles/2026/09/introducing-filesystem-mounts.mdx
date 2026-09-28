@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Filesystem Mounts for Mastra Workspaces
+date: 2026-09-08
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-filesystem-mounts
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now use multiple filesystems from a single Mastra workspace with [mounts](https://mastra.ai/docs/workspace/filesystem#mounts). Read from restricted storage environments and write to the filesystems your team already use. Mastra supports a number of [remote filesystems](https://mastra.ai/blog/remote-filesystem-support) letting you mix-and-match to suit your needs.
+
+By configuring multiple filesystems, your agents, tools, and workflows can read from multiple sources, combine the data, and write to a destination through the same file interface.
+
+Before mounts, a Mastra workspace attached one filesystem at a time. Reading from one provider and writing to another meant hand-rolling the routing, or calling underlying SDKs directly. Now, all filesystems are available through the `mountPath`, making it easier to read and write across multiple filesystems.
+
+Under the hood, `mounts` builds a [CompositeFilesystem](https://mastra.ai/docs/workspace/filesystem#composite-filesystem) that routes each read or write to the correct provider. With a sandbox configured, Mastra also mounts each provider with FUSE (Filesystem in Userspace).

@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Classifiers with Jev
+date: 2026-09-28
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-classifiers-with-jev
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now use evaluation models in Mastra with a [classifier](https://mastra.ai/reference/classifier/classifier). Define questions as `choice`, `score`, or `boolean`, then set the `criteria` to evaluate, and use the answer to make fast, predictable decisions.
+
+With an evaluation model, you provide `instructions` describing what to decide and `criteria` outlining what can be answered. A `choice` returns one of the `criteria` keys, a `score` returns a position from an ordered list, and a `boolean` returns the probability the answer is true.
+
+We shipped this after the dramatic rise of Jev a couple weeks ago, and ran a workshop showing how it works: [Building a Classifier in Mastra with Jev](https://www.youtube.com/live/ifDOPPQKLW0?si=T9sAvECKaH5Z84u4).
+
+Before classifiers, picking from a fixed set of options meant prompting an LLM, describing the options, defining the output shape, then parsing and validating whatever came back. With a classifier, the options are the `criteria`, and the answer shows why the decision was made, with a probability for each option, so your code can decide what happens next.

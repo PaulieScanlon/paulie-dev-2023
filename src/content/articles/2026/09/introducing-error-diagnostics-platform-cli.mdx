@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Error Diagnosis for Mastra Platform and CLI
+date: 2026-09-15
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-error-diagnostics-platform-cli
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now get an error diagnosis for failed deploys on the Mastra platform or via the CLI. Inspect by deploy ID, project, or environment, then copy the recommendations and hand off to your coding agent to fix.
+
+Every failed deploy comes with an explanation of the error and recommendations that highlight the problem code. You can inspect the fix in-place, copy the diagnosis summary as markdown, or drill into the detailed logs when you need the raw output.
+
+Before diagnosis, debugging a failed deploy meant reading raw build logs. Now the platform and CLI both return a summarized diagnosis that you, your coding agent, or downstream services can act on.
+
+Errors are classified as either `USER`, `SYSTEM`, or `THIRD_PARTY`. Only `USER` errors show a diagnosis with recommendations.

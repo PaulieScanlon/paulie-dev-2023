@@ -1,0 +1,20 @@
+---
+base: articles
+title: Introducing Filesystem Skills for Mastra Workspaces
+date: 2026-09-11
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-filesystem-skills
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Your agents can now share and reuse [filesystem skills](https://mastra.ai/docs/sandbox/skills#filesystem-backed-skills) for common or agent-specific tasks.
+
+Choose from a number of supported [filesystem providers](https://mastra.ai/blog/remote-filesystem-support) to host your skills, or use [multiple filesystems](https://mastra.ai/blog/introducing-filesystem-mounts) in the same workspace. Use providers your team already knows for ad hoc contributions, or engineer-managed providers for versioned skill updates.
+
+Mastra provides two ways to configure skills.
+
+- [Agent skills](https://mastra.ai/docs/skills) are configured per-agent and ship with your bundled production code. Use when skills are scoped to a single agent and don't execute scripts.
+
+- [Filesystem skills](https://mastra.ai/docs/sandbox/skills#filesystem-backed-skills) are configured on workspaces and can use local or remote filesystems to store skills. Use when skills are shared across agents, or when skills need to be updated without codebase changes. Combine with a workspace sandbox to enable script execution.

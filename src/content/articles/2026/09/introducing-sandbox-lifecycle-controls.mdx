@@ -1,0 +1,24 @@
+---
+base: articles
+title: Introducing Sandbox Lifecycle Controls in Mastra
+date: 2026-09-03
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-sandbox-lifecycle-controls
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Agents use sandboxes for reading and writing files, running shell commands, spawning background processes, or operating a real computer. Sandbox lifecycles are typically managed by agents: they start them up on the first tool call, keep them running across requests, and shut them down when they're done.
+
+Now Mastra's APIs give you fine-grained control over the sandbox lifecycle. You can create, mount a filesystem, snapshot, pause, re-start, and destroy entirely. You can also define lifecycle hooks like `onStop` to trigger other actions, or inspect or kill specific processes on the sandbox.
+
+The main Mastra instance is the parent of every registered workspace and handles process-level shutdown:
+
+- `mastra.shutdown()`: Calls `stop()` on every registered workspace.
+
+Workspaces are parents to child sandboxes and have three methods of their own:
+
+- `workspace.init()`: Pre-starts the workspace and any child sandboxes.
+- `workspace.stop()`: Suspends live resources without destroying them.
+- `workspace.destroy()`: Closes all workspace-owned resources and clears cached sandbox references.

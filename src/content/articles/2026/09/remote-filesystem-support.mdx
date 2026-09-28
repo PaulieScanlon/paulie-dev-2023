@@ -1,0 +1,27 @@
+---
+base: articles
+title: Remote Filesystem Support for Mastra Agents
+date: 2026-09-07
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/remote-filesystem-support
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+Your agents can now access the same filesystems your team's already using. Attach a provider to the workspace and the agent gets tools to read, write, edit, list, search, and delete files. Any changes made by either humans or agents happen in the same bucket, folder, or drive.
+
+Filesystems are configurable — grant access by user, role, or tenant, or restrict agent access to read-only.
+
+Mastra currently supports the following remote filesystems:
+
+- Google Drive
+- AgentFS
+- Amazon S3
+- Archil
+- Azure Blob
+- Google Cloud Storage
+- Mesa
+- Vercel Files
+
+And our own filesystem on the Mastra Platform. Every filesystem exposes tools your agents can use, including `read_file`, `write_file`, `edit_file`, `list_files`, `delete`, `file_stat`, `mkdir`, and `grep`.

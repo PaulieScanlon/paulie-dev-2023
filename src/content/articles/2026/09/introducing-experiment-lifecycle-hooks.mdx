@@ -1,0 +1,16 @@
+---
+base: articles
+title: Introducing Experiment Lifecycle Hooks
+date: 2026-09-22
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-experiment-lifecycle-hooks
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now configure each stage of an experiment run using [lifecycle hooks](https://mastra.ai/docs/evals/experiments#lifecycle-hooks): `beforeAll`, `beforeEach`, `afterEach`, `afterAll`. Seed a database, spin up a sandbox, copy a fixture — then tear it all down when the run completes.
+
+Running experiments with mocked data is an effective way to catch regressions, but there are occasions where you'll want a production-like environment to gauge real-world behavior. Lifecycle hooks let you create and configure short-lived test environments for each experiment run.
+
+Before lifecycle hooks, preparing a test environment for every experiment meant rolling setup scripts or pointing agents at production data. With lifecycle hooks, experiments can provision their own environment and clean them up when they're finished. An experiment runs the [target](https://mastra.ai/blog/introducing-experiment-targets) against each [dataset item](https://mastra.ai/docs/evals/datasets#adding-items).

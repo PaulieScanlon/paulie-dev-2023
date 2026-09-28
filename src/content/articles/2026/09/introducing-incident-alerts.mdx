@@ -1,0 +1,20 @@
+---
+base: articles
+title: Introducing Incident Alerts for Mastra Platform
+date: 2026-09-17
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-incident-alerts
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now use [Mastra platform alerts](https://mastra.ai/docs/mastra-platform/alerts) to get real-time notifications via Slack, email, or a webhook when your deployments fail or services crash. Scope to your entire organization, a single project, or environments within a project.
+
+Deploy failures send a notification with the error logs, then update the same message with an [error diagnosis](https://mastra.ai/blog/introducing-error-diagnostics-platform-cli) once it completes.
+
+Service issues repeat at configurable intervals (every event, at most every 5 minutes, at most every 15 minutes, or at most every hour) until they resolve, with duplicates suppressed in between. A follow-up message will be sent to the same destinations when the service recovers, letting you know everything is OK.
+
+Before, a failed deploy or a crashed service could go unnoticed unless you were watching the platform UI. Now, alerts arrive in your team's Slack, inbox, or own alerting tools so you and your team can take action.
+
+We're starting today with Slack, email, and webhooks, with PagerDuty and incident.io support to follow.

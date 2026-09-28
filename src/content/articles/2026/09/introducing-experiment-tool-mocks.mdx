@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing Experiment Tool Mocks
+date: 2026-09-23
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-experiment-tool-mocks
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now run agent experiments without hitting live APIs using tool mocks. Each dataset item can declare mock inputs and outputs that experiments use in place of real tool call results.
+
+Tools are often used to interact with APIs. Some functionality can be destructive or even permanent — "delete user", "refund payment", "send email". Using tool mocks, you can assert the expected results without invoking the tool's `execute` function and hitting the real API.
+
+Before tool mocks, testing agents that touched payment or messaging APIs meant running experiments in test environments or managing env var swaps. With tool mocks, nothing in your project needs to change — the agent, env vars, and tool config stay exactly as they would when running in production.
+
+Starting today, tool mocks are supported for agent targets, with workflow tool mocks to follow.

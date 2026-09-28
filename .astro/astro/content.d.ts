@@ -1188,6 +1188,125 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".mdx"] };
+"2026/09/introducing-classifiers-with-jev.mdx": {
+	id: "2026/09/introducing-classifiers-with-jev.mdx";
+  slug: "2026/09/introducing-classifiers-with-jev";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-error-diagnostics-platform-cli.mdx": {
+	id: "2026/09/introducing-error-diagnostics-platform-cli.mdx";
+  slug: "2026/09/introducing-error-diagnostics-platform-cli";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-experiment-lifecycle-hooks.mdx": {
+	id: "2026/09/introducing-experiment-lifecycle-hooks.mdx";
+  slug: "2026/09/introducing-experiment-lifecycle-hooks";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-experiment-targets.mdx": {
+	id: "2026/09/introducing-experiment-targets.mdx";
+  slug: "2026/09/introducing-experiment-targets";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-experiment-tool-mocks.mdx": {
+	id: "2026/09/introducing-experiment-tool-mocks.mdx";
+  slug: "2026/09/introducing-experiment-tool-mocks";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-filesystem-mounts.mdx": {
+	id: "2026/09/introducing-filesystem-mounts.mdx";
+  slug: "2026/09/introducing-filesystem-mounts";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-filesystem-search.mdx": {
+	id: "2026/09/introducing-filesystem-search.mdx";
+  slug: "2026/09/introducing-filesystem-search";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-filesystem-skills.mdx": {
+	id: "2026/09/introducing-filesystem-skills.mdx";
+  slug: "2026/09/introducing-filesystem-skills";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-harness-channels.mdx": {
+	id: "2026/09/introducing-harness-channels.mdx";
+  slug: "2026/09/introducing-harness-channels";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-http-feedback-api.mdx": {
+	id: "2026/09/introducing-http-feedback-api.mdx";
+  slug: "2026/09/introducing-http-feedback-api";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-incident-alerts.mdx": {
+	id: "2026/09/introducing-incident-alerts.mdx";
+  slug: "2026/09/introducing-incident-alerts";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-jira-gitlab-incident-integrations.mdx": {
+	id: "2026/09/introducing-jira-gitlab-incident-integrations.mdx";
+  slug: "2026/09/introducing-jira-gitlab-incident-integrations";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-sandbox-computer-use.mdx": {
+	id: "2026/09/introducing-sandbox-computer-use.mdx";
+  slug: "2026/09/introducing-sandbox-computer-use";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-sandbox-lifecycle-controls.mdx": {
+	id: "2026/09/introducing-sandbox-lifecycle-controls.mdx";
+  slug: "2026/09/introducing-sandbox-lifecycle-controls";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-server-health-for-mastra-platform.mdx": {
+	id: "2026/09/introducing-server-health-for-mastra-platform.mdx";
+  slug: "2026/09/introducing-server-health-for-mastra-platform";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/introducing-vitest-integration.mdx": {
+	id: "2026/09/introducing-vitest-integration.mdx";
+  slug: "2026/09/introducing-vitest-integration";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
+"2026/09/remote-filesystem-support.mdx": {
+	id: "2026/09/remote-filesystem-support.mdx";
+  slug: "2026/09/remote-filesystem-support";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".mdx"] };
 };
 "demos": {
 "2021/06/paulie-api.mdx": {

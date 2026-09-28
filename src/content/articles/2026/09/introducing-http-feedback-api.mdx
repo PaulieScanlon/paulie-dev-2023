@@ -1,0 +1,18 @@
+---
+base: articles
+title: Introducing the Feedback API Endpoint for Mastra Observability
+date: 2026-09-18
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-http-feedback-api
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now query and evaluate human-generated feedback with the [feedback API endpoint](https://mastra.ai/docs/mastra-platform/api#feedback-api). Using HTTP endpoints and standard query parameters, you can filter by region, environment, thread, source, trace, entity, or experiment.
+
+Human [feedback](https://mastra.ai/blog/introducing-feedback-and-feedback-analytics) comes in many forms — a thumbs up / thumbs down, a star rating, or a detailed comment. The feedback API gives you the parameters to construct powerful, fine-grained queries to see how well your agents are performing in the real world.
+
+We shipped the TypeScript API in `@mastra/core@1.18.0` ([PR #14842](https://github.com/mastra-ai/mastra/pull/14842)). The new feedback API endpoint is language-agnostic and can be called from other services.
+
+As of today, the feedback API endpoint is read-only. For writes, review-status updates, and deletes, use the [TS API](https://mastra.ai/reference/observability/feedback).

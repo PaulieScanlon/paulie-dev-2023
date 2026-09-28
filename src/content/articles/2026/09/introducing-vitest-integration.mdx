@@ -1,0 +1,20 @@
+---
+base: articles
+title: Introducing Vitest Integration for Testing
+date: 2026-09-24
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-vitest-integration
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now run Mastra evals as part of your CI workflow using [Vitest](https://mastra.ai/docs/evals/vitest-integration). Each eval behaves like a regular unit test. You can test your agents, workflows, and scorers.
+
+The reporter prints gate and score results at the end of each run so you can see which tests passed or failed, and why.
+
+Catching regressions before you deploy can prevent eg prompt tweaks from changing how your agent behaves in production. Running unit tests as part of your CI means every pull request is validated against the assertions defined in the tests, ensuring only fully functioning code gets deployed.
+
+The alternate path is to use `runEvals` inside a test and assert using [gates and verdicts](https://mastra.ai/blog/introducing-gates-and-verdicts). But it can be nice to use a familiar testing framework so we shipped this.
+
+Testing LLM responses isn't like testing deterministic code. The same input will often produce a different output, causing exact assertions to fail. The Vitest integration lets you test using tolerances and thresholds, so the tests absorb the variance.

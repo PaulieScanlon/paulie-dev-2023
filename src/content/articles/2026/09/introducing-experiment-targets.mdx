@@ -1,0 +1,25 @@
+---
+base: articles
+title: Introducing Experiment Targets
+date: 2026-09-21
+tags: [Mastra, AI]
+url: https://mastra.ai/blog/introducing-experiment-targets
+publication: Mastra
+author: Paul Scanlon
+logo: https://res.cloudinary.com/www-paulie-dev/image/upload/v1768211168/paulie.dev/Logos/mastra-logo_uwugfl.png
+---
+
+You can now run experiments against workflows and scorers using experiment targets.
+
+In February, we launched experiments that could run against predefined datasets, so you could catch regressions after prompt tweaks, model swaps, or code changes. But they were only available for agents.
+
+Now, you can also evaluate your workflows – as well as the scorers themselves. Experiment targets let you test each primitive individually with defined inputs and expected outputs (ground truths), persisted in storage to inspect, compare, or send on to downstream services.
+
+Experiments can be run from four Mastra surfaces, each suited to a different use case:
+
+- **Studio**: Human review and comparison.
+- **TS API**: Internal evaluation applications.
+- **CLI**: Pipelines to block deploys.
+- **HTTP endpoints**: Downstream monitoring services.
+
+Agent and workflow targets accept dataset items with a defined `input` and `groundTruth`. Outputs are typically produced by an LLM or a tool call. Scorer targets require the `input`, `groundTruth`, and `output` to be defined, since scorers themselves don't produce outputs.
